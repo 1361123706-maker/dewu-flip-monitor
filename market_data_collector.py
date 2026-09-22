@@ -1,36 +1,20 @@
-#!/usr/bin/env python3
-
-"""
-市场数据采集接口
-
-作用：
-1. 从合法的数据接口获取商品行情
-2. 统一转换成监控系统格式
-3. 把得物卖出费用拆开保存
-4. 不猜测缺失数据
-5. 不绕过登录、验证码、签名、加密或反爬
-
-注意：
-真正的数据接口地址通过 GitHub Secrets / 环境变量提供。
-不要把 API Key 写进代码。
-"""
-
 import json
 import os
-from datetime import datetime, timezone
+import re
+import time
 from pathlib import Path
+from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
+from urllib.error import HTTPError, URLError
 
 
-ROOT = Path(__file__).resolve().parent
+INPUT_FILE = Path("market_data_input.json")
 
-OUTPUT_FILE = ROOT / "market_data_input.json"
-
-
-# ============================================================
-# 环境变量
-# ============================================================
+# 我们自己的数据入口
+# 后续可以通过环境变量增加公开数据源
+SEARCH_URLS = [
+    os.getenv("MARKET_SEARCH_URL", "").strip(),
+]
 
 DEWU_API_URL = os.getenv("DEWU_API_URL", "").strip()
 SHIHUO_API_URL = os.getenv("SHIHUO_API_URL", "").strip()
@@ -38,710 +22,512 @@ SHIHUO_API_URL = os.getenv("SHIHUO_API_URL", "").strip()
 DEWU_API_KEY = os.getenv("DEWU_API_KEY", "").strip()
 SHIHUO_API_KEY = os.getenv("SHIHUO_API_KEY", "").strip()
 
+REQUEST_TIMEOUT = 15
 
-# ============================================================
-# 基础工具
-# ============================================================
 
-def to_number(value):
-    """
-    转换成数字。
-    无法确认时返回 None。
-    """
+def log(message):
+    print(message, flush=True)
 
-    if value is None or value == "":
+
+def safe_float(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)):
+        return float(value)
+
+    text = str(value).strip()
+    if not text:
+        return None
+
+    text = text.replace(",", "")
+    match = re.search(r"-?\d+(?:\.\d+)?", text)
+
+    if not match:
         return None
 
     try:
-        return float(value)
-
-    except (TypeError, ValueError):
+        return float(match.group())
+    except ValueError:
         return None
 
 
-def to_bool(value):
-    """
-    转换布尔值。
-    无法确认时返回 False。
-    """
-
-    if value is True:
-        return True
-
-    if value in (1, "1", "true", "True", "是", "已确认"):
-        return True
-
-    return False
-
-
-def fetch_json(url, api_key=""):
-    """
-    从合法 HTTP API 获取 JSON。
-
-    不处理：
-    - 验证码
-    - 登录绕过
-    - 签名破解
-    - 加密破解
-    - 反爬绕过
-    """
-
+def get_json(url, api_key=None):
     if not url:
         return None
 
     headers = {
-        "User-Agent": "dewu-flip-monitor/1.0",
+        "User-Agent": (
+            "Mozilla/5.0 "
+            "(compatible; dewu-flip-monitor/1.0)"
+        ),
         "Accept": "application/json",
     }
 
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
 
-    request = Request(
-        url,
-        headers=headers,
-        method="GET"
-    )
+    request = Request(url, headers=headers, method="GET")
 
     try:
-
-        with urlopen(
-            request,
-            timeout=20
-        ) as response:
-
-            data = response.read()
-
-        return json.loads(
-            data.decode("utf-8")
-        )
+        with urlopen(request, timeout=REQUEST_TIMEOUT) as response:
+            raw = response.read().decode("utf-8")
+            return json.loads(raw)
 
     except HTTPError as e:
-
-        print(
-            f"接口 HTTP 错误："
-            f"{e.code} {url}"
-        )
+        log(f"接口 HTTP 错误：{e.code} {url}")
+        return None
 
     except URLError as e:
-
-        print(
-            f"接口连接失败："
-            f"{url} / {e}"
-        )
+        log(f"接口连接失败：{e.reason}")
+        return None
 
     except Exception as e:
-
-        print(
-            f"接口读取失败："
-            f"{url} / {e}"
-        )
-
-    return None
+        log(f"接口读取失败：{e}")
+        return None
 
 
-# ============================================================
-# 得物数据标准化
-# ============================================================
-
-def normalize_dewu(item):
-    """
-    把得物接口返回的数据转换成统一格式。
-
-    不同接口字段名称可能不同，
-    所以这里只接受明确存在的数据。
-    """
-
+def normalize_product(item, source):
     if not isinstance(item, dict):
         return None
 
     name = (
         item.get("name")
-        or item.get("product_name")
         or item.get("title")
-        or ""
+        or item.get("product_name")
+        or item.get("goodsName")
     )
-
-    name = str(name).strip()
 
     if not name:
         return None
 
-
-    # --------------------------------------------------------
-    # 出售价格
-    # --------------------------------------------------------
-
-    dewu_price = to_number(
-        item.get("dewu_price")
-        or item.get("sale_price")
-        or item.get("price")
-    )
-
-
-    # --------------------------------------------------------
-    # 最近成交
-    # --------------------------------------------------------
-
-    recent_avg_price = to_number(
-        item.get("recent_avg_price")
-        or item.get("recent_trade_price")
-        or item.get("average_trade_price")
-    )
-
-    recent_trade_time = (
-        item.get("recent_trade_time")
-        or item.get("last_trade_time")
-    )
-
-
-    # --------------------------------------------------------
-    # 市场数量
-    # --------------------------------------------------------
-
-    seller_count = to_number(
-        item.get("seller_count")
-        or item.get("bid_count")
-        or item.get("merchant_count")
-    )
-
-
-    # --------------------------------------------------------
-    # 周转
-    # --------------------------------------------------------
-
-    days = to_number(
-        item.get("days")
-        or item.get("turnover_days")
-        or item.get("estimated_days")
-    )
-
-
-    # --------------------------------------------------------
-    # 下跌风险
-    # --------------------------------------------------------
-
-    downside_loss = to_number(
-        item.get("downside_loss")
-        or item.get("estimated_downside_loss")
-    )
-
-
-    # --------------------------------------------------------
-    # 得物实际卖出费用
-    # --------------------------------------------------------
-
-    technical_service_fee = to_number(
-        item.get("technical_service_fee")
-    )
-
-    transfer_fee = to_number(
-        item.get("transfer_fee")
-    )
-
-    operation_service_fee = to_number(
-        item.get("operation_service_fee")
-    )
-
-    consumer_shipping_subsidy = to_number(
-        item.get("consumer_shipping_subsidy")
-    )
-
-    after_sales_service_fee = to_number(
-        item.get("after_sales_service_fee")
-    )
-
-    seller_coupon_offset = to_number(
-        item.get("seller_coupon_offset")
-    )
-
-
-    # --------------------------------------------------------
-    # 得物预计收入
-    # --------------------------------------------------------
-
-    expected_income = to_number(
-        item.get("expected_income")
-    )
-
-
-    # --------------------------------------------------------
-    # 商品状态
-    # --------------------------------------------------------
-
-    authenticity_verified = to_bool(
-        item.get("authenticity_verified")
-    )
-
-    new_condition_verified = to_bool(
-        item.get("new_condition_verified")
-    )
-
-    dewu_check_compatible = to_bool(
-        item.get("dewu_check_compatible")
-    )
-
-
-    return {
-
-        "name": name,
-
-        "buy_prices": {},
-
-        "dewu_price": dewu_price,
-
-        "recent_avg_price":
-            recent_avg_price,
-
-        "recent_trade_time":
-            recent_trade_time,
-
-        "seller_count":
-            seller_count,
-
-        "days":
-            days,
-
-        "liquidity":
-            item.get("liquidity"),
-
-        "downside_loss":
-            downside_loss,
-
-
-        # ================================================
-        # 得物真实费用
-        # ================================================
-
-        "technical_service_fee":
-            technical_service_fee,
-
-        "technical_service_rate":
-            to_number(
-                item.get(
-                    "technical_service_rate"
-                )
-            ),
-
-        "transfer_fee":
-            transfer_fee,
-
-        "transfer_fee_rate":
-            to_number(
-                item.get(
-                    "transfer_fee_rate"
-                )
-            ),
-
-        "operation_service_fee":
-            operation_service_fee,
-
-        "consumer_shipping_subsidy":
-            consumer_shipping_subsidy,
-
-        "after_sales_service_fee":
-            after_sales_service_fee,
-
-        "seller_coupon_offset":
-            seller_coupon_offset,
-
-        "expected_income":
-            expected_income,
-
-
-        # ================================================
-        # 商品状态
-        # ================================================
-
-        "authenticity_verified":
-            authenticity_verified,
-
-        "new_condition_verified":
-            new_condition_verified,
-
-        "dewu_check_compatible":
-            dewu_check_compatible,
-
-
-        # ================================================
-        # 来源
-        # ================================================
-
-        "source_note":
-            item.get(
-                "source_note",
-                "来自合法数据接口"
-            ),
-
-        "data_source":
-            item.get(
-                "data_source",
-                "api"
-            ),
-
-        "data_time":
-            datetime.now(
-                timezone.utc
-            ).isoformat()
-
-    }
-
-
-# ============================================================
-# 识货数据标准化
-# ============================================================
-
-def normalize_shihuo(item):
-    """
-    把识货接口返回的数据转换成统一格式。
-    """
-
-    if not isinstance(item, dict):
-        return None
-
-    name = (
-        item.get("name")
-        or item.get("product_name")
-        or item.get("title")
-        or ""
-    )
-
-    name = str(name).strip()
-
-    if not name:
-        return None
-
-
-    buy_price = to_number(
+    buy_price = (
         item.get("buy_price")
         or item.get("price")
         or item.get("lowest_price")
+        or item.get("min_price")
     )
 
-    return {
+    dewu_price = (
+        item.get("dewu_price")
+        or item.get("sell_price")
+        or item.get("target_price")
+        or item.get("market_price")
+    )
 
-        "name": name,
+    result = {
+        "name": str(name),
 
         "buy_prices": {
+            source: safe_float(buy_price)
+        },
 
-            "识货":
-                buy_price
+        "dewu_price": safe_float(dewu_price),
 
-        } if buy_price is not None else {},
+        "recent_avg_price": safe_float(
+            item.get("recent_avg_price")
+            or item.get("average_price")
+            or item.get("recentAveragePrice")
+        ),
 
-        "dewu_price":
-            to_number(
-                item.get("dewu_price")
-            ),
+        "recent_trade_time": (
+            item.get("recent_trade_time")
+            or item.get("trade_time")
+            or item.get("recentTradeTime")
+        ),
 
-        "recent_avg_price":
-            None,
+        "seller_count": (
+            item.get("seller_count")
+            or item.get("sellerCount")
+        ),
 
-        "recent_trade_time":
-            None,
+        "days": safe_float(
+            item.get("days")
+            or item.get("turnover_days")
+            or item.get("turnoverDays")
+        ),
 
-        "seller_count":
-            None,
+        "liquidity": (
+            item.get("liquidity")
+            or item.get("liquidity_level")
+        ),
 
-        "days":
-            None,
+        "downside_loss": safe_float(
+            item.get("downside_loss")
+            or item.get("max_downside_loss")
+            or item.get("downsideLoss")
+        ),
 
-        "liquidity":
-            None,
+        "authenticity_verified": bool(
+            item.get("authenticity_verified", False)
+        ),
 
-        "downside_loss":
-            None,
+        "new_condition_verified": bool(
+            item.get("new_condition_verified", False)
+        ),
 
-        "technical_service_fee":
-            None,
+        "dewu_check_compatible": bool(
+            item.get("dewu_check_compatible", False)
+        ),
 
-        "technical_service_rate":
-            None,
+        # 得物实际费用字段
+        "technical_service_fee": safe_float(
+            item.get("technical_service_fee")
+        ),
 
-        "transfer_fee":
-            None,
+        "technical_service_rate": safe_float(
+            item.get("technical_service_rate")
+        ),
 
-        "transfer_fee_rate":
-            None,
+        "transfer_fee": safe_float(
+            item.get("transfer_fee")
+        ),
 
-        "operation_service_fee":
-            None,
+        "transfer_fee_rate": safe_float(
+            item.get("transfer_fee_rate")
+        ),
 
-        "consumer_shipping_subsidy":
-            None,
+        "operation_service_fee": safe_float(
+            item.get("operation_service_fee")
+        ),
 
-        "after_sales_service_fee":
-            None,
+        "consumer_shipping_subsidy": safe_float(
+            item.get("consumer_shipping_subsidy")
+        ),
 
-        "seller_coupon_offset":
-            None,
+        "after_sales_service_fee": safe_float(
+            item.get("after_sales_service_fee")
+        ),
 
-        "expected_income":
-            None,
+        "seller_coupon_offset": safe_float(
+            item.get("seller_coupon_offset")
+        ),
 
-        "authenticity_verified":
-            to_bool(
-                item.get(
-                    "authenticity_verified"
-                )
-            ),
+        "expected_income": safe_float(
+            item.get("expected_income")
+        ),
 
-        "new_condition_verified":
-            to_bool(
-                item.get(
-                    "new_condition_verified"
-                )
-            ),
+        "source_note": item.get(
+            "source_note",
+            "由自建数据接口标准化产生"
+        ),
 
-        "dewu_check_compatible":
-            False,
+        "data_source": item.get(
+            "data_source",
+            source
+        ),
 
-        "source_note":
-            item.get(
-                "source_note",
-                "来自识货合法数据接口"
-            ),
-
-        "data_source":
-            "shihuo_api",
-
-        "data_time":
-            datetime.now(
-                timezone.utc
-            ).isoformat()
-
+        "data_time": item.get(
+            "data_time",
+            time.strftime("%Y-%m-%d")
+        ),
     }
-
-
-# ============================================================
-# 合并数据
-# ============================================================
-
-def merge_product(old, new):
-    """
-    同一个商品来自多个平台时进行合并。
-
-    已确认的数据优先。
-    空数据不会覆盖已有数据。
-    """
-
-    result = dict(old)
-
-    for key, value in new.items():
-
-        if value is None:
-            continue
-
-        if value == "":
-            continue
-
-        if key == "buy_prices":
-
-            result.setdefault(
-                "buy_prices",
-                {}
-            )
-
-            result["buy_prices"].update(
-                value
-            )
-
-            continue
-
-        result[key] = value
 
     return result
 
 
-# ============================================================
-# 主程序
-# ============================================================
+def extract_items(data):
+    """
+    尽量兼容不同接口返回格式。
+
+    支持：
+    {
+        "products": [...]
+    }
+
+    {
+        "data": [...]
+    }
+
+    {
+        "data": {
+            "products": [...]
+        }
+    }
+
+    以及直接返回数组。
+    """
+
+    if isinstance(data, list):
+        return data
+
+    if not isinstance(data, dict):
+        return []
+
+    products = data.get("products")
+
+    if isinstance(products, list):
+        return products
+
+    data_field = data.get("data")
+
+    if isinstance(data_field, list):
+        return data_field
+
+    if isinstance(data_field, dict):
+
+        products = data_field.get("products")
+
+        if isinstance(products, list):
+            return products
+
+        items = data_field.get("items")
+
+        if isinstance(items, list):
+            return items
+
+    items = data.get("items")
+
+    if isinstance(items, list):
+        return items
+
+    return []
+
+
+def collect_api(url, api_key, source):
+    if not url:
+        log(f"未配置 {source} 数据接口，跳过")
+        return []
+
+    log(f"正在读取 {source} 数据接口")
+
+    data = get_json(url, api_key)
+
+    if data is None:
+        return []
+
+    items = extract_items(data)
+
+    log(f"{source} 原始商品：{len(items)}")
+
+    products = []
+
+    for item in items:
+
+        product = normalize_product(
+            item,
+            source
+        )
+
+        if product:
+            products.append(product)
+
+    log(f"{source} 标准化商品：{len(products)}")
+
+    return products
+
+
+def merge_products(products):
+    """
+    合并相同商品。
+
+    这样以后即使：
+    识货发现一个商品
+    +
+    得物发现同一个商品
+
+    最终也可以进入同一条商品记录。
+    """
+
+    merged = {}
+
+    for product in products:
+
+        name = product.get("name")
+
+        if not name:
+            continue
+
+        key = name.strip().lower()
+
+        if key not in merged:
+            merged[key] = product
+            continue
+
+        old = merged[key]
+
+        # 合并买入价格
+        old_buy = old.setdefault("buy_prices", {})
+        new_buy = product.get("buy_prices", {})
+
+        for platform, price in new_buy.items():
+
+            if price is None:
+                continue
+
+            old_buy[platform] = price
+
+        # 只在新数据有值时更新
+        fields = [
+            "dewu_price",
+            "recent_avg_price",
+            "recent_trade_time",
+            "seller_count",
+            "days",
+            "liquidity",
+            "downside_loss",
+            "authenticity_verified",
+            "new_condition_verified",
+            "dewu_check_compatible",
+            "technical_service_fee",
+            "technical_service_rate",
+            "transfer_fee",
+            "transfer_fee_rate",
+            "operation_service_fee",
+            "consumer_shipping_subsidy",
+            "after_sales_service_fee",
+            "seller_coupon_offset",
+            "expected_income",
+        ]
+
+        for field in fields:
+
+            new_value = product.get(field)
+
+            if new_value is not None:
+                old[field] = new_value
+
+    return list(merged.values())
+
+
+def load_existing_products():
+    """
+    如果真实接口暂时没有数据，
+    保留原来的人工/公开数据。
+
+    防止采集器再次把 market_data_input.json 清空。
+    """
+
+    if not INPUT_FILE.exists():
+        return []
+
+    try:
+
+        with INPUT_FILE.open(
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            data = json.load(f)
+
+        products = data.get("products", [])
+
+        if isinstance(products, list):
+            return products
+
+    except Exception as e:
+
+        log(f"读取已有市场数据失败：{e}")
+
+    return []
+
+
+def save_products(products):
+
+    output = {
+        "products": products
+    }
+
+    with INPUT_FILE.open(
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            output,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
+
 
 def main():
 
-    print()
-    print("=" * 60)
-    print("       市场数据接口采集程序")
-    print("=" * 60)
+    log("")
+    log("=" * 60)
+    log("       自建市场数据接口采集程序")
+    log("=" * 60)
 
+    collected = []
 
-    products = {}
-
-
-    # ========================================================
-    # 读取得物接口
-    # ========================================================
-
-    if DEWU_API_URL:
-
-        print("正在读取得物合法数据接口...")
-
-        data = fetch_json(
+    # 得物数据
+    collected.extend(
+        collect_api(
             DEWU_API_URL,
-            DEWU_API_KEY
+            DEWU_API_KEY,
+            "得物"
         )
+    )
 
-        if data:
-
-            items = data.get(
-                "products",
-                data if isinstance(
-                    data,
-                    list
-                ) else []
-            )
-
-            if isinstance(
-                items,
-                dict
-            ):
-                items = [items]
-
-            for item in items:
-
-                product = normalize_dewu(
-                    item
-                )
-
-                if not product:
-                    continue
-
-                name = product["name"]
-
-                products[name] = merge_product(
-                    products.get(
-                        name,
-                        {}
-                    ),
-                    product
-                )
-
-            print(
-                f"得物接口读取："
-                f"{len(items)} 条"
-            )
-
-        else:
-
-            print(
-                "得物接口暂时没有返回有效数据"
-            )
-
-    else:
-
-        print(
-            "未配置 DEWU_API_URL，"
-            "跳过得物接口"
-        )
-
-
-    # ========================================================
-    # 读取识货接口
-    # ========================================================
-
-    if SHIHUO_API_URL:
-
-        print("正在读取识货合法数据接口...")
-
-        data = fetch_json(
+    # 识货数据
+    collected.extend(
+        collect_api(
             SHIHUO_API_URL,
-            SHIHUO_API_KEY
+            SHIHUO_API_KEY,
+            "识货"
         )
+    )
 
-        if data:
+    # 未来我们的自建搜索接口
+    for url in SEARCH_URLS:
 
-            items = data.get(
-                "products",
-                data if isinstance(
-                    data,
-                    list
-                ) else []
+        if not url:
+            continue
+
+        data = get_json(url)
+
+        if not data:
+            continue
+
+        items = extract_items(data)
+
+        for item in items:
+
+            product = normalize_product(
+                item,
+                "自建搜索接口"
             )
 
-            if isinstance(
-                items,
-                dict
-            ):
-                items = [items]
+            if product:
+                collected.append(product)
 
-            for item in items:
+    # 关键：
+    # 如果当前没有真实数据，不清空旧数据
+    if not collected:
 
-                product = normalize_shihuo(
-                    item
-                )
+        existing = load_existing_products()
 
-                if not product:
-                    continue
+        if existing:
 
-                name = product["name"]
+            log("")
+            log("当前没有新的真实接口数据")
+            log(f"保留已有商品：{len(existing)} 条")
 
-                products[name] = merge_product(
-                    products.get(
-                        name,
-                        {}
-                    ),
-                    product
-                )
+            save_products(existing)
 
-            print(
-                f"识货接口读取："
-                f"{len(items)} 条"
-            )
+            log("不会清空原有市场数据")
 
         else:
 
-            print(
-                "识货接口暂时没有返回有效数据"
-            )
+            log("")
+            log("当前没有新的市场数据")
+            log("暂时没有历史商品数据可保留")
+
+            save_products([])
 
     else:
 
-        print(
-            "未配置 SHIHUO_API_URL，"
-            "跳过识货接口"
-        )
+        merged = merge_products(collected)
 
+        log("")
+        log(f"最终标准化商品：{len(merged)}")
 
-    # ========================================================
-    # 保存
-    # ========================================================
+        save_products(merged)
 
-    result = {
-
-        "products":
-            list(
-                products.values()
-            )
-
-    }
-
-    OUTPUT_FILE.write_text(
-
-        json.dumps(
-            result,
-            ensure_ascii=False,
-            indent=2
-        ),
-
-        encoding="utf-8"
-
-    )
-
-
-    print()
-    print(
-        f"最终标准化商品："
-        f"{len(products)}"
-    )
-
-    print(
-        f"已写入："
-        f"{OUTPUT_FILE.name}"
-    )
-
-    print("=" * 60)
+    log("")
+    log(f"已写入：{INPUT_FILE}")
+    log("=" * 60)
 
 
 if __name__ == "__main__":
-
     main()

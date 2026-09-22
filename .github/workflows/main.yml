@@ -10,15 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 检查运行环境
-        run: |
-          echo "快进快出监控后台已启动"
-          echo "运行时间：$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo "当前阶段：等待合法数据源接入"
+      - name: 拉取仓库代码
+        uses: actions/checkout@v6
 
-      - name: 输出监控规则
-        run: |
-          echo "本金上限：330 元"
-          echo "单笔买入上限：120 元"
-          echo "最长周转：7 天"
-          echo "需要检查：利润、流动性、下跌风险、正品、成色、查验风险"
+      - name: 运行风控监控
+        run: python monitor.py

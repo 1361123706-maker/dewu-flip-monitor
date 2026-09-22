@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
 
+
 # ==========================================
 # 快进快出监控系统
-# 当前阶段：风控引擎
+# 风控引擎
 # ==========================================
 
 CAPITAL = 330
@@ -14,25 +15,10 @@ MIN_PROFIT = 15
 MIN_PROFIT_RATE = 12
 
 MAX_DOWNSIDE_LOSS = 25
-SHIPPING_COST = 6
 
-
-def estimate_dewu_fee(sale_price):
-    """
-    前期保守估算。
-    注意：不是得物官方固定收费标准。
-    """
-
-    if sale_price < 300:
-        return 50
-    elif sale_price < 600:
-        return 70
-    elif sale_price < 1000:
-        return 90
-    elif sale_price < 2000:
-        return 120
-    else:
-        return 150
+# 买入端额外成本。
+# 如果以后数据源能提供真实采购运费，会优先使用真实数据。
+DEFAULT_BUY_SHIPPING_COST = 6
 
 
 def is_number(value):
@@ -42,15 +28,146 @@ def is_number(value):
     )
 
 
+def money(value):
+    if not is_number(value):
+        return None
+
+    return float(value)
+
+
+def calculate_expected_income(item):
+    """
+    优先使用得物页面/合法接口提供的预计收入。
+
+    如果没有 expected_income，
+    只有在所有必要费用都明确存在时才自行计算。
+
+    公式：
+
+    预计收入 =
+    出售价格
+    - 技术服务费
+    - 操作服务费
+    - 消费者邮费补贴
+    - 转账手续费
+    - 售后无忧服务费
+    + 卖家券可抵扣金额
+    """
+
+    expected_income = money(
+        item.get("expected_income")
+    )
+
+    if expected_income is not None:
+        return {
+            "value": expected_income,
+            "confirmed": True,
+            "method": "得物预计收入"
+        }
+
+
+    sale = money(
+        item.get("dewu_price")
+    )
+
+    technical_service_fee = money(
+        item.get("technical_service_fee")
+    )
+
+    operation_service_fee = money(
+        item.get("operation_service_fee")
+    )
+
+    consumer_shipping_subsidy = money(
+        item.get("consumer_shipping_subsidy")
+    )
+
+    transfer_fee = money(
+        item.get("transfer_fee")
+    )
+
+    after_sales_service_fee = money(
+        item.get("after_sales_service_fee")
+    )
+
+    seller_coupon_offset = money(
+        item.get("seller_coupon_offset")
+    )
+
+
+    required_fields = [
+        sale,
+        technical_service_fee,
+        operation_service_fee,
+        consumer_shipping_subsidy,
+        transfer_fee,
+        after_sales_service_fee,
+        seller_coupon_offset,
+    ]
+
+
+    if not all(
+        value is not None
+        for value in required_fields
+    ):
+        return {
+            "value": None,
+            "confirmed": False,
+            "method": "费用数据不完整"
+        }
+
+
+    calculated = (
+        sale
+        - technical_service_fee
+        - operation_service_fee
+        - consumer_shipping_subsidy
+        - transfer_fee
+        - after_sales_service_fee
+        + seller_coupon_offset
+    )
+
+
+    return {
+        "value": calculated,
+        "confirmed": True,
+        "method": "按得物费用明细计算"
+    }
+
+
+def get_buy_shipping_cost(item):
+    """
+    买入端运费。
+
+    如果数据源以后提供 buy_shipping_cost，
+    使用真实数据。
+
+    否则当前使用保守的默认值。
+    """
+
+    value = money(
+        item.get("buy_shipping_cost")
+    )
+
+    if value is not None:
+        return value
+
+    return DEFAULT_BUY_SHIPPING_COST
+
+
 def evaluate(item):
 
     reasons = []
+
 
     # ==========================================
     # 1. 买入价格
     # ==========================================
 
-    buy_prices = item.get("buy_prices", {})
+    buy_prices = item.get(
+        "buy_prices",
+        {}
+    )
 
     valid_prices = [
         price
@@ -58,34 +175,55 @@ def evaluate(item):
         if is_number(price) and price > 0
     ]
 
+
     if not valid_prices:
 
         return {
-            "name": item.get("name", "未知商品"),
-            "status": "过滤",
-            "reasons": ["没有有效买入价格"],
+            "name":
+                item.get(
+                    "name",
+                    "未知商品"
+                ),
+
+            "status":
+                "过滤",
+
+            "reasons":
+                ["没有有效买入价格"],
         }
+
 
     buy = min(valid_prices)
 
+
     if buy > MAX_BUY:
+
         reasons.append(
-            f"买入价 ¥{buy:.0f} 超过单笔上限 ¥{MAX_BUY}"
+            f"买入价 ¥{buy:.2f} "
+            f"超过单笔上限 ¥{MAX_BUY}"
         )
 
+
     if buy > CAPITAL:
-        reasons.append("超过当前本金")
+
+        reasons.append(
+            "超过当前本金"
+        )
+
 
     # ==========================================
     # 2. 周转时间
     # ==========================================
 
-    days = item.get("days")
+    days = item.get(
+        "days"
+    )
 
     days_confirmed = (
         is_number(days)
         and days >= 0
     )
+
 
     if not days_confirmed:
 
@@ -97,13 +235,17 @@ def evaluate(item):
 
     else:
 
-        days_display = f"{days:g}天"
+        days_display = (
+            f"{days:g}天"
+        )
 
         if days > MAX_DAYS:
 
             reasons.append(
-                f"预计周转 {days:g} 天，超过 {MAX_DAYS} 天"
+                f"预计周转 {days:g} 天，"
+                f"超过 {MAX_DAYS} 天"
             )
+
 
     # ==========================================
     # 3. 流动性
@@ -114,22 +256,28 @@ def evaluate(item):
         "未知"
     )
 
+
     if liquidity != "高":
 
         reasons.append(
-            f"流动性不是高（当前：{liquidity}）"
+            f"流动性不是高"
+            f"（当前：{liquidity}）"
         )
+
 
     # ==========================================
     # 4. 得物售价
     # ==========================================
 
-    sale = item.get("dewu_price")
+    sale = money(
+        item.get("dewu_price")
+    )
 
     sale_confirmed = (
-        is_number(sale)
+        sale is not None
         and sale > 0
     )
+
 
     if not sale_confirmed:
 
@@ -137,36 +285,61 @@ def evaluate(item):
             "得物售价：未确认"
         )
 
-        sale = 0
 
     # ==========================================
-    # 5. 得物费用
+    # 5. 得物预计收入
     # ==========================================
 
-    dewu_fee = estimate_dewu_fee(
-        sale
+    income_result = (
+        calculate_expected_income(item)
     )
 
+    expected_income = (
+        income_result["value"]
+    )
+
+
+    if not income_result["confirmed"]:
+
+        reasons.append(
+            "得物预计收入/费用数据不完整"
+        )
+
+
     # ==========================================
-    # 6. 成本
+    # 6. 买入端成本
     # ==========================================
 
-    cost = (
+    buy_shipping = (
+        get_buy_shipping_cost(item)
+    )
+
+    total_buy_cost = (
         buy
-        + dewu_fee
-        + SHIPPING_COST
+        + buy_shipping
     )
 
+
     # ==========================================
-    # 7. 利润
+    # 7. 真实净利润
     # ==========================================
 
-    profit = (
-        sale
-        - cost
-    )
+    if expected_income is not None:
 
-    if buy > 0:
+        profit = (
+            expected_income
+            - total_buy_cost
+        )
+
+    else:
+
+        profit = None
+
+
+    if (
+        profit is not None
+        and buy > 0
+    ):
 
         profit_rate = (
             profit
@@ -176,25 +349,37 @@ def evaluate(item):
 
     else:
 
-        profit_rate = 0
+        profit_rate = None
+
 
     # ==========================================
     # 8. 最低利润
     # ==========================================
 
-    if profit < MIN_PROFIT:
+    if profit is None:
 
         reasons.append(
-            f"净利润 ¥{profit:.2f}，"
-            f"低于最低要求 ¥{MIN_PROFIT}"
+            "净利润无法确认"
         )
 
-    if profit_rate < MIN_PROFIT_RATE:
+    else:
 
-        reasons.append(
-            f"利润率 {profit_rate:.1f}%，"
-            f"低于最低要求 {MIN_PROFIT_RATE}%"
-        )
+        if profit < MIN_PROFIT:
+
+            reasons.append(
+                f"净利润 ¥{profit:.2f}，"
+                f"低于最低要求 ¥{MIN_PROFIT}"
+            )
+
+
+        if profit_rate < MIN_PROFIT_RATE:
+
+            reasons.append(
+                f"利润率 {profit_rate:.1f}%，"
+                f"低于最低要求 "
+                f"{MIN_PROFIT_RATE}%"
+            )
+
 
     # ==========================================
     # 9. 下跌风险
@@ -208,6 +393,7 @@ def evaluate(item):
         is_number(downside_loss)
         and downside_loss >= 0
     )
+
 
     if not downside_confirmed:
 
@@ -223,13 +409,16 @@ def evaluate(item):
             f"¥{downside_loss:.0f}"
         )
 
+
         if downside_loss > MAX_DOWNSIDE_LOSS:
 
             reasons.append(
                 f"最大预估亏损 "
                 f"¥{downside_loss:.0f}，"
-                f"超过 ¥{MAX_DOWNSIDE_LOSS}"
+                f"超过 "
+                f"¥{MAX_DOWNSIDE_LOSS}"
             )
+
 
     # ==========================================
     # 10. 正品
@@ -243,6 +432,7 @@ def evaluate(item):
             "正品无法确认"
         )
 
+
     # ==========================================
     # 11. 全新 / 成色
     # ==========================================
@@ -254,6 +444,7 @@ def evaluate(item):
         reasons.append(
             "全新/成色无法确认"
         )
+
 
     # ==========================================
     # 12. 得物查验
@@ -267,6 +458,7 @@ def evaluate(item):
             "无法确认符合得物查验要求"
         )
 
+
     # ==========================================
     # 13. 关键行情完整度
     # ==========================================
@@ -276,6 +468,9 @@ def evaluate(item):
         "dewu_price":
             sale_confirmed,
 
+        "expected_income":
+            income_result["confirmed"],
+
         "days":
             days_confirmed,
 
@@ -283,6 +478,7 @@ def evaluate(item):
             downside_confirmed,
 
     }
+
 
     missing_market = [
 
@@ -295,25 +491,25 @@ def evaluate(item):
 
     ]
 
+
     if missing_market:
 
         reasons.append(
-            "关键行情数据不完整，禁止提醒购买"
+            "关键行情数据不完整，"
+            "禁止提醒购买"
         )
+
 
     # ==========================================
     # 14. 最终结果
     # ==========================================
 
     status = (
-
         "候选"
-
         if len(reasons) == 0
-
         else "过滤"
-
     )
+
 
     return {
 
@@ -333,23 +529,60 @@ def evaluate(item):
             round(
                 sale,
                 2
+            )
+            if sale is not None
+            else None,
+
+        "expected_income":
+            round(
+                expected_income,
+                2
+            )
+            if expected_income is not None
+            else None,
+
+        "income_method":
+            income_result["method"],
+
+        "technical_service_fee":
+            item.get(
+                "technical_service_fee"
             ),
 
-        "dewu_fee":
+        "operation_service_fee":
+            item.get(
+                "operation_service_fee"
+            ),
+
+        "consumer_shipping_subsidy":
+            item.get(
+                "consumer_shipping_subsidy"
+            ),
+
+        "transfer_fee":
+            item.get(
+                "transfer_fee"
+            ),
+
+        "after_sales_service_fee":
+            item.get(
+                "after_sales_service_fee"
+            ),
+
+        "seller_coupon_offset":
+            item.get(
+                "seller_coupon_offset"
+            ),
+
+        "buy_shipping_cost":
             round(
-                dewu_fee,
+                buy_shipping,
                 2
             ),
 
-        "shipping_cost":
+        "total_buy_cost":
             round(
-                SHIPPING_COST,
-                2
-            ),
-
-        "cost":
-            round(
-                cost,
+                total_buy_cost,
                 2
             ),
 
@@ -357,13 +590,17 @@ def evaluate(item):
             round(
                 profit,
                 2
-            ),
+            )
+            if profit is not None
+            else None,
 
         "profit_rate":
             round(
                 profit_rate,
                 1
-            ),
+            )
+            if profit_rate is not None
+            else None,
 
         "days":
             days
@@ -403,6 +640,7 @@ def main():
         "products.json"
     )
 
+
     if not file_path.exists():
 
         print(
@@ -410,6 +648,7 @@ def main():
         )
 
         return
+
 
     try:
 
@@ -429,10 +668,12 @@ def main():
 
         return
 
+
     products = data.get(
         "products",
         []
     )
+
 
     if not products:
 
@@ -441,6 +682,7 @@ def main():
         )
 
         return
+
 
     # ==========================================
     # 分析
@@ -454,6 +696,7 @@ def main():
 
     ]
 
+
     candidates = [
 
         item
@@ -463,6 +706,7 @@ def main():
         if item["status"] == "候选"
 
     ]
+
 
     # ==========================================
     # 报告
@@ -504,8 +748,8 @@ def main():
     )
 
     print(
-        "得物手续费："
-        "按售价 ¥50～¥150 保守估算"
+        "得物费用："
+        "优先使用实际预计收入/费用数据"
     )
 
     print("-" * 60)
@@ -520,6 +764,7 @@ def main():
 
     print("-" * 60)
 
+
     # ==========================================
     # 商品结果
     # ==========================================
@@ -533,55 +778,140 @@ def main():
             f'{item["name"]}'
         )
 
+
         print(
             f'  买入：'
-            f'¥{item["buy_price"]:.0f}'
+            f'¥{item["buy_price"]:.2f}'
         )
 
-        print(
-            f'  得物售价：'
-            f'¥{item["dewu_price"]:.0f}'
-        )
+
+        if item["dewu_price"] is not None:
+
+            print(
+                f'  得物售价：'
+                f'¥{item["dewu_price"]:.2f}'
+            )
+
+        else:
+
+            print(
+                "  得物售价：未确认"
+            )
+
+
+        if item["expected_income"] is not None:
+
+            print(
+                f'  得物预计收入：'
+                f'¥{item["expected_income"]:.2f}'
+            )
+
+        else:
+
+            print(
+                "  得物预计收入：未确认"
+            )
+
 
         print(
-            f'  估算得物手续费：'
-            f'¥{item["dewu_fee"]:.0f}'
+            f'  收入数据来源：'
+            f'{item["income_method"]}'
         )
 
-        print(
-            f'  运费：'
-            f'¥{item["shipping_cost"]:.0f}'
-        )
 
         print(
-            f'  总成本：'
-            f'¥{item["cost"]:.0f}'
+            f'  技术服务费：'
+            f'{item["technical_service_fee"]}'
         )
 
-        print(
-            f'  净利润：'
-            f'¥{item["net_profit"]:.0f}'
-        )
 
         print(
-            f'  利润率：'
-            f'{item["profit_rate"]:.1f}%'
+            f'  操作服务费：'
+            f'{item["operation_service_fee"]}'
         )
+
+
+        print(
+            f'  消费者邮费补贴：'
+            f'{item["consumer_shipping_subsidy"]}'
+        )
+
+
+        print(
+            f'  转账手续费：'
+            f'{item["transfer_fee"]}'
+        )
+
+
+        print(
+            f'  售后无忧服务费：'
+            f'{item["after_sales_service_fee"]}'
+        )
+
+
+        print(
+            f'  卖家券抵扣：'
+            f'{item["seller_coupon_offset"]}'
+        )
+
+
+        print(
+            f'  买入端运费：'
+            f'¥{item["buy_shipping_cost"]:.2f}'
+        )
+
+
+        print(
+            f'  买入总成本：'
+            f'¥{item["total_buy_cost"]:.2f}'
+        )
+
+
+        if item["net_profit"] is not None:
+
+            print(
+                f'  真实净利润：'
+                f'¥{item["net_profit"]:.2f}'
+            )
+
+        else:
+
+            print(
+                "  真实净利润：未确认"
+            )
+
+
+        if item["profit_rate"] is not None:
+
+            print(
+                f'  利润率：'
+                f'{item["profit_rate"]:.1f}%'
+            )
+
+        else:
+
+            print(
+                "  利润率：未确认"
+            )
+
 
         print(
             f'  周转：'
             f'{item["days_display"]}'
         )
 
+
         print(
             f'  流动性：'
             f'{item["liquidity"]}'
         )
 
+
         print(
             f'  下跌风险：'
             f'{item["downside_display"]}'
         )
+
 
         if item["status"] == "候选":
 
@@ -591,7 +921,7 @@ def main():
 
             print(
                 f'  资金占用：'
-                f'¥{item["buy_price"]:.0f}'
+                f'¥{item["buy_price"]:.2f}'
             )
 
         else:
@@ -603,9 +933,11 @@ def main():
                 )
             )
 
+
     print()
 
     print("-" * 60)
+
 
     if candidates:
 
@@ -625,10 +957,10 @@ def main():
             "就提醒购买"
         )
 
+
     print("=" * 60)
 
 
 if __name__ == "__main__":
 
     main()
-    

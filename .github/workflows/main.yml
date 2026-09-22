@@ -13,5 +13,13 @@ jobs:
       - name: 拉取仓库代码
         uses: actions/checkout@v6
 
+      - name: 安装 Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: 运行市场数据桥接
+        run: python market_data_bridge.py
+
       - name: 运行风控监控
         run: python monitor.py

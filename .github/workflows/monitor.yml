@@ -1,0 +1,29 @@
+name: 快进快出监控
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 启动监控
+        run: |
+          echo "快进快出监控已启动"
+          echo "运行时间：$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: 当前风控规则
+        run: |
+          echo "本金：330 元"
+          echo "单笔买入上限：120 元"
+          echo "最长周转：7 天"
+          echo "检查净利润、利润率、流动性、下跌风险"
+          echo "检查正品、全新状态和得物查验风险"
+
+      - name: 当前状态
+        run: |
+          echo "真实数据源尚未接入"
+          echo "当前不会生成虚假商品机会"

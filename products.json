@@ -1,20 +1,18 @@
 {
   "products": [
     {
-      "name": "测试商品A",
+      "name": "Crying Center 拉链开合高级感 PU 斜挎包（泥棕色/豹纹款）",
       "buy_prices": {
-        "拼多多": 79,
-        "淘宝": 82,
-        "京东": 85,
-        "识货": 81
+        "识货": 123
       },
-      "dewu_price": 119,
-      "days": 2,
+      "dewu_price": 230,
+      "days": null,
       "liquidity": "高",
-      "downside_loss": 8,
+      "downside_loss": null,
       "authenticity_verified": true,
-      "new_condition_verified": true,
-      "dewu_check_compatible": true
+      "new_condition_verified": false,
+      "dewu_check_compatible": true,
+      "source_note": "来自用户提供的识货/得物截图；识货价123元，得物展示价230元。周转天数与下跌风险尚未得到可靠数据，因此不作乐观假设。"
     }
   ]
 }

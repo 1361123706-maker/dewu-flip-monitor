@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "name": "测试商品A",
+      "buy_prices": {
+        "拼多多": 79,
+        "淘宝": 82,
+        "京东": 85,
+        "识货": 81
+      },
+      "dewu_price": 119,
+      "days": 2,
+      "liquidity": "高",
+      "downside_loss": 8,
+      "authenticity_verified": true,
+      "new_condition_verified": true,
+      "dewu_check_compatible": true
+    }
+  ]
+}

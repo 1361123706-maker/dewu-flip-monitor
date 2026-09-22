@@ -26,6 +26,33 @@ jobs:
           python-version: "3.x"
 
 
+      - name: 测试自建数据接口
+        run: |
+          python collector_api.py &
+          SERVER_PID=$!
+
+          sleep 2
+
+          python - <<'PY'
+          import json
+          import urllib.request
+
+          url = "http://127.0.0.1:8080/health"
+
+          with urllib.request.urlopen(url, timeout=10) as response:
+              data = json.loads(response.read().decode("utf-8"))
+
+          print("自建数据接口返回：", data)
+
+          if data.get("status") != "ok":
+              raise SystemExit("自建数据接口测试失败")
+
+          print("自建数据接口测试成功")
+          PY
+
+          kill $SERVER_PID || true
+
+
       - name: 采集市场数据
         run: python market_data_collector.py
 

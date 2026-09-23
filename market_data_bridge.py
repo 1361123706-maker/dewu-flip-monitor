@@ -44,23 +44,110 @@ def get_products(data):
     return products
 
 
+# ============================================================
+# 价格标准化
+# 支持：
+# 1.08万       -> 10800
+# 1 .08 万     -> 10800
+# 1.16万       -> 11600
+# 2万          -> 20000
+# 820          -> 820
+# ============================================================
+
 def normalize_price(value, detail_text=""):
+
+    text = clean_text(detail_text)
+
+    # --------------------------------------------------------
+    # 如果 value 本身就是字符串，优先直接解析
+    # --------------------------------------------------------
+
+    if isinstance(value, str):
+
+        raw = value.strip()
+
+        raw_clean = re.sub(
+            r"\s+",
+            "",
+            raw
+        )
+
+        # 例如：¥1.08万
+        m = re.search(
+            r"(\d+(?:\.\d+)?)万",
+            raw_clean,
+            re.I
+        )
+
+        if m:
+            return float(m.group(1)) * 10000
+
+        # 例如：¥1.08
+        m = re.search(
+            r"\d+(?:\.\d+)?",
+            raw_clean
+        )
+
+        if m:
+            value = m.group(0)
+
     price = number(value)
 
     if price is None:
         return None
 
-    text = clean_text(detail_text)
+    # --------------------------------------------------------
+    # 如果已经是正常的大金额，不再转换
+    # --------------------------------------------------------
 
-    # 修复 1.08万 / 1 .08 万
-    if price < 100 and text:
+    if price >= 1000:
+        return price
 
-        matches = re.findall(
-            r"(\d+(?:\.\d+)?)\s*万",
+    # --------------------------------------------------------
+    # 在详情文本中寻找对应的“X万”
+    #
+    # 支持：
+    # 1.08万
+    # 1 .08 万
+    # 1.16万
+    # 2万
+    # --------------------------------------------------------
+
+    if text:
+
+        compact = re.sub(
+            r"\s+",
+            "",
             text
         )
 
+        # 先处理带小数的万
+        matches = re.findall(
+            r"(\d+)\.(\d+)(?:万)",
+            compact
+        )
+
+        for integer_part, decimal_part in matches:
+
+            candidate_raw = (
+                f"{integer_part}.{decimal_part}"
+            )
+
+            candidate = float(candidate_raw)
+
+            # 如果和原始价格接近，
+            # 说明这是同一个价格
+            if abs(candidate - price) < 0.01:
+                return candidate * 10000
+
+        # 再处理整数万
+        matches = re.findall(
+            r"(\d+)万",
+            compact
+        )
+
         for match in matches:
+
             candidate = float(match) * 10000
 
             if candidate >= 1000:
@@ -69,7 +156,12 @@ def normalize_price(value, detail_text=""):
     return price
 
 
+# ============================================================
+# 商品名称
+# ============================================================
+
 def valid_product_name(name):
+
     name = clean_text(name)
 
     if not name:
@@ -95,8 +187,280 @@ def valid_product_name(name):
     if name in bad_names:
         return False
 
+    # 纯容量不要作为商品名称
+    if re.fullmatch(
+        r"\d+(?:GB|TB)",
+        name,
+        re.I
+    ):
+        return False
+
     return True
 
+
+def extract_product_name(detail_text):
+
+    text = clean_text(detail_text)
+
+    if not text:
+        return None
+
+    # --------------------------------------------------------
+    # 最高优先级：
+    #
+    # 商品名称：Apple/苹果 iPhone 17 Pro...
+    # 品牌：
+    # --------------------------------------------------------
+
+    patterns = [
+        r"商品名称\s*[:：]\s*(.+?)(?:。?\s*品牌\s*[:：])",
+        r"商品名称\s*[:：]\s*(.+?)(?:\n|$)",
+    ]
+
+    for pattern in patterns:
+
+        m = re.search(
+            pattern,
+            text,
+            re.S
+        )
+
+        if m:
+
+            name = clean_text(
+                m.group(1)
+            )
+
+            name = re.sub(
+                r"\s+",
+                " ",
+                name
+            ).strip()
+
+            if valid_product_name(name):
+                return name
+
+    # --------------------------------------------------------
+    # 备用：商品名称后面到下一个字段
+    # --------------------------------------------------------
+
+    m = re.search(
+        r"商品名称\s*[:：]\s*(.{2,120})",
+        text,
+        re.S
+    )
+
+    if m:
+
+        name = clean_text(
+            m.group(1)
+        )
+
+        name = re.split(
+            r"品牌\s*[:：]|货号\s*[:：]|商品编号\s*[:：]",
+            name
+        )[0]
+
+        name = clean_text(name)
+
+        if valid_product_name(name):
+            return name
+
+    return None
+
+
+# ============================================================
+# 从“全网价格区间”取得最低价格
+#
+# 例如：
+# 全网价格区间：
+# 10000.00元 - 10685.17元
+#
+# 返回：
+# 10000
+# ============================================================
+
+def extract_market_low_price(detail_text):
+
+    text = clean_text(detail_text)
+
+    if not text:
+        return None
+
+    patterns = [
+        r"全网价格区间\s*[:：]\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)\s*元?\s*[-~～至]\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+
+        r"价格区间\s*[:：]\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)\s*元?\s*[-~～至]\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+    ]
+
+    for pattern in patterns:
+
+        m = re.search(
+            pattern,
+            text,
+            re.I
+        )
+
+        if m:
+
+            low = number(
+                m.group(1).replace(",", "")
+            )
+
+            high = number(
+                m.group(2).replace(",", "")
+            )
+
+            if (
+                low is not None
+                and high is not None
+                and low > 0
+                and high >= low
+            ):
+                return low
+
+    return None
+
+
+# ============================================================
+# 得物渠道售价
+#
+# 例如：
+# 得物渠道售价10685.17元
+# 得物渠道售价为10685.17元
+# ============================================================
+
+def extract_dewu_channel_price(detail_text):
+
+    text = clean_text(detail_text)
+
+    if not text:
+        return None
+
+    patterns = [
+        r"得物渠道售价\s*为?\s*[¥￥]?\s*"
+        r"([\d,]+(?:\.\d+)?)\s*元?",
+
+        r"得物渠道价格\s*为?\s*[¥￥]?\s*"
+        r"([\d,]+(?:\.\d+)?)\s*元?",
+    ]
+
+    for pattern in patterns:
+
+        m = re.search(
+            pattern,
+            text,
+            re.I
+        )
+
+        if m:
+
+            price = number(
+                m.group(1).replace(",", "")
+            )
+
+            if price is not None and price > 0:
+                return price
+
+    return None
+
+
+# ============================================================
+# 价格走势当前价
+#
+# 例如：
+# 当前同款同规格到手价为¥7510，
+# 是过去7天内监测到的最低价
+# ============================================================
+
+def extract_trend_current_price(detail_text):
+
+    text = clean_text(detail_text)
+
+    if not text:
+        return None
+
+    patterns = [
+
+        r"当前同款同规格到手价\s*为?\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+
+        r"当前价格\s*为?\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+
+        r"当前价\s*为?\s*"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+    ]
+
+    for pattern in patterns:
+
+        m = re.search(
+            pattern,
+            text,
+            re.I
+        )
+
+        if m:
+
+            price = number(
+                m.group(1).replace(",", "")
+            )
+
+            if price is not None and price > 0:
+                return price
+
+    return None
+
+
+# ============================================================
+# 7日最低价
+# ============================================================
+
+def extract_7d_low(detail_text):
+
+    text = clean_text(detail_text)
+
+    if not text:
+        return None
+
+    patterns = [
+        r"过去7天.*?最低价.*?"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+
+        r"近7天.*?最低价.*?"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+
+        r"7天.*?最低价.*?"
+        r"[¥￥]?\s*([\d,]+(?:\.\d+)?)",
+    ]
+
+    for pattern in patterns:
+
+        m = re.search(
+            pattern,
+            text,
+            re.I | re.S
+        )
+
+        if m:
+
+            price = number(
+                m.group(1).replace(",", "")
+            )
+
+            if price is not None and price > 0:
+                return price
+
+    return None
+
+
+# ============================================================
+# 商品唯一键
+# ============================================================
 
 def product_key(item):
 
@@ -105,6 +469,7 @@ def product_key(item):
     )
 
     if url:
+
         return (
             "url",
             url.lower()
@@ -118,7 +483,11 @@ def product_key(item):
         item.get("name")
     )
 
-    if code and valid_product_name(name):
+    if (
+        code
+        and valid_product_name(name)
+    ):
+
         return (
             "code_name",
             code.lower(),
@@ -126,6 +495,7 @@ def product_key(item):
         )
 
     if valid_product_name(name):
+
         return (
             "name",
             name.lower()
@@ -137,7 +507,14 @@ def product_key(item):
     )
 
 
-def copy_discovery_fields(result, discovery):
+# ============================================================
+# 复制识货发现数据
+# ============================================================
+
+def copy_discovery_fields(
+    result,
+    discovery
+):
 
     detail_text = clean_text(
         discovery.get("detail_text")
@@ -147,29 +524,62 @@ def copy_discovery_fields(result, discovery):
     # 商品名称
     # ========================================================
 
-    name = clean_text(
+    discovered_name = clean_text(
         discovery.get("name")
     )
 
-    if valid_product_name(name):
-        result["name"] = name
-
-    # ========================================================
-    # 买入价
-    # ========================================================
-
-    buy = normalize_price(
-        discovery.get("buy_price"),
+    extracted_name = extract_product_name(
         detail_text
     )
 
-    if buy is not None:
+    if extracted_name:
+
+        result["name"] = extracted_name
+
+    elif valid_product_name(
+        discovered_name
+    ):
+
+        result["name"] = discovered_name
+
+    # ========================================================
+    # 买入价
+    #
+    # 优先：
+    # 1. 全网价格区间最低价
+    # 2. 采集器 buy_price
+    # ========================================================
+
+    market_low = extract_market_low_price(
+        detail_text
+    )
+
+    raw_buy = discovery.get(
+        "buy_price"
+    )
+
+    buy = normalize_price(
+        raw_buy,
+        detail_text
+    )
+
+    if (
+        market_low is not None
+        and market_low > 0
+    ):
+
+        buy = market_low
+
+    if buy is not None and buy > 0:
 
         prices = result.get(
             "buy_prices"
         )
 
-        if not isinstance(prices, dict):
+        if not isinstance(
+            prices,
+            dict
+        ):
             prices = {}
 
         prices = dict(prices)
@@ -180,24 +590,42 @@ def copy_discovery_fields(result, discovery):
         result["buy_price"] = buy
 
     # ========================================================
-    # 得物公开售价
+    # 得物渠道售价
+    #
+    # 优先从 detail_text 中准确读取
     # ========================================================
 
-    dewu = normalize_price(
-        discovery.get(
-            "dewu_display_price"
-        ),
+    dewu_channel = (
+        extract_dewu_channel_price(
+            detail_text
+        )
+    )
+
+    raw_dewu = discovery.get(
+        "dewu_display_price"
+    )
+
+    dewu_fallback = normalize_price(
+        raw_dewu,
         detail_text
     )
 
-    if dewu is not None:
+    dewu = (
+        dewu_channel
+        if dewu_channel is not None
+        else dewu_fallback
+    )
+
+    if dewu is not None and dewu > 0:
 
         result["dewu_price"] = dewu
 
         result["dewu_display_price"] = dewu
 
         result["dewu_price_source"] = (
-            "识货公开商品详情"
+            "识货公开页面中的得物渠道售价"
+            if dewu_channel is not None
+            else "识货公开商品详情"
         )
 
         result["dewu_price_evidence"] = (
@@ -206,7 +634,37 @@ def copy_discovery_fields(result, discovery):
         )
 
     # ========================================================
-    # 关键：完整传递行情数据
+    # 价格走势当前价
+    # ========================================================
+
+    trend_current = (
+        extract_trend_current_price(
+            detail_text
+        )
+    )
+
+    if trend_current is not None:
+
+        result["trend_current_price"] = (
+            trend_current
+        )
+
+    # ========================================================
+    # 7日最低价
+    # ========================================================
+
+    trend_low = extract_7d_low(
+        detail_text
+    )
+
+    if trend_low is not None:
+
+        result["price_7d_low"] = (
+            trend_low
+        )
+
+    # ========================================================
+    # 原始字段完整传递
     # ========================================================
 
     fields = [
@@ -265,7 +723,9 @@ def copy_discovery_fields(result, discovery):
 
     for field in fields:
 
-        value = discovery.get(field)
+        value = discovery.get(
+            field
+        )
 
         if value in (
             None,
@@ -275,76 +735,229 @@ def copy_discovery_fields(result, discovery):
         ):
             continue
 
+        # 如果已有更准确的解析结果，
+        # 不用采集器可能错误的值覆盖
+        if (
+            field == "price_7d_low"
+            and trend_low is not None
+        ):
+            continue
+
+        if (
+            field == "trend_current_price"
+            and trend_current is not None
+        ):
+            continue
+
         result[field] = value
 
     # ========================================================
-    # 如果没有单独的当前价
-    # 使用走势当前价
+    # 再次确保走势当前价正确
     # ========================================================
 
-    if (
-        result.get("price_current") is None
-        and result.get("trend_current_price")
+    if trend_current is not None:
+
+        result["trend_current_price"] = (
+            trend_current
+        )
+
+        result["price_current"] = (
+            trend_current
+        )
+
+    elif (
+        result.get("price_current")
+        is None
+        and result.get(
+            "trend_current_price"
+        )
         is not None
     ):
+
         result["price_current"] = (
             result["trend_current_price"]
         )
 
     # ========================================================
-    # 如果没有价格走势当前价
-    # 使用7日最低价
+    # 如果没有当前价，使用7日最低价
     # ========================================================
 
     if (
-        result.get("price_current") is None
-        and result.get("price_7d_low")
+        result.get("price_current")
+        is None
+        and result.get(
+            "price_7d_low"
+        )
         is not None
     ):
+
         result["price_current"] = (
             result["price_7d_low"]
         )
 
     # ========================================================
-    # 如果没有直接下跌风险
-    # 根据当前价和7日最低价计算
+    # 重新计算当前价到7日最低价的回落风险
     # ========================================================
 
     current = number(
-        result.get("price_current")
+        result.get(
+            "price_current"
+        )
     )
 
     low = number(
-        result.get("price_7d_low")
+        result.get(
+            "price_7d_low"
+        )
     )
 
     if (
-        result.get("downside_to_7d_low")
-        is None
-        and current
+        current is not None
         and low is not None
         and current > 0
         and low >= 0
+        and low <= current
     ):
-        result["downside_to_7d_low"] = round(
-            (current - low)
+
+        result[
+            "downside_to_7d_low"
+        ] = round(
+            (
+                current - low
+            )
             / current
             * 100,
             2
         )
 
     # ========================================================
+    # 如果有销量证据，补充周转证据
+    # ========================================================
+
+    sales_7d = number(
+        result.get(
+            "sales_7d"
+        )
+    )
+
+    sales_30d = number(
+        result.get(
+            "sales_30d"
+        )
+    )
+
+    velocity = number(
+        result.get(
+            "sales_velocity_7d"
+        )
+    )
+
+    if velocity is None:
+
+        if (
+            sales_7d is not None
+            and sales_7d > 0
+        ):
+
+            velocity = (
+                sales_7d / 7
+            )
+
+            result[
+                "sales_velocity_7d"
+            ] = round(
+                velocity,
+                2
+            )
+
+        elif (
+            sales_30d is not None
+            and sales_30d > 0
+        ):
+
+            velocity = (
+                sales_30d / 30
+            )
+
+            result[
+                "sales_velocity_7d"
+            ] = round(
+                velocity,
+                2
+            )
+
+    if (
+        result.get(
+            "turnover_evidence"
+        )
+        in (
+            None,
+            "",
+        )
+    ):
+
+        if (
+            sales_7d is not None
+            and sales_7d > 0
+        ):
+
+            result[
+                "turnover_evidence"
+            ] = (
+                f"近7天销量 {sales_7d:g}，"
+                f"日均约 {sales_7d / 7:.2f}"
+            )
+
+            result[
+                "turnover_confidence"
+            ] = "high"
+
+        elif (
+            sales_30d is not None
+            and sales_30d > 0
+        ):
+
+            result[
+                "turnover_evidence"
+            ] = (
+                f"近30天销量 {sales_30d:g}，"
+                f"日均约 {sales_30d / 30:.2f}"
+            )
+
+            result[
+                "turnover_confidence"
+            ] = "medium"
+
+        elif (
+            velocity is not None
+            and velocity > 0
+        ):
+
+            result[
+                "turnover_evidence"
+            ] = (
+                f"日均销量约 {velocity:.2f}"
+            )
+
+            result[
+                "turnover_confidence"
+            ] = "medium"
+
+    # ========================================================
     # 数据来源
     # ========================================================
 
-    result["discovery_data_source"] = (
-        "识货公开页面"
-    )
+    result[
+        "discovery_data_source"
+    ] = "识货公开页面"
 
     return result
 
 
-def merge_product(base, discovery):
+def merge_product(
+    base,
+    discovery
+):
 
     result = dict(base)
 
@@ -360,7 +973,10 @@ def clean_buy_prices(item):
         "buy_prices"
     )
 
-    if not isinstance(prices, dict):
+    if not isinstance(
+        prices,
+        dict
+    ):
         return {}
 
     cleaned = {}
@@ -373,10 +989,15 @@ def clean_buy_prices(item):
             price is not None
             and price > 0
         ):
+
             cleaned[source] = price
 
     return cleaned
 
+
+# ============================================================
+# 主程序
+# ============================================================
 
 def main():
 
@@ -404,12 +1025,17 @@ def main():
 
     for item in market_products:
 
-        if not isinstance(item, dict):
+        if not isinstance(
+            item,
+            dict
+        ):
             continue
 
-        merged[
-            product_key(item)
-        ] = dict(item)
+        key = product_key(
+            item
+        )
+
+        merged[key] = dict(item)
 
     # ========================================================
     # 公开发现数据
@@ -417,13 +1043,16 @@ def main():
 
     for discovery in discovery_products:
 
-        if not isinstance(discovery, dict):
-            continue
-
-        if not valid_product_name(
-            discovery.get("name")
+        if not isinstance(
+            discovery,
+            dict
         ):
             continue
+
+        # 如果采集器名称错误，
+        # 但 detail_text 里有真实商品名称，
+        # 这里先允许进入 merge，
+        # copy_discovery_fields 会修正名称。
 
         key = product_key(
             discovery
@@ -451,7 +1080,10 @@ def main():
 
     for item in merged.values():
 
-        if not isinstance(item, dict):
+        if not isinstance(
+            item,
+            dict
+        ):
             continue
 
         if not valid_product_name(
@@ -468,7 +1100,9 @@ def main():
 
         item["buy_prices"] = prices
 
-        products.append(item)
+        products.append(
+            item
+        )
 
     output = {
 
@@ -499,9 +1133,18 @@ def main():
     )
 
     print("=" * 70)
-    print("市场原有商品：", len(market_products))
-    print("公开发现商品：", len(discovery_products))
-    print("最终有效商品：", len(products))
+    print(
+        "市场原有商品：",
+        len(market_products)
+    )
+    print(
+        "公开发现商品：",
+        len(discovery_products)
+    )
+    print(
+        "最终有效商品：",
+        len(products)
+    )
     print("=" * 70)
 
     for index, item in enumerate(
@@ -511,7 +1154,8 @@ def main():
 
         print()
         print(
-            f"#{index} {item.get('name')}"
+            f"#{index} "
+            f"{item.get('name')}"
         )
 
         print(
@@ -531,37 +1175,51 @@ def main():
 
         print(
             "销量速度：",
-            item.get("sales_velocity_7d")
+            item.get(
+                "sales_velocity_7d"
+            )
         )
 
         print(
             "周转证据：",
-            item.get("turnover_evidence")
+            item.get(
+                "turnover_evidence"
+            )
         )
 
         print(
             "7日最高：",
-            item.get("price_7d_high")
+            item.get(
+                "price_7d_high"
+            )
         )
 
         print(
             "7日最低：",
-            item.get("price_7d_low")
+            item.get(
+                "price_7d_low"
+            )
         )
 
         print(
             "当前价：",
-            item.get("price_current")
+            item.get(
+                "price_current"
+            )
         )
 
         print(
             "7日回落风险：",
-            item.get("downside_to_7d_low")
+            item.get(
+                "downside_to_7d_low"
+            )
         )
 
         print(
             "价格趋势：",
-            item.get("price_trend")
+            item.get(
+                "price_trend"
+            )
         )
 
 

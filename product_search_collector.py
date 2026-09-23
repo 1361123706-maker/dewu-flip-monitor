@@ -4,7 +4,10 @@ import time
 from pathlib import Path
 from urllib.parse import quote, urljoin
 
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import (
+    sync_playwright,
+    TimeoutError as PlaywrightTimeoutError,
+)
 
 
 INPUT_FILE = "market_data_input.json"
@@ -33,7 +36,11 @@ SEARCH_URL = (
 
 MAX_KEYWORDS = 14
 MAX_PRODUCTS = 80
-PAGE_WAIT_SECONDS = 5
+
+PAGE_LOAD_TIMEOUT = 20000
+KEYWORD_TIMEOUT = 60
+BODY_TIMEOUT = 5000
+SCROLL_WAIT = 1
 
 
 def load_existing():
@@ -61,7 +68,12 @@ def load_existing():
 
 def save_data(data):
     with open(INPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(
+            data,
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
 
     print("已写入：", INPUT_FILE)
 
@@ -70,19 +82,14 @@ def clean_text(text):
     if not text:
         return ""
 
-    return re.sub(r"\s+", " ", text).strip()
+    return re.sub(
+        r"\s+",
+        " ",
+        text,
+    ).strip()
 
 
 def extract_price(text):
-    """
-    从文本中寻找价格。
-    例如：
-    ¥299
-    ￥299
-    299元
-    299.00
-    """
-
     if not text:
         return None
 
@@ -92,14 +99,22 @@ def extract_price(text):
     ]
 
     for pattern in patterns:
-        match = re.search(pattern, text)
+        match = re.search(
+            pattern,
+            text,
+        )
 
         if match:
             try:
-                value = float(match.group(1))
+                value = float(
+                    match.group(1)
+                )
 
                 if 1 <= value <= 100000:
-                    return round(value, 2)
+                    return round(
+                        value,
+                        2,
+                    )
 
             except Exception:
                 pass
@@ -111,7 +126,7 @@ def is_product_url(url):
     if not url:
         return False
 
-    url = url.lower()
+    lower_url = url.lower()
 
     keywords = [
         "goods",
@@ -120,13 +135,21 @@ def is_product_url(url):
         "item",
     ]
 
-    return any(x in url for x in keywords)
+    return any(
+        keyword in lower_url
+        for keyword in keywords
+    )
 
 
-def collect_from_page(page, keyword):
+def collect_from_page(
+    page,
+    keyword,
+):
     results = []
 
-    search_url = SEARCH_URL.format(keyword=quote(keyword))
+    search_url = SEARCH_URL.format(
+        keyword=quote(keyword)
+    )
 
     print("")
     print("=" * 70)
@@ -134,270 +157,603 @@ def collect_from_page(page, keyword):
     print(search_url)
     print("=" * 70)
 
+    start_time = time.time()
+
     try:
         page.goto(
             search_url,
             wait_until="domcontentloaded",
-            timeout=30000,
+            timeout=PAGE_LOAD_TIMEOUT,
         )
 
     except PlaywrightTimeoutError:
-        print("页面加载超时，继续读取当前页面")
-
-    except Exception as e:
-        print("打开页面失败：", e)
+        print(
+            "⚠️ 页面加载超过 20 秒，"
+            "判定本关键词失败"
+        )
         return results
 
-    time.sleep(PAGE_WAIT_SECONDS)
+    except Exception as e:
+        print(
+            "⚠️ 打开页面失败：",
+            e,
+        )
+        return results
+
+    if time.time() - start_time > KEYWORD_TIMEOUT:
+        print("⚠️ 本关键词超过时间限制")
+        return results
+
+    time.sleep(2)
 
     try:
-        page.mouse.wheel(0, 1500)
-        time.sleep(2)
-        page.mouse.wheel(0, 1500)
-        time.sleep(2)
+        page.mouse.wheel(
+            0,
+            1200,
+        )
+
+        time.sleep(
+            SCROLL_WAIT
+        )
+
+        page.mouse.wheel(
+            0,
+            1200,
+        )
+
+        time.sleep(
+            SCROLL_WAIT
+        )
+
+    except Exception as e:
+        print(
+            "滚动页面失败：",
+            e,
+        )
+
+    if time.time() - start_time > KEYWORD_TIMEOUT:
+        print(
+            "⚠️ 页面操作超过 60 秒，"
+            "判定本关键词失败"
+        )
+        return results
+
+    try:
+        title = page.title()
+
     except Exception:
-        pass
+        title = ""
 
-    print("当前页面标题：", page.title())
+    print(
+        "当前页面标题：",
+        title,
+    )
 
     try:
-        body_text = page.locator("body").inner_text(timeout=10000)
+        body_text = page.locator(
+            "body"
+        ).inner_text(
+            timeout=BODY_TIMEOUT
+        )
+
     except Exception:
         body_text = ""
 
-    body_text = clean_text(body_text)
+    body_text = clean_text(
+        body_text
+    )
 
-    print("页面文字长度：", len(body_text))
+    print(
+        "页面文字长度：",
+        len(body_text),
+    )
 
     if body_text:
-        print("页面文字前500字：")
-        print(body_text[:500])
+        print(
+            "页面文字前300字："
+        )
+        print(
+            body_text[:300]
+        )
 
     links = []
 
     try:
-        anchors = page.locator("a").all()
+        anchors = page.locator(
+            "a"
+        ).all()
 
         for anchor in anchors:
+
+            if time.time() - start_time > KEYWORD_TIMEOUT:
+                print(
+                    "⚠️ 读取链接超过 60 秒"
+                )
+                return results
+
             try:
-                href = anchor.get_attribute("href")
-                text = clean_text(anchor.inner_text())
+                href = anchor.get_attribute(
+                    "href"
+                )
+
+                text = clean_text(
+                    anchor.inner_text()
+                )
 
                 if not href:
                     continue
 
-                full_url = urljoin(page.url, href)
+                full_url = urljoin(
+                    page.url,
+                    href,
+                )
 
-                if is_product_url(full_url):
-                    links.append(
-                        {
-                            "url": full_url,
-                            "text": text,
-                        }
-                    )
+                if not is_product_url(
+                    full_url
+                ):
+                    continue
+
+                links.append(
+                    {
+                        "url": full_url,
+                        "text": text,
+                    }
+                )
 
             except Exception:
                 continue
 
     except Exception as e:
-        print("读取链接失败：", e)
+        print(
+            "读取链接失败：",
+            e,
+        )
 
-    # 去重
     unique_links = {}
 
     for item in links:
-        unique_links[item["url"]] = item
+        unique_links[
+            item["url"]
+        ] = item
 
-    links = list(unique_links.values())
+    links = list(
+        unique_links.values()
+    )
 
-    print("发现疑似商品链接：", len(links))
+    print(
+        "发现疑似商品链接：",
+        len(links),
+    )
 
-    for item in links[:MAX_PRODUCTS]:
-        name = clean_text(item["text"])
+    for item in links[
+        :MAX_PRODUCTS
+    ]:
+
+        if time.time() - start_time > KEYWORD_TIMEOUT:
+            print(
+                "⚠️ 商品解析超过 60 秒，"
+                "提前结束本关键词"
+            )
+            break
+
+        name = clean_text(
+            item["text"]
+        )
 
         if len(name) < 2:
-            name = "未知商品"
+            continue
 
-        price = extract_price(name)
+        price = extract_price(
+            name
+        )
 
-        # 如果链接文字没有价格，则从页面附近寻找
         if price is None:
-            try:
-                href = item["url"]
 
+            try:
                 locator = page.locator(
-                    f'a[href="{item["url"]}"]'
+                    "a"
+                ).filter(
+                    has_text=name
                 ).first
 
                 parent_text = clean_text(
-                    locator.locator("..").inner_text(timeout=3000)
+                    locator.locator(
+                        ".."
+                    ).inner_text(
+                        timeout=2000
+                    )
                 )
 
-                price = extract_price(parent_text)
-
-                if len(name) < 4 and parent_text:
-                    name = parent_text[:200]
+                price = extract_price(
+                    parent_text
+                )
 
             except Exception:
                 pass
 
+        # 没有价格的数据暂时不进入商品数据库
+        if price is None:
+            continue
+
         result = {
             "name": name[:200],
-            "buy_prices": {},
+
+            "buy_prices": {
+                "识货": price
+            },
+
             "dewu_price": None,
+
             "recent_avg_price": None,
+
             "recent_trade_time": None,
+
             "seller_count": None,
+
             "days": None,
+
             "liquidity": None,
+
             "downside_loss": None,
+
             "authenticity_verified": False,
+
             "new_condition_verified": False,
+
             "dewu_check_compatible": False,
+
             "technical_service_fee": None,
+
             "technical_service_rate": None,
+
             "transfer_fee": None,
+
             "transfer_fee_rate": None,
+
             "operation_service_fee": None,
+
             "consumer_shipping_subsidy": None,
+
             "after_sales_service_fee": None,
+
             "seller_coupon_offset": None,
+
             "expected_income": None,
-            "source_note": "浏览器实际打开识货公开页面采集",
-            "data_source": "shihuo_browser_public_web",
-            "data_time": time.strftime("%Y-%m-%d"),
-            "source_url": item["url"],
+
+            "source_note":
+                "浏览器实际打开识货公开页面采集",
+
+            "data_source":
+                "shihuo_browser_public_web",
+
+            "data_time":
+                time.strftime(
+                    "%Y-%m-%d"
+                ),
+
+            "source_url":
+                item["url"],
         }
 
-        if price is not None:
-            result["buy_prices"]["识货"] = price
+        results.append(
+            result
+        )
 
-        results.append(result)
+    print(
+        f"关键词「{keyword}」"
+        f"有效商品：{len(results)}"
+    )
 
     return results
 
 
-def merge_products(existing, new_products):
-    """
-    按商品名称去重。
-    新采集到的数据优先。
-    """
-
+def merge_products(
+    existing,
+    new_products,
+):
     merged = {}
 
     for product in existing:
-        name = clean_text(product.get("name", ""))
+
+        if not isinstance(
+            product,
+            dict
+        ):
+            continue
+
+        name = clean_text(
+            product.get(
+                "name",
+                ""
+            )
+        )
 
         if name:
             merged[name] = product
 
     for product in new_products:
-        name = clean_text(product.get("name", ""))
 
-        if name:
-            merged[name] = product
+        if not isinstance(
+            product,
+            dict
+        ):
+            continue
 
-    return list(merged.values())
+        name = clean_text(
+            product.get(
+                "name",
+                ""
+            )
+        )
+
+        buy_prices = product.get(
+            "buy_prices",
+            {}
+        )
+
+        if not name:
+            continue
+
+        if not isinstance(
+            buy_prices,
+            dict
+        ):
+            continue
+
+        if not buy_prices:
+            continue
+
+        merged[name] = product
+
+    return list(
+        merged.values()
+    )
+
+
+def create_browser(p):
+    browser = p.chromium.launch(
+        headless=True
+    )
+
+    context = browser.new_context(
+        viewport={
+            "width": 1280,
+            "height": 900,
+        },
+
+        locale="zh-CN",
+
+        timezone_id="Asia/Shanghai",
+
+        user_agent=(
+            "Mozilla/5.0 "
+            "(X11; Linux x86_64) "
+            "AppleWebKit/537.36 "
+            "(KHTML, like Gecko) "
+            "Chrome/131.0.0.0 "
+            "Safari/537.36"
+        ),
+    )
+
+    page = context.new_page()
+
+    return browser, context, page
 
 
 def main():
+
     print("")
-    print("==============================================")
-    print("   真实浏览器公开商品采集器")
-    print("==============================================")
-    print("")
+    print("=" * 60)
+    print(
+        "真实浏览器公开商品采集器"
+    )
+    print("=" * 60)
 
     existing_data = load_existing()
-    existing_products = existing_data.get("products", [])
 
-    print("仓库原有商品数量：", len(existing_products))
+    existing_products = (
+        existing_data.get(
+            "products",
+            []
+        )
+    )
+
+    print(
+        "仓库原有商品数量：",
+        len(existing_products)
+    )
 
     collected = []
 
     with sync_playwright() as p:
 
-        browser = p.chromium.launch(
-            headless=True
-        )
+        browser = None
+        context = None
+        page = None
 
-        context = browser.new_context(
-            viewport={
-                "width": 1280,
-                "height": 900,
-            },
-            locale="zh-CN",
-            timezone_id="Asia/Shanghai",
-            user_agent=(
-                "Mozilla/5.0 (X11; Linux x86_64) "
-                "AppleWebKit/537.36 "
-                "(KHTML, like Gecko) "
-                "Chrome/131.0.0.0 Safari/537.36"
-            ),
-        )
-
-        page = context.new_page()
-
-        for index, keyword in enumerate(KEYWORDS[:MAX_KEYWORDS], 1):
-
-            print("")
-            print(
-                f"【{index}/{min(len(KEYWORDS), MAX_KEYWORDS)}】"
+        try:
+            browser, context, page = (
+                create_browser(p)
             )
 
-            products = collect_from_page(
-                page,
-                keyword,
+            total_keywords = min(
+                len(KEYWORDS),
+                MAX_KEYWORDS,
             )
 
-            print(
-                f"关键词「{keyword}」实际提取商品："
-                f"{len(products)}"
-            )
+            for index, keyword in enumerate(
+                KEYWORDS[:MAX_KEYWORDS],
+                1,
+            ):
 
-            collected.extend(products)
+                print("")
+                print(
+                    f"【{index}/{total_keywords}】"
+                )
 
-            # 防止连续快速访问
-            time.sleep(2)
+                success = False
 
-        browser.close()
+                for attempt in range(
+                    1,
+                    3
+                ):
+
+                    print(
+                        f"本关键词第 "
+                        f"{attempt}/2 次尝试"
+                    )
+
+                    start = time.time()
+
+                    try:
+
+                        products = (
+                            collect_from_page(
+                                page,
+                                keyword,
+                            )
+                        )
+
+                        elapsed = (
+                            time.time()
+                            - start
+                        )
+
+                        if products:
+
+                            collected.extend(
+                                products
+                            )
+
+                            print(
+                                f"采集成功，"
+                                f"耗时 {elapsed:.1f} 秒"
+                            )
+
+                            success = True
+
+                            break
+
+                        print(
+                            f"没有获得有效商品，"
+                            f"耗时 {elapsed:.1f} 秒"
+                        )
+
+                    except Exception as e:
+
+                        print(
+                            "⚠️ 本关键词发生异常：",
+                            e,
+                        )
+
+                    # 当前关键词失败：
+                    # 关闭浏览器并重新启动
+                    print(
+                        "关闭当前浏览器，"
+                        "准备重新启动..."
+                    )
+
+                    try:
+                        if context:
+                            context.close()
+                    except Exception:
+                        pass
+
+                    try:
+                        if browser:
+                            browser.close()
+                    except Exception:
+                        pass
+
+                    browser, context, page = (
+                        create_browser(p)
+                    )
+
+                    time.sleep(2)
+
+                if not success:
+
+                    print(
+                        f"⚠️ 关键词「{keyword}」"
+                        f"连续失败，跳过。"
+                    )
+
+                time.sleep(1)
+
+        finally:
+
+            try:
+                if context:
+                    context.close()
+            except Exception:
+                pass
+
+            try:
+                if browser:
+                    browser.close()
+            except Exception:
+                pass
 
     print("")
-    print("==============================================")
+    print("=" * 60)
     print("采集结束")
-    print("==============================================")
+    print("=" * 60)
 
-    print("本次浏览器实际发现商品：", len(collected))
+    print(
+        "本次浏览器实际发现有效商品：",
+        len(collected),
+    )
 
     if collected:
+
         print("")
-        print("前10个实际采集结果：")
+        print("前10个采集结果：")
 
         for product in collected[:10]:
+
             print(
                 "-",
-                product.get("name"),
+                product.get(
+                    "name"
+                ),
                 "|",
-                product.get("buy_prices"),
+                product.get(
+                    "buy_prices"
+                ),
             )
 
     else:
+
         print("")
-        print("⚠️ 本次没有解析到商品。")
-        print("这意味着需要继续检查网站页面结构，")
-        print("而不是把旧数据当成新数据。")
+        print(
+            "⚠️ 本次没有获得新的"
+            "有效商品数据。"
+        )
 
     merged = merge_products(
         existing_products,
         collected,
     )
 
-    existing_data["products"] = merged
+    existing_data[
+        "products"
+    ] = merged
 
-    save_data(existing_data)
+    save_data(
+        existing_data
+    )
 
     print("")
-    print("最终仓库商品数量：", len(merged))
-    print("新增/更新商品数量：", len(collected))
+    print(
+        "最终仓库商品数量：",
+        len(merged)
+    )
+
+    print(
+        "本次新增/更新：",
+        len(collected)
+    )
+
     print("")
 
 

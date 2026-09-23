@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T05:12:32.144694+00:00",
+  "updated_at": "2026-09-23T05:25:34.739502+00:00",
   "capital": 330,
   "max_days": 7,
   "min_profit": 15,
@@ -126,10 +126,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 58.54,
-      "price_trend": "rising",
+      "sales_30d": 6400.0,
+      "sales_velocity_7d": 213.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥466.00 超过当前本金 ¥330"
@@ -154,10 +154,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 622.22,
-      "price_trend": "rising",
+      "sales_30d": 1600.0,
+      "sales_velocity_7d": 53.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥7506.00 超过当前本金 ¥330"
@@ -182,10 +182,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": -13.33,
-      "price_trend": "falling",
+      "sales_30d": 5000.0,
+      "sales_velocity_7d": 166.67,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥506.00 超过当前本金 ¥330"
@@ -210,10 +210,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": -2.99,
-      "price_trend": "stable",
+      "sales_30d": 1300.0,
+      "sales_velocity_7d": 43.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "没有有效得物公开售价"
@@ -238,10 +238,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 1200.0,
-      "price_trend": "rising",
+      "sales_30d": 800.0,
+      "sales_velocity_7d": 26.67,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥10806.00 超过当前本金 ¥330"
@@ -266,10 +266,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 14.04,
-      "price_trend": "rising",
+      "sales_30d": 5500.0,
+      "sales_velocity_7d": 183.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥406.00 超过当前本金 ¥330"
@@ -294,10 +294,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 170.83,
-      "price_trend": "rising",
+      "sales_30d": 9300.0,
+      "sales_velocity_7d": 310.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥90006.00 超过当前本金 ¥330"
@@ -322,10 +322,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 209.52,
-      "price_trend": "rising",
+      "sales_30d": 250.0,
+      "sales_velocity_7d": 8.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥1296.00 超过当前本金 ¥330"
@@ -350,10 +350,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 66.67,
-      "price_trend": "rising",
+      "sales_30d": 60.0,
+      "sales_velocity_7d": 2.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -378,10 +378,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 16.07,
-      "price_trend": "rising",
+      "sales_30d": 1800.0,
+      "sales_velocity_7d": 60.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "没有有效得物公开售价"
@@ -406,10 +406,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 3150.0,
-      "price_trend": "rising",
+      "sales_30d": 300.0,
+      "sales_velocity_7d": 10.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -434,10 +434,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 364.29,
-      "price_trend": "rising",
+      "sales_30d": 100.0,
+      "sales_velocity_7d": 3.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "没有有效得物公开售价"
@@ -462,10 +462,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 109.68,
-      "price_trend": "rising",
+      "sales_30d": 300.0,
+      "sales_velocity_7d": 10.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -490,10 +490,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": -87.0,
-      "price_trend": "falling",
+      "sales_30d": 150.0,
+      "sales_velocity_7d": 5.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥1206.00 超过当前本金 ¥330"
@@ -518,10 +518,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 364.29,
-      "price_trend": "rising",
+      "sales_30d": 4300.0,
+      "sales_velocity_7d": 143.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -546,10 +546,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 983.33,
-      "price_trend": "rising",
+      "sales_30d": 300.0,
+      "sales_velocity_7d": 10.0,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "target",
       "risk_flags": [
         "总资金占用 ¥1506.00 超过当前本金 ¥330"
@@ -581,30 +581,31 @@
       "days_display": "未确认",
       "liquidity": "未知",
       "downside_loss": null,
-      "sales": 7600.0,
+      "sales": 800.0,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
+      "sales_30d": 800.0,
+      "sales_velocity_7d": 26.67,
       "price_current": 250.0,
-      "price_change_1d": 1200.0,
-      "price_change_7d": 1200.0,
-      "price_change_30d": 1200.0,
-      "price_trend": "rising",
+      "price_change_1d": null,
+      "price_change_7d": null,
+      "price_change_30d": null,
+      "price_trend": null,
       "category": "target",
       "authenticity_evidence": "05-27 Bonni邦尼崽乐园 鉴别为真 05-26 coo在纽约 鉴别为真 购买 为您找到5家正品放心店铺 识货AI价格总结：截至9月23日，识货为您实时监控全网5家正品放心店铺，包括淘宝、天猫、京东、拼多多、抖音、得物、唯品会等主流电商。当前同款同规格全网最低价为¥200，来自官方店铺。识货安心购店铺最低价为¥220，安心购店铺为识货合作的正品保障店铺且淘宝、京东、拼多多等电商平台认证的三方店",
       "new_condition_evidence": null,
-      "dewu_check_evidence": "渠道价格：当前商品在京东渠道有最低价，售价为200.00元。其他渠道：拼多多渠道售价240.00元，得物渠道售价250.00元，淘宝渠道售价400.00元） 功能与使用特性 在功能配置方面，是否明星同款为徐若晗同款，发售时间为2020年秋冬，适用场景为圣诞礼物、生日礼物，外形分类为兔，材质为聚酯纤维。 社区热门笔记 啊啊啊啊啊啊怎么会有这么可爱的兔兔🐰、好喜欢我的bunny兔🥺快来把它接回家～、Jel",
+      "dewu_check_evidence": "渠道价格：当前商品在京东渠道有最低价，售价为200.00元。其他渠道：拼多多渠道售价240.00元，得物渠道售价250.00元，淘宝渠道售价400.00元） 功能与使用特性 在功能配置方面，是否明星同款为徐若晗同款，发售时间为2020年秋冬，适用场景为圣诞礼物、生日礼物，外形分类为兔，材质为聚酯纤维。 社区热门笔记 软乎乎奶油感🍓Jellycat白芮邦尼兔也太甜美啦、是谁收到了这么可爱的兔子🐰、徐若晗",
       "dewu_price_source": "识货公开商品详情",
       "risk_flags": [
         "买入运费未明确",
         "周转天数未确认",
         "流动性：未知",
-        "近7日销量未公开或未获取"
+        "近7日销量未公开或未获取",
+        "价格走势未确认"
       ],
       "reasons": [
         "利润率 11.7% 低于 12%"
       ],
-      "score": 10
+      "score": 9
     },
     {
       "name": "无畏契约VP 国服 瓦罗兰特 点券充值【报价 价格 评测 参数 讨论 怎么样】-识货",
@@ -622,10 +623,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 6400.0,
-      "price_trend": "rising",
+      "sales_30d": 1300.0,
+      "sales_velocity_7d": 43.33,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -650,10 +651,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 25.0,
-      "price_trend": "rising",
+      "sales_30d": 500.0,
+      "sales_velocity_7d": 16.67,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"
@@ -678,10 +679,10 @@
       "profit_safety_margin_rate": null,
       "break_even_sale": null,
       "sales_7d": null,
-      "sales_30d": null,
-      "sales_velocity_7d": null,
-      "price_change_7d": 400.0,
-      "price_trend": "rising",
+      "sales_30d": 80.0,
+      "sales_velocity_7d": 2.67,
+      "price_change_7d": null,
+      "price_trend": null,
       "category": "excluded",
       "risk_flags": [
         "非目标商品品类"

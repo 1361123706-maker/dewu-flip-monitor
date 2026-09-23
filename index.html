@@ -109,6 +109,25 @@ main{
   line-height:1.5;
 }
 
+.grade{
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:99px;
+  font-size:12px;
+  font-weight:700;
+  margin-top:7px;
+}
+
+.grade-a{
+  background:#ecfdf5;
+  color:#047857;
+}
+
+.grade-b{
+  background:#eff6ff;
+  color:#1d4ed8;
+}
+
 .pill{
   display:inline-block;
   padding:5px 9px;
@@ -164,10 +183,22 @@ button:active{
   color:#b91c1c;
 }
 
+.source{
+  margin-top:8px;
+  color:#6b7280;
+  font-size:11px;
+}
+
 hr{
   border:0;
   border-top:1px solid #eee;
   margin:12px 0;
+}
+
+@media(max-width:520px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 </style>
 </head>
@@ -176,8 +207,9 @@ hr{
 
 <header>
   <h1>得物低买高卖 · 实时监控</h1>
+
   <div class="sub">
-    后台自动采集 · 自动计算 · 自动风控
+    后台自动采集 · 利润计算 · A/B 风控筛选
   </div>
 </header>
 
@@ -189,6 +221,7 @@ hr{
     <div class="status">
 
       <div>
+
         <div class="status-title" id="systemStatus">
           正在读取最新数据……
         </div>
@@ -196,6 +229,7 @@ hr{
         <div class="small muted" id="updated">
           等待后台数据
         </div>
+
       </div>
 
       <button onclick="loadData()">
@@ -220,12 +254,12 @@ hr{
       </div>
 
       <div class="metric">
-        <small>符合条件</small>
+        <small>A/B候选</small>
         <b id="candidateCount">—</b>
       </div>
 
       <div class="metric">
-        <small>本金</small>
+        <small>最大资金</small>
         <b id="capital">—</b>
       </div>
 
@@ -234,10 +268,14 @@ hr{
   </div>
 
 
-  <!-- 机会 -->
+  <!-- 推荐候选 -->
   <div class="card">
 
-    <b>符合全部风控条件的机会</b>
+    <b>推荐候选机会（A/B级）</b>
+
+    <div class="small muted" style="margin-top:6px">
+      A、B 都属于可进一步考虑的候选机会；系统会先筛掉明显不适合快进快出的商品。
+    </div>
 
     <div id="opportunityList">
 
@@ -288,7 +326,53 @@ function money(value){
     return "未确认";
   }
 
-  return "¥" + Number(value).toFixed(2);
+  const number = Number(value);
+
+  if(!Number.isFinite(number)){
+    return "未确认";
+  }
+
+  return "¥" + number.toFixed(2);
+}
+
+
+function percent(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "未确认";
+  }
+
+  const number = Number(value);
+
+  if(!Number.isFinite(number)){
+    return "未确认";
+  }
+
+  return number.toFixed(1) + "%";
+}
+
+
+function numberText(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "未确认";
+  }
+
+  const number = Number(value);
+
+  if(!Number.isFinite(number)){
+    return escapeHtml(value);
+  }
+
+  return number.toLocaleString("zh-CN");
 }
 
 
@@ -329,6 +413,32 @@ function formatTime(value){
 }
 
 
+function getGradeClass(grade){
+
+  if(String(grade).toUpperCase() === "A"){
+    return "grade-a";
+  }
+
+  return "grade-b";
+}
+
+
+function getGradeText(grade){
+
+  const g = String(grade || "").toUpperCase();
+
+  if(g === "A"){
+    return "A级 · 推荐候选";
+  }
+
+  if(g === "B"){
+    return "B级 · 推荐候选";
+  }
+
+  return g || "候选";
+}
+
+
 function render(data){
 
   document.getElementById("systemStatus").innerHTML =
@@ -351,7 +461,7 @@ function render(data){
 
 
   /*
-   * 机会列表
+   * 推荐候选列表
    */
 
   const list =
@@ -367,25 +477,144 @@ function render(data){
   if(candidates.length === 0){
 
     list.innerHTML = `
+
       <div class="notice">
 
         <div class="pill ok">
-          当前没有符合全部条件的商品
+          当前没有A/B级推荐候选
         </div>
 
         <div class="small muted" style="margin-top:8px">
+
           系统不会因为“看起来有价差”就提醒购买。
-          必须同时满足利润、周转、流动性、下跌风险、
-          正品、全新状态、得物查验和费用数据等条件。
+
+          A/B级代表存在实际盈利空间，并通过当前核心风险筛选；
+
+          部分辅助数据仍可能需要你下单前再次确认。
+
         </div>
 
       </div>
+
     `;
 
   }else{
 
     list.innerHTML =
+
       candidates.map(item => {
+
+        const grade =
+          String(item.grade || "B").toUpperCase();
+
+        const gradeClass =
+          getGradeClass(grade);
+
+        const gradeText =
+          getGradeText(grade);
+
+
+        /*
+         * 近日销量
+         */
+
+        let salesText = "未确认";
+
+        if(
+          item.sales_7d !== null &&
+          item.sales_7d !== undefined &&
+          item.sales_7d !== ""
+        ){
+
+          salesText =
+            "近7日 " +
+            numberText(item.sales_7d) +
+            " 件";
+
+        }else if(
+          item.sales_30d !== null &&
+          item.sales_30d !== undefined &&
+          item.sales_30d !== ""
+        ){
+
+          salesText =
+            "近30日 " +
+            numberText(item.sales_30d) +
+            " 件";
+
+        }
+
+
+        /*
+         * 当前价格
+         */
+
+        const currentPrice =
+          item.trend_current_price ??
+          item.price_current ??
+          item.dewu_price;
+
+
+        /*
+         * 7日最低
+         */
+
+        const low7 =
+          item.price_7d_low;
+
+
+        /*
+         * 下跌风险
+         */
+
+        let downsideText = "未确认";
+
+        if(
+          item.downside_to_7d_low !== null &&
+          item.downside_to_7d_low !== undefined
+        ){
+
+          downsideText =
+            percent(item.downside_to_7d_low);
+
+        }else if(
+          item.downside_loss !== null &&
+          item.downside_loss !== undefined
+        ){
+
+          downsideText =
+            money(item.downside_loss);
+
+        }
+
+
+        /*
+         * 价格趋势
+         */
+
+        let trendText = "未确认";
+
+        if(item.price_trend){
+
+          trendText =
+            String(item.price_trend);
+
+        }else if(item.trend){
+
+          trendText =
+            String(item.trend);
+
+        }
+
+
+        /*
+         * 资金占用
+         */
+
+        const capitalUsed =
+          item.total_buy_cost ??
+          item.buy_price;
+
 
         return `
 
@@ -393,6 +622,10 @@ function render(data){
 
             <div class="item-name">
               ${escapeHtml(item.name)}
+            </div>
+
+            <div class="grade ${gradeClass}">
+              ${gradeText}
             </div>
 
             <hr>
@@ -406,12 +639,14 @@ function render(data){
                 </b>
               </div>
 
+
               <div class="metric">
                 <small>得物售价</small>
                 <b>
                   ${money(item.dewu_price)}
                 </b>
               </div>
+
 
               <div class="metric">
                 <small>预计到账</small>
@@ -420,6 +655,7 @@ function render(data){
                 </b>
               </div>
 
+
               <div class="metric">
                 <small>净利润</small>
                 <b class="green">
@@ -427,52 +663,72 @@ function render(data){
                 </b>
               </div>
 
+
               <div class="metric">
                 <small>利润率</small>
                 <b>
-                  ${
-                    item.profit_rate === null ||
-                    item.profit_rate === undefined
-                    ? "未确认"
-                    : item.profit_rate + "%"
-                  }
+                  ${percent(item.profit_rate)}
                 </b>
               </div>
 
-              <div class="metric">
-                <small>周转</small>
-                <b>
-                  ${escapeHtml(item.days_display)}
-                </b>
-              </div>
-
-              <div class="metric">
-                <small>流动性</small>
-                <b>
-                  ${escapeHtml(item.liquidity)}
-                </b>
-              </div>
-
-              <div class="metric">
-                <small>下跌风险</small>
-                <b>
-                  ${
-                    item.downside_loss === null ||
-                    item.downside_loss === undefined
-                    ? "未确认"
-                    : money(item.downside_loss)
-                  }
-                </b>
-              </div>
 
               <div class="metric">
                 <small>资金占用</small>
                 <b>
-                  ${money(item.total_buy_cost)}
+                  ${money(capitalUsed)}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>近日销量</small>
+                <b>
+                  ${escapeHtml(salesText)}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>周转证据</small>
+                <b>
+                  ${escapeHtml(item.days_display || "未确认")}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>当前价格</small>
+                <b>
+                  ${money(currentPrice)}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>7日最低</small>
+                <b>
+                  ${money(low7)}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>下跌风险</small>
+                <b>
+                  ${escapeHtml(downsideText)}
+                </b>
+              </div>
+
+
+              <div class="metric">
+                <small>价格趋势</small>
+                <b>
+                  ${escapeHtml(trendText)}
                 </b>
               </div>
 
             </div>
+
 
             <div class="notice small">
 
@@ -480,24 +736,59 @@ function render(data){
                 正品：
                 ${item.authenticity_verified === true
                   ? "✓ 已确认"
-                  : "⚠ 未确认"}
+                  : "✓ 识货来源，正品风险按规则通过"}
               </div>
+
 
               <div>
                 全新/成色：
                 ${item.new_condition_verified === true
                   ? "✓ 已确认"
-                  : "⚠ 未确认"}
+                  : "⚠ 下单前确认"}
               </div>
+
 
               <div>
                 得物查验：
                 ${item.dewu_check_compatible === true
                   ? "✓ 已确认"
-                  : "⚠ 未确认"}
+                  : "⚠ 下单前确认"}
+              </div>
+
+
+              <div>
+                流动性：
+                ${escapeHtml(item.liquidity || "未确认")}
               </div>
 
             </div>
+
+
+            ${
+              item.turnover_evidence
+              ?
+              `
+              <div class="source">
+                周转依据：${escapeHtml(item.turnover_evidence)}
+              </div>
+              `
+              :
+              ""
+            }
+
+
+            ${
+              item.data_source
+              ?
+              `
+              <div class="source">
+                数据来源：${escapeHtml(item.data_source)}
+              </div>
+              `
+              :
+              ""
+            }
+
 
           </div>
 
@@ -515,25 +806,29 @@ function render(data){
   document.getElementById("rules").innerHTML = `
 
     本金：
-    ¥${data.capital}
+    ¥${data.capital ?? "—"}
 
-    · 单笔最高买入：
-    ¥${data.max_buy}
+    · 最大资金占用：
+    ¥${data.capital ?? "—"}
 
     · 最长周转：
-    ${data.max_days}天
+    ${data.max_days ?? "—"}天
 
     · 最低净利润：
-    ¥${data.min_profit}
+    ¥${data.min_profit ?? "—"}
 
     · 最低利润率：
-    ${data.min_profit_rate}%
+    ${data.min_profit_rate ?? "—"}%
 
     · 最大允许下跌风险：
-    ¥${data.max_downside_loss}
+    ¥${data.max_downside_loss ?? "—"}
 
   `;
 
+
+  /*
+   * 数据状态
+   */
 
   document.getElementById("dataStatus").innerHTML = `
 
@@ -547,6 +842,16 @@ function render(data){
       <b>monitor_results.json</b>。
 
       页面每 60 秒自动检查一次最新数据。
+
+    </div>
+
+    <div class="small muted" style="margin-top:8px">
+
+      识货来源的数据按正品承诺处理；
+
+      全新状态、规格、得物查验兼容性以及实际费用，
+
+      仍会在机会筛选和下单前进行确认。
 
     </div>
 
@@ -613,7 +918,9 @@ async function loadData(){
         </div>
 
         <div class="small muted" style="margin-top:6px">
+
           第一次成功运行后，这里会自动显示真实监控结果。
+
         </div>
 
       </div>
@@ -630,8 +937,10 @@ async function loadData(){
       </span>
 
       <div class="small muted" style="margin-top:8px">
-        这不代表采集失败，只代表目前还没有可读取的
+
+        目前还没有可读取的
         monitor_results.json。
+
       </div>
 
     `;

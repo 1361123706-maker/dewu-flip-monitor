@@ -18,51 +18,46 @@ VIEWPORT = {
 
 
 # ============================================================
-# 商品范围
+# 品类
 # ============================================================
 
 EXCLUDED_KEYWORDS = [
-    "黄金", "足金", "金饰", "金首饰", "金戒指", "金手镯",
-    "金项链", "金耳环", "贵金属", "铂金", "白金", "18k金",
+    "黄金", "足金", "金饰", "贵金属", "铂金", "白金",
     "18k", "钻石", "珠宝", "翡翠", "玉石",
 
-    "点券", "充值", "虚拟商品", "虚拟物品", "游戏币",
-    "游戏道具", "账号", "帐号", "激活码", "兑换码",
-    "cdkey", "代充", "会员充值", "话费充值", "流量充值",
+    "点券", "充值", "虚拟商品", "游戏币", "游戏道具",
+    "账号", "激活码", "兑换码", "cdkey", "代充",
+    "会员充值", "话费充值", "流量充值",
 
     "白酒", "啤酒", "红酒", "葡萄酒", "洋酒", "威士忌",
     "伏特加", "香槟", "酒水",
 
     "食品", "零食", "饼干", "糖果", "巧克力", "饮料",
-    "牛奶", "咖啡", "茶叶", "茶", "方便面", "火锅底料",
-    "调味料",
+    "牛奶", "咖啡", "茶叶", "方便面", "火锅底料",
 
-    "猫粮", "狗粮", "宠物粮", "宠物食品", "猫罐头",
-    "狗罐头",
+    "猫粮", "狗粮", "宠物粮", "宠物食品",
 
-    "药品", "处方药", "非处方药", "otc", "保健品",
-    "保健食品", "维生素", "钙片", "鱼油", "蛋白粉",
+    "药品", "处方药", "非处方药", "保健品", "维生素",
+    "钙片", "鱼油", "蛋白粉",
 
-    "洗衣液", "洗衣粉", "洗洁精", "清洁剂", "纸巾",
-    "抽纸", "卫生纸", "垃圾袋", "拖把", "扫把",
-    "清洁用品",
+    "洗衣液", "洗衣粉", "洗洁精", "纸巾", "卫生纸",
+    "垃圾袋", "拖把", "扫把",
 
-    "洗发水", "护发素", "沐浴露", "牙膏", "牙刷", "洁面",
-    "洁面乳", "洁面啫喱", "护肤", "面霜", "乳液",
-    "化妆品", "口红", "粉底", "眼影", "香水",
+    "洗发水", "护发素", "沐浴露", "牙膏", "牙刷",
+    "洁面", "护肤", "面霜", "乳液", "化妆品",
+    "口红", "粉底", "眼影", "香水",
 
-    "床单", "被套", "枕头", "被子", "锅", "炒锅", "水杯",
-    "保温杯", "餐具", "垃圾桶",
+    "床单", "被套", "枕头", "被子", "锅", "炒锅",
+    "水杯", "保温杯", "餐具", "垃圾桶",
 ]
-
 
 TARGET_KEYWORDS = [
     "鞋", "球鞋", "运动鞋", "跑鞋", "篮球鞋", "足球鞋",
     "训练鞋", "板鞋", "休闲鞋", "靴",
 
     "卫衣", "外套", "夹克", "羽绒服", "冲锋衣", "风衣",
-    "棉服", "大衣", "T恤", "短袖", "长袖", "衬衫", "裤",
-    "牛仔裤", "运动裤", "短裤", "裙", "服装", "衣",
+    "棉服", "大衣", "T恤", "短袖", "长袖", "衬衫",
+    "裤", "牛仔裤", "运动裤", "短裤", "裙", "服装",
 
     "包", "背包", "双肩包", "斜挎包", "腰包", "托特包",
     "手提包", "旅行包",
@@ -77,13 +72,13 @@ TARGET_KEYWORDS = [
 
     "潮玩", "盲盒", "手办", "积木", "玩具",
 
-    "耳机", "蓝牙耳机", "头戴式耳机", "耳塞", "游戏机",
-    "掌机", "相机", "镜头", "数码相机",
+    "耳机", "蓝牙耳机", "头戴式耳机", "耳塞",
+    "游戏机", "掌机", "相机", "镜头", "数码相机",
 ]
 
 
 # ============================================================
-# 基础工具
+# 基础
 # ============================================================
 
 def clean_text(text):
@@ -95,26 +90,18 @@ def clean_text(text):
 def clean_line(text):
     if not text:
         return None
-
     text = clean_text(text)
     text = re.sub(r"^[：:、\-\s]+", "", text)
     text = re.sub(r"[：:、\-\s]+$", "", text)
-
-    return text.strip() or None
+    return text or None
 
 
 def normalize_price(value, unit=None):
-    if value is None:
-        return None
-
     try:
-        text = str(value).strip()
-        text = text.replace(",", "")
-        text = text.replace("¥", "")
-        text = text.replace("￥", "")
-        text = text.replace("元", "")
-
-        number = float(text)
+        value = str(value).replace(",", "")
+        value = value.replace("¥", "").replace("￥", "")
+        value = value.replace("元", "").strip()
+        number = float(value)
 
         if unit == "万":
             number *= 10000
@@ -123,45 +110,8 @@ def normalize_price(value, unit=None):
             return None
 
         return round(number, 2)
-
     except Exception:
         return None
-
-
-def price_from_match(match):
-    if not match:
-        return None
-
-    value = match.group(1)
-
-    try:
-        unit = match.group(2)
-    except Exception:
-        unit = None
-
-    return normalize_price(value, unit)
-
-
-def extract_price(text):
-    if not text:
-        return None
-
-    patterns = [
-        r"[¥￥]\s*(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)\s*元",
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*元",
-    ]
-
-    for pattern in patterns:
-        match = re.search(pattern, text)
-
-        if match:
-            price = price_from_match(match)
-
-            if price is not None:
-                return price
-
-    return None
 
 
 def valid_name(name):
@@ -170,50 +120,30 @@ def valid_name(name):
 
     name = clean_text(name)
 
-    if len(name) < 4:
-        return False
+    return (
+        len(name) >= 4
+        and name not in {
+            "商品", "详情", "价格", "购买",
+            "立即购买", "加入购物车", "未知商品"
+        }
+    )
 
-    bad_names = {
-        "商品",
-        "详情",
-        "价格",
-        "购买",
-        "立即购买",
-        "加入购物车",
-        "未知商品",
-    }
-
-    return name not in bad_names
-
-
-# ============================================================
-# 商品分类
-# ============================================================
 
 def classify_product(name):
-    name = clean_text(name).lower()
+    text = clean_text(name).lower()
 
-    if not name:
+    if not text:
         return "unknown", "商品名称为空"
 
-    for keyword in EXCLUDED_KEYWORDS:
-        if keyword.lower() in name:
-            return (
-                "excluded",
-                f"命中排除品类关键词：{keyword}",
-            )
+    for word in EXCLUDED_KEYWORDS:
+        if word.lower() in text:
+            return "excluded", f"命中排除关键词：{word}"
 
-    for keyword in TARGET_KEYWORDS:
-        if keyword.lower() in name:
-            return (
-                "target",
-                f"命中目标商品关键词：{keyword}",
-            )
+    for word in TARGET_KEYWORDS:
+        if word.lower() in text:
+            return "target", f"命中目标关键词：{word}"
 
-    return (
-        "unknown",
-        "未命中明确目标品类",
-    )
+    return "unknown", "未命中明确目标品类"
 
 
 # ============================================================
@@ -221,9 +151,6 @@ def classify_product(name):
 # ============================================================
 
 def extract_product_name(text):
-    if not text:
-        return None
-
     patterns = [
         r"商品名称[:：]\s*(.+?)(?:。品牌[:：])",
         r"商品名称[:：]\s*(.+?)(?:\s+品牌[:：])",
@@ -231,15 +158,14 @@ def extract_product_name(text):
     ]
 
     for pattern in patterns:
-        match = re.search(pattern, text)
+        m = re.search(pattern, text)
 
-        if match:
-            name = clean_text(match.group(1))
+        if m:
+            name = clean_text(m.group(1))
 
             if valid_name(name):
                 return name
 
-    # 页面没有明确“商品名称”标签时，尝试从 title 获取
     return None
 
 
@@ -248,58 +174,91 @@ def extract_product_name(text):
 # ============================================================
 
 def extract_product_code(text):
-    if not text:
-        return None
+    """
+    重点修复：
+    以前会把“品牌 adidas”之类错误抓成货号。
+
+    现在：
+    1. 只认明确标签。
+    2. 优先货号/款号。
+    3. 排除品牌、年份、价格等明显误识别。
+    """
 
     patterns = [
-        r"(?:商品货号|产品货号|货号|款号|款式号|型号)"
-        r"\s*[:：]?\s*([A-Za-z0-9][A-Za-z0-9\-_/.]{2,40})",
+        r"(?:商品货号|产品货号|货号)\s*[:：]?\s*"
+        r"([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
+
+        r"(?:款号|款式号|款式编号)\s*[:：]?\s*"
+        r"([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
 
         r"(?:Style\s*Code|Style\s*ID|Item\s*Code)"
-        r"\s*[:：]?\s*([A-Za-z0-9][A-Za-z0-9\-_/.]{2,40})",
+        r"\s*[:：]?\s*"
+        r"([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
     ]
 
     for pattern in patterns:
-        match = re.search(
-            pattern,
-            text,
-            re.IGNORECASE,
-        )
+        m = re.search(pattern, text, re.I)
 
-        if not match:
+        if not m:
             continue
 
-        value = clean_line(match.group(1))
+        value = clean_line(m.group(1))
 
-        if value:
-            return value
+        if not value:
+            continue
+
+        if value.lower() in {
+            "adidas", "nike", "newbalance",
+            "asics", "puma", "jordan",
+            "apple", "coach",
+        }:
+            continue
+
+        return value
 
     return None
 
 
 # ============================================================
-# 配色
+# 当前配色
 # ============================================================
 
 def extract_color(text):
-    if not text:
-        return None
+    """
+    不再优先抓“可选配色”的整张列表。
+
+    优先寻找：
+    当前配色 / 当前颜色 / 已选配色 / 当前规格
+    """
 
     patterns = [
-        r"(?:商品配色|商品颜色|配色|颜色分类|颜色)"
-        r"\s*[:：]\s*([^，,。；;\n]{1,80})",
+        r"(?:当前配色|当前颜色|已选配色|已选颜色)"
+        r"\s*[:：]?\s*([^，,。；;\n]{1,60})",
 
-        r"(?:可选配色|可选颜色)"
-        r"\s*[:：]?\s*([^，,。；;\n]{1,80})",
+        r"(?:商品配色|商品颜色)"
+        r"\s*[:：]\s*([^，,。；;\n]{1,60})",
     ]
 
     for pattern in patterns:
-        match = re.search(pattern, text)
+        m = re.search(pattern, text)
 
-        if not match:
-            continue
+        if m:
+            value = clean_line(m.group(1))
 
-        value = clean_line(match.group(1))
+            if value:
+                return value
+
+    # 识货页面常见：
+    # 配色 xxx 尺码 xxx
+    m = re.search(
+        r"(?:配色|颜色)\s*[:：]?\s*"
+        r"([^，,；;\n]{1,50}?)"
+        r"\s+(?:尺码|鞋码)",
+        text,
+    )
+
+    if m:
+        value = clean_line(m.group(1))
 
         if value:
             return value
@@ -311,303 +270,229 @@ def extract_color(text):
 # 尺码
 # ============================================================
 
-def extract_size(text):
+def extract_current_size(text):
     """
-    只提取明确出现的尺码信息。
+    只抓当前选中的尺码。
 
-    重要：
-    不根据标题里的孤立数字猜尺码。
-    不把年份、货号、价格、销量等数字误判为尺码。
-
-    优先识别：
-    当前尺码 / 已选尺码 / 选择尺码 / 尺码 / 鞋码 / 当前规格
+    不会因为看到 38、40、42 就猜。
     """
-
-    if not text:
-        return None
 
     patterns = [
-        r"(?:当前尺码|已选尺码|选择尺码|选中尺码|当前鞋码)"
+        r"(?:当前尺码|已选尺码|选中尺码|当前鞋码)"
         r"\s*[:：]?\s*([A-Za-z0-9./\-½]{1,12})",
 
-        r"(?:鞋码|尺码|尺寸)"
-        r"\s*[:：]\s*([A-Za-z0-9./\-½]{1,12})",
-
-        r"(?:当前规格|已选规格|选择规格|选中规格)"
-        r"\s*[:：]?\s*([^，,。；;\n]{1,30})",
+        r"(?:当前规格|已选规格|选中规格)"
+        r"\s*[:：]?\s*"
+        r"(?:[^，,；;\n]{0,30}?)"
+        r"(?:尺码|鞋码)\s*[:：]?\s*"
+        r"([A-Za-z0-9./\-½]{1,12})",
     ]
 
     for pattern in patterns:
-        match = re.search(
-            pattern,
-            text,
-            re.IGNORECASE,
-        )
+        m = re.search(pattern, text, re.I)
 
-        if not match:
-            continue
+        if m:
+            value = clean_line(m.group(1))
 
-        value = clean_line(match.group(1))
-
-        if not value:
-            continue
-
-        # 防止把明显不是尺码的文字当尺码
-        bad_values = {
-            "信息",
-            "商品",
-            "价格",
-            "详情",
-            "颜色",
-            "配色",
-            "请选择",
-            "未选择",
-        }
-
-        if value in bad_values:
-            continue
-
-        return value
+            if value and value not in {
+                "请选择", "未选择", "信息",
+            }:
+                return value
 
     return None
 
 
 # ============================================================
-# 当前 SKU / 规格
+# 尺码 -> 识货价格
 # ============================================================
 
-def extract_selected_variant(text):
+def extract_size_price_map(text):
     """
-    尝试得到当前实际参与价格计算的规格。
+    核心新增。
 
-    例如：
-    乳白色/森林绿, 38
-    黑色, 42
-    """
+    识货页面如果出现：
 
-    if not text:
-        return None
-
-    color = extract_color(text)
-    size = extract_size(text)
-
-    if color and size:
-        return f"{color} | {size}"
-
-    if color:
-        return color
-
-    if size:
-        return size
-
-    # 识货页面有时直接出现：
-    # 当前同款同规格到手价
-    # 这里不猜具体 SKU，只记录无法明确定位
-    return None
-
-
-# ============================================================
-# 检索键
-# ============================================================
-
-def build_search_key(
-    name,
-    product_code,
-    color,
-    size,
-):
-    parts = []
-
-    if name:
-        parts.append(str(name))
-
-    if product_code:
-        parts.append(f"货号 {product_code}")
-
-    if color:
-        parts.append(f"配色 {color}")
-
-    if size:
-        parts.append(f"尺码 {size}")
-    else:
-        parts.append("尺码 未明确")
-
-    return " | ".join(parts)
-
-
-# ============================================================
-# 当前同款同规格到手价
-# ============================================================
-
-def extract_trend_current_price(text):
-    if not text:
-        return None
-
-    patterns = [
-        r"当前同款同规格到手价为\s*[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-
-        r"当前同款同规格到手价为\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?\s*元",
-
-        r"当前(?:同款同规格)?到手价为\s*[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-
-        r"当前(?:同款同规格)?到手价为\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?\s*元",
-    ]
-
-    for pattern in patterns:
-        match = re.search(pattern, text)
-
-        if match:
-            price = price_from_match(match)
-
-            if price is not None:
-                return price
-
-    return None
-
-
-# ============================================================
-# 得物渠道售价
-# ============================================================
-
-def extract_dewu_price(text):
-    if not text:
-        return None
-
-    patterns = [
-        r"得物渠道售价\s*[¥￥]?\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?\s*元?",
-
-        r"得物渠道售价为\s*[¥￥]?\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?\s*元?",
-    ]
-
-    for pattern in patterns:
-        match = re.search(pattern, text)
-
-        if match:
-            price = price_from_match(match)
-
-            if price is not None:
-                return price
-
-    return None
-
-
-# ============================================================
-# 7日最高 / 最低
-# ============================================================
-
-def extract_7d_prices(text):
-    if not text:
-        return None, None
-
-    high = None
-    low = None
-
-    high_patterns = [
-        r"(?:过去|近|最近)\s*7\s*(?:天|日)"
-        r"[^。；\n]{0,100}"
-        r"(?:最高价|最高)"
-        r"[^¥￥0-9]{0,30}"
-        r"[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-
-        r"(?:7日|7天)"
-        r"[^。；\n]{0,80}"
-        r"(?:最高价|最高)"
-        r"[^¥￥0-9]{0,30}"
-        r"[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-    ]
-
-    low_patterns = [
-        r"(?:过去|近|最近)\s*7\s*(?:天|日)"
-        r"[^。；\n]{0,100}"
-        r"(?:最低价|最低)"
-        r"[^¥￥0-9]{0,30}"
-        r"[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-
-        r"(?:7日|7天)"
-        r"[^。；\n]{0,80}"
-        r"(?:最低价|最低)"
-        r"[^¥￥0-9]{0,30}"
-        r"[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
-    ]
-
-    for pattern in high_patterns:
-        match = re.search(pattern, text)
-
-        if match:
-            high = price_from_match(match)
-
-            if high is not None:
-                break
-
-    for pattern in low_patterns:
-        match = re.search(pattern, text)
-
-        if match:
-            low = price_from_match(match)
-
-            if low is not None:
-                break
-
-    if high is not None and low is not None:
-        if high < low:
-            return None, None
-
-    return high, low
-
-
-# ============================================================
-# 识货 AI 摘要中的 7 日最高 / 最低
-# ============================================================
-
-def extract_7d_extreme_status(text):
-    """
-    识货常见表达：
-
-    当前同款同规格到手价为¥530，
-    是过去7天内监测到的最高价
+    36 ¥340
+    37 ¥350
+    38 ¥380
+    39 ¥420
 
     或：
 
-    当前同款同规格到手价为¥530，
-    是过去7天内监测到的最低价
+    45⅓ ¥440
+    46 ¥500
+    46⅔ ¥500
+
+    就建立：
+
+    {
+        "36": 340,
+        "37": 350,
+        "38": 380,
+        ...
+    }
+
+    不把年份、销量、货号等普通数字当尺码。
     """
 
+    result = {}
+
+    if not text:
+        return result
+
+    # 常见鞋码格式
+    size_pattern = (
+        r"(?<![A-Za-z0-9])"
+        r"("
+        r"\d{2}(?:⅓|⅔)?"
+        r"|"
+        r"\d{1,2}(?:\.\d+)?"
+        r"|"
+        r"\d{2}/\d{2}"
+        r")"
+        r"\s*"
+        r"[：:]*"
+        r"\s*"
+        r"[¥￥]"
+        r"\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)"
+    )
+
+    for m in re.finditer(
+        size_pattern,
+        text,
+    ):
+        size = clean_line(m.group(1))
+        price = normalize_price(m.group(2))
+
+        if not size or price is None:
+            continue
+
+        # 排除明显不是鞋码的数字
+        try:
+            numeric = float(
+                size.replace("⅓", ".33")
+                    .replace("⅔", ".67")
+            )
+        except Exception:
+            continue
+
+        if numeric < 20 or numeric > 60:
+            continue
+
+        result[size] = price
+
+    # 另一种常见形式：
+    # 38 ￥320 / 39 ￥350
+    if not result:
+        pattern = (
+            r"(?<![A-Za-z0-9])"
+            r"(\d{2}(?:⅓|⅔)?)"
+            r"\s+"
+            r"[¥￥]"
+            r"\s*"
+            r"(\d+(?:,\d{3})*(?:\.\d+)?)"
+        )
+
+        for m in re.finditer(
+            pattern,
+            text,
+        ):
+            size = clean_line(m.group(1))
+            price = normalize_price(m.group(2))
+
+            if not size or price is None:
+                continue
+
+            try:
+                numeric = float(
+                    size.replace("⅓", ".33")
+                        .replace("⅔", ".67")
+                )
+            except Exception:
+                continue
+
+            if 20 <= numeric <= 60:
+                result[size] = price
+
+    return result
+
+
+def extract_size_price_evidence(text):
+    size_prices = extract_size_price_map(text)
+
+    if not size_prices:
+        return None
+
+    return "; ".join(
+        f"{size}码 ¥{price:g}"
+        for size, price in size_prices.items()
+    )
+
+
+# ============================================================
+# 得物价格
+# ============================================================
+
+def extract_dewu_price(text):
+    patterns = [
+        r"得物渠道售价\s*[¥￥]?\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
+
+        r"得物渠道售价为\s*[¥￥]?\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
+    ]
+
+    for pattern in patterns:
+        m = re.search(pattern, text)
+
+        if m:
+            return normalize_price(
+                m.group(1),
+                m.group(2),
+            )
+
+    return None
+
+
+def extract_trend_current_price(text):
+    patterns = [
+        r"当前同款同规格到手价为\s*[¥￥]\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)",
+
+        r"当前同款同规格到手价为\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*元",
+
+        r"当前(?:同款同规格)?到手价为\s*[¥￥]\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)",
+    ]
+
+    for pattern in patterns:
+        m = re.search(pattern, text)
+
+        if m:
+            return normalize_price(m.group(1))
+
+    return None
+
+
+# ============================================================
+# 7日价格
+# ============================================================
+
+def extract_7d_extreme_status(text):
     if not text:
         return None
 
     if re.search(
-        r"过去\s*7\s*天.*?(?:最高价|最高)",
+        r"(?:过去|近|最近)\s*7\s*天.*?(?:最高价|最高)",
         text,
         re.S,
     ):
         return "current_is_7d_high"
 
     if re.search(
-        r"过去\s*7\s*天.*?(?:最低价|最低)",
-        text,
-        re.S,
-    ):
-        return "current_is_7d_low"
-
-    if re.search(
-        r"近\s*7\s*(?:天|日).*?(?:最高价|最高)",
-        text,
-        re.S,
-    ):
-        return "current_is_7d_high"
-
-    if re.search(
-        r"近\s*7\s*(?:天|日).*?(?:最低价|最低)",
+        r"(?:过去|近|最近)\s*7\s*天.*?(?:最低价|最低)",
         text,
         re.S,
     ):
@@ -616,53 +501,40 @@ def extract_7d_extreme_status(text):
     return None
 
 
-# ============================================================
-# 价格位置
-# ============================================================
+def extract_7d_prices(text):
+    high = None
+    low = None
 
-def extract_price_position(
-    current,
-    high,
-    low,
-):
-    if current is None or high is None or low is None:
-        return None
+    patterns_high = [
+        r"(?:7天|7日|过去7天|近7天)"
+        r".{0,100}?(?:最高价|最高)"
+        r".{0,20}?[¥￥]\s*"
+        r"(\d+(?:\.\d+)?)",
 
-    if high <= low:
-        return None
+    ]
 
-    value = (
-        (current - low)
-        / (high - low)
-        * 100
-    )
+    patterns_low = [
+        r"(?:7天|7日|过去7天|近7天)"
+        r".{0,100}?(?:最低价|最低)"
+        r".{0,20}?[¥￥]\s*"
+        r"(\d+(?:\.\d+)?)",
+    ]
 
-    return round(
-        max(0, min(100, value)),
-        2,
-    )
+    for pattern in patterns_high:
+        m = re.search(pattern, text, re.S)
 
+        if m:
+            high = normalize_price(m.group(1))
+            break
 
-def extract_downside_to_low(
-    current,
-    low,
-):
-    if current is None or low is None:
-        return None
+    for pattern in patterns_low:
+        m = re.search(pattern, text, re.S)
 
-    if current <= 0:
-        return None
+        if m:
+            low = normalize_price(m.group(1))
+            break
 
-    value = (
-        (current - low)
-        / current
-        * 100
-    )
-
-    return round(
-        max(0, value),
-        2,
-    )
+    return high, low
 
 
 # ============================================================
@@ -670,177 +542,51 @@ def extract_downside_to_low(
 # ============================================================
 
 def extract_month_sales(text):
-    if not text:
-        return None
-
     patterns = [
         r"(?:月销|月销量)\s*"
-        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?\+?",
+        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?",
 
         r"(?:近30天销量|近30日销量)\s*"
-        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?\+?",
+        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?",
     ]
 
     for pattern in patterns:
-        match = re.search(pattern, text)
+        m = re.search(pattern, text)
 
-        if not match:
+        if not m:
             continue
 
-        try:
-            value = float(match.group(1))
-        except Exception:
-            continue
+        value = float(m.group(1))
 
-        if match.group(2) == "万":
+        if m.group(2) == "万":
             value *= 10000
 
-        if value > 0:
-            return value
+        return value
 
     return None
 
 
 def extract_total_sales(text):
-    if not text:
-        return None
-
-    patterns = [
+    pattern = (
         r"(?:全网销量|总销|总销量|累计销量)\s*"
-        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?\+?",
-    ]
+        r"([0-9]+(?:\.[0-9]+)?)\s*(万)?"
+    )
 
-    for pattern in patterns:
-        match = re.search(pattern, text)
+    m = re.search(pattern, text)
 
-        if not match:
-            continue
-
-        try:
-            value = float(match.group(1))
-        except Exception:
-            continue
-
-        if match.group(2) == "万":
-            value *= 10000
-
-        if value > 0:
-            return value
-
-    return None
-
-
-def calculate_turnover(
-    sales_30d,
-    sales_total,
-):
-    if sales_30d is not None and sales_30d > 0:
-        return {
-            "sales_velocity_7d": round(
-                sales_30d / 30,
-                2,
-            ),
-            "turnover_evidence": (
-                f"近30日/月销 {sales_30d:g}，"
-                f"折算日均约 {sales_30d / 30:.2f}"
-            ),
-            "turnover_confidence": "medium",
-        }
-
-    if sales_total is not None and sales_total > 0:
-        return {
-            "sales_velocity_7d": None,
-            "turnover_evidence": (
-                f"累计/全网销量 {sales_total:g}，"
-                f"不能直接换算周转速度"
-            ),
-            "turnover_confidence": "low",
-        }
-
-    return {
-        "sales_velocity_7d": None,
-        "turnover_evidence": None,
-        "turnover_confidence": "unknown",
-    }
-
-
-# ============================================================
-# 价格趋势
-# ============================================================
-
-def extract_price_trend(text):
-    if not text:
+    if not m:
         return None
 
-    if re.search(
-        r"价格.{0,30}下跌",
-        text,
-    ):
-        return "下跌"
+    value = float(m.group(1))
 
-    if re.search(
-        r"价格.{0,30}上涨",
-        text,
-    ):
-        return "上涨"
+    if m.group(2) == "万":
+        value *= 10000
 
-    if re.search(
-        r"价格.{0,30}(稳定|平稳)",
-        text,
-    ):
-        return "稳定"
-
-    return None
-
-
-def extract_price_changes(text):
-    result = {
-        "price_change_1d": None,
-        "price_change_7d": None,
-        "price_change_30d": None,
-    }
-
-    if not text:
-        return result
-
-    periods = [
-        ("1d", 1),
-        ("7d", 7),
-        ("30d", 30),
-    ]
-
-    for key, days in periods:
-        pattern = (
-            rf"(?:近|过去|最近)\s*{days}\s*"
-            rf"(?:天|日)"
-            rf"[^。；\n]{{0,50}}"
-            rf"(上涨|下跌)\s*"
-            rf"([0-9]+(?:\.[0-9]+)?)\s*%"
-        )
-
-        match = re.search(
-            pattern,
-            text,
-        )
-
-        if not match:
-            continue
-
-        try:
-            value = float(match.group(2))
-        except Exception:
-            continue
-
-        if match.group(1) == "下跌":
-            value = -value
-
-        result[f"price_change_{key}"] = value
-
-    return result
+    return value
 
 
 # ============================================================
-# 商品 URL / SKU 参数
+# URL
 # ============================================================
 
 def extract_url_params(url):
@@ -850,12 +596,10 @@ def extract_url_params(url):
         "style_id": None,
     }
 
-    if not url:
-        return result
-
     try:
-        parsed = urlparse(url)
-        params = parse_qs(parsed.query)
+        params = parse_qs(
+            urlparse(url).query
+        )
 
         for key in result:
             values = params.get(key)
@@ -870,70 +614,10 @@ def extract_url_params(url):
 
 
 # ============================================================
-# 数据状态
+# 详情页
 # ============================================================
 
-def field_status(
-    value,
-    detail_text,
-    keywords=None,
-):
-    """
-    区分：
-
-    available:
-        已经成功解析。
-
-    page_has_but_not_parsed:
-        页面文本里存在相关证据，但当前字段没有成功解析。
-
-    not_available:
-        当前页面没有发现对应证据。
-    """
-
-    if value is not None and value != "":
-        return "available"
-
-    if keywords and detail_text:
-        for keyword in keywords:
-            if keyword in detail_text:
-                return "page_has_but_not_parsed"
-
-    return "not_available"
-
-
-# ============================================================
-# 商品唯一键
-# ============================================================
-
-def product_key(item):
-    url = item.get("shihuo_url")
-
-    if url:
-        return f"url:{url}"
-
-    product_code = item.get("product_code")
-    color = item.get("color")
-    size = item.get("size")
-
-    if product_code:
-        return (
-            f"sku:{product_code}|"
-            f"{color}|"
-            f"{size}"
-        )
-
-    return f"name:{item.get('name')}"
-
-
-# ============================================================
-# 商品详情
-# ============================================================
-
-def extract_detail(
-    page,
-    url,
-):
+def extract_detail(page, url):
     page.goto(
         url,
         wait_until="domcontentloaded",
@@ -942,13 +626,13 @@ def extract_detail(
 
     page.wait_for_timeout(2500)
 
-    detail_text = clean_text(
-        page.locator("body").inner_text()
-    )
+    raw_text = page.locator(
+        "body"
+    ).inner_text()
 
-    # --------------------------------------------------------
-    # 基础字段
-    # --------------------------------------------------------
+    detail_text = clean_text(
+        raw_text
+    )
 
     name = extract_product_name(
         detail_text
@@ -970,61 +654,40 @@ def extract_detail(
         detail_text
     )
 
-    size = extract_size(
+    current_size = extract_current_size(
         detail_text
     )
 
-    selected_variant = extract_selected_variant(
+    # ========================================================
+    # 核心：完整尺码价格表
+    # ========================================================
+
+    size_price_map = extract_size_price_map(
         detail_text
     )
 
-    search_key = build_search_key(
-        name,
-        product_code,
-        color,
-        size,
-    )
-
-    # --------------------------------------------------------
-    # URL 参数
-    # --------------------------------------------------------
-
-    url_params = extract_url_params(
-        url
-    )
-
-    # --------------------------------------------------------
-    # 买入价格
-    # --------------------------------------------------------
-
-    buy_price = None
-
-    price_info_match = re.search(
-        r"全网价格区间[:：]\s*"
-        r"[¥￥]?\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)"
-        r"\s*(万)?"
-        r"\s*元?\s*-\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)"
-        r"\s*(万)?",
-
-        detail_text,
-    )
-
-    if price_info_match:
-        buy_price = normalize_price(
-            price_info_match.group(1),
-            price_info_match.group(2),
-        )
-
-    if buy_price is None:
-        buy_price = extract_price(
+    size_price_evidence = (
+        extract_size_price_evidence(
             detail_text
         )
+    )
 
-    # --------------------------------------------------------
-    # 得物价格
-    # --------------------------------------------------------
+    # 如果当前尺码明确存在价格表中，
+    # 当前买入价必须使用该尺码价格，
+    # 不能再使用商品最低价/第一价格。
+    sku_buy_price = None
+
+    if (
+        current_size
+        and current_size in size_price_map
+    ):
+        sku_buy_price = size_price_map[
+            current_size
+        ]
+
+    # ========================================================
+    # 价格
+    # ========================================================
 
     dewu_channel_price = extract_dewu_price(
         detail_text
@@ -1034,40 +697,49 @@ def extract_detail(
         detail_text
     )
 
-    # --------------------------------------------------------
-    # 7日价格
-    # --------------------------------------------------------
-
     price_7d_high, price_7d_low = extract_7d_prices(
         detail_text
     )
 
-    price_7d_extreme_status = (
-        extract_7d_extreme_status(
-            detail_text
-        )
+    extreme_status = extract_7d_extreme_status(
+        detail_text
     )
 
-    # 如果识货 AI 明确说：
-    # 当前价格就是过去7天最低/最高
-    # 那么当前价格本身就是对应极值。
     if (
         trend_current_price is not None
-        and price_7d_extreme_status
-        == "current_is_7d_low"
-    ):
-        price_7d_low = trend_current_price
-
-    if (
-        trend_current_price is not None
-        and price_7d_extreme_status
-        == "current_is_7d_high"
+        and extreme_status == "current_is_7d_high"
     ):
         price_7d_high = trend_current_price
 
-    # --------------------------------------------------------
+    if (
+        trend_current_price is not None
+        and extreme_status == "current_is_7d_low"
+    ):
+        price_7d_low = trend_current_price
+
+    # ========================================================
+    # 买入价
+    # ========================================================
+
+    buy_price = sku_buy_price
+
+    if buy_price is None:
+        # 没有明确当前尺码价格时，
+        # 保留商品级价格，但明确标记为非 SKU 精确价格。
+        m = re.search(
+            r"全网价格区间[:：]\s*"
+            r"[¥￥]?\s*(\d+(?:\.\d+)?)",
+            detail_text,
+        )
+
+        if m:
+            buy_price = normalize_price(
+                m.group(1)
+            )
+
+    # ========================================================
     # 销量
-    # --------------------------------------------------------
+    # ========================================================
 
     sales_30d = extract_month_sales(
         detail_text
@@ -1077,261 +749,263 @@ def extract_detail(
         detail_text
     )
 
-    turnover = calculate_turnover(
-        sales_30d,
-        sales_total,
+    # ========================================================
+    # 周转
+    # ========================================================
+
+    if sales_30d:
+        turnover_evidence = (
+            f"月销 {sales_30d:g}，"
+            f"日均约 {sales_30d / 30:.2f}"
+        )
+        turnover_confidence = "medium"
+        sales_velocity_7d = round(
+            sales_30d / 30,
+            2,
+        )
+    elif sales_total:
+        turnover_evidence = (
+            f"累计/全网销量 {sales_total:g}，"
+            f"不能直接换算周转速度"
+        )
+        turnover_confidence = "low"
+        sales_velocity_7d = None
+    else:
+        turnover_evidence = None
+        turnover_confidence = "unknown"
+        sales_velocity_7d = None
+
+    # ========================================================
+    # 下跌风险
+    # ========================================================
+
+    downside_to_7d_low = None
+
+    if (
+        trend_current_price is not None
+        and price_7d_low is not None
+        and trend_current_price > 0
+    ):
+        downside_to_7d_low = round(
+            (
+                trend_current_price
+                - price_7d_low
+            )
+            / trend_current_price
+            * 100,
+            2,
+        )
+
+    # ========================================================
+    # SKU 定位
+    # ========================================================
+
+    if color and current_size:
+        selected_variant = (
+            f"{color} | {current_size}"
+        )
+    elif color:
+        selected_variant = color
+    elif current_size:
+        selected_variant = current_size
+    else:
+        selected_variant = None
+
+    search_key = " | ".join(
+        [
+            str(name or ""),
+            f"货号 {product_code}"
+            if product_code
+            else "货号 未明确",
+            f"配色 {color}"
+            if color
+            else "配色 未明确",
+            f"尺码 {current_size}"
+            if current_size
+            else "尺码 未明确",
+        ]
     )
-
-    # --------------------------------------------------------
-    # 价格位置 / 下跌风险
-    # --------------------------------------------------------
-
-    price_position_7d = extract_price_position(
-        trend_current_price,
-        price_7d_high,
-        price_7d_low,
-    )
-
-    downside_to_7d_low = extract_downside_to_low(
-        trend_current_price,
-        price_7d_low,
-    )
-
-    changes = extract_price_changes(
-        detail_text
-    )
-
-    price_trend = extract_price_trend(
-        detail_text
-    )
-
-    # --------------------------------------------------------
-    # 分类
-    # --------------------------------------------------------
 
     category, category_reason = classify_product(
         name
     )
 
-    # --------------------------------------------------------
+    params = extract_url_params(
+        url
+    )
+
+    # ========================================================
     # 数据状态
-    # --------------------------------------------------------
+    # ========================================================
 
-    evidence_status = {
-        "product_code": field_status(
-            product_code,
-            detail_text,
-            [
-                "货号",
-                "款号",
-                "商品货号",
-                "产品货号",
-            ],
-        ),
+    if size_price_map:
+        size_price_status = "available"
+    elif re.search(
+        r"(?:尺码|鞋码).{0,100}[¥￥]",
+        detail_text,
+    ):
+        size_price_status = (
+            "page_has_but_not_parsed"
+        )
+    else:
+        size_price_status = "not_available"
 
-        "color": field_status(
-            color,
-            detail_text,
-            [
-                "配色",
-                "颜色",
-                "商品配色",
-                "颜色分类",
-            ],
-        ),
+    if (
+        current_size
+        and current_size in size_price_map
+    ):
+        sku_price_status = "confirmed"
+    elif size_price_map:
+        sku_price_status = (
+            "size_prices_available_but_current_size_unknown"
+        )
+    else:
+        sku_price_status = "unconfirmed"
 
-        "size": field_status(
-            size,
-            detail_text,
-            [
-                "尺码",
-                "鞋码",
-                "当前尺码",
-                "当前规格",
-            ],
-        ),
-
-        "trend_current_price": field_status(
-            trend_current_price,
-            detail_text,
-            [
-                "当前同款同规格到手价",
-            ],
-        ),
-
-        "price_7d_high": field_status(
-            price_7d_high,
-            detail_text,
-            [
-                "7天",
-                "7日",
-                "最高价",
-                "最高",
-            ],
-        ),
-
-        "price_7d_low": field_status(
-            price_7d_low,
-            detail_text,
-            [
-                "7天",
-                "7日",
-                "最低价",
-                "最低",
-            ],
-        ),
-
-        "sales_30d": field_status(
-            sales_30d,
-            detail_text,
-            [
-                "月销",
-                "月销量",
-                "近30天销量",
-                "近30日销量",
-            ],
-        ),
-
-        "sales_total": field_status(
-            sales_total,
-            detail_text,
-            [
-                "总销",
-                "总销量",
-                "累计销量",
-                "全网销量",
-            ],
-        ),
-    }
+    # ========================================================
+    # 输出
+    # ========================================================
 
     return {
-        # ----------------------------------------------------
-        # 商品定位
-        # ----------------------------------------------------
-
         "name": name,
 
         "product_code": product_code,
 
         "color": color,
 
-        "size": size,
+        "size": current_size,
 
         "selected_variant": selected_variant,
 
         "search_key": search_key,
 
-        # ----------------------------------------------------
-        # URL / SKU
-        # ----------------------------------------------------
-
         "shihuo_url": url,
 
-        "goods_id": url_params["goods_id"],
+        "goods_id": params["goods_id"],
 
-        "sku_id": url_params["sku_id"],
+        "sku_id": params["sku_id"],
 
-        "style_id": url_params["style_id"],
-
-        # ----------------------------------------------------
-        # 分类
-        # ----------------------------------------------------
+        "style_id": params["style_id"],
 
         "category": category,
 
         "category_reason": category_reason,
 
-        # ----------------------------------------------------
-        # 买入价格
-        # ----------------------------------------------------
-
+        # SKU 对应买入价
         "buy_price": buy_price,
 
-        # ----------------------------------------------------
+        "buy_price_type": (
+            "sku_size_price"
+            if sku_buy_price is not None
+            else "product_level_price"
+        ),
+
+        # 完整尺码价格表
+        "size_price_map": size_price_map,
+
+        "size_price_evidence":
+            size_price_evidence,
+
+        "size_price_status":
+            size_price_status,
+
+        "sku_price_status":
+            sku_price_status,
+
         # 得物价格
-        # ----------------------------------------------------
+        "dewu_channel_price":
+            dewu_channel_price,
 
-        "dewu_display_price": dewu_channel_price,
+        "dewu_display_price":
+            dewu_channel_price,
 
-        "dewu_channel_price": dewu_channel_price,
+        "trend_current_price":
+            trend_current_price,
 
-        "trend_current_price": trend_current_price,
+        "price_current":
+            trend_current_price,
 
-        "price_current": trend_current_price,
+        # 7日
+        "price_7d_high":
+            price_7d_high,
 
-        # ----------------------------------------------------
-        # 7日价格
-        # ----------------------------------------------------
+        "price_7d_low":
+            price_7d_low,
 
-        "price_7d_high": price_7d_high,
-
-        "price_7d_low": price_7d_low,
-
-        "lowest_price": price_7d_low,
+        "lowest_price":
+            price_7d_low,
 
         "price_7d_extreme_status":
-            price_7d_extreme_status,
-
-        "price_position_7d":
-            price_position_7d,
+            extreme_status,
 
         "downside_to_7d_low":
             downside_to_7d_low,
 
-        # ----------------------------------------------------
         # 销量
-        # ----------------------------------------------------
+        "sales_30d":
+            sales_30d,
 
-        "sales": sales_total,
+        "sales_total":
+            sales_total,
 
-        "sales_total": sales_total,
-
-        "sales_7d": None,
-
-        "sales_30d": sales_30d,
+        "sales":
+            sales_total,
 
         "sales_velocity_7d":
-            turnover["sales_velocity_7d"],
+            sales_velocity_7d,
 
         "turnover_evidence":
-            turnover["turnover_evidence"],
+            turnover_evidence,
 
         "turnover_confidence":
-            turnover["turnover_confidence"],
+            turnover_confidence,
 
-        # ----------------------------------------------------
-        # 趋势
-        # ----------------------------------------------------
+        # 证据
+        "evidence_status": {
+            "product_code":
+                "available"
+                if product_code
+                else "not_available",
 
-        "price_change_1d":
-            changes["price_change_1d"],
+            "color":
+                "available"
+                if color
+                else "not_available",
 
-        "price_change_7d":
-            changes["price_change_7d"],
+            "current_size":
+                "available"
+                if current_size
+                else "not_available",
 
-        "price_change_30d":
-            changes["price_change_30d"],
+            "size_price_map":
+                size_price_status,
 
-        "price_trend":
-            price_trend,
+            "sku_price":
+                sku_price_status,
 
-        # ----------------------------------------------------
-        # 数据状态
-        # ----------------------------------------------------
+            "dewu_channel_price":
+                "available"
+                if dewu_channel_price
+                else "not_available",
 
-        "evidence_status":
-            evidence_status,
+            "trend_current_price":
+                "available"
+                if trend_current_price
+                else "not_available",
 
-        # ----------------------------------------------------
-        # 原始页面证据
-        # ----------------------------------------------------
+            "sales_30d":
+                "available"
+                if sales_30d
+                else "not_available",
+
+            "sales_total":
+                "available"
+                if sales_total
+                else "not_available",
+        },
 
         "detail_text":
-            detail_text[:20000],
-
-        # ----------------------------------------------------
-        # 时间
-        # ----------------------------------------------------
+            raw_text[:30000],
 
         "observed_at":
             datetime.now(
@@ -1341,7 +1015,7 @@ def extract_detail(
 
 
 # ============================================================
-# 收集商品详情 URL
+# URL
 # ============================================================
 
 def collect_urls(page):
@@ -1353,14 +1027,14 @@ def collect_urls(page):
 
     page.wait_for_timeout(4000)
 
-    locator = page.locator(
+    links = page.locator(
         "a[href*='pcGoodsDetail']"
     )
 
     urls = []
 
     try:
-        count = locator.count()
+        count = links.count()
     except Exception:
         count = 0
 
@@ -1368,10 +1042,8 @@ def collect_urls(page):
         min(count, MAX_DETAIL_PAGES)
     ):
         try:
-            href = (
-                locator
-                .nth(i)
-                .get_attribute("href")
+            href = links.nth(i).get_attribute(
+                "href"
             )
 
             if not href:
@@ -1389,36 +1061,50 @@ def collect_urls(page):
                 urls.append(full_url)
 
         except Exception:
-            pass
+            continue
 
     return urls
 
 
 # ============================================================
-# 合并商品
+# 合并
 # ============================================================
+
+def product_key(item):
+    # SKU 级别优先
+    code = item.get("product_code")
+    color = item.get("color")
+    size = item.get("size")
+
+    if code and color and size:
+        return (
+            f"sku|{code}|{color}|{size}"
+        )
+
+    if code and color:
+        return f"style|{code}|{color}"
+
+    url = item.get("shihuo_url")
+
+    if url:
+        return f"url|{url}"
+
+    return f"name|{item.get('name')}"
+
 
 def merge_products(items):
     result = {}
 
     for item in items:
-
         if not valid_name(
             item.get("name")
         ):
             continue
 
-        if item.get("buy_price") is None:
+        if item.get("category") == "excluded":
             continue
 
-        # 明确排除品类
-        if item.get("category") == "excluded":
-            print(
-                "过滤商品：",
-                item.get("name"),
-                "|",
-                item.get("category_reason"),
-            )
+        if item.get("buy_price") is None:
             continue
 
         key = product_key(item)
@@ -1427,38 +1113,29 @@ def merge_products(items):
             result[key] = item
             continue
 
-        # 如果同一个商品出现多次，
-        # 优先保留 SKU 定位信息更完整的一条。
         old = result[key]
 
+        # 信息越完整越优先
+        fields = [
+            "product_code",
+            "color",
+            "size",
+            "size_price_map",
+            "dewu_channel_price",
+            "trend_current_price",
+            "price_7d_low",
+            "price_7d_high",
+            "sales_30d",
+        ]
+
         old_score = sum(
-            1
-            for field in [
-                "product_code",
-                "color",
-                "size",
-                "dewu_channel_price",
-                "trend_current_price",
-                "price_7d_low",
-                "price_7d_high",
-                "sales_30d",
-            ]
-            if old.get(field) is not None
+            bool(old.get(x))
+            for x in fields
         )
 
         new_score = sum(
-            1
-            for field in [
-                "product_code",
-                "color",
-                "size",
-                "dewu_channel_price",
-                "trend_current_price",
-                "price_7d_low",
-                "price_7d_high",
-                "sales_30d",
-            ]
-            if item.get(field) is not None
+            bool(item.get(x))
+            for x in fields
         )
 
         if new_score > old_score:
@@ -1468,98 +1145,80 @@ def merge_products(items):
 
 
 # ============================================================
-# 打印商品
+# 输出
 # ============================================================
 
 def print_item(item):
     print("")
-    print("=" * 60)
+    print("=" * 70)
 
+    print("商品：", item.get("name"))
+    print("货号：", item.get("product_code"))
+    print("配色：", item.get("color"))
+    print("尺码：", item.get("size"))
     print(
-        f"商品：{item.get('name')}"
+        "当前规格：",
+        item.get("selected_variant"),
     )
 
     print(
-        f"货号：{item.get('product_code')}"
+        "检索键：",
+        item.get("search_key"),
     )
 
     print(
-        f"配色：{item.get('color')}"
+        "识货买入价：",
+        item.get("buy_price"),
     )
 
     print(
-        f"尺码：{item.get('size')}"
+        "买入价类型：",
+        item.get("buy_price_type"),
     )
 
     print(
-        f"当前规格：{item.get('selected_variant')}"
+        "尺码价格表：",
+        item.get("size_price_map"),
     )
 
     print(
-        f"检索键：{item.get('search_key')}"
+        "得物渠道售价：",
+        item.get("dewu_channel_price"),
     )
 
     print(
-        f"识货链接：{item.get('shihuo_url')}"
+        "当前同款同规格到手价：",
+        item.get("trend_current_price"),
     )
 
     print(
-        f"买入价：{item.get('buy_price')}"
+        "7日最高：",
+        item.get("price_7d_high"),
     )
 
     print(
-        f"得物渠道售价："
-        f"{item.get('dewu_channel_price')}"
+        "7日最低：",
+        item.get("price_7d_low"),
     )
 
     print(
-        f"当前同款同规格到手价："
-        f"{item.get('trend_current_price')}"
+        "月销：",
+        item.get("sales_30d"),
     )
 
     print(
-        f"7日最高："
-        f"{item.get('price_7d_high')}"
+        "周转证据：",
+        item.get("turnover_evidence"),
     )
 
     print(
-        f"7日最低："
-        f"{item.get('price_7d_low')}"
+        "SKU价格状态：",
+        item.get("sku_price_status"),
     )
 
     print(
-        f"7日极值证据："
-        f"{item.get('price_7d_extreme_status')}"
-    )
-
-    print(
-        f"月销："
-        f"{item.get('sales_30d')}"
-    )
-
-    print(
-        f"累计/全网销量："
-        f"{item.get('sales_total')}"
-    )
-
-    print(
-        f"周转证据："
-        f"{item.get('turnover_evidence')}"
-    )
-
-    print(
-        f"价格趋势："
-        f"{item.get('price_trend')}"
-    )
-
-    print(
-        f"下跌至7日低点幅度："
-        f"{item.get('downside_to_7d_low')}"
-    )
-
-    print(
-        f"数据状态："
-        f"{item.get('evidence_status')}"
+        "识货链接：",
+        item.get("shihuo_url"),
     )
 
 
@@ -1571,7 +1230,6 @@ def main():
     items = []
 
     with sync_playwright() as p:
-
         browser = p.chromium.launch(
             headless=True
         )
@@ -1594,9 +1252,7 @@ def main():
             urls,
             1,
         ):
-
             try:
-
                 print(
                     f"\n[{index}/{len(urls)}]"
                 )
@@ -1609,14 +1265,11 @@ def main():
                 if not valid_name(
                     item.get("name")
                 ):
-                    print(
-                        "跳过：没有有效商品名称"
-                    )
                     continue
 
                 if item.get("buy_price") is None:
                     print(
-                        "跳过：没有有效买入价"
+                        "跳过：没有价格"
                     )
                     continue
 
@@ -1624,10 +1277,6 @@ def main():
                     print(
                         "过滤：",
                         item.get("name"),
-                        "|",
-                        item.get(
-                            "category_reason"
-                        ),
                     )
                     continue
 
@@ -1636,9 +1285,9 @@ def main():
                 print_item(item)
 
             except Exception as e:
-
                 print(
-                    f"采集失败：{e}"
+                    "采集失败：",
+                    repr(e),
                 )
 
             time.sleep(1)
@@ -1667,7 +1316,6 @@ def main():
         "w",
         encoding="utf-8",
     ) as f:
-
         json.dump(
             output,
             f,
@@ -1676,11 +1324,11 @@ def main():
         )
 
     print("")
-    print("=" * 60)
+    print("=" * 70)
     print(
-        f"最终有效商品数：{len(products)}"
+        f"最终商品数：{len(products)}"
     )
-    print("=" * 60)
+    print("=" * 70)
 
     for item in products[:20]:
         print_item(item)

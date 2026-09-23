@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T05:38:10.325214+00:00",
+  "updated_at": "2026-09-23T05:48:19.354741+00:00",
   "capital": 330,
   "max_days": 7,
   "min_profit": 15,
@@ -7,12 +7,12 @@
   "max_downside_loss": 25,
   "dewu_fee_rate": 0.08,
   "dewu_net_rate": 0.92,
-  "monitored_count": 21,
+  "monitored_count": 18,
   "candidate_count": 1,
   "a_count": 0,
   "b_count": 1,
   "c_count": 0,
-  "d_count": 20,
+  "d_count": 17,
   "candidates": [
     {
       "name": "Crying Center 拉链开合高级感 PU 斜挎包（泥棕色/豹纹款）",
@@ -111,34 +111,6 @@
       "score": 13
     },
     {
-      "name": "【宋雨琦同款】 adidas Originals Superstar 板鞋 轻便贝壳头薄底舒适百搭耐磨复古【报价 价格 评测 参数 讨论 怎么样】-识货",
-      "grade": "D",
-      "grade_reason": "总资金占用 ¥346.00 超过当前本金 ¥330",
-      "status": "过滤",
-      "buy_price": null,
-      "dewu_price": null,
-      "expected_income": null,
-      "income_method": "无法计算",
-      "total_buy_cost": null,
-      "net_profit": null,
-      "profit_rate": null,
-      "profit_safety_margin_amount": null,
-      "profit_safety_margin_rate": null,
-      "break_even_sale": null,
-      "sales_7d": null,
-      "sales_30d": 6400.0,
-      "sales_velocity_7d": 213.33,
-      "price_change_7d": null,
-      "price_trend": null,
-      "category": "unknown",
-      "risk_flags": [
-        "总资金占用 ¥346.00 超过当前本金 ¥330"
-      ],
-      "reasons": [
-        "总资金占用 ¥346.00 超过当前本金 ¥330"
-      ]
-    },
-    {
       "name": "256GB",
       "grade": "D",
       "grade_reason": "总资金占用 ¥7506.00 超过当前本金 ¥330",
@@ -195,34 +167,6 @@
       ]
     },
     {
-      "name": "【徐璐同款】Adidas/阿迪达斯 Firebird系列快干耐磨防风透气三条纹梭织立领夹克 KB2466【报价 价格 评测 参数 讨论 怎么样】-识货",
-      "grade": "D",
-      "grade_reason": "总资金占用 ¥416.00 超过当前本金 ¥330",
-      "status": "过滤",
-      "buy_price": null,
-      "dewu_price": null,
-      "expected_income": null,
-      "income_method": "无法计算",
-      "total_buy_cost": null,
-      "net_profit": null,
-      "profit_rate": null,
-      "profit_safety_margin_amount": null,
-      "profit_safety_margin_rate": null,
-      "break_even_sale": null,
-      "sales_7d": null,
-      "sales_30d": 1300.0,
-      "sales_velocity_7d": 43.33,
-      "price_change_7d": null,
-      "price_trend": null,
-      "category": "unknown",
-      "risk_flags": [
-        "总资金占用 ¥416.00 超过当前本金 ¥330"
-      ],
-      "reasons": [
-        "总资金占用 ¥416.00 超过当前本金 ¥330"
-      ]
-    },
-    {
       "name": "256GB",
       "grade": "D",
       "grade_reason": "总资金占用 ¥10806.00 超过当前本金 ¥330",
@@ -248,34 +192,6 @@
       ],
       "reasons": [
         "总资金占用 ¥10806.00 超过当前本金 ¥330"
-      ]
-    },
-    {
-      "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水【报价 价格 评测 参数 讨论 怎么样】-识货",
-      "grade": "D",
-      "grade_reason": "总资金占用 ¥366.00 超过当前本金 ¥330",
-      "status": "过滤",
-      "buy_price": null,
-      "dewu_price": null,
-      "expected_income": null,
-      "income_method": "无法计算",
-      "total_buy_cost": null,
-      "net_profit": null,
-      "profit_rate": null,
-      "profit_safety_margin_amount": null,
-      "profit_safety_margin_rate": null,
-      "break_even_sale": null,
-      "sales_7d": null,
-      "sales_30d": 5500.0,
-      "sales_velocity_7d": 183.33,
-      "price_change_7d": null,
-      "price_trend": null,
-      "category": "unknown",
-      "risk_flags": [
-        "总资金占用 ¥366.00 超过当前本金 ¥330"
-      ],
-      "reasons": [
-        "总资金占用 ¥366.00 超过当前本金 ¥330"
       ]
     },
     {

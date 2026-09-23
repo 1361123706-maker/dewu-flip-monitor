@@ -993,14 +993,16 @@ def extract_detail(page, url):
 # ============================================================
 
 def collect_urls(page):
-    page.goto(
-        HOME_URL,
-        wait_until="domcontentloaded",
-        timeout=10000,
-    )
+    try:
+        page.goto(
+            HOME_URL,
+            wait_until="commit",
+            timeout=10000,
+        )
+    except Exception:
+        pass
 
     page.wait_for_timeout(2000)
-
     links = page.locator(
         "a[href*='pcGoodsDetail']"
     )

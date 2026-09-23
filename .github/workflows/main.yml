@@ -119,6 +119,7 @@ jobs:
           named = 0
           priced = 0
           linked = 0
+          sku_priced = 0
 
           for item in products:
 
@@ -133,10 +134,45 @@ jobs:
               ):
                   named += 1
 
-              if item.get(
+              buy_price = item.get(
                   "buy_price"
-              ) is not None:
+              )
+
+              try:
+                  buy_price_valid = (
+                      float(buy_price) > 0
+                  )
+              except Exception:
+                  buy_price_valid = False
+
+              size_prices = item.get(
+                  "size_price_map"
+              )
+
+              size_price_valid = False
+
+              if isinstance(
+                  size_prices,
+                  dict
+              ):
+
+                  for value in size_prices.values():
+
+                      try:
+                          if float(value) > 0:
+                              size_price_valid = True
+                              break
+                      except Exception:
+                          continue
+
+              if (
+                  buy_price_valid
+                  or size_price_valid
+              ):
                   priced += 1
+
+              if size_price_valid:
+                  sku_priced += 1
 
               if item.get(
                   "shihuo_url"
@@ -149,8 +185,13 @@ jobs:
           )
 
           print(
-              "有买入价格：",
+              "有有效买入价格证据：",
               priced
+          )
+
+          print(
+              "有尺码价格表：",
+              sku_priced
           )
 
           print(
@@ -173,7 +214,7 @@ jobs:
           if priced == 0:
 
               raise SystemExit(
-                  "发现层没有有效买入价格"
+                  "发现层没有有效买入价格证据"
               )
 
           if linked == 0:
@@ -228,6 +269,8 @@ jobs:
 
           valid_names = 0
           valid_prices = 0
+          valid_sku_maps = 0
+          valid_dewu_prices = 0
 
           for item in products:
 
@@ -247,26 +290,57 @@ jobs:
               ):
                   valid_names += 1
 
-              prices = item.get(
-                  "buy_prices",
-                  {}
+              buy_price = item.get(
+                  "buy_price"
               )
 
+              buy_price_valid = False
+
+              try:
+                  buy_price_valid = (
+                      float(buy_price) > 0
+                  )
+              except Exception:
+                  pass
+
+              size_prices = item.get(
+                  "size_price_map"
+              )
+
+              size_price_valid = False
+
+              if isinstance(
+                  size_prices,
+                  dict
+              ):
+
+                  for value in size_prices.values():
+
+                      try:
+                          if float(value) > 0:
+                              size_price_valid = True
+                              break
+                      except Exception:
+                          continue
+
               if (
-                  isinstance(
-                      prices,
-                      dict
-                  )
-                  and any(
-                      isinstance(
-                          v,
-                          (int, float)
-                      )
-                      and v > 0
-                      for v in prices.values()
-                  )
+                  buy_price_valid
+                  or size_price_valid
               ):
                   valid_prices += 1
+
+              if size_price_valid:
+                  valid_sku_maps += 1
+
+              dewu_price = item.get(
+                  "dewu_channel_price"
+              )
+
+              try:
+                  if float(dewu_price) > 0:
+                      valid_dewu_prices += 1
+              except Exception:
+                  pass
 
           print(
               "有效商品名称：",
@@ -278,10 +352,32 @@ jobs:
               valid_prices
           )
 
+          print(
+              "有尺码价格表：",
+              valid_sku_maps
+          )
+
+          print(
+              "有得物渠道售价：",
+              valid_dewu_prices
+          )
+
           if len(products) == 0:
 
               raise SystemExit(
                   "最终商品数据为空"
+              )
+
+          if valid_names == 0:
+
+              raise SystemExit(
+                  "最终商品没有有效名称"
+              )
+
+          if valid_prices == 0:
+
+              raise SystemExit(
+                  "最终商品没有有效买入价格"
               )
 
           PY
@@ -325,6 +421,34 @@ jobs:
               "候选机会：",
               data.get(
                   "candidate_count"
+              )
+          )
+
+          print(
+              "A级：",
+              data.get(
+                  "grade_a_count"
+              )
+          )
+
+          print(
+              "B级：",
+              data.get(
+                  "grade_b_count"
+              )
+          )
+
+          print(
+              "C级：",
+              data.get(
+                  "grade_c_count"
+              )
+          )
+
+          print(
+              "D级：",
+              data.get(
+                  "grade_d_count"
               )
           )
 

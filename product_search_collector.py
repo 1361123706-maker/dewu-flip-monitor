@@ -174,11 +174,13 @@ def extract_product_name(text):
 # ============================================================
 
 def extract_product_code(text):
-    # 识货页面可能出现多个货号，优先取紧跟“货号”标签后的第一个有效编号
+    if not text:
+        return None
+
     patterns = [
-        r"(?:货号|商品货号|产品货号)\s*[:：]?\s*([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
-        r"(?:款号|款式号|款式编号)\s*[:：]?\s*([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
-        r"(?:Style\s*Code|Style\s*ID|Item\s*Code)\s*[:：]?\s*([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
+        r"(?:货号|商品货号|产品货号)\s*(?:为|是|[:：])?\s*([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
+        r"(?:款号|款式号|款式编号)\s*(?:为|是|[:：])?\s*([A-Za-z0-9][A-Za-z0-9._\-/]{3,40})",
+        r"([A-Z]{1,8}\d{2,}[A-Z0-9._\-/]*)\s*货号",
     ]
 
     blacklist = {
@@ -192,94 +194,88 @@ def extract_product_code(text):
             continue
 
         value = clean_line(m.group(1))
+
         if not value:
             continue
 
         if value.lower() in blacklist:
             continue
 
-        # 货号不能只是年份、价格或纯数字
-        if value.isdigit() and len(value) <= 4:
-            continue
-
         return value
 
     return None
-
 # ============================================================
 # 当前配色
 # ============================================================
 
 def extract_color(text):
-    # 识货当前选中规格通常直接出现在：
-    # “黑色/白色, 36”
-    # 因此优先从这种“配色 + 尺码”结构读取当前配色。
+    if not text:
+        return None
 
+    # 识货页面当前选中规格：
+    # 黑色/白色, 36
+    # clean_text 会把换行合并，所以这里不能依赖 \n。
     patterns = [
-        r"\n([^,\n]{1,60}),\s*[0-9A-Za-z./\-½⅓⅔]+(?:\n|$)",
-        r"(?:当前配色|当前颜色|已选配色|已选颜色)\s*[:：]?\s*([^，,。；;\n]{1,60})",
-        r"(?:商品配色|商品颜色)\s*[:：]\s*([^，,。；;\n]{1,60})",
+        r"([^\s,，]{1,30}(?:/[^\s,，]{1,30})+)\s*,\s*[0-9A-Za-z./\-½⅓⅔]+",
+        r"(?:当前配色|当前颜色|已选配色|已选颜色)\s*[:：]?\s*([^，,。；;]{1,60})",
+        r"(?:商品配色|商品颜色)\s*[:：]\s*([^，,。；;]{1,60})",
     ]
 
     for pattern in patterns:
-        for m in re.finditer(pattern, text, re.I):
-            value = clean_line(m.group(1))
+        m = re.search(pattern, text, re.I)
 
-            if not value:
-                continue
+        if not m:
+            continue
 
-            # 排除明显不是配色的内容
-            bad = {
-                "可选配色", "可选尺码", "颜色", "尺码",
-                "货号", "品牌", "商品名称", "价格信息",
-            }
+        value = clean_line(m.group(1))
 
-            if value in bad:
-                continue
+        if not value:
+            continue
 
-            if "可选配色" in value or "可选尺码" in value:
-                continue
+        if value in {
+            "可选配色", "可选尺码", "颜色", "尺码",
+            "货号", "品牌", "商品名称", "价格信息",
+        }:
+            continue
 
-            return value
+        return value
 
     return None
-
-
 # ============================================================
 # 尺码
 # ============================================================
 
 def extract_current_size(text):
-    # 识货页面常见当前选中规格：
-    # 黑色/白色, 36
-    # 先从这种结构中读取尺码。
+    if not text:
+        return None
 
+    # 识货页面当前选中规格：
+    # 黑色/白色, 36
     patterns = [
-        r"\n[^,\n]{1,60},\s*([0-9A-Za-z./\-½⅓⅔]+)(?:\n|$)",
-        r"(?:当前尺码|已选尺码|选中尺码|当前鞋码)"
-        r"\s*[:：]?\s*([A-Za-z0-9./\-½⅓⅔]{1,12})",
-        r"(?:当前规格|已选规格|选中规格)"
-        r"\s*[:：]?\s*"
-        r"(?:[^，,；;\n]{0,30}?)"
-        r"(?:尺码|鞋码)\s*[:：]?\s*"
+        r"[^\s,，]{1,30}(?:/[^\s,，]{1,30})+\s*,\s*([0-9A-Za-z./\-½⅓⅔]+)",
+        r"(?:当前尺码|已选尺码|选中尺码|当前鞋码)\s*[:：]?\s*([A-Za-z0-9./\-½⅓⅔]{1,12})",
+        r"(?:当前规格|已选规格|选中规格)\s*[:：]?\s*"
+        r"[^，,；;]{0,30}?(?:尺码|鞋码)\s*[:：]?\s*"
         r"([A-Za-z0-9./\-½⅓⅔]{1,12})",
     ]
 
     for pattern in patterns:
-        for m in re.finditer(pattern, text, re.I):
-            value = clean_line(m.group(1))
+        m = re.search(pattern, text, re.I)
 
-            if not value:
-                continue
+        if not m:
+            continue
 
-            if value in {"请选择", "未选择", "信息"}:
-                continue
+        value = clean_line(m.group(1))
 
-            return value
+        if not value:
+            continue
+
+        if value in {"请选择", "未选择", "信息"}:
+            continue
+
+        return value
 
     return None
-
-
 # ============================================================
 # 尺码 -> 识货价格
 # ============================================================

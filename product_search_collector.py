@@ -1,148 +1,164 @@
 import json
 import os
+import re
 import time
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urljoin, urlparse, quote
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
+from html.parser import HTMLParser
+from urllib.robotparser import RobotFileParser
 
 
 OUTPUT_FILE = Path("market_data_input.json")
 
+USER_AGENT = (
+    "Mozilla/5.0 "
+    "(compatible; dewu-flip-monitor/1.0; "
+    "+https://github.com/1361123706-maker/dewu-flip-monitor)"
+)
+
 TIMEOUT = 20
 
+MAX_PRODUCT_PAGES = 40
 
-# ============================================================
-# 中国大陆商品数据源
-#
-# 不绕过登录
-# 不绕过验证码
-# 不破解签名
-# 不抓取受限制接口
-#
-# 后续只把获得官方授权的数据接口地址配置进来即可。
-# ============================================================
+CRAWL_DELAY = 2
 
-SOURCE_CONFIG = [
-
-    {
-        "name": "识货",
-        "env": "SHIHUO_API_URL",
-        "platform": "shihuo",
-    },
-
-    {
-        "name": "京东",
-        "env": "JD_API_URL",
-        "platform": "jd",
-    },
-
-    {
-        "name": "淘宝天猫",
-        "env": "TAOBAO_API_URL",
-        "platform": "taobao",
-    },
-
-    {
-        "name": "拼多多",
-        "env": "PDD_API_URL",
-        "platform": "pinduoduo",
-    },
-
-]
-
-
-# ============================================================
-# 搜索关键词
-# ============================================================
 
 KEYWORDS = [
-
-    "Nike 运动鞋",
-    "Nike 球鞋",
-    "adidas 运动鞋",
-    "adidas 球鞋",
-    "New Balance 运动鞋",
-    "ASICS 运动鞋",
-    "PUMA 运动鞋",
-    "潮鞋",
+    "Nike",
+    "adidas",
+    "New Balance",
+    "ASICS",
+    "PUMA",
+    "李宁",
+    "安踏",
+    "乔丹体育",
     "运动鞋",
+    "球鞋",
+    "潮鞋",
+    "跑鞋",
     "服饰",
-    "潮流服饰",
     "包袋",
-
 ]
 
 
-def log(message):
+SEED_URLS = [
+    "https://www.shihuo.cn/",
+    "https://www.shihuo.cn/page/pcHome",
+]
 
-    print(
-        message,
-        flush=True
+
+# ============================================================
+# 日志
+# ============================================================
+
+def log(message):
+    print(message, flush=True)
+
+
+# ============================================================
+# robots.txt
+#
+# 只访问网站允许公开自动访问的路径。
+# 不绕过 robots.txt。
+# ============================================================
+
+robots_cache = {}
+
+
+def allowed_by_robots(url):
+
+    parsed = urlparse(url)
+
+    origin = (
+        parsed.scheme
+        + "://"
+        + parsed.netloc
     )
 
-
-# ============================================================
-# HTTP JSON
-# ============================================================
-
-def fetch_json(
-    url,
-    keyword=None
-):
-
-    if not url:
-        return None
-
-    if not url.startswith(
-        (
-            "http://",
-            "https://"
-        )
-    ):
-        log(
-            "数据源地址不是 HTTP/HTTPS，跳过"
-        )
-
-        return None
-
-    params = {}
-
-    if keyword:
-
-        params["keyword"] = keyword
-
-    if params:
-
-        separator = (
-            "&"
-            if "?" in url
-            else "?"
-        )
-
-        url = (
+    if origin in robots_cache:
+        parser = robots_cache[origin]
+        return parser.can_fetch(
+            USER_AGENT,
             url
-            + separator
-            + urlencode(params)
         )
+
+    robots_url = (
+        origin
+        + "/robots.txt"
+    )
+
+    parser = RobotFileParser()
+
+    parser.set_url(
+        robots_url
+    )
+
+    try:
+
+        parser.read()
+
+        robots_cache[
+            origin
+        ] = parser
+
+        return parser.can_fetch(
+            USER_AGENT,
+            url
+        )
+
+    except Exception as e:
+
+        # robots.txt 无法读取时，
+        # 为安全起见不继续自动抓取。
+        log(
+            f"无法读取 robots.txt："
+            f"{origin}"
+        )
+
+        return False
+
+
+# ============================================================
+# 获取网页
+# ============================================================
+
+def fetch_html(url):
+
+    if not allowed_by_robots(
+        url
+    ):
+
+        log(
+            f"robots.txt 不允许访问："
+            f"{url}"
+        )
+
+        return None
+
 
     request = Request(
 
         url,
 
         headers={
-
             "User-Agent":
-                "dewu-flip-monitor/1.0",
+                USER_AGENT,
 
             "Accept":
-                "application/json",
+                "text/html,"
+                "application/xhtml+xml",
+
+            "Accept-Language":
+                "zh-CN,zh;q=0.9",
 
         },
 
         method="GET",
 
     )
+
 
     try:
 
@@ -153,460 +169,550 @@ def fetch_json(
 
             content = response.read()
 
-            return json.loads(
-                content.decode(
-                    "utf-8"
-                )
+            charset = (
+                response.headers
+                .get_content_charset()
+                or "utf-8"
             )
+
+            return content.decode(
+                charset,
+                errors="ignore"
+            )
+
 
     except HTTPError as e:
 
         log(
-            f"HTTP错误：{e.code}"
+            f"网页 HTTP 错误 "
+            f"{e.code}：{url}"
         )
 
     except URLError as e:
 
         log(
-            f"连接失败：{e.reason}"
+            f"网页连接失败："
+            f"{e.reason}"
         )
 
     except Exception as e:
 
         log(
-            f"读取数据失败：{e}"
+            f"网页读取失败："
+            f"{e}"
         )
+
 
     return None
 
 
 # ============================================================
-# 从不同 JSON 结构中寻找商品
+# HTML 文本提取
 # ============================================================
 
-def extract_items(data):
+class TextParser(
+    HTMLParser
+):
 
-    if isinstance(
-        data,
-        list
+    def __init__(self):
+
+        super().__init__()
+
+        self.parts = []
+
+        self.links = []
+
+        self.current_href = None
+
+
+    def handle_starttag(
+        self,
+        tag,
+        attrs
     ):
 
-        return data
+        attrs = dict(attrs)
 
+        if tag.lower() == "a":
 
-    if not isinstance(
-        data,
-        dict
-    ):
-
-        return []
-
-
-    possible_keys = [
-
-        "products",
-        "items",
-        "goods",
-        "list",
-        "result",
-
-    ]
-
-
-    for key in possible_keys:
-
-        value = data.get(key)
-
-        if isinstance(
-            value,
-            list
-        ):
-
-            return value
-
-
-    data_value = data.get(
-        "data"
-    )
-
-
-    if isinstance(
-        data_value,
-        list
-    ):
-
-        return data_value
-
-
-    if isinstance(
-        data_value,
-        dict
-    ):
-
-        for key in possible_keys:
-
-            value = data_value.get(
-                key
+            href = attrs.get(
+                "href"
             )
 
-            if isinstance(
-                value,
-                list
-            ):
-
-                return value
+            self.current_href = href
 
 
-    return []
-
-
-# ============================================================
-# 数字处理
-# ============================================================
-
-def number(value):
-
-    if value is None:
-
-        return None
-
-
-    if isinstance(
-        value,
-        (int, float)
+    def handle_endtag(
+        self,
+        tag
     ):
 
-        return float(value)
+        if tag.lower() == "a":
+
+            self.current_href = None
 
 
-    text = str(
-        value
-    ).strip()
+    def handle_data(
+        self,
+        data
+    ):
+
+        text = data.strip()
+
+        if not text:
+            return
 
 
-    if not text:
+        self.parts.append(
+            text
+        )
 
+
+        if self.current_href:
+
+            self.links.append(
+                self.current_href
+            )
+
+
+def parse_html(
+    html
+):
+
+    parser = TextParser()
+
+    parser.feed(
+        html
+    )
+
+    text = "\n".join(
+        parser.parts
+    )
+
+    return (
+        text,
+        parser.links
+    )
+
+
+# ============================================================
+# 找识货商品页面
+# ============================================================
+
+def extract_shihuo_product_links(
+    base_url,
+    links
+):
+
+    results = set()
+
+
+    for link in links:
+
+        if not link:
+            continue
+
+
+        full_url = urljoin(
+            base_url,
+            link
+        )
+
+
+        parsed = urlparse(
+            full_url
+        )
+
+
+        if parsed.netloc not in (
+            "www.shihuo.cn",
+            "shihuo.cn",
+        ):
+            continue
+
+
+        if (
+            "/page/pcGoodsDetail"
+            in parsed.path
+        ):
+
+            results.add(
+                full_url
+            )
+
+
+    return results
+
+
+# ============================================================
+# 识货搜索入口
+#
+# 这是公开网页，不调用内部接口。
+# ============================================================
+
+def shihuo_search_url(
+    keyword,
+    page
+):
+
+    return (
+        "https://m.shihuo.cn/"
+        "search/searchResult/goods?"
+        "keywords="
+        + quote(keyword)
+        + "&page="
+        + str(page)
+        + "&pagesize=30"
+    )
+
+
+# ============================================================
+# 数字
+# ============================================================
+
+def number(
+    value
+):
+
+    if value is None:
         return None
 
 
-    text = (
-
-        text
-        .replace("¥", "")
-        .replace("￥", "")
-        .replace(",", "")
-        .strip()
-
+    value = str(
+        value
     )
+
+
+    value = (
+        value
+        .replace(
+            ",",
+            ""
+        )
+        .replace(
+            "¥",
+            ""
+        )
+        .replace(
+            "￥",
+            ""
+        )
+        .strip()
+    )
+
+
+    match = re.search(
+        r"\d+(?:\.\d+)?",
+        value
+    )
+
+
+    if not match:
+        return None
 
 
     try:
 
         return float(
-            text
+            match.group(0)
         )
 
-    except ValueError:
+    except Exception:
 
         return None
 
 
 # ============================================================
-# 获取字段
+# 从识货商品页面提取价格
 # ============================================================
 
-def first_value(
-    item,
-    keys
+def extract_price(
+    text,
+    platform
 ):
 
-    for key in keys:
+    platform_map = {
 
-        value = item.get(
-            key
-        )
+        "pinduoduo":
+            "拼多多",
 
-        if value is not None:
+        "taobao":
+            "淘宝",
 
-            return value
+        "tmall":
+            "天猫",
+
+        "jd":
+            "京东",
+
+        "dewu":
+            "得物",
+
+    }
+
+
+    name = platform_map.get(
+        platform
+    )
+
+
+    if not name:
+        return None
+
+
+    pattern = (
+        re.escape(name)
+        + r".{0,120}?"
+        + r"(?:售价|价格)"
+        + r".{0,30}?"
+        + r"([0-9]+(?:\.[0-9]+)?)"
+    )
+
+
+    match = re.search(
+        pattern,
+        text,
+        flags=re.S
+    )
+
+
+    if not match:
+        return None
+
+
+    return number(
+        match.group(1)
+    )
+
+
+# ============================================================
+# 商品名称
+# ============================================================
+
+def extract_product_name(
+    text
+):
+
+    lines = [
+
+        x.strip()
+
+        for x in text.splitlines()
+
+        if x.strip()
+
+    ]
+
+
+    if not lines:
+        return None
+
+
+    for line in lines[:30]:
+
+        if (
+            "商品名称" in line
+            and "：" in line
+        ):
+
+            return line.split(
+                "：",
+                1
+            )[1].strip()
+
+
+    # 识货页面通常把商品标题放在前面。
+    for line in lines[:20]:
+
+        if (
+            len(line) >= 6
+            and "识货" not in line
+            and "价格" not in line
+            and "下载" not in line
+        ):
+
+            return line[:200]
 
 
     return None
 
 
 # ============================================================
-# 标准化商品
+# 识货商品标准化
 # ============================================================
 
-def normalize(
-    item,
-    platform,
-    source_name
+def parse_shihuo_product(
+    url,
+    html
 ):
 
-    if not isinstance(
-        item,
-        dict
-    ):
-
-        return None
+    text, _ = parse_html(
+        html
+    )
 
 
-    name = first_value(
-
-        item,
-
-        [
-            "name",
-            "title",
-            "product_name",
-            "goods_name",
-            "goodsName",
-            "item_name",
-        ],
-
+    name = extract_product_name(
+        text
     )
 
 
     if not name:
-
         return None
 
 
-    buy_price = first_value(
-
-        item,
-
-        [
-            "buy_price",
-            "source_price",
-            "lowest_price",
-            "sale_price",
-            "price",
-            "goods_price",
-            "item_price",
-        ],
-
+    pdd = extract_price(
+        text,
+        "pinduoduo"
     )
 
 
-    dewu_price = first_value(
-
-        item,
-
-        [
-            "dewu_price",
-            "dewuPrice",
-            "market_price",
-            "sell_price",
-        ],
-
+    taobao = extract_price(
+        text,
+        "taobao"
     )
 
 
-    seller_count = first_value(
-
-        item,
-
-        [
-            "seller_count",
-            "sellerCount",
-        ],
-
+    tmall = extract_price(
+        text,
+        "tmall"
     )
 
 
-    product_url = first_value(
+    jd = extract_price(
+        text,
+        "jd"
+    )
 
-        item,
 
-        [
-            "url",
-            "product_url",
-            "item_url",
-            "goods_url",
-        ],
+    dewu = extract_price(
+        text,
+        "dewu"
+    )
 
+
+    buy_prices = {}
+
+
+    if pdd is not None:
+        buy_prices[
+            "pinduoduo"
+        ] = pdd
+
+
+    if taobao is not None:
+        buy_prices[
+            "taobao"
+        ] = taobao
+
+
+    if tmall is not None:
+        buy_prices[
+            "tmall"
+        ] = tmall
+
+
+    if jd is not None:
+        buy_prices[
+            "jd"
+        ] = jd
+
+
+    if not buy_prices and dewu is None:
+        return None
+
+
+    # 如果多个货源价格都存在，
+    # 后面的风控程序仍然会再次判断。
+    lowest_buy = (
+        min(
+            buy_prices.values()
+        )
+        if buy_prices
+        else None
     )
 
 
     product = {
 
         "name":
-            str(name),
+            name,
 
-        "buy_prices": {
-
-            platform:
-                number(
-                    buy_price
-                )
-
-        },
+        "buy_prices":
+            buy_prices,
 
         "dewu_price":
-            number(
-                dewu_price
-            ),
+            dewu,
 
         "recent_avg_price":
-            number(
-                first_value(
-                    item,
-                    [
-                        "recent_avg_price",
-                        "recentAvgPrice",
-                    ]
-                )
-            ),
+            None,
 
         "recent_trade_time":
-            first_value(
-                item,
-                [
-                    "recent_trade_time",
-                    "recentTradeTime",
-                ]
-            ),
+            None,
 
         "seller_count":
-            number(
-                seller_count
-            ),
+            None,
 
         "days":
-            number(
-                first_value(
-                    item,
-                    [
-                        "days",
-                        "turnover_days",
-                    ]
-                )
-            ),
+            None,
 
         "liquidity":
-            first_value(
-                item,
-                [
-                    "liquidity",
-                ]
-            ),
+            None,
 
         "downside_loss":
-            number(
-                first_value(
-                    item,
-                    [
-                        "downside_loss",
-                        "downsideLoss",
-                    ]
-                )
-            ),
+            None,
 
         "authenticity_verified":
-            bool(
-                item.get(
-                    "authenticity_verified",
-                    False
-                )
-            ),
+            False,
 
         "new_condition_verified":
-            bool(
-                item.get(
-                    "new_condition_verified",
-                    False
-                )
-            ),
+            False,
 
         "dewu_check_compatible":
-            bool(
-                item.get(
-                    "dewu_check_compatible",
-                    False
-                )
-            ),
+            False,
 
         "technical_service_fee":
-            number(
-                item.get(
-                    "technical_service_fee"
-                )
-            ),
+            None,
 
         "technical_service_rate":
-            number(
-                item.get(
-                    "technical_service_rate"
-                )
-            ),
+            None,
 
         "transfer_fee":
-            number(
-                item.get(
-                    "transfer_fee"
-                )
-            ),
+            None,
 
         "transfer_fee_rate":
-            number(
-                item.get(
-                    "transfer_fee_rate"
-                )
-            ),
+            None,
 
         "operation_service_fee":
-            number(
-                item.get(
-                    "operation_service_fee"
-                )
-            ),
+            None,
 
         "consumer_shipping_subsidy":
-            number(
-                item.get(
-                    "consumer_shipping_subsidy"
-                )
-            ),
+            None,
 
         "after_sales_service_fee":
-            number(
-                item.get(
-                    "after_sales_service_fee"
-                )
-            ),
+            None,
 
         "seller_coupon_offset":
-            number(
-                item.get(
-                    "seller_coupon_offset"
-                )
-            ),
+            None,
 
         "expected_income":
-            number(
-                item.get(
-                    "expected_income"
-                )
-            ),
+            None,
 
         "source_note":
-            (
-                f"{source_name}"
-                "商品数据"
-            ),
+            "识货公开商品页面",
 
         "data_source":
-            platform,
+            "shihuo_public_web",
 
         "product_url":
-            product_url,
+            url,
 
         "data_time":
             time.strftime(
                 "%Y-%m-%d %H:%M:%S"
             ),
+
+        "lowest_buy_price":
+            lowest_buy,
 
     }
 
@@ -621,7 +727,6 @@ def normalize(
 def load_existing():
 
     if not OUTPUT_FILE.exists():
-
         return []
 
 
@@ -632,7 +737,9 @@ def load_existing():
             encoding="utf-8"
         ) as f:
 
-            data = json.load(f)
+            data = json.load(
+                f
+            )
 
 
         products = data.get(
@@ -652,7 +759,8 @@ def load_existing():
     except Exception as e:
 
         log(
-            f"读取旧数据失败：{e}"
+            f"读取旧数据失败："
+            f"{e}"
         )
 
 
@@ -660,7 +768,7 @@ def load_existing():
 
 
 # ============================================================
-# 合并商品
+# 商品合并
 # ============================================================
 
 def merge(
@@ -682,7 +790,6 @@ def merge(
 
 
         if not name:
-
             continue
 
 
@@ -729,11 +836,12 @@ def merge(
         for field in product:
 
             if field == "buy_prices":
-
                 continue
 
 
-            value = product[field]
+            value = product[
+                field
+            ]
 
 
             if value is not None:
@@ -750,7 +858,9 @@ def merge(
 # 保存
 # ============================================================
 
-def save(products):
+def save(
+    products
+):
 
     with OUTPUT_FILE.open(
         "w",
@@ -780,13 +890,8 @@ def save(products):
 def main():
 
     log("")
-
     log("=" * 60)
-
-    log(
-        "中国大陆商品数据采集器"
-    )
-
+    log("自动公开商品浏览采集器")
     log("=" * 60)
 
 
@@ -794,155 +899,180 @@ def main():
 
 
     log(
-        f"现有商品："
+        f"已有商品："
         f"{len(existing)} 条"
+    )
+
+
+    discovered_links = set()
+
+
+    # --------------------------------------------------------
+    # 第一阶段：
+    # 访问公开搜索页面
+    # --------------------------------------------------------
+
+    for keyword in KEYWORDS:
+
+        log(
+            f"搜索公开商品："
+            f"{keyword}"
+        )
+
+
+        for page in range(
+            1,
+            3
+        ):
+
+            url = shihuo_search_url(
+                keyword,
+                page
+            )
+
+
+            html = fetch_html(
+                url
+            )
+
+
+            if not html:
+
+                continue
+
+
+            _, links = parse_html(
+                html
+            )
+
+
+            links = (
+                extract_shihuo_product_links(
+                    url,
+                    links
+                )
+            )
+
+
+            discovered_links.update(
+                links
+            )
+
+
+            log(
+                f"  第 {page} 页发现："
+                f"{len(links)} 个商品页面"
+            )
+
+
+            time.sleep(
+                CRAWL_DELAY
+            )
+
+
+    # --------------------------------------------------------
+    # 第二阶段：
+    # 打开商品详情页
+    # --------------------------------------------------------
+
+    product_links = list(
+        discovered_links
+    )[
+        :MAX_PRODUCT_PAGES
+    ]
+
+
+    log("")
+    log(
+        f"准备读取商品详情："
+        f"{len(product_links)} 个"
     )
 
 
     new_products = []
 
 
-    configured_sources = 0
+    for index, url in enumerate(
+        product_links,
+        start=1
+    ):
+
+        log(
+            f"[{index}/"
+            f"{len(product_links)}] "
+            f"{url}"
+        )
 
 
-    for source in SOURCE_CONFIG:
-
-        source_name = source[
-            "name"
-        ]
-
-        env_name = source[
-            "env"
-        ]
-
-        platform = source[
-            "platform"
-        ]
+        html = fetch_html(
+            url
+        )
 
 
-        url = os.getenv(
-            env_name,
-            ""
-        ).strip()
-
-
-        if not url:
-
-            log(
-                f"{source_name}："
-                "暂未配置授权数据接口"
-            )
+        if not html:
 
             continue
 
 
-        configured_sources += 1
-
-
-        log("")
-
-        log(
-            f"开始采集："
-            f"{source_name}"
+        product = (
+            parse_shihuo_product(
+                url,
+                html
+            )
         )
 
 
-        for keyword in KEYWORDS:
+        if product:
 
-            log(
-                f"  搜索："
-                f"{keyword}"
-            )
-
-
-            data = fetch_json(
-                url,
-                keyword
-            )
-
-
-            if data is None:
-
-                continue
-
-
-            items = extract_items(
-                data
+            new_products.append(
+                product
             )
 
 
             log(
-                f"  返回商品："
-                f"{len(items)} 条"
+                "  已取得："
+                + product["name"]
             )
 
 
-            for item in items:
-
-                product = normalize(
-
-                    item,
-
-                    platform,
-
-                    source_name
-
-                )
+        time.sleep(
+            CRAWL_DELAY
+        )
 
 
-                if product:
-
-                    new_products.append(
-                        product
-                    )
-
-
-            time.sleep(1)
-
+    # --------------------------------------------------------
+    # 第三阶段：
+    # 合并
+    # --------------------------------------------------------
 
     log("")
 
     log(
-        f"已配置数据源："
-        f"{configured_sources}"
-    )
-
-
-    log(
-        f"本次新增商品："
+        f"本次获得商品："
         f"{len(new_products)} 条"
     )
 
 
-    # ========================================================
-    # 没有真实数据时绝对不能清空旧数据
-    # ========================================================
-
     if not new_products:
 
         log(
-            "没有获得新的真实商品数据"
+            "没有取得新的真实公开商品数据"
         )
 
         log(
-            "保留现有商品数据"
+            "保留原有数据"
         )
 
-        save(existing)
-
-        log(
-            "本次不会覆盖旧数据"
+        save(
+            existing
         )
 
         return
 
 
     merged = merge(
-
         existing,
-
         new_products
-
     )
 
 
@@ -950,8 +1080,6 @@ def main():
         merged
     )
 
-
-    log("")
 
     log(
         f"合并后商品："
@@ -962,7 +1090,7 @@ def main():
     log("=" * 60)
 
     log(
-        "商品采集完成"
+        "自动公开商品采集完成"
     )
 
 

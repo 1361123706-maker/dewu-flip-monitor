@@ -77,11 +77,55 @@ def get_buy_shipping_cost(item):
     return DEFAULT_BUY_SHIPPING_COST
 
 
-def evaluate(item):
+def empty_filtered_result(item, reason):
+    return {
+        "name": item.get("name", "未知商品"),
+        "buy_price": None,
+        "dewu_price": None,
+        "expected_income": None,
+        "income_method": "无法计算",
 
+        "technical_service_fee": item.get("technical_service_fee"),
+        "technical_service_rate": item.get("technical_service_rate"),
+        "operation_service_fee": item.get("operation_service_fee"),
+        "consumer_shipping_subsidy": item.get("consumer_shipping_subsidy"),
+        "transfer_fee": item.get("transfer_fee"),
+        "transfer_fee_rate": item.get("transfer_fee_rate"),
+        "after_sales_service_fee": item.get("after_sales_service_fee"),
+        "seller_coupon_offset": item.get("seller_coupon_offset"),
+
+        "buy_shipping_cost": None,
+        "total_buy_cost": None,
+        "net_profit": None,
+        "profit_rate": None,
+
+        "days": None,
+        "days_display": "未确认",
+
+        "liquidity": item.get("liquidity", "未知"),
+
+        "downside_loss": None,
+        "downside_display": "未确认",
+
+        "authenticity_verified": False,
+        "new_condition_verified": False,
+        "dewu_check_compatible": False,
+
+        "status": "过滤",
+        "reasons": [reason],
+    }
+
+
+def evaluate(item):
     reasons = []
 
     buy_prices = item.get("buy_prices", {})
+
+    if not isinstance(buy_prices, dict):
+        return empty_filtered_result(
+            item,
+            "买入价格字段格式错误"
+        )
 
     valid_prices = [
         price
@@ -90,14 +134,10 @@ def evaluate(item):
     ]
 
     if not valid_prices:
-        return {
-            "name": item.get("name", "未知商品"),
-            "status": "过滤",
-            "reasons": ["没有有效买入价格"],
-            "authenticity_verified": False,
-            "new_condition_verified": False,
-            "dewu_check_compatible": False,
-        }
+        return empty_filtered_result(
+            item,
+            "没有有效买入价格"
+        )
 
     buy = min(valid_prices)
 
@@ -170,7 +210,6 @@ def evaluate(item):
     if profit is None:
         reasons.append("净利润无法确认")
     else:
-
         if profit < MIN_PROFIT:
             reasons.append(
                 f"净利润 ¥{profit:.2f}，低于最低要求 ¥{MIN_PROFIT}"
@@ -241,16 +280,9 @@ def evaluate(item):
     )
 
     return {
+        "name": item.get("name", "未知商品"),
 
-        "name": item.get(
-            "name",
-            "未知商品"
-        ),
-
-        "buy_price": round(
-            buy,
-            2
-        ),
+        "buy_price": round(buy, 2),
 
         "dewu_price": (
             round(sale, 2)
@@ -354,9 +386,7 @@ def evaluate(item):
 
 
 def write_monitor_results(results, candidates):
-
     panel_data = {
-
         "updated_at":
             datetime.now(
                 timezone.utc
@@ -409,13 +439,20 @@ def write_monitor_results(results, candidates):
 
 def main():
 
-    file_path = Path("products.json")
+    file_path = Path(
+        "products.json"
+    )
 
     if not file_path.exists():
 
-        print("❌ 找不到 products.json")
+        print(
+            "❌ 找不到 products.json"
+        )
 
-        write_monitor_results([], [])
+        write_monitor_results(
+            [],
+            []
+        )
 
         return
 
@@ -429,10 +466,16 @@ def main():
 
     except Exception as e:
 
-        print("❌ products.json 格式错误")
+        print(
+            "❌ products.json 格式错误"
+        )
+
         print(e)
 
-        write_monitor_results([], [])
+        write_monitor_results(
+            [],
+            []
+        )
 
         return
 
@@ -441,18 +484,77 @@ def main():
         []
     )
 
-    if not products:
+    if not isinstance(
+        products,
+        list
+    ):
 
-        print("❌ 当前没有商品数据")
+        print(
+            "❌ products.json 的 products 字段格式错误"
+        )
 
-        write_monitor_results([], [])
+        write_monitor_results(
+            [],
+            []
+        )
 
         return
 
-    results = [
-        evaluate(item)
-        for item in products
-    ]
+    if not products:
+
+        print(
+            "❌ 当前没有商品数据"
+        )
+
+        write_monitor_results(
+            [],
+            []
+        )
+
+        return
+
+    results = []
+
+    for index, item in enumerate(
+        products
+    ):
+
+        if not isinstance(
+            item,
+            dict
+        ):
+
+            print(
+                f"⚠️ 第 {index + 1} 条商品不是对象，已过滤"
+            )
+
+            results.append(
+                empty_filtered_result(
+                    {},
+                    "商品数据格式错误"
+                )
+            )
+
+            continue
+
+        try:
+
+            results.append(
+                evaluate(item)
+            )
+
+        except Exception as e:
+
+            print(
+                f"⚠️ 第 {index + 1} 条商品处理失败，已过滤：{e}"
+            )
+
+            results.append(
+                empty_filtered_result(
+                    item,
+                    "商品数据处理异常"
+                )
+            )
 
     candidates = [
         item
@@ -467,67 +569,118 @@ def main():
 
     print()
     print("=" * 60)
-    print("        快进快出监控系统")
+    print(
+        "        快进快出监控系统"
+    )
     print("=" * 60)
 
-    print(f"本金：¥{CAPITAL}")
-    print(f"单笔最高买入：¥{MAX_BUY}")
-    print(f"最长周转：{MAX_DAYS} 天")
-    print(f"最低净利润：¥{MIN_PROFIT}")
-    print(f"最低利润率：{MIN_PROFIT_RATE}%")
+    print(
+        f"本金：¥{CAPITAL}"
+    )
+
+    print(
+        f"单笔最高买入：¥{MAX_BUY}"
+    )
+
+    print(
+        f"最长周转：{MAX_DAYS} 天"
+    )
+
+    print(
+        f"最低净利润：¥{MIN_PROFIT}"
+    )
+
+    print(
+        f"最低利润率：{MIN_PROFIT_RATE}%"
+    )
+
     print(
         f"最大允许下跌风险：¥{MAX_DOWNSIDE_LOSS}"
     )
 
     print("-" * 60)
 
-    print(f"监控商品：{len(results)}")
-    print(f"符合条件：{len(candidates)}")
+    print(
+        f"监控商品：{len(results)}"
+    )
+
+    print(
+        f"符合条件：{len(candidates)}"
+    )
 
     print("-" * 60)
 
     for item in results:
 
         print()
+
         print(
             f'{item["status"]} | '
             f'{item["name"]}'
         )
 
-        print(
-            f'  买入：¥{item["buy_price"]:.2f}'
-        )
+        if item["buy_price"] is not None:
+
+            print(
+                f'  买入：¥{item["buy_price"]:.2f}'
+            )
+
+        else:
+
+            print(
+                "  买入：未确认"
+            )
 
         if item["dewu_price"] is not None:
+
             print(
                 f'  得物售价：¥{item["dewu_price"]:.2f}'
             )
+
         else:
-            print("  得物售价：未确认")
+
+            print(
+                "  得物售价：未确认"
+            )
 
         if item["expected_income"] is not None:
+
             print(
                 f'  得物预计收入：'
                 f'¥{item["expected_income"]:.2f}'
             )
+
         else:
-            print("  得物预计收入：未确认")
+
+            print(
+                "  得物预计收入：未确认"
+            )
 
         if item["net_profit"] is not None:
+
             print(
                 f'  真实净利润：'
                 f'¥{item["net_profit"]:.2f}'
             )
+
         else:
-            print("  真实净利润：未确认")
+
+            print(
+                "  真实净利润：未确认"
+            )
 
         if item["profit_rate"] is not None:
+
             print(
                 f'  利润率：'
                 f'{item["profit_rate"]:.1f}%'
             )
+
         else:
-            print("  利润率：未确认")
+
+            print(
+                "  利润率：未确认"
+            )
 
         print(
             f'  周转：{item["days_display"]}'
@@ -543,7 +696,9 @@ def main():
 
         if item["status"] == "候选":
 
-            print("  ★ 候选机会")
+            print(
+                "  ★ 候选机会"
+            )
 
             print(
                 f'  资金占用：'

@@ -15,16 +15,6 @@ def clean_text(value):
 
 
 def normalize_price(value):
-    """
-    支持：
-    820
-    820.00
-    1.08万
-    1 .08 万
-    ¥820
-    820元
-    """
-
     if value is None:
         return None
 
@@ -66,9 +56,7 @@ def normalize_price(value):
 
 
 def extract_product_name(item):
-    name = clean_text(
-        item.get("name")
-    )
+    name = clean_text(item.get("name"))
 
     if name and len(name) >= 4:
         return name
@@ -128,16 +116,12 @@ def extract_market_low_price(item):
     if not match:
         return None
 
-    low = normalize_price(
-        match.group(1)
-        + (
-            "万"
-            if match.group(2)
-            else ""
-        )
-    )
+    value = match.group(1)
 
-    return low
+    if match.group(2):
+        value += "万"
+
+    return normalize_price(value)
 
 
 def extract_dewu_channel_price(item):
@@ -173,9 +157,7 @@ def extract_dewu_channel_price(item):
         if match.group(2):
             value += "万"
 
-        price = normalize_price(
-            value
-        )
+        price = normalize_price(value)
 
         if price is not None:
             return price
@@ -184,14 +166,6 @@ def extract_dewu_channel_price(item):
 
 
 def extract_trend_current_price(item):
-    """
-    只接受明确的：
-    当前同款同规格到手价
-    当前同款同规格到手价为 ¥xxx
-
-    不从普通文本里的单独数字猜价格。
-    """
-
     explicit = normalize_price(
         item.get(
             "trend_current_price"
@@ -243,9 +217,7 @@ def extract_trend_current_price(item):
         if match.group(2):
             value += "万"
 
-        price = normalize_price(
-            value
-        )
+        price = normalize_price(value)
 
         if price is not None:
             return price
@@ -254,19 +226,6 @@ def extract_trend_current_price(item):
 
 
 def extract_explicit_7d_low(item):
-    """
-    7日最低价必须来自明确的7日语义。
-
-    禁止：
-    ¥7
-    ¥9
-    尺码7
-    日期7
-    规格数字7
-
-    被当成7日最低价。
-    """
-
     explicit = normalize_price(
         item.get("price_7d_low")
     )
@@ -282,15 +241,15 @@ def extract_explicit_7d_low(item):
         return None
 
     patterns = [
-        r"当前同款同规格到手价为\s*[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?"
-        r"[^。；\n]{0,100}"
-        r"(?:过去|近|最近)\s*7\s*(?:天|日)"
-        r"[^。；\n]{0,50}"
-        r"(?:最低价|最低)",
-
         r"(?:过去|近|最近)\s*7\s*(?:天|日)"
         r"[^。；\n]{0,80}"
+        r"(?:最低价|最低)"
+        r"[^¥￥0-9]{0,20}"
+        r"[¥￥]\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
+
+        r"(?:7日|7天)"
+        r"[^。；\n]{0,60}"
         r"(?:最低价|最低)"
         r"[^¥￥0-9]{0,20}"
         r"[¥￥]\s*"
@@ -312,9 +271,7 @@ def extract_explicit_7d_low(item):
         if match.group(2):
             value += "万"
 
-        price = normalize_price(
-            value
-        )
+        price = normalize_price(value)
 
         if price is not None:
             return price
@@ -338,15 +295,15 @@ def extract_explicit_7d_high(item):
         return None
 
     patterns = [
-        r"当前同款同规格到手价为\s*[¥￥]\s*"
-        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?"
-        r"[^。；\n]{0,100}"
-        r"(?:过去|近|最近)\s*7\s*(?:天|日)"
-        r"[^。；\n]{0,50}"
-        r"(?:最高价|最高)",
-
         r"(?:过去|近|最近)\s*7\s*(?:天|日)"
         r"[^。；\n]{0,80}"
+        r"(?:最高价|最高)"
+        r"[^¥￥0-9]{0,20}"
+        r"[¥￥]\s*"
+        r"(\d+(?:,\d{3})*(?:\.\d+)?)\s*(万)?",
+
+        r"(?:7日|7天)"
+        r"[^。；\n]{0,60}"
         r"(?:最高价|最高)"
         r"[^¥￥0-9]{0,20}"
         r"[¥￥]\s*"
@@ -368,9 +325,7 @@ def extract_explicit_7d_high(item):
         if match.group(2):
             value += "万"
 
-        price = normalize_price(
-            value
-        )
+        price = normalize_price(value)
 
         if price is not None:
             return price
@@ -380,18 +335,21 @@ def extract_explicit_7d_high(item):
 
 def calculate_price_evidence(item):
     """
-    统一整理价格证据。
+    严格区分：
 
-    重要：
-    得物渠道售价 != 当前同款同规格到手价。
+    1. 当前同款同规格到手价
+    2. 得物渠道售价
 
-    两者都保存，不互相覆盖。
+    两者不能混为一谈。
+
+    只有当前同款同规格到手价存在，
+    才能进入“较强价格证据”。
+
+    得物渠道售价只能作为参考价格。
     """
 
     dewu_channel_price = (
-        extract_dewu_channel_price(
-            item
-        )
+        extract_dewu_channel_price(item)
     )
 
     if dewu_channel_price is None:
@@ -402,28 +360,15 @@ def calculate_price_evidence(item):
         )
 
     trend_current_price = (
-        extract_trend_current_price(
-            item
-        )
+        extract_trend_current_price(item)
     )
 
     price_7d_low = (
-        extract_explicit_7d_low(
-            item
-        )
+        extract_explicit_7d_low(item)
     )
 
     price_7d_high = (
-        extract_explicit_7d_high(
-            item
-        )
-    )
-
-    current_price = (
-        trend_current_price
-        if trend_current_price
-        is not None
-        else dewu_channel_price
+        extract_explicit_7d_high(item)
     )
 
     position = None
@@ -467,46 +412,43 @@ def calculate_price_evidence(item):
             2,
         )
 
+    if trend_current_price is not None:
+        evidence_status = (
+            "confirmed_current_price"
+        )
+    elif dewu_channel_price is not None:
+        evidence_status = (
+            "channel_price_only"
+        )
+    else:
+        evidence_status = (
+            "no_dewu_price"
+        )
+
     return {
-        "dewu_channel_price": (
-            dewu_channel_price
-        ),
+        "dewu_channel_price":
+            dewu_channel_price,
 
-        "trend_current_price": (
-            trend_current_price
-        ),
+        "trend_current_price":
+            trend_current_price,
 
-        "price_current": (
-            current_price
-        ),
+        "price_current":
+            trend_current_price,
 
-        "price_7d_low": (
-            price_7d_low
-        ),
+        "price_7d_low":
+            price_7d_low,
 
-        "price_7d_high": (
-            price_7d_high
-        ),
+        "price_7d_high":
+            price_7d_high,
 
-        "price_position_7d": (
-            position
-        ),
+        "price_position_7d":
+            position,
 
-        "downside_to_7d_low": (
-            downside
-        ),
+        "downside_to_7d_low":
+            downside,
 
-        "price_evidence_status": (
-            "明确当前价"
-            if trend_current_price
-            is not None
-            else (
-                "仅有得物渠道价"
-                if dewu_channel_price
-                is not None
-                else "无有效得物价格"
-            )
-        ),
+        "price_evidence_status":
+            evidence_status,
     }
 
 
@@ -579,9 +521,7 @@ def main():
 
     for item in old_products:
 
-        key = product_key(
-            item
-        )
+        key = product_key(item)
 
         old_by_key[key] = item
 
@@ -590,6 +530,23 @@ def main():
     for raw in discovery_products:
 
         item = dict(raw)
+
+        # ==================================================
+        # 商品资格
+        # ==================================================
+
+        category = item.get(
+            "category"
+        )
+
+        if category == "excluded":
+            print(
+                "过滤不做商品：",
+                item.get("name"),
+                "|",
+                item.get("category_reason"),
+            )
+            continue
 
         name = extract_product_name(
             item
@@ -605,8 +562,10 @@ def main():
         )
 
         if buy_price is None:
-            buy_price = extract_market_low_price(
-                item
+            buy_price = (
+                extract_market_low_price(
+                    item
+                )
             )
 
         if buy_price is None:
@@ -615,7 +574,10 @@ def main():
         item["name"] = name
         item["buy_price"] = buy_price
 
-        # 市场最低价证据
+        # ==================================================
+        # 价格证据
+        # ==================================================
+
         market_low = (
             extract_market_low_price(
                 item
@@ -627,64 +589,20 @@ def main():
                 "market_low_price"
             ] = market_low
 
-        # 价格证据
         price = calculate_price_evidence(
             item
         )
 
-        item.update(
-            {
-                "dewu_channel_price":
-                    price[
-                        "dewu_channel_price"
-                    ],
+        item.update(price)
 
-                "trend_current_price":
-                    price[
-                        "trend_current_price"
-                    ],
-
-                "price_current":
-                    price[
-                        "price_current"
-                    ],
-
-                "price_7d_low":
-                    price[
-                        "price_7d_low"
-                    ],
-
-                "price_7d_high":
-                    price[
-                        "price_7d_high"
-                    ],
-
-                "price_position_7d":
-                    price[
-                        "price_position_7d"
-                    ],
-
-                "downside_to_7d_low":
-                    price[
-                        "downside_to_7d_low"
-                    ],
-
-                "price_evidence_status":
-                    price[
-                        "price_evidence_status"
-                    ],
-            }
-        )
-
-        # --------------------------------------------------
-        # 得物卖价：
+        # ==================================================
+        # 得物价格
         #
-        # 只有明确“当前同款同规格到手价”时，
-        # 才把它作为主要当前价格。
+        # 关键改变：
         #
-        # 如果没有，则暂时保留得物渠道价，
-        # 但同时记录价格证据状态。
-        # --------------------------------------------------
+        # 没有明确当前同款同规格到手价时，
+        # 不再把渠道价伪装成“确认价格”。
+        # ==================================================
 
         if (
             price[
@@ -692,6 +610,7 @@ def main():
             ]
             is not None
         ):
+
             item[
                 "dewu_price"
             ] = price[
@@ -701,8 +620,17 @@ def main():
             item[
                 "dewu_price_source"
             ] = (
-                "识货公开页面："
-                "当前同款同规格到手价"
+                "识货：当前同款同规格到手价"
+            )
+
+            item[
+                "income_confirmed"
+            ] = True
+
+            item[
+                "income_confirmation_reason"
+            ] = (
+                "存在明确的当前同款同规格到手价"
             )
 
         elif (
@@ -711,6 +639,7 @@ def main():
             ]
             is not None
         ):
+
             item[
                 "dewu_price"
             ] = price[
@@ -720,11 +649,23 @@ def main():
             item[
                 "dewu_price_source"
             ] = (
-                "识货公开页面："
-                "得物渠道售价"
+                "识货：得物渠道售价"
+            )
+
+            item[
+                "income_confirmed"
+            ] = False
+
+            item[
+                "income_confirmation_reason"
+            ] = (
+                "只有得物渠道售价，"
+                "缺少当前同款同规格到手价；"
+                "不能视为已确认到账"
             )
 
         else:
+
             item[
                 "dewu_price"
             ] = None
@@ -733,9 +674,38 @@ def main():
                 "dewu_price_source"
             ] = None
 
-        # --------------------------------------------------
+            item[
+                "income_confirmed"
+            ] = False
+
+            item[
+                "income_confirmation_reason"
+            ] = (
+                "没有有效得物价格"
+            )
+
+        # ==================================================
+        # 利润确认状态
+        #
+        # 这里暂时不计算最终净利润。
+        # monitor.py 会根据：
+        # 买入价、运费、得物费用、价格证据
+        # 再进行最终计算。
+        # ==================================================
+
+        item[
+            "profit_confirmation_status"
+        ] = (
+            "confirmed"
+            if item[
+                "income_confirmed"
+            ]
+            else "unconfirmed"
+        )
+
+        # ==================================================
         # 销量
-        # --------------------------------------------------
+        # ==================================================
 
         sales_30d = item.get(
             "sales_30d"
@@ -749,11 +719,11 @@ def main():
             sales_30d is not None
             and sales_30d > 0
         ):
+
             item[
                 "sales_velocity_7d"
             ] = round(
-                float(sales_30d)
-                / 30,
+                float(sales_30d) / 30,
                 2,
             )
 
@@ -773,6 +743,7 @@ def main():
             sales is not None
             and sales > 0
         ):
+
             item[
                 "turnover_evidence"
             ] = (
@@ -785,6 +756,7 @@ def main():
             ] = "low"
 
         else:
+
             item[
                 "turnover_evidence"
             ] = None
@@ -793,9 +765,9 @@ def main():
                 "turnover_confidence"
             ] = "unknown"
 
-        # --------------------------------------------------
+        # ==================================================
         # 识货来源
-        # --------------------------------------------------
+        # ==================================================
 
         item[
             "shihuo_source"
@@ -807,36 +779,51 @@ def main():
             "识货公开页面"
         )
 
-        # 正品规则：
-        # 识货来源按用户规则默认通过，
-        # 但不伪造 authenticity_verified=true。
+        # 按用户规则：
+        # 识货来源默认正品风险通过。
         item[
             "authenticity_evidence"
         ] = (
-            "识货公开页面来源，"
+            "识货来源，"
             "按规则默认正品风险通过"
         )
 
-        # 保留原始字段
         item[
             "source_note"
         ] = (
             "数据来自识货公开页面；"
-            "得物价格字段保持来源区分"
+            "得物渠道价与当前同款同规格到手价严格区分"
         )
 
-        key = product_key(
-            item
-        )
+        # ==================================================
+        # 保留旧数据：
+        #
+        # 只补当前数据缺失字段。
+        # 绝不允许旧价格覆盖新价格。
+        # ==================================================
 
-        old = old_by_key.get(
-            key
-        )
+        key = product_key(item)
+
+        old = old_by_key.get(key)
 
         if old:
-            # 只补缺失字段，
-            # 不用旧数据覆盖新采集数据。
+
+            protected_fields = {
+                "buy_price",
+                "dewu_price",
+                "dewu_channel_price",
+                "trend_current_price",
+                "price_current",
+                "price_7d_low",
+                "price_7d_high",
+                "income_confirmed",
+                "profit_confirmation_status",
+            }
+
             for field, value in old.items():
+
+                if field in protected_fields:
+                    continue
 
                 if (
                     item.get(field)
@@ -845,20 +832,19 @@ def main():
                 ):
                     item[field] = value
 
-        products.append(
-            item
-        )
+        products.append(item)
 
     output = {
-        "updated_at": (
+        "updated_at":
             discovery_data.get(
                 "updated_at"
-            )
-        ),
+            ),
 
-        "count": len(products),
+        "count":
+            len(products),
 
-        "products": products,
+        "products":
+            products,
     }
 
     Path(
@@ -893,6 +879,11 @@ def main():
         )
 
         print(
+            f"类别："
+            f"{item.get('category')}"
+        )
+
+        print(
             f"买入价："
             f"{item.get('buy_price')}"
         )
@@ -913,8 +904,18 @@ def main():
         )
 
         print(
-            f"价格来源："
-            f"{item.get('dewu_price_source')}"
+            f"收入是否确认："
+            f"{item.get('income_confirmed')}"
+        )
+
+        print(
+            f"利润确认状态："
+            f"{item.get('profit_confirmation_status')}"
+        )
+
+        print(
+            f"利润确认原因："
+            f"{item.get('income_confirmation_reason')}"
         )
 
         print(

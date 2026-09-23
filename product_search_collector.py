@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 
 HOME_URL = "https://www.shihuo.cn/page/pcHome"
 OUTPUT_FILE = "discovery_data.json"
-MAX_DETAIL_PAGES = 40
+MAX_DETAIL_PAGES = 20
 
 VIEWPORT = {
     "width": 1440,
@@ -595,7 +595,7 @@ def extract_detail(page, url):
     page.goto(
         url,
         wait_until="domcontentloaded",
-        timeout=60000,
+        timeout=20000,
     )
 
     page.wait_for_timeout(2500)
@@ -996,7 +996,7 @@ def collect_urls(page):
     page.goto(
         HOME_URL,
         wait_until="domcontentloaded",
-        timeout=60000,
+        timeout=20000,
     )
 
     page.wait_for_timeout(4000)

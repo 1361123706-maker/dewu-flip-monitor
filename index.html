@@ -1,46 +1,663 @@
-<!doctype html><html lang="zh-CN"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111827"><title>快进快出监控演示</title>
-<style>
-body{margin:0;background:#f4f5f7;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:#111827;color:#fff;padding:18px 16px}h1{font-size:21px;margin:0}.sub{font-size:12px;opacity:.7;margin-top:5px}
-main{max-width:800px;margin:auto;padding:12px}.card{background:#fff;border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 2px 10px #0001}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metric{background:#f8fafc;padding:10px;border-radius:10px}.metric small{display:block;color:#6b7280}.metric b{display:block;margin-top:3px}
-input,button{padding:10px;border-radius:10px;border:1px solid #d1d5db;font-size:15px}input{width:100%;box-sizing:border-box}button{background:#111827;color:white;border:0;width:100%;margin-top:8px}
-.item{border:1px solid #e5e7eb;border-radius:14px;padding:12px;margin-top:10px}.top{display:flex;justify-content:space-between}.pill{padding:4px 8px;border-radius:99px;font-size:11px}.ok{background:#ecfdf5;color:#047857}.no{background:#fef2f2;color:#b91c1c}.warn{background:#fffbeb;color:#92400e}
-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}td,th{padding:7px 4px;border-bottom:1px solid #eee;text-align:right}td:first-child,th:first-child{text-align:left}
-.green{color:#047857}.red{color:#b91c1c}.muted{color:#6b7280}.small{font-size:12px;line-height:1.55}
-</style></head><body>
-<header><h1>快进快出 · 手机演示版</h1><div class="sub">模拟多平台比价 + 300元本金风控</div></header>
-<main>
-<div class="card"><b>资金设置</b><div class="grid" style="margin-top:10px">
-<div><small>本金</small><input id="cap" type="number" value="330"></div>
-<div><small>单笔上限</small><input id="max" type="number" value="120"></div>
-<div><div style="color:#6b7280;font-size:12px">最长周转</div><input id="days" type="number" value="7"></div>
-</div><button onclick="render()">重新筛选</button></div>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>得物低买高卖 · 实时监控</title>
 
-<div class="card"><b>今日模拟监控结果</b><div class="small muted">以下价格全部是为了展示系统功能而生成的模拟数据，不是真实市场行情，请勿据此购买。</div><div id="list"></div></div>
-<div class="card"><b>系统判断逻辑</b><p class="small">系统会先比较多平台买入价，再用得物预估卖出价计算利润；随后检查本金、单笔投入、周转时间、流动性、价格下跌情景、正品/全新状态和查验风险。任何关键条件无法确认，都不会因为“看起来有利润”而直接推荐。</p></div>
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f4f5f7;
+  color:#111827;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+  "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:20px 16px;
+}
+
+h1{
+  font-size:21px;
+  margin:0;
+}
+
+.sub{
+  font-size:12px;
+  opacity:.75;
+  margin-top:6px;
+}
+
+main{
+  max-width:800px;
+  margin:auto;
+  padding:12px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:15px;
+  margin:10px 0;
+  box-shadow:0 2px 10px #0001;
+}
+
+.status{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.status-title{
+  font-size:15px;
+  font-weight:600;
+}
+
+.small{
+  font-size:12px;
+  line-height:1.6;
+}
+
+.muted{
+  color:#6b7280;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.metric{
+  background:#f8fafc;
+  padding:10px;
+  border-radius:10px;
+}
+
+.metric small{
+  display:block;
+  color:#6b7280;
+  font-size:11px;
+}
+
+.metric b{
+  display:block;
+  margin-top:4px;
+  font-size:15px;
+}
+
+.item{
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:13px;
+  margin-top:10px;
+}
+
+.item-name{
+  font-weight:600;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:99px;
+  font-size:11px;
+}
+
+.ok{
+  background:#ecfdf5;
+  color:#047857;
+}
+
+.warn{
+  background:#fffbeb;
+  color:#92400e;
+}
+
+.bad{
+  background:#fef2f2;
+  color:#b91c1c;
+}
+
+.green{
+  color:#047857;
+}
+
+.red{
+  color:#b91c1c;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  background:#111827;
+  color:white;
+  padding:9px 12px;
+  font-size:13px;
+}
+
+button:active{
+  opacity:.7;
+}
+
+.notice{
+  padding:11px;
+  background:#f8fafc;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+.reason{
+  margin-top:9px;
+  color:#b91c1c;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #eee;
+  margin:12px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>得物低买高卖 · 实时监控</h1>
+  <div class="sub">
+    后台自动采集 · 自动计算 · 自动风控
+  </div>
+</header>
+
+<main>
+
+  <!-- 系统状态 -->
+  <div class="card">
+
+    <div class="status">
+
+      <div>
+        <div class="status-title" id="systemStatus">
+          正在读取最新数据……
+        </div>
+
+        <div class="small muted" id="updated">
+          等待后台数据
+        </div>
+      </div>
+
+      <button onclick="loadData()">
+        刷新
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 本轮监控 -->
+  <div class="card">
+
+    <b>本轮监控</b>
+
+    <div class="grid">
+
+      <div class="metric">
+        <small>扫描商品</small>
+        <b id="count">—</b>
+      </div>
+
+      <div class="metric">
+        <small>符合条件</small>
+        <b id="candidateCount">—</b>
+      </div>
+
+      <div class="metric">
+        <small>本金</small>
+        <b id="capital">—</b>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- 机会 -->
+  <div class="card">
+
+    <b>符合全部风控条件的机会</b>
+
+    <div id="opportunityList">
+
+      <div class="notice small muted">
+        正在读取后台最新结果……
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- 风控规则 -->
+  <div class="card">
+
+    <b>当前风控规则</b>
+
+    <div class="small muted" id="rules">
+      正在读取……
+    </div>
+
+  </div>
+
+
+  <!-- 数据说明 -->
+  <div class="card">
+
+    <b>数据状态</b>
+
+    <div class="small" id="dataStatus">
+      正在检查……
+    </div>
+
+  </div>
+
 </main>
+
+
 <script>
-const items=[
-["Nike 小件 A","79","82","85","81","119",2,"高",8,1],
-["Adidas 配件 B","108","111","115","109","151",4,"高",13,1],
-["潮流配件 C","62","65","61","64","94",3,"中",16,1],
-["运动鞋配件 D","119","121","125","118","157",6,"中",18,1],
-["冷门收藏 E","88","91","94","89","146",12,"低",35,1],
-["商品 F","135","132","139","136","181",5,"高",14,0],
-["商品 G","69","72","70","71","101",2,"高",9,1],
-["商品 H","112","115","117","113","143",8,"低",27,1]
-];
-function render(){let cap=+document.getElementById("cap").value,max=+document.getElementById("max").value,days=+document.getElementById("days").value;
-let box=document.getElementById("list");box.innerHTML="";
-items.forEach(x=>{let buy=Math.min(+x[1],+x[2],+x[3],+x[4]),sell=+x[5],cost=buy+8+6,profit=sell-cost,rate=profit/buy*100,down=+x[8],verified=x[9];
-let reasons=[];if(buy>max||buy>cap)reasons.push("资金超限");if(+x[6]>days)reasons.push("周转过长");if(x[7]=="低")reasons.push("流动性低");if(profit<15)reasons.push("净利润不足");if(rate<12)reasons.push("利润率不足");if(down>25)reasons.push("下跌风险高");if(!verified)reasons.push("正品/状态未核验");
-let ok=!reasons.length;
-let d=document.createElement("div");d.className="item";d.innerHTML=`<div class="top"><b>${x[0]}</b><span class="pill ${ok?'ok':'no'}">${ok?'🟢 候选':'🔴 过滤'}</span></div>
-<table><tr><th>平台</th><th>价格</th><th>平台</th><th>价格</th></tr><tr><td>拼多多</td><td>¥${x[1]}</td><td>淘宝</td><td>¥${x[2]}</td></tr><tr><td>京东</td><td>¥${x[3]}</td><td>识货</td><td>¥${x[4]}</td></tr><tr><td>得物</td><td>¥${x[5]}</td><td>最低买入</td><td>¥${buy}</td></tr></table>
-<div class="grid" style="margin-top:9px"><div class="metric"><small>预计净利润</small><b class="${profit>=0?'green':'red'}">¥${profit}</b></div><div class="metric"><small>利润率</small><b>${rate.toFixed(1)}%</b></div><div class="metric"><small>周转</small><b>${x[6]} 天</b></div><div class="metric"><small>流动性</small><b>${x[7]}</b></div><div class="metric"><small>下跌情景</small><b class="${down>25?'red':''}">-¥${down}</b></div><div class="metric"><small>资金占用</small><b>¥${buy}/${cap}</b></div></div>
-<div class="small ${ok?'green':'red'}" style="margin-top:9px">${ok?'基础规则通过；真实版本仍需实时核验价格、正品、成色、查验与费用。':'过滤原因：'+reasons.join('、')}</div>`;box.appendChild(d)})}
-render();
-</script></body></html>
+
+function money(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "未确认";
+  }
+
+  return "¥" + Number(value).toFixed(2);
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function formatTime(value){
+
+  if(!value){
+    return "时间未确认";
+  }
+
+  const date = new Date(value);
+
+  if(isNaN(date.getTime())){
+    return String(value);
+  }
+
+  return date.toLocaleString(
+    "zh-CN",
+    {
+      year:"numeric",
+      month:"2-digit",
+      day:"2-digit",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit"
+    }
+  );
+}
+
+
+function render(data){
+
+  document.getElementById("systemStatus").innerHTML =
+    '<span class="pill ok">● 后台数据正常</span>';
+
+  document.getElementById("updated").textContent =
+    "最后更新：" + formatTime(data.updated_at);
+
+
+  document.getElementById("count").textContent =
+    data.monitored_count ?? 0;
+
+
+  document.getElementById("candidateCount").textContent =
+    data.candidate_count ?? 0;
+
+
+  document.getElementById("capital").textContent =
+    money(data.capital);
+
+
+  /*
+   * 机会列表
+   */
+
+  const list =
+    document.getElementById("opportunityList");
+
+
+  const candidates =
+    Array.isArray(data.candidates)
+      ? data.candidates
+      : [];
+
+
+  if(candidates.length === 0){
+
+    list.innerHTML = `
+      <div class="notice">
+
+        <div class="pill ok">
+          当前没有符合全部条件的商品
+        </div>
+
+        <div class="small muted" style="margin-top:8px">
+          系统不会因为“看起来有价差”就提醒购买。
+          必须同时满足利润、周转、流动性、下跌风险、
+          正品、全新状态、得物查验和费用数据等条件。
+        </div>
+
+      </div>
+    `;
+
+  }else{
+
+    list.innerHTML =
+      candidates.map(item => {
+
+        return `
+
+          <div class="item">
+
+            <div class="item-name">
+              ${escapeHtml(item.name)}
+            </div>
+
+            <hr>
+
+            <div class="grid">
+
+              <div class="metric">
+                <small>买入价</small>
+                <b>
+                  ${money(item.buy_price)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>得物售价</small>
+                <b>
+                  ${money(item.dewu_price)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>预计到账</small>
+                <b>
+                  ${money(item.expected_income)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>净利润</small>
+                <b class="green">
+                  ${money(item.net_profit)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>利润率</small>
+                <b>
+                  ${
+                    item.profit_rate === null ||
+                    item.profit_rate === undefined
+                    ? "未确认"
+                    : item.profit_rate + "%"
+                  }
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>周转</small>
+                <b>
+                  ${escapeHtml(item.days_display)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>流动性</small>
+                <b>
+                  ${escapeHtml(item.liquidity)}
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>下跌风险</small>
+                <b>
+                  ${
+                    item.downside_loss === null ||
+                    item.downside_loss === undefined
+                    ? "未确认"
+                    : money(item.downside_loss)
+                  }
+                </b>
+              </div>
+
+              <div class="metric">
+                <small>资金占用</small>
+                <b>
+                  ${money(item.total_buy_cost)}
+                </b>
+              </div>
+
+            </div>
+
+            <div class="notice small">
+
+              <div>
+                正品：
+                ${item.authenticity_verified === true
+                  ? "✓ 已确认"
+                  : "⚠ 未确认"}
+              </div>
+
+              <div>
+                全新/成色：
+                ${item.new_condition_verified === true
+                  ? "✓ 已确认"
+                  : "⚠ 未确认"}
+              </div>
+
+              <div>
+                得物查验：
+                ${item.dewu_check_compatible === true
+                  ? "✓ 已确认"
+                  : "⚠ 未确认"}
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+  }
+
+
+  /*
+   * 风控规则
+   */
+
+  document.getElementById("rules").innerHTML = `
+
+    本金：
+    ¥${data.capital}
+
+    · 单笔最高买入：
+    ¥${data.max_buy}
+
+    · 最长周转：
+    ${data.max_days}天
+
+    · 最低净利润：
+    ¥${data.min_profit}
+
+    · 最低利润率：
+    ${data.min_profit_rate}%
+
+    · 最大允许下跌风险：
+    ¥${data.max_downside_loss}
+
+  `;
+
+
+  document.getElementById("dataStatus").innerHTML = `
+
+    <div>
+      <span class="pill ok">正常</span>
+    </div>
+
+    <div class="small muted" style="margin-top:8px">
+
+      页面正在读取后台生成的
+      <b>monitor_results.json</b>。
+
+      页面每 60 秒自动检查一次最新数据。
+
+    </div>
+
+  `;
+
+}
+
+
+async function loadData(){
+
+  try{
+
+    const response =
+      await fetch(
+        "monitor_results.json?ts=" +
+        Date.now(),
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " + response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    render(data);
+
+
+  }catch(error){
+
+    console.log(error);
+
+
+    document.getElementById(
+      "systemStatus"
+    ).innerHTML =
+      '<span class="pill warn">⚠️ 等待后台更新</span>';
+
+
+    document.getElementById(
+      "updated"
+    ).textContent =
+      "后台还没有生成最新结果";
+
+
+    document.getElementById(
+      "opportunityList"
+    ).innerHTML = `
+
+      <div class="notice">
+
+        <div class="small">
+          后台正在运行，暂时还没有新的监控结果。
+        </div>
+
+        <div class="small muted" style="margin-top:6px">
+          第一次成功运行后，这里会自动显示真实监控结果。
+        </div>
+
+      </div>
+
+    `;
+
+
+    document.getElementById(
+      "dataStatus"
+    ).innerHTML = `
+
+      <span class="pill warn">
+        等待后台数据
+      </span>
+
+      <div class="small muted" style="margin-top:8px">
+        这不代表采集失败，只代表目前还没有可读取的
+        monitor_results.json。
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/*
+ * 第一次打开立即读取
+ */
+
+loadData();
+
+
+/*
+ * 每60秒自动刷新
+ */
+
+setInterval(
+  loadData,
+  60000
+);
+
+</script>
+
+</body>
+</html>

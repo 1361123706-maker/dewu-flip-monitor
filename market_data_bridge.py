@@ -1,19 +1,5 @@
 #!/usr/bin/env python3
 
-"""
-市场数据桥接程序
-
-作用：
-把不同来源的商品行情数据转换成统一格式，
-交给 monitor.py 进行风险判断。
-
-注意：
-- 不绕过平台登录、验证码、签名、加密或反爬。
-- 缺失数据保持为空，不自行猜测。
-- 保留得物实际费用和预计收入字段。
-- 本程序只负责数据转换，不负责判断是否值得购买。
-"""
-
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,39 +8,56 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 INPUT_FILE = ROOT / "market_data_input.json"
+DISCOVERY_FILE = ROOT / "discovery_data.json"
 OUTPUT_FILE = ROOT / "products.json"
 
 
 def to_number(value):
-    """把价格、数量等字段转换成数字；无法确认就返回 None。"""
-
     if value is None or value == "":
         return None
 
     try:
         return float(value)
-
-    except (TypeError, ValueError):
+    except Exception:
         return None
 
 
+def load_json(path):
+    if not path.exists():
+        return {}
+
+    try:
+        return json.loads(
+            path.read_text(
+                encoding="utf-8"
+            )
+        )
+    except Exception:
+        return {}
+
+
 def normalize_product(item):
-    """把一条外部商品数据转换成系统统一格式。"""
-
-    buy_prices = item.get("buy_prices") or {}
-
     return {
-        "name":
-            str(
-                item.get("name") or ""
-            ).strip(),
+        "name": str(
+            item.get("name") or ""
+        ).strip(),
 
         "buy_prices":
-            buy_prices,
+            item.get("buy_prices") or {},
+
+        "buy_price":
+            to_number(
+                item.get("buy_price")
+            ),
 
         "dewu_price":
             to_number(
                 item.get("dewu_price")
+            ),
+
+        "expected_income":
+            to_number(
+                item.get("expected_income")
             ),
 
         "recent_avg_price":
@@ -78,17 +81,14 @@ def normalize_product(item):
             ),
 
         "liquidity":
-            item.get("liquidity"),
+            item.get(
+                "liquidity"
+            ),
 
         "downside_loss":
             to_number(
                 item.get("downside_loss")
             ),
-
-
-        # ====================================================
-        # 得物实际卖出费用
-        # ====================================================
 
         "technical_service_fee":
             to_number(
@@ -146,47 +146,30 @@ def normalize_product(item):
                 )
             ),
 
-        # 得物页面显示的预计收入
-        "expected_income":
-            to_number(
-                item.get(
-                    "expected_income"
-                )
-            ),
-
-
-        # ====================================================
-        # 商品状态
-        # ====================================================
-
         "authenticity_verified":
-            bool(
-                item.get(
-                    "authenticity_verified",
-                    False
-                )
-            ),
+            item.get(
+                "authenticity_verified",
+                False
+            ) is True,
 
         "new_condition_verified":
-            bool(
-                item.get(
-                    "new_condition_verified",
-                    False
-                )
-            ),
+            item.get(
+                "new_condition_verified",
+                False
+            ) is True,
 
         "dewu_check_compatible":
-            bool(
+            item.get(
+                "dewu_check_compatible",
+                False
+            ) is True,
+
+        "buy_shipping_cost":
+            to_number(
                 item.get(
-                    "dewu_check_compatible",
-                    False
+                    "buy_shipping_cost"
                 )
             ),
-
-
-        # ====================================================
-        # 来源
-        # ====================================================
 
         "source_note":
             item.get(
@@ -197,58 +180,101 @@ def normalize_product(item):
         "data_source":
             item.get(
                 "data_source",
-                "manual"
+                "unknown"
             ),
 
         "data_time":
             item.get(
-                "data_time",
-                datetime.now(
-                    timezone.utc
-                ).isoformat()
-            )
+                "data_time"
+            ),
+
+        # ==========================
+        # 识货发现证据
+        # ==========================
+
+        "shihuo_url":
+            item.get(
+                "shihuo_url"
+            ),
+
+        "product_code":
+            item.get(
+                "product_code"
+            ),
+
+        "dewu_display_price":
+            to_number(
+                item.get(
+                    "dewu_display_price"
+                )
+            ),
+
+        "lowest_price":
+            to_number(
+                item.get(
+                    "lowest_price"
+                )
+            ),
+
+        "sales":
+            item.get(
+                "sales"
+            ),
+
+        "detail_status":
+            item.get(
+                "detail_status"
+            ),
+
+        "discovery_observed_at":
+            item.get(
+                "observed_at"
+            ),
     }
 
 
 def main():
 
-    if not INPUT_FILE.exists():
+    # 旧的人工/合法行情数据
+    market = load_json(
+        INPUT_FILE
+    )
 
-        print(
-            "未找到 market_data_input.json，"
-            "桥接程序没有修改 products.json。"
-        )
+    # 新的公开发现数据
+    discovery = load_json(
+        DISCOVERY_FILE
+    )
 
-        return
-
-
-    try:
-
-        raw = json.loads(
-            INPUT_FILE.read_text(
-                encoding="utf-8"
-            )
-        )
-
-    except Exception as e:
-
-        print(
-            f"读取 market_data_input.json 失败：{e}"
-        )
-
-        return
-
-
-    products = raw.get(
+    market_products = market.get(
         "products",
         []
     )
 
+    discovery_products = discovery.get(
+        "products",
+        []
+    )
 
-    normalized_products = []
+    if not isinstance(
+        market_products,
+        list
+    ):
+        market_products = []
 
+    if not isinstance(
+        discovery_products,
+        list
+    ):
+        discovery_products = []
 
-    for item in products:
+    # ==========================================
+    # 以已有行情数据为主
+    # 新采集数据只负责补充发现证据
+    # ==========================================
+
+    merged = {}
+
+    for item in market_products:
 
         if not isinstance(
             item,
@@ -256,38 +282,159 @@ def main():
         ):
             continue
 
+        name = str(
+            item.get("name") or ""
+        ).strip()
 
-        if not item.get("name"):
+        if not name:
             continue
 
+        key = name.lower()
 
-        normalized_products.append(
-            normalize_product(item)
+        merged[key] = dict(item)
+
+    for item in discovery_products:
+
+        if not isinstance(
+            item,
+            dict
+        ):
+            continue
+
+        name = str(
+            item.get("name") or ""
+        ).strip()
+
+        if not name:
+            continue
+
+        code = str(
+            item.get(
+                "product_code"
+            ) or ""
+        ).strip()
+
+        # 优先用货号匹配
+        match_key = None
+
+        if code:
+
+            for old_key, old_item in merged.items():
+
+                old_code = str(
+                    old_item.get(
+                        "product_code"
+                    ) or ""
+                ).strip()
+
+                if (
+                    old_code
+                    and old_code.lower()
+                    == code.lower()
+                ):
+                    match_key = old_key
+                    break
+
+        if match_key is None:
+            match_key = name.lower()
+
+        if match_key in merged:
+
+            old = merged[match_key]
+
+            # 新发现数据只补字段
+            for field in [
+                "buy_price",
+                "shihuo_url",
+                "product_code",
+                "dewu_display_price",
+                "lowest_price",
+                "sales",
+                "detail_status",
+                "discovery_observed_at",
+            ]:
+
+                value = item.get(field)
+
+                if value not in (
+                    None,
+                    "",
+                ):
+                    old[field] = value
+
+            # 如果已有 buy_prices
+            # 就补入最新发现价格
+            if item.get(
+                "buy_price"
+            ) is not None:
+
+                old.setdefault(
+                    "buy_prices",
+                    {}
+                )
+
+                if isinstance(
+                    old["buy_prices"],
+                    dict
+                ):
+                    old["buy_prices"][
+                        "识货公开页"
+                    ] = item[
+                        "buy_price"
+                    ]
+
+        else:
+
+            merged[match_key] = dict(
+                item
+            )
+
+    normalized = []
+
+    for item in merged.values():
+
+        normalized.append(
+            normalize_product(
+                item
+            )
         )
 
-
     result = {
+        "updated_at":
+            datetime.now(
+                timezone.utc
+            ).isoformat(),
+
         "products":
-            normalized_products
+            normalized,
     }
 
-
     OUTPUT_FILE.write_text(
-
         json.dumps(
             result,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         ),
-
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
+    print(
+        "市场数据桥接完成"
+    )
 
     print(
-        f"桥接完成："
-        f"输入 {len(products)} 条，"
-        f"标准化 {len(normalized_products)} 条。"
+        f"原有行情数据："
+        f"{len(market_products)}"
+    )
+
+    print(
+        f"本次公开发现："
+        f"{len(discovery_products)}"
+    )
+
+    print(
+        f"最终监控商品："
+        f"{len(normalized)}"
     )
 
 

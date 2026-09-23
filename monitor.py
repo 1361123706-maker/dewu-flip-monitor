@@ -21,10 +21,10 @@ MIN_PROFIT_RATE = 12
 
 MAX_DOWNSIDE_LOSS = 25
 
-DEWU_FEE_RATE = 0.08
+# 得物售价按 92% 计算预计到账
+DEWU_NET_RATE = 0.92
 
-DEWU_NET_RATE = 1 - DEWU_FEE_RATE
-
+# 买入端统一暂估 6 元运费
 DEFAULT_BUY_SHIPPING = 6
 
 
@@ -101,6 +101,7 @@ def load_products():
 # ============================================================
 
 def get_buy_price(item):
+
     value = to_float(
         item.get("buy_price")
     )
@@ -117,17 +118,17 @@ def get_buy_price(item):
 
 def get_dewu_price(item):
     """
-    返回：
+    得物售价选择顺序：
 
-    price
-    price_source
-    explicit_current
+    1. 当前同款同规格到手价
+    2. 得物渠道售价
+    3. dewu_price
 
-    explicit_current=True：
-        有明确“当前同款同规格到手价”
+    这里不再因为不同价格字段存在差异而直接判定风险。
 
-    explicit_current=False：
-        只有“得物渠道售价”
+    原因：
+    识货页面可能同时展示不同价格口径，
+    不能仅凭数字不同就认定商品有问题。
     """
 
     trend_price = to_float(
@@ -142,8 +143,8 @@ def get_dewu_price(item):
     ):
         return (
             trend_price,
-            "当前同款同规格到手价",
-            True,
+            "识货：当前同款同规格到手价",
+            "current_price",
         )
 
     channel_price = to_float(
@@ -153,29 +154,35 @@ def get_dewu_price(item):
     )
 
     if (
-        channel_price is None
-        or channel_price <= 0
-    ):
-        channel_price = to_float(
-            item.get(
-                "dewu_price"
-            )
-        )
-
-    if (
         channel_price is not None
         and channel_price > 0
     ):
         return (
             channel_price,
-            "得物渠道售价",
-            False,
+            "识货：得物渠道售价",
+            "channel_price",
+        )
+
+    dewu_price = to_float(
+        item.get(
+            "dewu_price"
+        )
+    )
+
+    if (
+        dewu_price is not None
+        and dewu_price > 0
+    ):
+        return (
+            dewu_price,
+            "识货：得物售价",
+            "dewu_price",
         )
 
     return (
         None,
         None,
-        False,
+        None,
     )
 
 
@@ -184,6 +191,9 @@ def get_dewu_price(item):
 # ============================================================
 
 def get_buy_shipping_cost(item):
+
+    # 如果未来采集到了明确买入运费，
+    # 优先使用明确数据。
     candidates = [
         item.get(
             "buy_shipping_cost"
@@ -209,6 +219,7 @@ def get_buy_shipping_cost(item):
                 True,
             )
 
+    # 当前统一按 6 元估算
     return (
         DEFAULT_BUY_SHIPPING,
         False,
@@ -216,123 +227,57 @@ def get_buy_shipping_cost(item):
 
 
 # ============================================================
-# 得物费用
+# 估算利润
 # ============================================================
 
-def get_platform_cost(item, dewu_price):
+def calculate_estimated_profit(
+    dewu_price,
+    buy_price,
+    buy_shipping,
+):
     """
-    关键原则：
+    用户确定的统一估算公式：
 
-    如果只有 8% 默认费率，
-    只能得到“预计到账”。
+    估算利润
+    =
+    得物售价 × 92%
+    − 6元
+    − 买入价
 
-    不能把预计到账冒充成“已确认到账”。
-
-    只有明确的平台收入/费用数据，
-    才允许标记 platform_cost_confirmed=True。
+    如果未来存在明确买入运费，
+    则使用实际运费；
+    当前默认 6 元。
     """
 
-    # 明确的最终到账金额
-    confirmed_income_fields = [
-        "confirmed_income",
-        "actual_income",
-        "final_income",
-        "dewu_confirmed_income",
-    ]
-
-    for field in confirmed_income_fields:
-
-        value = to_float(
-            item.get(field)
-        )
-
-        if (
-            value is not None
-            and value > 0
-        ):
-            return (
-                value,
-                True,
-                "明确平台到账金额",
-            )
-
-    # 明确的平台费用
-    confirmed_fee_fields = [
-        "dewu_fee",
-        "platform_fee",
-        "technical_service_fee",
-        "confirmed_platform_fee",
-    ]
-
-    for field in confirmed_fee_fields:
-
-        fee = to_float(
-            item.get(field)
-        )
-
-        if (
-            fee is not None
-            and fee >= 0
-            and dewu_price is not None
-        ):
-            income = dewu_price - fee
-
-            if income > 0:
-                return (
-                    income,
-                    True,
-                    "明确平台费用",
-                )
-
-    # 明确的平台费率
-    confirmed_rate_fields = [
-        "dewu_fee_rate_confirmed",
-        "platform_fee_rate_confirmed",
-        "technical_service_rate_confirmed",
-    ]
-
-    for field in confirmed_rate_fields:
-
-        rate = to_float(
-            item.get(field)
-        )
-
-        if (
-            rate is not None
-            and 0 <= rate < 1
-            and dewu_price is not None
-        ):
-            income = (
-                dewu_price
-                * (1 - rate)
-            )
-
-            return (
-                income,
-                True,
-                f"明确平台费率 {rate * 100:.2f}%",
-            )
-
-    # 没有明确费用，只能估算
     if (
-        dewu_price is not None
-        and dewu_price > 0
+        dewu_price is None
+        or buy_price is None
     ):
-        income = (
-            dewu_price
-            * DEWU_NET_RATE
+        return (
+            None,
+            None,
+            None,
         )
 
-        return (
-            income,
-            False,
-            f"按 {DEWU_FEE_RATE * 100:.0f}% 费率估算",
-        )
+    estimated_income = (
+        dewu_price
+        * DEWU_NET_RATE
+    )
+
+    total_cost = (
+        buy_price
+        + buy_shipping
+    )
+
+    estimated_profit = (
+        estimated_income
+        - total_cost
+    )
 
     return (
-        None,
-        False,
-        "没有有效得物价格",
+        estimated_income,
+        total_cost,
+        estimated_profit,
     )
 
 
@@ -348,19 +293,15 @@ def calculate_price_evidence(item):
         )
     )
 
-    if (
-        current_price is None
-        or current_price <= 0
-    ):
-        current_price = to_float(
-            item.get(
-                "price_current"
-            )
-        )
-
     channel_price = to_float(
         item.get(
             "dewu_channel_price"
+        )
+    )
+
+    fallback_price = to_float(
+        item.get(
+            "dewu_price"
         )
     )
 
@@ -368,7 +309,18 @@ def calculate_price_evidence(item):
         current_price is None
         or current_price <= 0
     ):
-        current_price = channel_price
+
+        if (
+            channel_price is not None
+            and channel_price > 0
+        ):
+            current_price = channel_price
+
+        elif (
+            fallback_price is not None
+            and fallback_price > 0
+        ):
+            current_price = fallback_price
 
     low = to_float(
         item.get(
@@ -391,12 +343,15 @@ def calculate_price_evidence(item):
         and high is not None
         and high > low
     ):
+
         position = (
             (
-                current_price - low
+                current_price
+                - low
             )
             / (
-                high - low
+                high
+                - low
             )
             * 100
         )
@@ -418,9 +373,11 @@ def calculate_price_evidence(item):
         and current_price > 0
         and 0 <= low <= current_price
     ):
+
         downside = (
             (
-                current_price - low
+                current_price
+                - low
             )
             / current_price
             * 100
@@ -442,10 +399,15 @@ def calculate_price_evidence(item):
         )
         is not None
     ):
-        status = "confirmed_current_price"
+        status = (
+            "confirmed_current_price"
+        )
 
     elif channel_price is not None:
         status = "channel_price_only"
+
+    elif fallback_price is not None:
+        status = "dewu_price_only"
 
     else:
         status = "no_dewu_price"
@@ -498,7 +460,9 @@ def calculate_turnover(item):
         and sales_7d > 0
     ):
 
-        velocity = sales_7d / 7
+        velocity = (
+            sales_7d / 7
+        )
 
         evidence = (
             f"近7日销量 {sales_7d:g}，"
@@ -512,7 +476,9 @@ def calculate_turnover(item):
         and sales_30d > 0
     ):
 
-        velocity = sales_30d / 30
+        velocity = (
+            sales_30d / 30
+        )
 
         evidence = (
             f"月销 {sales_30d:g}，"
@@ -659,47 +625,57 @@ def calculate_trend_score(item):
 # ============================================================
 
 def calculate_evidence_score(
-    item,
     price_evidence,
     turnover,
-    explicit_current,
 ):
 
     score = 0
 
-    if explicit_current:
+    if (
+        price_evidence[
+            "status"
+        ]
+        == "confirmed_current_price"
+    ):
         score += 2
 
-    elif price_evidence[
-        "current"
-    ] is not None:
+    elif (
+        price_evidence[
+            "current"
+        ]
+        is not None
+    ):
         score += 1
 
     if (
         price_evidence[
             "low"
-        ] is not None
+        ]
+        is not None
     ):
         score += 1
 
     if (
         price_evidence[
             "high"
-        ] is not None
+        ]
+        is not None
     ):
         score += 1
 
     if (
         turnover[
             "confidence"
-        ] == "high"
+        ]
+        == "high"
     ):
         score += 2
 
     elif (
         turnover[
             "confidence"
-        ] == "medium"
+        ]
+        == "medium"
     ):
         score += 1
 
@@ -707,49 +683,52 @@ def calculate_evidence_score(
 
 
 # ============================================================
-# 风险
+# 风险评分
 # ============================================================
 
 def calculate_safety(
     profit,
     downside,
     shipping_confirmed,
-    explicit_current,
-    profit_confirmed,
+    price_evidence_status,
 ):
 
     safety = 0
 
     if (
-        profit_confirmed
-        and profit is not None
+        profit is not None
         and profit >= MIN_PROFIT
     ):
         safety += 4
 
     if downside is None:
+
         safety -= 1
 
     elif downside <= 10:
+
         safety += 5
 
     elif downside <= 20:
+
         safety += 3
 
     elif downside <= MAX_DOWNSIDE_LOSS:
+
         safety += 1
 
     else:
+
         safety -= 5
 
     if not shipping_confirmed:
         safety -= 1
 
-    if not explicit_current:
-        safety -= 2
-
-    if not profit_confirmed:
-        safety -= 5
+    if (
+        price_evidence_status
+        != "confirmed_current_price"
+    ):
+        safety -= 1
 
     return safety
 
@@ -766,94 +745,68 @@ def check_hard_risks(
     profit,
     downside,
     turnover,
-    profit_confirmed,
 ):
 
     reasons = []
-
-    # --------------------------------------------------------
-    # 商品类别
-    # --------------------------------------------------------
 
     category = item.get(
         "category"
     )
 
+    # 明确排除品类
     if category == "excluded":
+
         reasons.append(
             "属于明确排除品类"
         )
 
-    # --------------------------------------------------------
-    # 买入价格
-    # --------------------------------------------------------
-
+    # 没有买入价
     if buy_price is None:
+
         reasons.append(
             "没有有效买入价"
         )
 
-    # --------------------------------------------------------
-    # 得物价格
-    # --------------------------------------------------------
-
+    # 没有得物价格
     if dewu_price is None:
+
         reasons.append(
             "没有有效得物价格"
         )
 
-    # --------------------------------------------------------
-    # 资金
-    # --------------------------------------------------------
-
+    # 资金不足
     if (
         total_cost is not None
         and total_cost > CAPITAL
     ):
+
         reasons.append(
             f"总资金占用 ¥{total_cost:.2f}"
             f"超过当前资金 ¥{CAPITAL:.2f}"
         )
 
-    # --------------------------------------------------------
-    # 利润确认
-    # --------------------------------------------------------
-
-    if not profit_confirmed:
-        reasons.append(
-            "利润未确认："
-            "平台到账/费用仍属于估算"
-        )
-
-    # --------------------------------------------------------
     # 明确亏损
-    # --------------------------------------------------------
-
     if (
         profit is not None
         and profit < -MAX_DOWNSIDE_LOSS
     ):
+
         reasons.append(
             "预计亏损超过容忍范围"
         )
 
-    # --------------------------------------------------------
-    # 下行风险
-    # --------------------------------------------------------
-
+    # 7日下行风险
     if (
         downside is not None
         and downside > MAX_DOWNSIDE_LOSS
     ):
+
         reasons.append(
             "当前价格距离7日低点过高，"
             "下行风险超过阈值"
         )
 
-    # --------------------------------------------------------
-    # 周转
-    # --------------------------------------------------------
-
+    # 明确周转超过7天
     days = turnover[
         "days"
     ]
@@ -862,40 +815,30 @@ def check_hard_risks(
         days is not None
         and days > MAX_DAYS
     ):
+
         reasons.append(
             f"明确周转时间超过"
             f"{MAX_DAYS}天"
         )
 
-    # --------------------------------------------------------
-    # 全新状态
-    #
-    # None = 未确认
-    # False = 明确不是全新
-    # True = 明确全新
-    #
-    # 未确认暂时不直接D，
-    # 但不能称为完全确认机会。
-    # --------------------------------------------------------
-
+    # 明确不是全新
     new_verified = item.get(
         "new_condition_verified"
     )
 
     if new_verified is False:
+
         reasons.append(
             "明确不是全新状态"
         )
 
-    # --------------------------------------------------------
-    # 得物查验
-    # --------------------------------------------------------
-
+    # 明确不兼容得物
     check_compatible = item.get(
         "dewu_check_compatible"
     )
 
     if check_compatible is False:
+
         reasons.append(
             "得物查验/上架兼容性不满足"
         )
@@ -916,16 +859,11 @@ def calculate_grade(
     evidence_score,
     capital_score,
     hard_risks,
-    profit_confirmed,
 ):
 
-    # D：硬风险
+    # 硬风险直接 D
     if hard_risks:
         return "D"
-
-    # 没确认利润不能推荐
-    if not profit_confirmed:
-        return "C"
 
     if (
         profit is None
@@ -943,6 +881,7 @@ def calculate_grade(
         and capital_score >= 1
         and evidence_score >= 4
     ):
+
         return "A"
 
     # B
@@ -951,6 +890,7 @@ def calculate_grade(
         and profit_rate >= MIN_PROFIT_RATE
         and safety > 0
     ):
+
         return "B"
 
     return "C"
@@ -968,7 +908,6 @@ def build_reason(
     price_evidence,
     trend,
     shipping_confirmed,
-    profit_confirmed,
     income_reason,
 ):
 
@@ -1000,14 +939,8 @@ def build_reason(
 
     if profit is not None:
 
-        label = (
-            "确认净利润"
-            if profit_confirmed
-            else "预计净利润"
-        )
-
         reasons.append(
-            f"{label} ¥{profit:.2f}"
+            f"估算利润 ¥{profit:.2f}"
         )
 
     if profit_rate is not None:
@@ -1015,6 +948,10 @@ def build_reason(
         reasons.append(
             f"利润率 {profit_rate:.2f}%"
         )
+
+    reasons.append(
+        "估算公式：得物售价×92%-买入价-买入运费"
+    )
 
     if income_reason:
 
@@ -1035,7 +972,8 @@ def build_reason(
     if (
         price_evidence[
             "low"
-        ] is not None
+        ]
+        is not None
     ):
 
         reasons.append(
@@ -1046,7 +984,8 @@ def build_reason(
     if (
         price_evidence[
             "downside"
-        ] is not None
+        ]
+        is not None
     ):
 
         reasons.append(
@@ -1063,7 +1002,7 @@ def build_reason(
     if not shipping_confirmed:
 
         reasons.append(
-            "买入运费为估算值"
+            "买入运费按 ¥6 估算"
         )
 
     return "；".join(
@@ -1091,15 +1030,20 @@ def analyze(item):
     ):
         return None
 
+    # --------------------------------------------------------
     # 商品资格
+    # --------------------------------------------------------
+
     category = item.get(
         "category"
     )
 
     if category == "excluded":
+
         return {
             "name": name,
             "grade": "D",
+            "category": category,
             "buy_price": money(
                 buy_price
             ),
@@ -1110,15 +1054,17 @@ def analyze(item):
                 "属于明确排除品类"
             ),
             "capital": CAPITAL,
-            "income_confirmed": False,
-            "profit_confirmed": False,
+            "profit_type": "estimated",
         }
 
+    # --------------------------------------------------------
     # 得物价格
+    # --------------------------------------------------------
+
     (
         dewu_price,
         price_source,
-        explicit_current,
+        price_type,
     ) = get_dewu_price(item)
 
     if (
@@ -1129,6 +1075,7 @@ def analyze(item):
         return {
             "name": name,
             "grade": "D",
+            "category": category,
             "buy_price": money(
                 buy_price
             ),
@@ -1140,48 +1087,31 @@ def analyze(item):
                 "没有有效得物价格"
             ),
             "capital": CAPITAL,
-            "income_confirmed": False,
-            "profit_confirmed": False,
+            "profit_type": "estimated",
         }
 
-    # 买入运费
+    # --------------------------------------------------------
+    # 买入成本
+    # --------------------------------------------------------
+
     (
         buy_shipping,
         shipping_confirmed,
-    ) = get_buy_shipping_cost(item)
-
-    total_cost = (
-        buy_price
-        + buy_shipping
+    ) = get_buy_shipping_cost(
+        item
     )
 
-    # 得物收入
     (
-        expected_income,
-        platform_cost_confirmed,
-        income_reason,
-    ) = get_platform_cost(
-        item,
+        estimated_income,
+        total_cost,
+        estimated_profit,
+    ) = calculate_estimated_profit(
         dewu_price,
+        buy_price,
+        buy_shipping,
     )
 
-    # 只有平台费用/到账明确，
-    # 才是真正“利润确认”
-    profit_confirmed = (
-        explicit_current
-        and platform_cost_confirmed
-    )
-
-    profit = None
-
-    if (
-        expected_income is not None
-        and expected_income > 0
-    ):
-        profit = (
-            expected_income
-            - total_cost
-        )
+    profit = estimated_profit
 
     profit_rate = None
 
@@ -1189,20 +1119,27 @@ def analyze(item):
         profit is not None
         and total_cost > 0
     ):
+
         profit_rate = (
             profit
             / total_cost
             * 100
         )
 
+    # --------------------------------------------------------
     # 价格证据
+    # --------------------------------------------------------
+
     price_evidence = (
         calculate_price_evidence(
             item
         )
     )
 
+    # --------------------------------------------------------
     # 销量
+    # --------------------------------------------------------
+
     turnover = (
         calculate_turnover(
             item
@@ -1223,17 +1160,21 @@ def analyze(item):
 
     evidence_score = (
         calculate_evidence_score(
-            item,
             price_evidence,
             turnover,
-            explicit_current,
         )
     )
 
+    # --------------------------------------------------------
     # 资金评分
+    # --------------------------------------------------------
+
     if total_cost <= CAPITAL:
+
         capital_score = 2
+
     else:
+
         capital_score = 0
 
     capital_ratio = (
@@ -1244,15 +1185,24 @@ def analyze(item):
         else None
     )
 
+    # --------------------------------------------------------
+    # 安全评分
+    # --------------------------------------------------------
+
     safety = calculate_safety(
         profit,
         price_evidence[
             "downside"
         ],
         shipping_confirmed,
-        explicit_current,
-        profit_confirmed,
+        price_evidence[
+            "status"
+        ],
     )
+
+    # --------------------------------------------------------
+    # 硬风险
+    # --------------------------------------------------------
 
     hard_risks = check_hard_risks(
         item,
@@ -1264,68 +1214,12 @@ def analyze(item):
             "downside"
         ],
         turnover,
-        profit_confirmed,
     )
 
     # --------------------------------------------------------
-    # 得物价格口径冲突
-    # --------------------------------------------------------
-
-    channel_price = to_float(
-        item.get(
-            "dewu_channel_price"
-        )
-    )
-
-    trend_price = to_float(
-        item.get(
-            "trend_current_price"
-        )
-    )
-
-    price_conflict = False
-
-    if (
-        channel_price is not None
-        and trend_price is not None
-        and channel_price > 0
-        and trend_price > 0
-    ):
-
-        difference = (
-            abs(
-                channel_price
-                - trend_price
-            )
-            / trend_price
-            * 100
-        )
-
-        if difference > 20:
-
-            price_conflict = True
-
-            hard_risks.append(
-                "得物渠道售价与"
-                "当前同款同规格到手价"
-                "差异超过20%，"
-                "价格口径不一致"
-            )
-
-    # 只有渠道价时降低证据
-    if (
-        not explicit_current
-        and channel_price is not None
-    ):
-
-        evidence_score = max(
-            0,
-            evidence_score - 1,
-        )
-
-        safety -= 1
-
     # 最终等级
+    # --------------------------------------------------------
+
     grade = calculate_grade(
         profit,
         profit_rate,
@@ -1335,13 +1229,21 @@ def analyze(item):
         evidence_score,
         capital_score,
         hard_risks,
-        profit_confirmed,
     )
 
     trend = normalize_trend(
         item.get(
             "price_trend"
         )
+    )
+
+    # --------------------------------------------------------
+    # 说明
+    # --------------------------------------------------------
+
+    income_reason = (
+        f"得物售价 ¥{dewu_price:.2f}"
+        f" × 92% = ¥{estimated_income:.2f}"
     )
 
     reason = build_reason(
@@ -1352,7 +1254,6 @@ def analyze(item):
         price_evidence,
         trend,
         shipping_confirmed,
-        profit_confirmed,
         income_reason,
     )
 
@@ -1379,12 +1280,16 @@ def analyze(item):
             price_source
         ),
 
-        "expected_income": money(
-            expected_income
+        "dewu_price_type": (
+            price_type
         ),
 
-        "income_reason": (
-            income_reason
+        "estimated_income": money(
+            estimated_income
+        ),
+
+        "expected_income": money(
+            estimated_income
         ),
 
         "total_cost": money(
@@ -1399,19 +1304,13 @@ def analyze(item):
             shipping_confirmed
         ),
 
-        "income_confirmed": (
-            explicit_current
-        ),
-
-        "platform_cost_confirmed": (
-            platform_cost_confirmed
-        ),
-
-        "profit_confirmed": (
-            profit_confirmed
-        ),
+        "profit_type": "estimated",
 
         "profit": money(
+            profit
+        ),
+
+        "estimated_profit": money(
             profit
         ),
 
@@ -1507,10 +1406,6 @@ def analyze(item):
 
         "capital_score": capital_score,
 
-        "price_conflict": (
-            price_conflict
-        ),
-
         "hard_risks": hard_risks,
 
         "reason": reason,
@@ -1552,10 +1447,15 @@ def main():
 
         try:
 
-            result = analyze(item)
+            result = analyze(
+                item
+            )
 
             if result is not None:
-                results.append(result)
+
+                results.append(
+                    result
+                )
 
         except Exception as e:
 
@@ -1566,8 +1466,10 @@ def main():
             )
 
     # --------------------------------------------------------
-    # A/B：
-    # 只有真正确认利润的商品才能进入候选
+    # A/B 推荐候选
+    #
+    # 现在允许使用“估算利润”。
+    # 明确标记 profit_type=estimated。
     # --------------------------------------------------------
 
     candidates = [
@@ -1578,10 +1480,6 @@ def main():
             "A",
             "B",
         }
-        and item.get(
-            "profit_confirmed"
-        )
-        is True
     ]
 
     candidates.sort(
@@ -1591,7 +1489,7 @@ def main():
             else 1,
 
             -(
-                x.get("profit")
+                x.get("estimated_profit")
                 or 0
             ),
 
@@ -1626,14 +1524,17 @@ def main():
             "max_downside_loss":
                 MAX_DOWNSIDE_LOSS,
 
-            "dewu_fee_rate":
-                DEWU_FEE_RATE,
+            "dewu_net_rate":
+                DEWU_NET_RATE,
 
             "default_buy_shipping":
                 DEFAULT_BUY_SHIPPING,
 
-            "profit_must_be_confirmed":
-                True,
+            "profit_type":
+                "estimated",
+
+            "profit_formula":
+                "得物售价×92%-买入价-买入运费",
         },
 
         "summary": {
@@ -1645,48 +1546,45 @@ def main():
                 sum(
                     1
                     for x in results
-                    if x.get("grade") == "A"
+                    if x.get(
+                        "grade"
+                    ) == "A"
                 ),
 
             "B":
                 sum(
                     1
                     for x in results
-                    if x.get("grade") == "B"
+                    if x.get(
+                        "grade"
+                    ) == "B"
                 ),
 
             "C":
                 sum(
                     1
                     for x in results
-                    if x.get("grade") == "C"
+                    if x.get(
+                        "grade"
+                    ) == "C"
                 ),
 
             "D":
                 sum(
                     1
                     for x in results
-                    if x.get("grade") == "D"
+                    if x.get(
+                        "grade"
+                    ) == "D"
                 ),
 
-            "profit_confirmed":
+            "estimated_profit_count":
                 sum(
                     1
                     for x in results
                     if x.get(
-                        "profit_confirmed"
-                    )
-                    is True
-                ),
-
-            "profit_unconfirmed":
-                sum(
-                    1
-                    for x in results
-                    if x.get(
-                        "profit_confirmed"
-                    )
-                    is not True
+                        "profit_type"
+                    ) == "estimated"
                 ),
         },
 
@@ -1738,13 +1636,12 @@ def main():
     )
 
     print(
-        f"已确认利润："
-        f"{output['summary']['profit_confirmed']}"
+        "利润类型：估算利润"
     )
 
     print(
-        f"未确认利润："
-        f"{output['summary']['profit_unconfirmed']}"
+        "估算公式："
+        "得物售价×92%-买入价-买入运费"
     )
 
     print(
@@ -1762,7 +1659,7 @@ def main():
             f"{item.get('name')} | "
             f"买入 ¥{item.get('buy_price')} | "
             f"得物 ¥{item.get('dewu_price')} | "
-            f"确认利润 ¥{item.get('profit')} | "
+            f"估算利润 ¥{item.get('estimated_profit')} | "
             f"利润率 "
             f"{item.get('profit_rate')}%"
         )

@@ -1,11 +1,11 @@
 import json
+import math
 from pathlib import Path
-from datetime import datetime, timezone
 
 
-# ============================================================
-# 基础规则
-# ============================================================
+INPUT_FILE = "products.json"
+OUTPUT_FILE = "monitor_results.json"
+
 
 CAPITAL = 330
 
@@ -17,1852 +17,1409 @@ MIN_PROFIT_RATE = 12
 
 MAX_DOWNSIDE_LOSS = 25
 
-
-# ============================================================
-# 得物费用模型
-# ============================================================
-
 DEWU_FEE_RATE = 0.08
-DEWU_NET_RATE = 0.92
+DEWU_NET_RATE = 1 - DEWU_FEE_RATE
+
+DEFAULT_BUY_SHIPPING = 6
 
 
-# ============================================================
-# 默认买入运费
-# ============================================================
-
-DEFAULT_BUY_SHIPPING_COST = 6
-
-
-# ============================================================
-# 工具
-# ============================================================
-
-def is_number(value):
-    return (
-        isinstance(value, (int, float))
-        and not isinstance(value, bool)
-    )
-
-
-def money(value):
-    if is_number(value):
-        return float(value)
+def to_float(value):
+    if value is None:
+        return None
 
     try:
-        if value is None:
-            return None
-
-        text = str(value).strip()
-
-        if not text:
-            return None
-
-        return float(text)
-
+        return float(value)
     except Exception:
         return None
 
 
-def positive_number(value):
-    value = money(value)
-
+def money(value):
     if value is None:
         return None
 
-    if value <= 0:
-        return None
+    return round(float(value), 2)
 
-    return value
-
-
-def first_number(item, *keys):
-    for key in keys:
-        value = positive_number(item.get(key))
-
-        if value is not None:
-            return value
-
-    return None
-
-
-# ============================================================
-# 得物预计到账
-# ============================================================
-
-def calculate_expected_income(item):
-
-    explicit_income = positive_number(
-        item.get("expected_income")
-    )
-
-    if explicit_income is not None:
-        return {
-            "value": explicit_income,
-            "confirmed": True,
-            "method": "数据源明确预计到账",
-        }
-
-    sale = positive_number(
-        item.get("dewu_price")
-    )
-
-    if sale is None:
-        return {
-            "value": None,
-            "confirmed": False,
-            "method": "没有得物有效售价",
-        }
-
-    income = sale * DEWU_NET_RATE
-
-    return {
-        "value": round(income, 2),
-        "confirmed": False,
-        "method": "得物售价按8%费用估算到账",
-    }
-
-
-# ============================================================
-# 买入运费
-# ============================================================
-
-def get_buy_shipping_cost(item):
-
-    value = money(
-        item.get("buy_shipping_cost")
-    )
-
-    if value is not None and value >= 0:
-        return {
-            "value": value,
-            "confirmed": True,
-            "method": "商品买入运费",
-        }
-
-    return {
-        "value": DEFAULT_BUY_SHIPPING_COST,
-        "confirmed": False,
-        "method": "默认买入运费估算",
-    }
-
-
-# ============================================================
-# 品类
-# ============================================================
-
-def category_status(item):
-
-    category = str(
-        item.get("category", "unknown")
-    ).lower()
-
-    if category == "excluded":
-        return "excluded"
-
-    if category == "target":
-        return "target"
-
-    return "unknown"
-
-
-# ============================================================
-# 判断是否来自识货
-#
-# 识货来源：
-# 默认视为正品风险已经有平台保障。
-# 不再因为 authenticity_verified 缺失而降低评级。
-# ============================================================
-
-def is_shihuo_source(item):
-
-    values = [
-        item.get("data_source"),
-        item.get("discovery_data_source"),
-        item.get("source_note"),
-        item.get("shihuo_url"),
-    ]
-
-    text = " ".join(
-        str(x).lower()
-        for x in values
-        if x
-    )
-
-    return (
-        "识货" in text
-        or "shihuo" in text
-    )
-
-
-# ============================================================
-# 价格趋势标准化
-# ============================================================
 
 def normalize_trend(value):
-
     if value is None:
         return None
 
     text = str(value).strip().lower()
 
-    if not text:
+    mapping = {
+        "rising": "上涨",
+        "rise": "上涨",
+        "up": "上涨",
+        "上涨": "上涨",
+
+        "falling": "下跌",
+        "fall": "下跌",
+        "down": "下跌",
+        "下跌": "下跌",
+
+        "stable": "稳定",
+        "flat": "稳定",
+        "稳定": "稳定",
+        "平稳": "稳定",
+    }
+
+    return mapping.get(
+        text,
+        value if value in {
+            "上涨",
+            "下跌",
+            "稳定",
+        } else None,
+    )
+
+
+def load_products():
+    path = Path(INPUT_FILE)
+
+    if not path.exists():
+        return []
+
+    try:
+        data = json.loads(
+            path.read_text(
+                encoding="utf-8"
+            )
+        )
+    except Exception:
+        return []
+
+    return (
+        data.get("products")
+        or []
+    )
+
+
+def get_buy_price(item):
+    value = to_float(
+        item.get("buy_price")
+    )
+
+    if value is None or value <= 0:
         return None
 
-    if any(x in text for x in [
-        "falling",
-        "下降",
-        "下跌",
-        "走低",
-        "下行",
-    ]):
-        return "falling"
-
-    if any(x in text for x in [
-        "rising",
-        "上涨",
-        "上升",
-        "走高",
-        "上行",
-    ]):
-        return "rising"
-
-    if any(x in text for x in [
-        "stable",
-        "稳定",
-        "持平",
-    ]):
-        return "stable"
-
-    return None
+    return value
 
 
-# ============================================================
-# 销量 / 周转证据
-#
-# 注意：
-# sales_velocity_7d = 每天卖多少件
-# 不是周转天数。
-#
-# 没有库存数据时绝不伪造周转天数。
-# ============================================================
+def get_dewu_price(item):
+    """
+    优先使用明确的：
+    当前同款同规格到手价。
 
-def calculate_turnover(item):
+    没有时才使用：
+    得物渠道售价。
 
-    sales_7d = positive_number(
-        item.get("sales_7d")
+    同时返回价格来源。
+    """
+
+    trend_price = to_float(
+        item.get(
+            "trend_current_price"
+        )
     )
-
-    sales_30d = positive_number(
-        item.get("sales_30d")
-    )
-
-    velocity = positive_number(
-        item.get("sales_velocity_7d")
-    )
-
-    if velocity is None and sales_7d is not None:
-        velocity = sales_7d / 7
-
-    if velocity is None and sales_30d is not None:
-        velocity = sales_30d / 30
-
-    if sales_7d is not None:
-
-        return {
-            "confirmed": True,
-            "source": "近7日销量",
-            "sales_7d": sales_7d,
-            "sales_30d": sales_30d,
-            "velocity": round(velocity, 2) if velocity else None,
-            "days": None,
-            "display": (
-                f"近7日销量{sales_7d:g}，"
-                f"日均{velocity:.2f}"
-                if velocity
-                else f"近7日销量{sales_7d:g}"
-            ),
-        }
-
-    if sales_30d is not None:
-
-        return {
-            "confirmed": True,
-            "source": "近30日销量",
-            "sales_7d": None,
-            "sales_30d": sales_30d,
-            "velocity": round(velocity, 2) if velocity else None,
-            "days": None,
-            "display": (
-                f"月销{sales_30d:g}，"
-                f"日均{velocity:.2f}"
-                if velocity
-                else f"月销{sales_30d:g}"
-            ),
-        }
-
-    if velocity is not None:
-
-        return {
-            "confirmed": True,
-            "source": "销量速度",
-            "sales_7d": None,
-            "sales_30d": None,
-            "velocity": round(velocity, 2),
-            "days": None,
-            "display": f"日均销量{velocity:.2f}",
-        }
-
-    explicit_days = money(
-        item.get("days")
-    )
-
-    if explicit_days is not None and explicit_days >= 0:
-
-        return {
-            "confirmed": True,
-            "source": "周转天数",
-            "sales_7d": None,
-            "sales_30d": None,
-            "velocity": None,
-            "days": explicit_days,
-            "display": f"周转约{explicit_days:g}天",
-        }
-
-    return {
-        "confirmed": False,
-        "source": None,
-        "sales_7d": None,
-        "sales_30d": None,
-        "velocity": None,
-        "days": None,
-        "display": "未获取销量/周转证据",
-    }
-
-
-# ============================================================
-# 价格走势 / 下跌风险
-# ============================================================
-
-def calculate_price_evidence(item):
-
-    current = first_number(
-        item,
-        "trend_current_price",
-        "price_current",
-        "dewu_price"
-    )
-
-    low = first_number(
-        item,
-        "price_7d_low"
-    )
-
-    high = first_number(
-        item,
-        "price_7d_high"
-    )
-
-    downside_percent = money(
-        item.get("downside_to_7d_low")
-    )
-
-    downside_amount = None
 
     if (
-        current is not None
-        and low is not None
-        and current > 0
-        and low > 0
-        and current >= low
+        trend_price is not None
+        and trend_price > 0
     ):
-        downside_amount = current - low
+        return (
+            trend_price,
+            "当前同款同规格到手价",
+            True,
+        )
 
-        if downside_percent is None:
-            downside_percent = (
-                downside_amount
-                / current
-                * 100
+    channel_price = to_float(
+        item.get(
+            "dewu_channel_price"
+        )
+    )
+
+    if (
+        channel_price is None
+        or channel_price <= 0
+    ):
+        channel_price = to_float(
+            item.get(
+                "dewu_price"
+            )
+        )
+
+    if (
+        channel_price is not None
+        and channel_price > 0
+    ):
+        return (
+            channel_price,
+            "得物渠道售价",
+            False,
+        )
+
+    return (
+        None,
+        None,
+        False,
+    )
+
+
+def get_buy_shipping_cost(item):
+    """
+    如果识货明确给出买入运费，就使用明确值。
+    否则使用保守的 ¥6，并标记为估算。
+    """
+
+    candidates = [
+        item.get(
+            "buy_shipping_cost"
+        ),
+        item.get(
+            "shipping_cost"
+        ),
+        item.get(
+            "consumer_shipping_fee"
+        ),
+    ]
+
+    for value in candidates:
+
+        number = to_float(
+            value
+        )
+
+        if (
+            number is not None
+            and number >= 0
+        ):
+            return (
+                number,
+                True,
             )
 
-    trend = normalize_trend(
-        item.get("price_trend")
+    return (
+        DEFAULT_BUY_SHIPPING,
+        False,
     )
 
-    if trend is None:
-        trend = normalize_trend(
-            item.get("trend")
-        )
 
-    price_change_7d = money(
-        item.get("price_change_7d")
-    )
+def get_platform_cost(item):
+    """
+    得物侧费用。
 
-    confirmed = (
-        current is not None
-        and (
-            low is not None
-            or trend is not None
-            or price_change_7d is not None
+    如果存在明确费用，优先使用。
+    否则按照 8% 技术服务费估算。
+    """
+
+    expected_income = to_float(
+        item.get(
+            "expected_income"
         )
     )
-
-    return {
-        "confirmed": confirmed,
-        "current": current,
-        "low": low,
-        "high": high,
-        "downside_amount": (
-            round(downside_amount, 2)
-            if downside_amount is not None
-            else None
-        ),
-        "downside_percent": (
-            round(downside_percent, 2)
-            if downside_percent is not None
-            else None
-        ),
-        "trend": trend,
-        "change_7d": price_change_7d,
-    }
-
-
-# ============================================================
-# 利润安全垫
-# ============================================================
-
-def calculate_profit_safety_margin(
-    sale,
-    total_buy_cost
-):
 
     if (
-        sale is None
-        or total_buy_cost is None
-        or sale <= 0
-        or total_buy_cost <= 0
+        expected_income is not None
+        and expected_income > 0
     ):
-        return {
-            "break_even_sale": None,
-            "amount": None,
-            "rate": None,
-        }
+        return (
+            expected_income,
+            True,
+        )
 
-    break_even_sale = (
-        total_buy_cost
-        / DEWU_NET_RATE
+    dewu_price, _, _ = get_dewu_price(
+        item
     )
 
-    amount = (
-        sale
-        - break_even_sale
+    if (
+        dewu_price is None
+        or dewu_price <= 0
+    ):
+        return (
+            None,
+            False,
+        )
+
+    income = (
+        dewu_price
+        * DEWU_NET_RATE
     )
 
-    rate = (
-        amount
-        / sale
-        * 100
+    return (
+        income,
+        False,
     )
+
+
+def calculate_price_evidence(item):
+    current_price = to_float(
+        item.get(
+            "trend_current_price"
+        )
+    )
+
+    if (
+        current_price is None
+        or current_price <= 0
+    ):
+        current_price = to_float(
+            item.get(
+                "price_current"
+            )
+        )
+
+    if (
+        current_price is None
+        or current_price <= 0
+    ):
+        channel_price = to_float(
+            item.get(
+                "dewu_channel_price"
+            )
+        )
+
+        if (
+            channel_price is not None
+            and channel_price > 0
+        ):
+            current_price = (
+                channel_price
+            )
+
+    low = to_float(
+        item.get(
+            "price_7d_low"
+        )
+    )
+
+    high = to_float(
+        item.get(
+            "price_7d_high"
+        )
+    )
+
+    position = None
+    downside = None
+
+    if (
+        current_price is not None
+        and low is not None
+        and high is not None
+        and high > low
+    ):
+        position = (
+            (
+                current_price - low
+            )
+            / (
+                high - low
+            )
+            * 100
+        )
+
+        position = round(
+            max(
+                0,
+                min(
+                    100,
+                    position,
+                ),
+            ),
+            2,
+        )
+
+    if (
+        current_price is not None
+        and low is not None
+        and current_price > 0
+        and low >= 0
+        and low <= current_price
+    ):
+        downside = (
+            (
+                current_price - low
+            )
+            / current_price
+            * 100
+        )
+
+        downside = round(
+            max(
+                0,
+                downside,
+            ),
+            2,
+        )
 
     return {
-        "break_even_sale": round(
-            break_even_sale,
-            2
-        ),
-        "amount": round(
-            amount,
-            2
-        ),
-        "rate": round(
-            rate,
-            2
-        ),
+        "current": current_price,
+        "low": low,
+        "high": high,
+        "position": position,
+        "downside": downside,
     }
 
 
-# ============================================================
-# 销量评分
-# ============================================================
+def calculate_turnover(item):
+    """
+    销量和周转分开。
 
-def sales_score(turnover):
+    有 7 日销量：
+        可以得到销量速度。
 
-    if not turnover["confirmed"]:
-        return 0
+    有月销：
+        只能得到月销/日均销量证据，
+        不能假装成“7天周转天数”。
 
-    velocity = turnover["velocity"]
+    没有库存：
+        days = None
+    """
 
-    sales_7d = turnover["sales_7d"]
+    sales_7d = to_float(
+        item.get(
+            "sales_7d"
+        )
+    )
 
-    sales_30d = turnover["sales_30d"]
+    sales_30d = to_float(
+        item.get(
+            "sales_30d"
+        )
+    )
 
-    if sales_7d is not None:
+    velocity = to_float(
+        item.get(
+            "sales_velocity_7d"
+        )
+    )
 
-        if sales_7d >= 20:
-            return 3
+    evidence = item.get(
+        "turnover_evidence"
+    )
 
-        if sales_7d >= 7:
-            return 2
+    confidence = item.get(
+        "turnover_confidence"
+    )
 
-        return 1
+    if (
+        sales_7d is not None
+        and sales_7d > 0
+    ):
+        velocity = (
+            sales_7d / 7
+        )
 
-    if velocity is not None:
+        evidence = (
+            f"近7日销量 "
+            f"{sales_7d:g}，"
+            f"日均约 "
+            f"{velocity:.2f}"
+        )
 
-        if velocity >= 3:
-            return 3
+        confidence = "high"
 
-        if velocity >= 1:
-            return 2
+    elif (
+        sales_30d is not None
+        and sales_30d > 0
+    ):
+        velocity = (
+            sales_30d / 30
+        )
 
-        return 1
+        evidence = (
+            f"月销 "
+            f"{sales_30d:g}，"
+            f"日均约 "
+            f"{velocity:.2f}"
+        )
 
-    if sales_30d is not None:
+        confidence = "medium"
 
-        if sales_30d >= 120:
-            return 3
+    elif evidence:
+        confidence = (
+            confidence
+            or "low"
+        )
 
-        if sales_30d >= 30:
-            return 2
+    else:
+        confidence = (
+            confidence
+            or "unknown"
+        )
 
-        return 1
-
-    return 0
-
-
-# ============================================================
-# 趋势评分
-# ============================================================
-
-def trend_score(price):
-
-    trend = price["trend"]
-
-    change = price["change_7d"]
-
-    if trend == "rising":
-        return 3
-
-    if trend == "stable":
-        return 2
-
-    if trend == "falling":
-
-        if change is not None and change <= -10:
-            return 0
-
-        return 1
-
-    if change is not None:
-
-        if change >= 5:
-            return 3
-
-        if change >= -3:
-            return 2
-
-        if change >= -10:
-            return 1
-
-        return 0
-
-    if price["low"] is not None:
-        return 2
-
-    return 0
+    return {
+        "sales_7d": sales_7d,
+        "sales_30d": sales_30d,
+        "velocity": velocity,
+        "evidence": evidence,
+        "confidence": confidence,
+        "days": None,
+    }
 
 
-# ============================================================
-# 商品状态证据
-#
-# 识货来源：
-# 正品风险默认通过。
-#
-# 仍然要求：
-# 1. 全新状态
-# 2. 得物查验兼容
-#
-# 非识货来源：
-# 才额外考虑真伪证据。
-# ============================================================
+def calculate_sales_score(turnover):
+    sales_7d = turnover[
+        "sales_7d"
+    ]
 
-def evidence_score(item):
+    sales_30d = turnover[
+        "sales_30d"
+    ]
+
+    velocity = turnover[
+        "velocity"
+    ]
 
     score = 0
 
-    shihuo = is_shihuo_source(item)
+    if (
+        sales_7d is not None
+        and sales_7d >= 20
+    ):
+        score = 3
 
-    if shihuo:
+    elif (
+        sales_7d is not None
+        and sales_7d >= 7
+    ):
+        score = 2
+
+    elif (
+        sales_7d is not None
+        and sales_7d > 0
+    ):
+        score = 1
+
+    elif (
+        sales_30d is not None
+        and sales_30d >= 1000
+    ):
+        score = 3
+
+    elif (
+        sales_30d is not None
+        and sales_30d >= 300
+    ):
+        score = 2
+
+    elif (
+        sales_30d is not None
+        and sales_30d > 0
+    ):
+        score = 1
+
+    elif (
+        velocity is not None
+        and velocity >= 30
+    ):
+        score = 2
+
+    elif (
+        velocity is not None
+        and velocity > 0
+    ):
+        score = 1
+
+    return score
+
+
+def calculate_trend_score(item):
+    trend = normalize_trend(
+        item.get(
+            "price_trend"
+        )
+    )
+
+    change_7d = to_float(
+        item.get(
+            "price_change_7d"
+        )
+    )
+
+    score = 0
+
+    if trend == "上涨":
+        score += 2
+
+    elif trend == "稳定":
         score += 1
 
-    elif item.get("authenticity_evidence"):
-        score += 1
+    elif trend == "下跌":
+        score -= 1
 
-    elif item.get("authenticity_verified") is True:
-        score += 1
+    if change_7d is not None:
 
-    if item.get("new_condition_evidence"):
-        score += 1
+        if change_7d > 3:
+            score += 1
 
-    if item.get("new_condition_verified") is True:
-        score += 1
+        elif change_7d < -5:
+            score -= 1
 
-    if item.get("dewu_check_evidence"):
-        score += 1
+    return max(
+        -2,
+        min(
+            3,
+            score,
+        ),
+    )
 
-    if item.get("dewu_check_compatible") is True:
-        score += 1
 
-    return min(score, 3)
-
-
-# ============================================================
-# 过滤结果
-# ============================================================
-
-def filtered_result(
+def calculate_evidence_score(
     item,
-    reason,
-    grade="D"
+    price_evidence,
+    turnover,
 ):
+    score = 0
 
-    turnover = calculate_turnover(item)
+    # 当前价格明确
+    if (
+        price_evidence[
+            "current"
+        ]
+        is not None
+    ):
+        score += 1
 
-    price = calculate_price_evidence(item)
+    # 7日低点明确
+    if (
+        price_evidence[
+            "low"
+        ]
+        is not None
+    ):
+        score += 1
 
-    return {
+    # 7日高点明确
+    if (
+        price_evidence[
+            "high"
+        ]
+        is not None
+    ):
+        score += 1
 
-        "name":
-            item.get(
-                "name",
-                "未知商品"
-            ),
+    # 销量证据
+    if (
+        turnover[
+            "confidence"
+        ] == "high"
+    ):
+        score += 2
 
-        "grade":
-            grade,
+    elif (
+        turnover[
+            "confidence"
+        ] == "medium"
+    ):
+        score += 1
 
-        "grade_reason":
-            reason,
-
-        "status":
-            "过滤",
-
-        "buy_price":
-            None,
-
-        "dewu_price":
-            None,
-
-        "expected_income":
-            None,
-
-        "income_method":
-            "无法计算",
-
-        "total_buy_cost":
-            None,
-
-        "net_profit":
-            None,
-
-        "profit_rate":
-            None,
-
-        "days":
-            turnover["days"],
-
-        "days_display":
-            turnover["display"],
-
-        "turnover_confirmed":
-            turnover["confirmed"],
-
-        "turnover_evidence":
-            turnover["display"],
-
-        "sales_7d":
-            turnover["sales_7d"],
-
-        "sales_30d":
-            turnover["sales_30d"],
-
-        "sales_velocity_7d":
-            turnover["velocity"],
-
-        "price_current":
-            price["current"],
-
-        "price_7d_low":
-            price["low"],
-
-        "price_7d_high":
-            price["high"],
-
-        "downside_to_7d_low":
-            price["downside_percent"],
-
-        "downside_loss":
-            price["downside_amount"],
-
-        "price_change_7d":
-            price["change_7d"],
-
-        "price_trend":
-            price["trend"],
-
-        "risk_flags":
-            [reason],
-
-        "reasons":
-            [reason],
-    }
+    return score
 
 
-# ============================================================
-# 核心评估
-# ============================================================
+def calculate_safety(
+    profit,
+    downside,
+    buy_shipping_confirmed,
+    price_evidence,
+):
+    safety = 0
 
-def evaluate(item):
+    if profit >= MIN_PROFIT:
+        safety += 4
 
+    if (
+        downside is None
+    ):
+        safety -= 1
+
+    elif downside <= 10:
+        safety += 5
+
+    elif downside <= 20:
+        safety += 3
+
+    elif downside <= MAX_DOWNSIDE_LOSS:
+        safety += 1
+
+    else:
+        safety -= 5
+
+    if not buy_shipping_confirmed:
+        safety -= 1
+
+    if (
+        price_evidence[
+            "current"
+        ]
+        is None
+    ):
+        safety -= 3
+
+    return safety
+
+
+def check_hard_risks(
+    item,
+    buy_price,
+    dewu_price,
+    profit,
+    downside,
+    turnover,
+):
     reasons = []
 
-    risk_flags = []
-
-
-    # --------------------------------------------------------
-    # 1. 品类
-    # --------------------------------------------------------
-
-    if category_status(item) == "excluded":
-
-        return filtered_result(
-            item,
-            "非目标商品品类",
-            "D"
+    if buy_price is None:
+        reasons.append(
+            "没有有效买入价"
         )
 
-
-    # --------------------------------------------------------
-    # 2. 买入价格
-    # --------------------------------------------------------
-
-    buy_prices = item.get(
-        "buy_prices",
-        {}
-    )
-
-    if not isinstance(
-        buy_prices,
-        dict
-    ):
-
-        return filtered_result(
-            item,
-            "买入价格字段错误",
-            "D"
+    if dewu_price is None:
+        reasons.append(
+            "没有有效得物价格"
         )
-
-    valid_prices = []
-
-    for price in buy_prices.values():
-
-        value = positive_number(price)
-
-        if value is not None:
-            valid_prices.append(value)
-
-    if not valid_prices:
-
-        return filtered_result(
-            item,
-            "没有有效买入价格",
-            "D"
-        )
-
-    buy = min(valid_prices)
-
-
-    # --------------------------------------------------------
-    # 3. 得物售价
-    # --------------------------------------------------------
-
-    sale = positive_number(
-        item.get("dewu_price")
-    )
-
-    if sale is None:
-
-        return filtered_result(
-            item,
-            "没有有效得物公开售价",
-            "D"
-        )
-
-
-    # --------------------------------------------------------
-    # 4. 得物预计到账
-    # --------------------------------------------------------
-
-    income_result = (
-        calculate_expected_income(item)
-    )
-
-    expected_income = (
-        income_result["value"]
-    )
-
-    income_method = (
-        income_result["method"]
-    )
-
-    if expected_income is None:
-
-        return filtered_result(
-            item,
-            "无法计算预计到账",
-            "D"
-        )
-
-
-    # --------------------------------------------------------
-    # 5. 买入运费
-    # --------------------------------------------------------
-
-    shipping = get_buy_shipping_cost(item)
-
-    buy_shipping = shipping["value"]
-
-    shipping_confirmed = shipping["confirmed"]
-
-    if not shipping_confirmed:
-
-        risk_flags.append(
-            "买入运费未明确，暂按¥6估算"
-        )
-
-
-    # --------------------------------------------------------
-    # 6. 总成本
-    # --------------------------------------------------------
-
-    total_buy_cost = (
-        buy
-        + buy_shipping
-    )
-
-
-    # --------------------------------------------------------
-    # 7. 资金
-    # --------------------------------------------------------
-
-    if total_buy_cost > CAPITAL:
-
-        return filtered_result(
-            item,
-            (
-                f"总资金占用¥{total_buy_cost:.2f}"
-                f"超过当前本金¥{CAPITAL}"
-            ),
-            "D"
-        )
-
-
-    # --------------------------------------------------------
-    # 8. 利润
-    # --------------------------------------------------------
-
-    profit = (
-        expected_income
-        - total_buy_cost
-    )
-
-    profit_rate = (
-        profit
-        / total_buy_cost
-        * 100
-    )
-
-    if profit <= 0:
-
-        return filtered_result(
-            item,
-            f"预计净利润¥{profit:.2f}，没有实际盈利空间",
-            "D"
-        )
-
-
-    # --------------------------------------------------------
-    # 9. 安全垫
-    # --------------------------------------------------------
-
-    safety = (
-        calculate_profit_safety_margin(
-            sale,
-            total_buy_cost
-        )
-    )
-
-    safety_rate = safety["rate"]
-
-    break_even_sale = safety["break_even_sale"]
-
-    safety_amount = safety["amount"]
-
-
-    # --------------------------------------------------------
-    # 10. 周转证据
-    # --------------------------------------------------------
-
-    # 重要：
-    # 这里直接读取明确的 days 字段。
-    # 即使同时存在销量数据，也必须执行7天硬限制。
-    explicit_days = money(
-        item.get("days")
-    )
 
     if (
-        explicit_days is not None
-        and explicit_days > MAX_DAYS
+        profit is not None
+        and profit < -MAX_DOWNSIDE_LOSS
     ):
-
-        return filtered_result(
-            item,
-            (
-                f"明确周转约{explicit_days:g}天，"
-                f"超过最大允许{MAX_DAYS}天"
-            ),
-            "D"
+        reasons.append(
+            "预计亏损超过容忍范围"
         )
-
-    turnover = calculate_turnover(item)
-
-    if not turnover["confirmed"]:
-
-        risk_flags.append(
-            "近期销量/周转证据未获取"
-        )
-
-
-    # --------------------------------------------------------
-    # 11. 价格走势
-    # --------------------------------------------------------
-
-    price = calculate_price_evidence(item)
-
-    trend = price["trend"]
-
-    change_7d = price["change_7d"]
-
-    downside_amount = price["downside_amount"]
-
-    downside_percent = price["downside_percent"]
-
-    if not price["confirmed"]:
-
-        risk_flags.append(
-            "价格走势证据未获取"
-        )
-
-    if trend == "falling":
-
-        risk_flags.append(
-            "近期价格走势偏弱"
-        )
-
-
-    # --------------------------------------------------------
-    # 12. 下跌风险
-    # --------------------------------------------------------
-
-    if downside_amount is not None:
-
-        if downside_amount > MAX_DOWNSIDE_LOSS:
-
-            risk_flags.append(
-                (
-                    f"当前价回落至7日低点的"
-                    f"空间约¥{downside_amount:.2f}"
-                    f"，超过容忍¥{MAX_DOWNSIDE_LOSS}"
-                )
-            )
-
-    source_downside_loss = money(
-        item.get("downside_loss")
-    )
 
     if (
-        source_downside_loss is not None
-        and source_downside_loss > MAX_DOWNSIDE_LOSS
+        downside is not None
+        and downside > MAX_DOWNSIDE_LOSS
     ):
-
-        if (
-            downside_amount is None
-            or source_downside_loss > downside_amount
-        ):
-            downside_amount = source_downside_loss
-
-
-    # --------------------------------------------------------
-    # 13. 流动性
-    # --------------------------------------------------------
-
-    liquidity = str(
-        item.get(
-            "liquidity",
-            "未知"
-        )
-    )
-
-    if liquidity not in ("高", "中"):
-
-        risk_flags.append(
-            f"流动性：{liquidity}"
+        reasons.append(
+            "当前价格距离7日低点过高，"
+            "下行风险超过阈值"
         )
 
+    days = turnover[
+        "days"
+    ]
 
-    # --------------------------------------------------------
-    # 14. 商品状态证据
-    # --------------------------------------------------------
-
-    e_score = evidence_score(item)
-
-    shihuo_source = is_shihuo_source(item)
-
-    if shihuo_source:
-
-        # 识货来源默认正品风险通过
-        pass
-
-    elif e_score == 0:
-
-        risk_flags.append(
-            "非识货来源且真伪证据不足"
+    if (
+        days is not None
+        and days > MAX_DAYS
+    ):
+        reasons.append(
+            f"明确周转时间超过"
+            f"{MAX_DAYS}天"
         )
 
-
-    # --------------------------------------------------------
-    # 15. 全新状态
-    # --------------------------------------------------------
-
+    # 全新状态
     new_verified = item.get(
         "new_condition_verified"
     )
 
-    new_evidence = item.get(
-        "new_condition_evidence"
-    )
-
-    if (
-        new_verified is False
-        and not new_evidence
-    ):
-
-        return filtered_result(
-            item,
-            "明确不是全新状态",
-            "D"
+    if new_verified is False:
+        reasons.append(
+            "不是明确全新状态"
         )
 
-
-    # --------------------------------------------------------
-    # 16. 得物查验
-    # --------------------------------------------------------
-
-    dewu_check = item.get(
+    # 得物查验兼容性
+    check_compatible = item.get(
         "dewu_check_compatible"
     )
 
-    if dewu_check is False:
-
-        return filtered_result(
-            item,
-            "明确不兼容得物查验",
-            "D"
+    if check_compatible is False:
+        reasons.append(
+            "得物查验/上架兼容性不满足"
         )
 
+    return reasons
 
-    # --------------------------------------------------------
-    # 17. 利润评分
-    # --------------------------------------------------------
 
-    if profit >= 50:
-        profit_score = 4
+def calculate_grade(
+    profit,
+    profit_rate,
+    safety,
+    sales_score,
+    trend_score,
+    evidence_score,
+    capital_score,
+    hard_risks,
+):
+    if hard_risks:
+        return "D"
 
-    elif profit >= 30:
-        profit_score = 3
+    if (
+        profit is None
+        or profit_rate is None
+    ):
+        return "C"
 
-    elif profit >= MIN_PROFIT:
-        profit_score = 2
+    # A：证据充分 + 利润高 + 风险可控
+    if (
+        profit >= 30
+        and profit_rate >= 20
+        and safety >= 12
+        and sales_score >= 2
+        and trend_score >= 2
+        and capital_score >= 1
+        and evidence_score >= 2
+    ):
+        return "A"
+
+    # B：利润和资金风险达到最低要求
+    # B 同样属于推荐候选
+    if (
+        profit >= MIN_PROFIT
+        and profit_rate >= MIN_PROFIT_RATE
+        and safety > 0
+    ):
+        return "B"
+
+    return "C"
+
+
+def build_reason(
+    grade,
+    profit,
+    profit_rate,
+    turnover,
+    price_evidence,
+    trend,
+    buy_shipping_confirmed,
+):
+    reasons = []
+
+    if grade == "A":
+        reasons.append(
+            "利润、资金占用、"
+            "价格和销量证据较完整"
+        )
+
+    elif grade == "B":
+        reasons.append(
+            "利润和资金条件达到"
+            "推荐候选门槛"
+        )
 
     else:
-        profit_score = 1
+        reasons.append(
+            "当前证据或风险条件"
+            "不足以进入推荐候选"
+        )
 
+    if profit is not None:
+        reasons.append(
+            f"预计净利润 ¥{profit:.2f}"
+        )
 
-    if profit_rate >= 30:
-        rate_score = 4
+    if profit_rate is not None:
+        reasons.append(
+            f"利润率 {profit_rate:.2f}%"
+        )
 
-    elif profit_rate >= 20:
-        rate_score = 3
+    evidence = turnover[
+        "evidence"
+    ]
 
-    elif profit_rate >= MIN_PROFIT_RATE:
-        rate_score = 2
+    if evidence:
+        reasons.append(
+            evidence
+        )
 
-    else:
-        rate_score = 1
+    if (
+        price_evidence[
+            "low"
+        ]
+        is not None
+    ):
+        reasons.append(
+            f"7日最低 ¥"
+            f"{price_evidence['low']:.2f}"
+        )
 
+    if (
+        price_evidence[
+            "downside"
+        ]
+        is not None
+    ):
+        reasons.append(
+            f"距离7日低点 "
+            f"{price_evidence['downside']:.2f}%"
+        )
 
-    # --------------------------------------------------------
-    # 18. 安全垫评分
-    # --------------------------------------------------------
+    if trend:
+        reasons.append(
+            f"价格趋势：{trend}"
+        )
 
-    if safety_rate is not None and safety_rate >= 20:
-        safety_score = 3
+    if not buy_shipping_confirmed:
+        reasons.append(
+            "买入运费为估算值"
+        )
 
-    elif safety_rate is not None and safety_rate >= 12:
-        safety_score = 2
-
-    elif safety_rate is not None and safety_rate > 0:
-        safety_score = 1
-
-    else:
-        safety_score = 0
-
-
-    # --------------------------------------------------------
-    # 19. 资金占用评分
-    # --------------------------------------------------------
-
-    capital_ratio = (
-        total_buy_cost
-        / CAPITAL
+    return "；".join(
+        reasons
     )
 
-    if capital_ratio <= 0.35:
-        capital_score = 3
 
-    elif capital_ratio <= 0.60:
+def analyze(item):
+    name = item.get(
+        "name"
+    )
+
+    buy_price = get_buy_price(
+        item
+    )
+
+    if (
+        not name
+        or buy_price is None
+    ):
+        return None
+
+    dewu_price, price_source, explicit_current = (
+        get_dewu_price(
+            item
+        )
+    )
+
+    if (
+        dewu_price is None
+        or dewu_price <= 0
+    ):
+        return None
+
+    buy_shipping, shipping_confirmed = (
+        get_buy_shipping_cost(
+            item
+        )
+    )
+
+    expected_income, income_confirmed = (
+        get_platform_cost(
+            item
+        )
+    )
+
+    if (
+        expected_income is None
+        or expected_income <= 0
+    ):
+        return None
+
+    total_cost = (
+        buy_price
+        + buy_shipping
+    )
+
+    profit = (
+        expected_income
+        - total_cost
+    )
+
+    profit_rate = (
+        profit
+        / total_cost
+        * 100
+        if total_cost > 0
+        else None
+    )
+
+    price_evidence = (
+        calculate_price_evidence(
+            item
+        )
+    )
+
+    turnover = (
+        calculate_turnover(
+            item
+        )
+    )
+
+    sales_score = (
+        calculate_sales_score(
+            turnover
+        )
+    )
+
+    trend_score = (
+        calculate_trend_score(
+            item
+        )
+    )
+
+    evidence_score = (
+        calculate_evidence_score(
+            item,
+            price_evidence,
+            turnover,
+        )
+    )
+
+    capital_ratio = (
+        total_cost
+        / CAPITAL
+        * 100
+        if CAPITAL > 0
+        else None
+    )
+
+    if total_cost <= CAPITAL:
         capital_score = 2
 
-    elif capital_ratio <= 0.85:
+    elif total_cost <= CAPITAL * 1.2:
         capital_score = 1
 
     else:
         capital_score = 0
 
-
-    # --------------------------------------------------------
-    # 20. 销量 / 趋势评分
-    # --------------------------------------------------------
-
-    s_score = sales_score(
-        turnover
+    safety = calculate_safety(
+        profit,
+        price_evidence[
+            "downside"
+        ],
+        shipping_confirmed,
+        price_evidence,
     )
 
-    t_score = trend_score(
-        price
+    hard_risks = check_hard_risks(
+        item,
+        buy_price,
+        dewu_price,
+        profit,
+        price_evidence[
+            "downside"
+        ],
+        turnover,
     )
 
+    # --------------------------------------------------
+    # 价格口径一致性检查
+    #
+    # 如果同时存在：
+    #   得物渠道售价
+    #   当前同款同规格到手价
+    #
+    # 且两者差距明显，
+    # 不允许系统假装它们是同一个价格。
+    # --------------------------------------------------
 
-    # --------------------------------------------------------
-    # 21. 硬风险
-    # --------------------------------------------------------
+    channel_price = to_float(
+        item.get(
+            "dewu_channel_price"
+        )
+    )
 
-    hard_risk = False
+    trend_price = to_float(
+        item.get(
+            "trend_current_price"
+        )
+    )
 
-    if profit <= 0:
-        hard_risk = True
-
-    if profit_rate <= 0:
-        hard_risk = True
+    price_conflict = False
 
     if (
-        safety_rate is not None
-        and safety_rate <= 0
+        channel_price is not None
+        and trend_price is not None
+        and channel_price > 0
+        and trend_price > 0
     ):
-        hard_risk = True
+        difference = abs(
+            channel_price
+            - trend_price
+        ) / trend_price * 100
 
-    if (
-        trend == "falling"
-        and change_7d is not None
-        and change_7d <= -15
-    ):
+        if difference > 20:
+            price_conflict = True
 
-        hard_risk = True
-
-        risk_flags.append(
-            "7日价格明显下跌"
-        )
-
-    if (
-        downside_amount is not None
-        and downside_amount > MAX_DOWNSIDE_LOSS
-    ):
-
-        hard_risk = True
-
-
-    # --------------------------------------------------------
-    # 22. ABCD
-    # --------------------------------------------------------
-
-    if hard_risk:
-
-        grade = "D"
-
-        grade_reason = (
-            "存在明确的较大下行风险或其他硬风险"
-        )
-
-    elif (
-        profit >= 30
-        and profit_rate >= 20
-        and safety_rate is not None
-        and safety_rate >= 12
-        and s_score >= 2
-        and t_score >= 2
-        and capital_score >= 1
-        and e_score >= 2
-    ):
-
-        grade = "A"
-
-        grade_reason = (
-            "利润较高、利润率较高、"
-            "利润安全垫较充足，"
-            "近期销量/价格证据较好"
-        )
-
-    elif (
-        profit >= MIN_PROFIT
-        and profit_rate >= MIN_PROFIT_RATE
-        and safety_rate is not None
-        and safety_rate > 0
-    ):
-
-        grade = "B"
-
-        grade_reason = (
-            "存在明确盈利空间，"
-            "没有明确重大硬风险；"
-            "部分辅助证据仍可能需要下单前确认"
-        )
-
-    else:
-
-        grade = "C"
-
-        grade_reason = (
-            "存在一定价差，"
-            "但利润、利润率或稳定性暂时不足"
-        )
-
-
-    # --------------------------------------------------------
-    # 23. 原因
-    # --------------------------------------------------------
-
-    if profit < MIN_PROFIT:
-
-        reasons.append(
-            f"净利润¥{profit:.2f}低于¥{MIN_PROFIT}"
-        )
-
-    if profit_rate < MIN_PROFIT_RATE:
-
-        reasons.append(
-            (
-                f"利润率{profit_rate:.1f}%"
-                f"低于{MIN_PROFIT_RATE}%"
+            hard_risks.append(
+                "得物渠道售价与"
+                "当前同款同规格到手价"
+                "差异超过20%，"
+                "价格口径不一致"
             )
-        )
 
+    # 如果没有明确当前价格，
+    # 但只有“得物渠道售价”，
+    # 可以计算，但证据分降低。
     if (
-        downside_amount is not None
-        and downside_amount > 0
+        not explicit_current
+        and channel_price is not None
     ):
-
-        reasons.append(
-            (
-                f"距离7日低点约¥"
-                f"{downside_amount:.2f}"
-            )
+        evidence_score = max(
+            0,
+            evidence_score - 1,
         )
 
-    if trend == "falling":
+        safety -= 1
 
-        reasons.append(
-            "价格走势偏下行"
-        )
-
-
-    # --------------------------------------------------------
-    # 24. 状态
-    # --------------------------------------------------------
-
-    status = (
-        "候选"
-        if grade in ("A", "B")
-        else "不推荐"
+    grade = calculate_grade(
+        profit,
+        profit_rate,
+        safety,
+        sales_score,
+        trend_score,
+        evidence_score,
+        capital_score,
+        hard_risks,
     )
 
+    trend = normalize_trend(
+        item.get(
+            "price_trend"
+        )
+    )
 
-    # --------------------------------------------------------
-    # 25. 最终结果
-    # --------------------------------------------------------
+    reason = build_reason(
+        grade,
+        profit,
+        profit_rate,
+        turnover,
+        price_evidence,
+        trend,
+        shipping_confirmed,
+    )
 
     return {
+        "name": name,
 
-        "name":
-            item.get(
-                "name",
-                "未知商品"
-            ),
+        "grade": grade,
 
-        "grade":
-            grade,
+        "buy_price": money(
+            buy_price
+        ),
 
-        "grade_reason":
-            grade_reason,
+        "dewu_price": money(
+            dewu_price
+        ),
 
-        "status":
-            status,
+        "dewu_price_source": (
+            price_source
+        ),
 
-        "buy_price":
-            round(buy, 2),
+        "expected_income": money(
+            expected_income
+        ),
 
-        "dewu_price":
-            round(sale, 2),
+        "total_cost": money(
+            total_cost
+        ),
 
-        "expected_income":
-            round(expected_income, 2),
+        "buy_shipping_cost": money(
+            buy_shipping
+        ),
 
-        "income_method":
-            income_method,
+        "buy_shipping_confirmed": (
+            shipping_confirmed
+        ),
 
-        "dewu_fee_rate":
-            DEWU_FEE_RATE * 100,
+        "income_confirmed": (
+            income_confirmed
+        ),
 
-        "buy_shipping_cost":
-            round(buy_shipping, 2),
+        "profit": money(
+            profit
+        ),
 
-        "buy_shipping_confirmed":
-            shipping_confirmed,
-
-        "total_buy_cost":
-            round(total_buy_cost, 2),
-
-        "capital_usage_rate":
+        "profit_rate": (
             round(
-                capital_ratio * 100,
-                2
-            ),
+                profit_rate,
+                2,
+            )
+            if profit_rate is not None
+            else None
+        ),
 
-        "net_profit":
-            round(profit, 2),
+        "capital": CAPITAL,
 
-        "profit_rate":
-            round(profit_rate, 2),
+        "capital_ratio": (
+            round(
+                capital_ratio,
+                2,
+            )
+            if capital_ratio is not None
+            else None
+        ),
 
-        "break_even_sale":
-            break_even_sale,
+        "sales_7d": turnover[
+            "sales_7d"
+        ],
 
-        "profit_safety_margin_amount":
-            safety_amount,
+        "sales_30d": turnover[
+            "sales_30d"
+        ],
 
-        "profit_safety_margin_rate":
-            safety_rate,
+        "sales_velocity_7d": turnover[
+            "velocity"
+        ],
 
-        "days":
-            turnover["days"],
+        "turnover_evidence": turnover[
+            "evidence"
+        ],
 
-        "days_display":
-            turnover["display"],
+        "turnover_confidence": turnover[
+            "confidence"
+        ],
 
-        "turnover_confirmed":
-            turnover["confirmed"],
+        "days": turnover[
+            "days"
+        ],
 
-        "turnover_evidence":
-            turnover["display"],
+        "price_current": money(
+            price_evidence[
+                "current"
+            ]
+        ),
 
-        "sales":
-            item.get("sales"),
+        "price_7d_low": money(
+            price_evidence[
+                "low"
+            ]
+        ),
 
-        "sales_7d":
-            turnover["sales_7d"],
+        "price_7d_high": money(
+            price_evidence[
+                "high"
+            ]
+        ),
 
-        "sales_30d":
-            turnover["sales_30d"],
+        "price_position_7d": (
+            price_evidence[
+                "position"
+            ]
+        ),
 
-        "sales_velocity_7d":
-            turnover["velocity"],
+        "downside_to_7d_low": (
+            price_evidence[
+                "downside"
+            ]
+        ),
 
-        "price_current":
-            price["current"],
+        "price_trend": trend,
 
-        "trend_current_price":
-            price["current"],
+        "sales_score": sales_score,
 
-        "price_7d_low":
-            price["low"],
+        "trend_score": trend_score,
 
-        "price_7d_high":
-            price["high"],
+        "evidence_score": evidence_score,
 
-        "downside_to_7d_low":
-            downside_percent,
+        "safety_score": safety,
 
-        "downside_loss":
-            downside_amount,
+        "capital_score": capital_score,
 
-        "price_change_1d":
-            item.get("price_change_1d"),
+        "price_conflict": (
+            price_conflict
+        ),
 
-        "price_change_7d":
-            change_7d,
+        "hard_risks": hard_risks,
 
-        "price_change_30d":
-            item.get("price_change_30d"),
+        "reason": reason,
 
-        "price_trend":
-            trend,
+        "shihuo_source": item.get(
+            "shihuo_source",
+            True,
+        ),
 
-        "liquidity":
-            liquidity,
+        "authenticity_evidence": item.get(
+            "authenticity_evidence"
+        ),
 
-        "category":
-            item.get(
-                "category",
-                "unknown"
-            ),
+        "new_condition_verified": item.get(
+            "new_condition_verified"
+        ),
 
-        "shihuo_source":
-            shihuo_source,
+        "dewu_check_compatible": item.get(
+            "dewu_check_compatible"
+        ),
 
-        "authenticity_evidence":
-            item.get(
-                "authenticity_evidence"
-            ),
-
-        "new_condition_evidence":
-            item.get(
-                "new_condition_evidence"
-            ),
-
-        "dewu_check_evidence":
-            item.get(
-                "dewu_check_evidence"
-            ),
-
-        "dewu_price_source":
-            item.get(
-                "dewu_price_source"
-            ),
-
-        "risk_flags":
-            risk_flags,
-
-        "reasons":
-            reasons,
-
-        "score":
-            (
-                profit_score
-                + rate_score
-                + safety_score
-                + capital_score
-                + s_score
-                + t_score
-                + e_score
-            ),
+        "source_note": item.get(
+            "source_note"
+        ),
     }
 
 
-# ============================================================
-# 主程序
-# ============================================================
-
 def main():
-
-    root = Path(
-        __file__
-    ).resolve().parent
-
-    input_file = (
-        root
-        / "products.json"
-    )
-
-    output_file = (
-        root
-        / "monitor_results.json"
-    )
-
-
-    if not input_file.exists():
-
-        output = {
-
-            "updated_at":
-                datetime.now(
-                    timezone.utc
-                ).isoformat(),
-
-            "capital":
-                CAPITAL,
-
-            "candidate_count":
-                0,
-
-            "a_count":
-                0,
-
-            "b_count":
-                0,
-
-            "c_count":
-                0,
-
-            "d_count":
-                0,
-
-            "candidates":
-                [],
-
-            "all_results":
-                [],
-
-            "error":
-                "products.json 不存在",
-        }
-
-        output_file.write_text(
-            json.dumps(
-                output,
-                ensure_ascii=False,
-                indent=2
-            ),
-            encoding="utf-8"
-        )
-
-        return
-
-
-    try:
-
-        data = json.loads(
-            input_file.read_text(
-                encoding="utf-8"
-            )
-        )
-
-    except Exception as e:
-
-        output = {
-
-            "updated_at":
-                datetime.now(
-                    timezone.utc
-                ).isoformat(),
-
-            "candidate_count":
-                0,
-
-            "error":
-                str(e),
-        }
-
-        output_file.write_text(
-            json.dumps(
-                output,
-                ensure_ascii=False,
-                indent=2
-            ),
-            encoding="utf-8"
-        )
-
-        return
-
-
-    products = data.get(
-        "products",
-        []
-    )
-
-    if not isinstance(
-        products,
-        list
-    ):
-        products = []
-
+    products = load_products()
 
     results = []
 
-
     for item in products:
-
-        if not isinstance(
-            item,
-            dict
-        ):
-            continue
 
         try:
 
-            results.append(
-                evaluate(item)
+            result = analyze(
+                item
             )
+
+            if result is not None:
+                results.append(
+                    result
+                )
 
         except Exception as e:
 
-            results.append({
+            print(
+                "分析商品失败：",
+                item.get(
+                    "name"
+                ),
+                e,
+            )
 
-                "name":
-                    item.get(
-                        "name",
-                        "未知商品"
-                    ),
+    # --------------------------------------------------
+    # A/B 都属于推荐候选
+    # --------------------------------------------------
 
-                "grade":
-                    "D",
-
-                "grade_reason":
-                    "程序评估异常",
-
-                "status":
-                    "过滤",
-
-                "risk_flags":
-                    [str(e)],
-
-                "reasons":
-                    [str(e)],
-            })
-
-
-    # ========================================================
-    # 分类
-    # ========================================================
-
-    a_results = [
-        x for x in results
-        if x.get("grade") == "A"
-    ]
-
-    b_results = [
-        x for x in results
-        if x.get("grade") == "B"
-    ]
-
-    c_results = [
-        x for x in results
-        if x.get("grade") == "C"
-    ]
-
-    d_results = [
-        x for x in results
-        if x.get("grade") == "D"
-    ]
-
-
-    # A + B = 真正推送候选
-    candidates = (
-        a_results
-        + b_results
-    )
-
-
-    # ========================================================
-    # 排序
-    # ========================================================
-
-    def candidate_sort_key(item):
-
-        grade_order = {
-            "A": 0,
-            "B": 1,
-            "C": 2,
-            "D": 3,
+    candidates = [
+        item
+        for item in results
+        if item.get(
+            "grade"
+        )
+        in {
+            "A",
+            "B",
         }
+    ]
 
-        return (
+    candidates.sort(
+        key=lambda x: (
+            0
+            if x.get(
+                "grade"
+            ) == "A"
+            else 1,
 
-            grade_order.get(
-                item.get("grade"),
-                9
-            ),
-
-            -float(
-                item.get("net_profit")
+            -(
+                x.get(
+                    "profit"
+                )
                 or 0
             ),
 
-            -float(
-                item.get(
-                    "profit_safety_margin_rate"
+            -(
+                x.get(
+                    "profit_rate"
                 )
                 or 0
             ),
         )
-
-
-    candidates.sort(
-        key=candidate_sort_key
     )
 
-
-    # ========================================================
-    # 输出
-    # ========================================================
-
     output = {
+        "updated_at": (
+            __import__(
+                "datetime"
+            ).datetime.now(
+                __import__(
+                    "datetime"
+                ).timezone.utc
+            ).isoformat()
+        ),
 
-        "updated_at":
-            datetime.now(
-                timezone.utc
-            ).isoformat(),
+        "capital": CAPITAL,
 
-        "capital":
-            CAPITAL,
+        "rules": {
+            "max_days": MAX_DAYS,
+            "min_profit": MIN_PROFIT,
+            "min_profit_rate": MIN_PROFIT_RATE,
+            "max_downside_loss": MAX_DOWNSIDE_LOSS,
+            "dewu_fee_rate": DEWU_FEE_RATE,
+            "default_buy_shipping": DEFAULT_BUY_SHIPPING,
+        },
 
-        "max_days":
-            MAX_DAYS,
+        "summary": {
+            "total": len(results),
 
-        "min_profit":
-            MIN_PROFIT,
+            "A": sum(
+                1
+                for x in results
+                if x.get(
+                    "grade"
+                ) == "A"
+            ),
 
-        "min_profit_rate":
-            MIN_PROFIT_RATE,
+            "B": sum(
+                1
+                for x in results
+                if x.get(
+                    "grade"
+                ) == "B"
+            ),
 
-        "max_downside_loss":
-            MAX_DOWNSIDE_LOSS,
+            "C": sum(
+                1
+                for x in results
+                if x.get(
+                    "grade"
+                ) == "C"
+            ),
 
-        "dewu_fee_rate":
-            DEWU_FEE_RATE,
+            "D": sum(
+                1
+                for x in results
+                if x.get(
+                    "grade"
+                ) == "D"
+            ),
+        },
 
-        "dewu_net_rate":
-            DEWU_NET_RATE,
+        "candidates": candidates,
 
-        "monitored_count":
-            len(products),
-
-        "candidate_count":
-            len(candidates),
-
-        "a_count":
-            len(a_results),
-
-        "b_count":
-            len(b_results),
-
-        "c_count":
-            len(c_results),
-
-        "d_count":
-            len(d_results),
-
-        "candidates":
-            candidates,
-
-        "all_results":
-            results,
+        "results": results,
     }
 
-
-    output_file.write_text(
+    Path(
+        OUTPUT_FILE
+    ).write_text(
         json.dumps(
             output,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         ),
-        encoding="utf-8"
-    )
-
-
-    # ========================================================
-    # Actions 日志
-    # ========================================================
-
-    print("=" * 70)
-
-    print("得物低买高卖监控完成")
-
-    print(
-        f"监控商品：{len(products)}"
+        encoding="utf-8",
     )
 
     print(
-        f"A 推荐：{len(a_results)}"
+        "=============================="
     )
 
     print(
-        f"B 较推荐：{len(b_results)}"
+        f"商品总数：{len(results)}"
     )
 
     print(
-        f"C 不推荐：{len(c_results)}"
+        f"A级：{output['summary']['A']}"
     )
 
     print(
-        f"D 过滤：{len(d_results)}"
+        f"B级：{output['summary']['B']}"
     )
 
     print(
-        f"真正候选 A+B：{len(candidates)}"
+        f"C级：{output['summary']['C']}"
     )
 
-    print("=" * 70)
+    print(
+        f"D级：{output['summary']['D']}"
+    )
 
+    print(
+        "=============================="
+    )
+
+    print(
+        "\n推荐候选："
+    )
 
     for item in candidates:
 
-        print()
-
         print(
-            f"【{item.get('grade')}】"
-            f"{item.get('name')}"
-        )
-
-        print(
-            f"买入：¥{item.get('buy_price')}"
-        )
-
-        print(
-            f"得物：¥{item.get('dewu_price')}"
-        )
-
-        print(
-            f"净利润：¥{item.get('net_profit')}"
-        )
-
-        print(
-            f"利润率：{item.get('profit_rate')}%"
-        )
-
-        print(
-            f"周转证据："
-            f"{item.get('turnover_evidence')}"
-        )
-
-        print(
-            f"当前价：¥"
-            f"{item.get('price_current')}"
-        )
-
-        print(
-            f"7日最低：¥"
-            f"{item.get('price_7d_low')}"
-        )
-
-        print(
-            f"下跌风险："
-            f"{item.get('downside_to_7d_low')}%"
-        )
-
-        print(
-            f"价格趋势："
-            f"{item.get('price_trend')}"
-        )
-
-        print(
-            f"原因："
-            f"{item.get('grade_reason')}"
+            f"{item.get('grade')} | "
+            f"{item.get('name')} | "
+            f"买入 ¥{item.get('buy_price')} | "
+            f"得物 ¥{item.get('dewu_price')} | "
+            f"利润 ¥{item.get('profit')} | "
+            f"利润率 "
+            f"{item.get('profit_rate')}%"
         )
 
 

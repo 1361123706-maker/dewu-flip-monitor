@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T04:15:47.043614+00:00",
+  "updated_at": "2026-09-23T04:22:41.550314+00:00",
   "capital": 330,
   "max_buy": 120,
   "max_days": 7,
@@ -215,7 +215,7 @@
     {
       "name": "未知商品",
       "buy_price": 1.08,
-      "dewu_price": 10685.17,
+      "dewu_price": 10693.76,
       "expected_income": null,
       "income_method": "费用数据不完整",
       "technical_service_fee": null,

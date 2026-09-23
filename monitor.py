@@ -21,12 +21,16 @@ MIN_PROFIT_RATE = 12
 
 MAX_DOWNSIDE_LOSS = 25
 
-# 得物售价按 92% 计算预计到账
+# 得物售价按 92% 计算估算到账
 DEWU_NET_RATE = 0.92
 
-# 买入端统一暂估 6 元运费
+# 买入运费固定按 6 元估算
 DEFAULT_BUY_SHIPPING = 6
 
+
+# ============================================================
+# 基础工具
+# ============================================================
 
 def to_float(value):
     if value is None:
@@ -70,7 +74,7 @@ def normalize_trend(value):
 
     return mapping.get(
         text,
-        value if value in {
+        text if text in {
             "上涨",
             "下跌",
             "稳定",
@@ -78,9 +82,269 @@ def normalize_trend(value):
     )
 
 
+# ============================================================
+# 读取 products.json
+# ============================================================
+
+def load_products():
+    path = Path(INPUT_FILE)
+
+    if not path.exists():
+        print(
+            f"找不到 {INPUT_FILE}"
+        )
+        return []
+
+    try:
+        data = json.loads(
+            path.read_text(
+                encoding="utf-8"
+            )
+        )
+    except Exception as e:
+        print(
+            f"读取 {INPUT_FILE} 失败：",
+            e,
+        )
+        return []
+
+    if isinstance(data, list):
+        return data
+
+    if isinstance(data, dict):
+
+        products = data.get(
+            "products"
+        )
+
+        if isinstance(products, list):
+            return products
+
+        results = data.get(
+            "results"
+        )
+
+        if isinstance(results, list):
+            return results
+
+    return []
+
+
+# ============================================================
+# 买入价格
+# ============================================================
+
+def get_buy_price(item):
+
+    value = to_float(
+        item.get("buy_price")
+    )
+
+    if value is None or value <= 0:
+        return None
+
+    return value
+
+
+# ============================================================
+# SKU 尺码价格
+# ============================================================
+
+def get_size_price_map(item):
+
+    size_prices = item.get(
+        "size_price_map"
+    )
+
+    if not isinstance(
+        size_prices,
+        dict,
+    ):
+        return {}
+
+    result = {}
+
+    for size, price in size_prices.items():
+
+        number = to_float(price)
+
+        if (
+            number is None
+            or number <= 0
+        ):
+            continue
+
+        result[str(size).strip()] = number
+
+    return result
+
+
+def get_current_size(item):
+
+    # 采集器直接提供的当前尺码
+    candidates = [
+        item.get("current_size"),
+        item.get("size"),
+        item.get("sku_size"),
+    ]
+
+    for value in candidates:
+
+        if value is None:
+            continue
+
+        text = str(value).strip()
+
+        if text:
+            return text
+
+    # selected_variant 例如：
+    # 黑色/白色, 36
+    selected_variant = item.get(
+        "selected_variant"
+    )
+
+    if selected_variant:
+
+        text = str(
+            selected_variant
+        ).strip()
+
+        if "," in text:
+            parts = text.split(",")
+
+            if len(parts) >= 2:
+
+                size = parts[-1].strip()
+
+                if size:
+                    return size
+
+        if "，" in text:
+            parts = text.split("，")
+
+            if len(parts) >= 2:
+
+                size = parts[-1].strip()
+
+                if size:
+                    return size
+
+    return None
+
+
+def get_sku_buy_price(
+    item,
+    sku_size,
+):
+    """
+    SKU 买入价必须对应具体尺码。
+
+    如果存在 size_price_map：
+        优先读取该尺码价格。
+
+    如果没有：
+        才退回商品级 buy_price。
+    """
+
+    size_prices = get_size_price_map(
+        item
+    )
+
+    if size_prices:
+
+        if sku_size is None:
+            return None
+
+        sku_size = str(
+            sku_size
+        ).strip()
+
+        if sku_size in size_prices:
+            return size_prices[
+                sku_size
+            ]
+
+        # 尝试忽略空格
+        normalized = (
+            sku_size.replace(
+                " ",
+                ""
+            )
+        )
+
+        for size, price in size_prices.items():
+
+            if (
+                size.replace(
+                    " ",
+                    ""
+                )
+                == normalized
+            ):
+                return price
+
+        return None
+
+    return get_buy_price(item)
+
+
+def get_sku_context(item):
+
+    size_prices = get_size_price_map(
+        item
+    )
+
+    current_size = get_current_size(
+        item
+    )
+
+    # 有尺码价格表时，
+    # 必须明确当前尺码才能把利润归属于具体 SKU。
+    if size_prices:
+
+        if current_size is None:
+            return []
+
+        buy_price = get_sku_buy_price(
+            item,
+            current_size,
+        )
+
+        if buy_price is None:
+            return []
+
+        return [
+            (
+                current_size,
+                buy_price,
+            )
+        ]
+
+    # 没有尺码价格表，
+    # 允许使用商品级价格作为最后兜底。
+    buy_price = get_buy_price(
+        item
+    )
+
+    if buy_price is None:
+        return []
+
+    return [
+        (
+            None,
+            buy_price,
+        )
+    ]
+
+
+# ============================================================
+# 得物售价
+# ============================================================
+
 def get_dewu_price(item):
     """
-    得物售价选择顺序：
+    得物售价优先级：
 
     1. 得物渠道售价
     2. 当前同款同规格到手价
@@ -143,129 +407,13 @@ def get_dewu_price(item):
 
 
 # ============================================================
-# 买入价格
-# ============================================================
-
-def get_buy_price(item):
-
-    value = to_float(
-        item.get("buy_price")
-    )
-
-    if value is None or value <= 0:
-        return None
-
-    return value
-
-
-# ============================================================
-# 得物价格
-# ============================================================
-
-def get_dewu_price(item):
-    """
-    得物售价选择顺序：
-
-    1. 当前同款同规格到手价
-    2. 得物渠道售价
-    3. dewu_price
-
-    这里不再因为不同价格字段存在差异而直接判定风险。
-
-    原因：
-    识货页面可能同时展示不同价格口径，
-    不能仅凭数字不同就认定商品有问题。
-    """
-
-    trend_price = to_float(
-        item.get(
-            "trend_current_price"
-        )
-    )
-
-    if (
-        trend_price is not None
-        and trend_price > 0
-    ):
-        return (
-            trend_price,
-            "识货：当前同款同规格到手价",
-            "current_price",
-        )
-
-    channel_price = to_float(
-        item.get(
-            "dewu_channel_price"
-        )
-    )
-
-    if (
-        channel_price is not None
-        and channel_price > 0
-    ):
-        return (
-            channel_price,
-            "识货：得物渠道售价",
-            "channel_price",
-        )
-
-    dewu_price = to_float(
-        item.get(
-            "dewu_price"
-        )
-    )
-
-    if (
-        dewu_price is not None
-        and dewu_price > 0
-    ):
-        return (
-            dewu_price,
-            "识货：得物售价",
-            "dewu_price",
-        )
-
-    return (
-        None,
-        None,
-        None,
-    )
-
-
-# ============================================================
 # 买入运费
 # ============================================================
 
 def get_buy_shipping_cost(item):
 
-    # 如果未来采集到了明确买入运费，
-    # 优先使用明确数据。
-    candidates = [
-        item.get(
-            "buy_shipping_cost"
-        ),
-        item.get(
-            "shipping_cost"
-        ),
-        item.get(
-            "consumer_shipping_fee"
-        ),
-    ]
-
-    for value in candidates:
-
-        number = to_float(value)
-
-        if (
-            number is not None
-            and number >= 0
-        ):
-            return (
-                number,
-                True,
-            )
-
-    # 当前统一按 6 元估算
+    # 按用户确定的统一规则：
+    # 固定估算 6 元。
     return (
         DEFAULT_BUY_SHIPPING,
         False,
@@ -282,17 +430,13 @@ def calculate_estimated_profit(
     buy_shipping,
 ):
     """
-    用户确定的统一估算公式：
+    统一公式：
 
     估算利润
     =
     得物售价 × 92%
-    − 6元
     − 买入价
-
-    如果未来存在明确买入运费，
-    则使用实际运费；
-    当前默认 6 元。
+    − 6元买入运费
     """
 
     if (
@@ -333,7 +477,7 @@ def calculate_estimated_profit(
 
 def calculate_price_evidence(item):
 
-    current_price = to_float(
+    trend_price = to_float(
         item.get(
             "trend_current_price"
         )
@@ -352,21 +496,25 @@ def calculate_price_evidence(item):
     )
 
     if (
-        current_price is None
-        or current_price <= 0
+        trend_price is not None
+        and trend_price > 0
     ):
+        current_price = trend_price
 
-        if (
-            channel_price is not None
-            and channel_price > 0
-        ):
-            current_price = channel_price
+    elif (
+        channel_price is not None
+        and channel_price > 0
+    ):
+        current_price = channel_price
 
-        elif (
-            fallback_price is not None
-            and fallback_price > 0
-        ):
-            current_price = fallback_price
+    elif (
+        fallback_price is not None
+        and fallback_price > 0
+    ):
+        current_price = fallback_price
+
+    else:
+        current_price = None
 
     low = to_float(
         item.get(
@@ -438,25 +586,37 @@ def calculate_price_evidence(item):
         )
 
     if (
-        to_float(
-            item.get(
-                "trend_current_price"
-            )
-        )
-        is not None
+        trend_price is not None
+        and trend_price > 0
     ):
+
         status = (
             "confirmed_current_price"
         )
 
-    elif channel_price is not None:
-        status = "channel_price_only"
+    elif (
+        channel_price is not None
+        and channel_price > 0
+    ):
 
-    elif fallback_price is not None:
-        status = "dewu_price_only"
+        status = (
+            "channel_price_only"
+        )
+
+    elif (
+        fallback_price is not None
+        and fallback_price > 0
+    ):
+
+        status = (
+            "dewu_price_only"
+        )
 
     else:
-        status = "no_dewu_price"
+
+        status = (
+            "no_dewu_price"
+        )
 
     return {
         "current": current_price,
@@ -553,7 +713,9 @@ def calculate_turnover(item):
     }
 
 
-def calculate_sales_score(turnover):
+def calculate_sales_score(
+    turnover
+):
 
     sales_7d = turnover[
         "sales_7d"
@@ -567,57 +729,55 @@ def calculate_sales_score(turnover):
         "velocity"
     ]
 
-    score = 0
-
     if (
         sales_7d is not None
         and sales_7d >= 20
     ):
-        score = 3
+        return 3
 
-    elif (
+    if (
         sales_7d is not None
         and sales_7d >= 7
     ):
-        score = 2
+        return 2
 
-    elif (
+    if (
         sales_7d is not None
         and sales_7d > 0
     ):
-        score = 1
+        return 1
 
-    elif (
+    if (
         sales_30d is not None
         and sales_30d >= 1000
     ):
-        score = 3
+        return 3
 
-    elif (
+    if (
         sales_30d is not None
         and sales_30d >= 300
     ):
-        score = 2
+        return 2
 
-    elif (
+    if (
         sales_30d is not None
         and sales_30d > 0
     ):
-        score = 1
+        return 1
 
-    elif (
+    if (
         velocity is not None
         and velocity >= 30
     ):
-        score = 2
+        return 2
 
-    elif (
+    if (
         velocity is not None
         and velocity > 0
     ):
-        score = 1
+        return 1
 
-    return score
+    return 0
 
 
 # ============================================================
@@ -729,13 +889,12 @@ def calculate_evidence_score(
 
 
 # ============================================================
-# 风险评分
+# 安全评分
 # ============================================================
 
 def calculate_safety(
     profit,
     downside,
-    shipping_confirmed,
     price_evidence_status,
 ):
 
@@ -767,9 +926,6 @@ def calculate_safety(
 
         safety -= 5
 
-    if not shipping_confirmed:
-        safety -= 1
-
     if (
         price_evidence_status
         != "confirmed_current_price"
@@ -791,6 +947,7 @@ def check_hard_risks(
     profit,
     downside,
     turnover,
+    sku_size,
 ):
 
     reasons = []
@@ -799,28 +956,24 @@ def check_hard_risks(
         "category"
     )
 
-    # 明确排除品类
     if category == "excluded":
 
         reasons.append(
             "属于明确排除品类"
         )
 
-    # 没有买入价
     if buy_price is None:
 
         reasons.append(
             "没有有效买入价"
         )
 
-    # 没有得物价格
     if dewu_price is None:
 
         reasons.append(
             "没有有效得物价格"
         )
 
-    # 资金不足
     if (
         total_cost is not None
         and total_cost > CAPITAL
@@ -831,7 +984,6 @@ def check_hard_risks(
             f"超过当前资金 ¥{CAPITAL:.2f}"
         )
 
-    # 明确亏损
     if (
         profit is not None
         and profit < -MAX_DOWNSIDE_LOSS
@@ -841,7 +993,6 @@ def check_hard_risks(
             "预计亏损超过容忍范围"
         )
 
-    # 7日下行风险
     if (
         downside is not None
         and downside > MAX_DOWNSIDE_LOSS
@@ -852,7 +1003,6 @@ def check_hard_risks(
             "下行风险超过阈值"
         )
 
-    # 明确周转超过7天
     days = turnover[
         "days"
     ]
@@ -867,7 +1017,6 @@ def check_hard_risks(
             f"{MAX_DAYS}天"
         )
 
-    # 明确不是全新
     new_verified = item.get(
         "new_condition_verified"
     )
@@ -878,7 +1027,6 @@ def check_hard_risks(
             "明确不是全新状态"
         )
 
-    # 明确不兼容得物
     check_compatible = item.get(
         "dewu_check_compatible"
     )
@@ -889,11 +1037,26 @@ def check_hard_risks(
             "得物查验/上架兼容性不满足"
         )
 
+    # 有尺码价格表，但当前尺码无法确定
+    # 不把其他尺码的价格冒充当前 SKU。
+    size_prices = get_size_price_map(
+        item
+    )
+
+    if (
+        size_prices
+        and sku_size is None
+    ):
+
+        reasons.append(
+            "存在尺码价格，但当前尺码无法确认"
+        )
+
     return reasons
 
 
 # ============================================================
-# A/B/C/D
+# A / B / C / D
 # ============================================================
 
 def calculate_grade(
@@ -907,7 +1070,6 @@ def calculate_grade(
     hard_risks,
 ):
 
-    # 硬风险直接 D
     if hard_risks:
         return "D"
 
@@ -927,7 +1089,6 @@ def calculate_grade(
         and capital_score >= 1
         and evidence_score >= 4
     ):
-
         return "A"
 
     # B
@@ -936,7 +1097,6 @@ def calculate_grade(
         and profit_rate >= MIN_PROFIT_RATE
         and safety > 0
     ):
-
         return "B"
 
     return "C"
@@ -953,8 +1113,8 @@ def build_reason(
     turnover,
     price_evidence,
     trend,
-    shipping_confirmed,
     income_reason,
+    sku_size,
 ):
 
     reasons = []
@@ -983,6 +1143,12 @@ def build_reason(
             "触发硬风险，直接过滤"
         )
 
+    if sku_size:
+
+        reasons.append(
+            f"尺码 {sku_size}"
+        )
+
     if profit is not None:
 
         reasons.append(
@@ -996,7 +1162,7 @@ def build_reason(
         )
 
     reasons.append(
-        "估算公式：得物售价×92%-买入价-买入运费"
+        "估算公式：得物售价×92%-买入价-6元"
     )
 
     if income_reason:
@@ -1045,11 +1211,9 @@ def build_reason(
             f"价格趋势：{trend}"
         )
 
-    if not shipping_confirmed:
-
-        reasons.append(
-            "买入运费按 ¥6 估算"
-        )
+    reasons.append(
+        "买入运费按 ¥6 估算"
+    )
 
     return "；".join(
         reasons
@@ -1057,37 +1221,64 @@ def build_reason(
 
 
 # ============================================================
-# 单商品分析
+# 单个 SKU 分析
 # ============================================================
 
-def analyze(item):
+def analyze(
+    item,
+    sku_size=None,
+    sku_buy_price=None,
+):
 
     name = item.get(
         "name"
     )
 
-    buy_price = get_buy_price(
-        item
-    )
+    if sku_buy_price is not None:
+
+        buy_price = to_float(
+            sku_buy_price
+        )
+
+    else:
+
+        buy_price = get_buy_price(
+            item
+        )
 
     if (
         not name
         or buy_price is None
+        or buy_price <= 0
     ):
         return None
-
-    # --------------------------------------------------------
-    # 商品资格
-    # --------------------------------------------------------
 
     category = item.get(
         "category"
     )
 
+    product_code = item.get(
+        "product_code"
+    )
+
+    color = item.get(
+        "color"
+    )
+
+    # --------------------------------------------------------
+    # 明确排除品类
+    # --------------------------------------------------------
+
     if category == "excluded":
 
         return {
             "name": name,
+            "product_code": product_code,
+            "color": color,
+            "sku_size": sku_size,
+            "sku_buy_price": money(
+                buy_price
+            ),
             "grade": "D",
             "category": category,
             "buy_price": money(
@@ -1104,7 +1295,7 @@ def analyze(item):
         }
 
     # --------------------------------------------------------
-    # 得物价格
+    # 得物售价
     # --------------------------------------------------------
 
     (
@@ -1120,6 +1311,12 @@ def analyze(item):
 
         return {
             "name": name,
+            "product_code": product_code,
+            "color": color,
+            "sku_size": sku_size,
+            "sku_buy_price": money(
+                buy_price
+            ),
             "grade": "D",
             "category": category,
             "buy_price": money(
@@ -1212,7 +1409,7 @@ def analyze(item):
     )
 
     # --------------------------------------------------------
-    # 资金评分
+    # 资金
     # --------------------------------------------------------
 
     if total_cost <= CAPITAL:
@@ -1232,7 +1429,7 @@ def analyze(item):
     )
 
     # --------------------------------------------------------
-    # 安全评分
+    # 安全
     # --------------------------------------------------------
 
     safety = calculate_safety(
@@ -1240,7 +1437,6 @@ def analyze(item):
         price_evidence[
             "downside"
         ],
-        shipping_confirmed,
         price_evidence[
             "status"
         ],
@@ -1260,10 +1456,11 @@ def analyze(item):
             "downside"
         ],
         turnover,
+        sku_size,
     )
 
     # --------------------------------------------------------
-    # 最终等级
+    # 等级
     # --------------------------------------------------------
 
     grade = calculate_grade(
@@ -1299,12 +1496,27 @@ def analyze(item):
         turnover,
         price_evidence,
         trend,
-        shipping_confirmed,
         income_reason,
+        sku_size,
     )
 
     return {
+
         "name": name,
+
+        "product_code": product_code,
+
+        "color": color,
+
+        "sku_size": sku_size,
+
+        "sku_buy_price": money(
+            buy_price
+        ),
+
+        "selected_variant": item.get(
+            "selected_variant"
+        ),
 
         "grade": grade,
 
@@ -1328,6 +1540,14 @@ def analyze(item):
 
         "dewu_price_type": (
             price_type
+        ),
+
+        "dewu_channel_price": money(
+            to_float(
+                item.get(
+                    "dewu_channel_price"
+                )
+            )
         ),
 
         "estimated_income": money(
@@ -1493,15 +1713,34 @@ def main():
 
         try:
 
-            result = analyze(
-                item
+            sku_contexts = (
+                get_sku_context(
+                    item
+                )
             )
 
-            if result is not None:
+            # 有尺码价格但当前尺码无法确认
+            # 不拿其他尺码价格冒充。
+            if not sku_contexts:
 
-                results.append(
-                    result
+                continue
+
+            for (
+                sku_size,
+                sku_buy_price,
+            ) in sku_contexts:
+
+                result = analyze(
+                    item,
+                    sku_size=sku_size,
+                    sku_buy_price=sku_buy_price,
                 )
+
+                if result is not None:
+
+                    results.append(
+                        result
+                    )
 
         except Exception as e:
 
@@ -1511,17 +1750,16 @@ def main():
                 e,
             )
 
-    # --------------------------------------------------------
-    # A/B 推荐候选
-    #
-    # 现在允许使用“估算利润”。
-    # 明确标记 profit_type=estimated。
-    # --------------------------------------------------------
+    # ========================================================
+    # 推荐候选
+    # ========================================================
 
     candidates = [
         item
         for item in results
-        if item.get("grade")
+        if item.get(
+            "grade"
+        )
         in {
             "A",
             "B",
@@ -1531,16 +1769,22 @@ def main():
     candidates.sort(
         key=lambda x: (
             0
-            if x.get("grade") == "A"
+            if x.get(
+                "grade"
+            ) == "A"
             else 1,
 
             -(
-                x.get("estimated_profit")
+                x.get(
+                    "estimated_profit"
+                )
                 or 0
             ),
 
             -(
-                x.get("profit_rate")
+                x.get(
+                    "profit_rate"
+                )
                 or 0
             ),
         )
@@ -1580,7 +1824,10 @@ def main():
                 "estimated",
 
             "profit_formula":
-                "得物售价×92%-买入价-买入运费",
+                "得物售价×92%-买入价-6元",
+
+            "sku_level":
+                True,
         },
 
         "summary": {
@@ -1657,7 +1904,7 @@ def main():
     )
 
     print(
-        f"商品总数："
+        f"SKU分析总数："
         f"{len(results)}"
     )
 
@@ -1687,7 +1934,7 @@ def main():
 
     print(
         "估算公式："
-        "得物售价×92%-买入价-买入运费"
+        "得物售价×92%-买入价-6元"
     )
 
     print(
@@ -1702,8 +1949,10 @@ def main():
 
         print(
             f"{item.get('grade')} | "
-            f"{item.get('name')} | "
-            f"买入 ¥{item.get('buy_price')} | "
+            f"{item.get('product_code')} | "
+            f"{item.get('color')} | "
+            f"尺码 {item.get('sku_size')} | "
+            f"买入 ¥{item.get('sku_buy_price')} | "
             f"得物 ¥{item.get('dewu_price')} | "
             f"估算利润 ¥{item.get('estimated_profit')} | "
             f"利润率 "

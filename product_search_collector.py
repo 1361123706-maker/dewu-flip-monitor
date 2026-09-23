@@ -993,16 +993,29 @@ def extract_detail(page, url):
 # ============================================================
 
 def collect_urls(page):
+    print("开始打开识货首页", flush=True)
+
     try:
         page.goto(
             HOME_URL,
-            wait_until="commit",
-            timeout=10000,
+            wait_until="domcontentloaded",
+            timeout=15000,
         )
+        print("识货首页打开完成", flush=True)
+    except Exception as e:
+        print(
+            "识货首页打开超时/失败：",
+            repr(e),
+            flush=True,
+        )
+
+    try:
+        page.wait_for_timeout(2000)
     except Exception:
         pass
 
-    page.wait_for_timeout(2000)
+    print("开始读取商品链接", flush=True)
+    
     links = page.locator(
         "a[href*='pcGoodsDetail']"
     )

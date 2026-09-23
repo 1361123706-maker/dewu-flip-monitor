@@ -26,6 +26,13 @@ jobs:
           python-version: "3.x"
 
 
+      - name: 安装浏览器采集环境
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install --with-deps chromium
+
+
       - name: 测试自建数据接口
         run: |
           python collector_api.py &
@@ -51,6 +58,10 @@ jobs:
           PY
 
           kill $SERVER_PID || true
+
+
+      - name: 自动公开商品浏览采集
+        run: python product_search_collector.py
 
 
       - name: 采集市场数据

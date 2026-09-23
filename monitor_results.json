@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-09-23T01:02:06.144885+00:00",
+  "capital": 330,
+  "max_buy": 120,
+  "max_days": 7,
+  "min_profit": 15,
+  "min_profit_rate": 12,
+  "max_downside_loss": 25,
+  "monitored_count": 1,
+  "candidate_count": 0,
+  "candidates": [],
+  "results": [
+    {
+      "name": "Crying Center 拉链开合高级感 PU 斜挎包（泥棕色/豹纹款）",
+      "buy_price": 123,
+      "dewu_price": 230.0,
+      "expected_income": null,
+      "income_method": "费用数据不完整",
+      "technical_service_fee": null,
+      "technical_service_rate": null,
+      "operation_service_fee": null,
+      "consumer_shipping_subsidy": null,
+      "transfer_fee": null,
+      "transfer_fee_rate": null,
+      "after_sales_service_fee": null,
+      "seller_coupon_offset": null,
+      "buy_shipping_cost": 6,
+      "total_buy_cost": 129,
+      "net_profit": null,
+      "profit_rate": null,
+      "days": null,
+      "days_display": "未确认",
+      "liquidity": "高",
+      "downside_loss": null,
+      "downside_display": "未确认",
+      "authenticity_verified": true,
+      "new_condition_verified": false,
+      "dewu_check_compatible": true,
+      "status": "过滤",
+      "reasons": [
+        "买入价 ¥123.00 超过单笔上限 ¥120",
+        "周转时间：未确认",
+        "得物预计收入/费用数据不完整",
+        "净利润无法确认",
+        "下跌风险：未确认",
+        "全新/成色无法确认",
+        "关键行情数据不完整，禁止提醒购买"
+      ]
+    }
+  ]
+}

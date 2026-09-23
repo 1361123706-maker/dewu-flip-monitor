@@ -78,22 +78,68 @@ def normalize_trend(value):
     )
 
 
-def load_products():
-    path = Path(INPUT_FILE)
+def get_dewu_price(item):
+    """
+    得物售价选择顺序：
 
-    if not path.exists():
-        return []
+    1. 得物渠道售价
+    2. 当前同款同规格到手价
+    3. 其他得物售价
+    """
 
-    try:
-        data = json.loads(
-            path.read_text(
-                encoding="utf-8"
-            )
+    channel_price = to_float(
+        item.get(
+            "dewu_channel_price"
         )
-    except Exception:
-        return []
+    )
 
-    return data.get("products") or []
+    if (
+        channel_price is not None
+        and channel_price > 0
+    ):
+        return (
+            channel_price,
+            "识货：得物渠道售价",
+            "channel_price",
+        )
+
+    trend_price = to_float(
+        item.get(
+            "trend_current_price"
+        )
+    )
+
+    if (
+        trend_price is not None
+        and trend_price > 0
+    ):
+        return (
+            trend_price,
+            "识货：当前同款同规格到手价",
+            "current_price",
+        )
+
+    dewu_price = to_float(
+        item.get(
+            "dewu_price"
+        )
+    )
+
+    if (
+        dewu_price is not None
+        and dewu_price > 0
+    ):
+        return (
+            dewu_price,
+            "识货：得物售价",
+            "dewu_price",
+        )
+
+    return (
+        None,
+        None,
+        None,
+    )
 
 
 # ============================================================

@@ -117,7 +117,7 @@ def calculate_expected_income(item):
 
     return {
         "value": round(income, 2),
-        "confirmed": True,
+        "confirmed": False,
         "method": "得物售价按8%费用估算到账",
     }
 
@@ -166,12 +166,36 @@ def category_status(item):
 
 
 # ============================================================
-# 价格趋势标准化
+# 判断是否来自识货
 #
-# 兼容：
-# rising / falling / stable
-# 上涨 / 下跌 / 稳定
-# 上升 / 下降
+# 识货来源：
+# 默认视为正品风险已经有平台保障。
+# 不再因为 authenticity_verified 缺失而降低评级。
+# ============================================================
+
+def is_shihuo_source(item):
+
+    values = [
+        item.get("data_source"),
+        item.get("discovery_data_source"),
+        item.get("source_note"),
+        item.get("shihuo_url"),
+    ]
+
+    text = " ".join(
+        str(x).lower()
+        for x in values
+        if x
+    )
+
+    return (
+        "识货" in text
+        or "shihuo" in text
+    )
+
+
+# ============================================================
+# 价格趋势标准化
 # ============================================================
 
 def normalize_trend(value):
@@ -216,13 +240,10 @@ def normalize_trend(value):
 # 销量 / 周转证据
 #
 # 注意：
-# sales_velocity_7d 是“每天卖多少件”
-# 不能直接变成周转天数。
+# sales_velocity_7d = 每天卖多少件
+# 不是周转天数。
 #
-# 没有库存量时：
-# 不计算错误的“0天周转”
-# 而显示：
-# 月销1600，日均53.33（周转证据）
+# 没有库存数据时绝不伪造周转天数。
 # ============================================================
 
 def calculate_turnover(item):
@@ -291,9 +312,11 @@ def calculate_turnover(item):
             "display": f"日均销量{velocity:.2f}",
         }
 
-    days = money(item.get("days"))
+    explicit_days = money(
+        item.get("days")
+    )
 
-    if days is not None and days >= 0:
+    if explicit_days is not None and explicit_days >= 0:
 
         return {
             "confirmed": True,
@@ -301,8 +324,8 @@ def calculate_turnover(item):
             "sales_7d": None,
             "sales_30d": None,
             "velocity": None,
-            "days": days,
-            "display": f"周转约{days:g}天",
+            "days": explicit_days,
+            "display": f"周转约{explicit_days:g}天",
         }
 
     return {
@@ -548,25 +571,40 @@ def trend_score(price):
 
 # ============================================================
 # 商品状态证据
+#
+# 识货来源：
+# 正品风险默认通过。
+#
+# 仍然要求：
+# 1. 全新状态
+# 2. 得物查验兼容
+#
+# 非识货来源：
+# 才额外考虑真伪证据。
 # ============================================================
 
 def evidence_score(item):
 
     score = 0
 
-    if item.get("authenticity_evidence"):
+    shihuo = is_shihuo_source(item)
+
+    if shihuo:
+        score += 1
+
+    elif item.get("authenticity_evidence"):
+        score += 1
+
+    elif item.get("authenticity_verified") is True:
         score += 1
 
     if item.get("new_condition_evidence"):
         score += 1
 
-    if item.get("dewu_check_evidence"):
-        score += 1
-
-    if item.get("authenticity_verified") is True:
-        score += 1
-
     if item.get("new_condition_verified") is True:
+        score += 1
+
+    if item.get("dewu_check_evidence"):
         score += 1
 
     if item.get("dewu_check_compatible") is True:
@@ -841,7 +879,6 @@ def evaluate(item):
         * 100
     )
 
-
     if profit <= 0:
 
         return filtered_result(
@@ -873,6 +910,27 @@ def evaluate(item):
     # 10. 周转证据
     # --------------------------------------------------------
 
+    # 重要：
+    # 这里直接读取明确的 days 字段。
+    # 即使同时存在销量数据，也必须执行7天硬限制。
+    explicit_days = money(
+        item.get("days")
+    )
+
+    if (
+        explicit_days is not None
+        and explicit_days > MAX_DAYS
+    ):
+
+        return filtered_result(
+            item,
+            (
+                f"明确周转约{explicit_days:g}天，"
+                f"超过最大允许{MAX_DAYS}天"
+            ),
+            "D"
+        )
+
     turnover = calculate_turnover(item)
 
     if not turnover["confirmed"]:
@@ -880,9 +938,6 @@ def evaluate(item):
         risk_flags.append(
             "近期销量/周转证据未获取"
         )
-
-    # 有真实销量证据时，不再标记“周转未确认”
-    # 因为没有库存数据，所以不伪造周转天数。
 
 
     # --------------------------------------------------------
@@ -916,7 +971,6 @@ def evaluate(item):
     # 12. 下跌风险
     # --------------------------------------------------------
 
-    # 优先使用7日最低价计算实际跌幅
     if downside_amount is not None:
 
         if downside_amount > MAX_DOWNSIDE_LOSS:
@@ -929,7 +983,6 @@ def evaluate(item):
                 )
             )
 
-    # 如果数据源直接提供 downside_loss，也读取
     source_downside_loss = money(
         item.get("downside_loss")
     )
@@ -970,21 +1023,46 @@ def evaluate(item):
 
     e_score = evidence_score(item)
 
-    if e_score == 0:
+    shihuo_source = is_shihuo_source(item)
+
+    if shihuo_source:
+
+        # 识货来源默认正品风险通过
+        pass
+
+    elif e_score == 0:
 
         risk_flags.append(
-            "正品/全新/得物查验证据不足"
-        )
-
-    elif e_score == 1:
-
-        risk_flags.append(
-            "商品状态证据较少"
+            "非识货来源且真伪证据不足"
         )
 
 
     # --------------------------------------------------------
-    # 15. 得物查验
+    # 15. 全新状态
+    # --------------------------------------------------------
+
+    new_verified = item.get(
+        "new_condition_verified"
+    )
+
+    new_evidence = item.get(
+        "new_condition_evidence"
+    )
+
+    if (
+        new_verified is False
+        and not new_evidence
+    ):
+
+        return filtered_result(
+            item,
+            "明确不是全新状态",
+            "D"
+        )
+
+
+    # --------------------------------------------------------
+    # 16. 得物查验
     # --------------------------------------------------------
 
     dewu_check = item.get(
@@ -1001,7 +1079,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 16. 利润评分
+    # 17. 利润评分
     # --------------------------------------------------------
 
     if profit >= 50:
@@ -1031,7 +1109,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 17. 安全垫评分
+    # 18. 安全垫评分
     # --------------------------------------------------------
 
     if safety_rate is not None and safety_rate >= 20:
@@ -1048,7 +1126,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 18. 资金占用评分
+    # 19. 资金占用评分
     # --------------------------------------------------------
 
     capital_ratio = (
@@ -1070,7 +1148,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 19. 销量 / 趋势评分
+    # 20. 销量 / 趋势评分
     # --------------------------------------------------------
 
     s_score = sales_score(
@@ -1083,7 +1161,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 20. 硬风险
+    # 21. 硬风险
     # --------------------------------------------------------
 
     hard_risk = False
@@ -1117,12 +1195,11 @@ def evaluate(item):
         and downside_amount > MAX_DOWNSIDE_LOSS
     ):
 
-        # 下行风险超过¥25，不进入推荐
         hard_risk = True
 
 
     # --------------------------------------------------------
-    # 21. ABCD
+    # 22. ABCD
     # --------------------------------------------------------
 
     if hard_risk:
@@ -1163,8 +1240,8 @@ def evaluate(item):
 
         grade_reason = (
             "存在明确盈利空间，"
-            "近期销量或价格证据至少有一项，"
-            "但部分证据仍不够完整"
+            "没有明确重大硬风险；"
+            "部分辅助证据仍可能需要下单前确认"
         )
 
     else:
@@ -1178,7 +1255,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 22. 原因
+    # 23. 原因
     # --------------------------------------------------------
 
     if profit < MIN_PROFIT:
@@ -1216,7 +1293,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 23. 状态
+    # 24. 状态
     # --------------------------------------------------------
 
     status = (
@@ -1227,7 +1304,7 @@ def evaluate(item):
 
 
     # --------------------------------------------------------
-    # 24. 最终结果
+    # 25. 最终结果
     # --------------------------------------------------------
 
     return {
@@ -1292,10 +1369,6 @@ def evaluate(item):
         "profit_safety_margin_rate":
             safety_rate,
 
-        # -------------------------
-        # 周转
-        # -------------------------
-
         "days":
             turnover["days"],
 
@@ -1319,10 +1392,6 @@ def evaluate(item):
 
         "sales_velocity_7d":
             turnover["velocity"],
-
-        # -------------------------
-        # 价格走势
-        # -------------------------
 
         "price_current":
             price["current"],
@@ -1354,10 +1423,6 @@ def evaluate(item):
         "price_trend":
             trend,
 
-        # -------------------------
-        # 其他
-        # -------------------------
-
         "liquidity":
             liquidity,
 
@@ -1366,6 +1431,9 @@ def evaluate(item):
                 "category",
                 "unknown"
             ),
+
+        "shihuo_source":
+            shihuo_source,
 
         "authenticity_evidence":
             item.get(
@@ -1593,7 +1661,7 @@ def main():
     ]
 
 
-    # A + B = 真正候选
+    # A + B = 真正推送候选
     candidates = (
         a_results
         + b_results

@@ -21,9 +21,27 @@ MAX_DOWNSIDE_LOSS = 25
 
 
 # ============================================================
+# 得物费用规则
+#
+# 按当前系统采用的用户提供规则：
+#
+# 得物费用 ≈ 成交价的 8%
+#
+# 所以：
+#
+# 预计实际到账 = 得物售价 × 92%
+#
 # 注意：
-# 如果没有明确的买入运费，就不能假装它是 0。
-# 这里仍保留默认值，但会记录为估算成本。
+# 这是利润筛选模型，不冒充得物实时官方结算账单。
+# ============================================================
+
+DEWU_FEE_RATE = 0.08
+
+DEWU_NET_RATE = 1 - DEWU_FEE_RATE
+
+
+# ============================================================
+# 买入运费
 # ============================================================
 
 DEFAULT_BUY_SHIPPING_COST = 6
@@ -34,6 +52,7 @@ DEFAULT_BUY_SHIPPING_COST = 6
 # ============================================================
 
 def is_number(value):
+
     return (
         isinstance(value, (int, float))
         and not isinstance(value, bool)
@@ -41,6 +60,7 @@ def is_number(value):
 
 
 def money(value):
+
     if is_number(value):
         return float(value)
 
@@ -48,6 +68,7 @@ def money(value):
 
 
 def positive_number(value):
+
     value = money(value)
 
     if value is None:
@@ -60,38 +81,41 @@ def positive_number(value):
 
 
 # ============================================================
-# 计算得物实际预计到账
+# 计算得物预计到账
 #
-# 重要：
-# 绝不使用：
+# 核心规则：
 #
-#     得物展示价 = 实际到账
+# 得物售价 × 92%
 #
-# 只有：
+# 即按照约 8% 费用估算。
 #
-#     expected_income
-#
-# 或者：
-#
-#     得物售价 - 完整费用
-#
-# 才允许进入利润计算。
+# 如果系统已经有明确 expected_income，
+# 优先使用明确数据。
 # ============================================================
 
 def calculate_expected_income(item):
 
-    expected_income = positive_number(
+    # --------------------------------------------------------
+    # 如果以后数据源提供明确预计到账，
+    # 优先使用明确值。
+    # --------------------------------------------------------
+
+    explicit_income = positive_number(
         item.get("expected_income")
     )
 
-    if expected_income is not None:
+    if explicit_income is not None:
 
         return {
-            "value": expected_income,
+            "value": explicit_income,
             "confirmed": True,
-            "method": "得物明确预计收入"
+            "method": "数据源明确预计到账"
         }
 
+
+    # --------------------------------------------------------
+    # 否则使用得物售价 × 92%
+    # --------------------------------------------------------
 
     sale = positive_number(
         item.get("dewu_price")
@@ -106,80 +130,24 @@ def calculate_expected_income(item):
         }
 
 
-    technical = money(
-        item.get("technical_service_fee")
-    )
-
-    operation = money(
-        item.get("operation_service_fee")
-    )
-
-    shipping = money(
-        item.get("consumer_shipping_subsidy")
-    )
-
-    transfer = money(
-        item.get("transfer_fee")
-    )
-
-    after_sales = money(
-        item.get("after_sales_service_fee")
-    )
-
-    coupon = money(
-        item.get("seller_coupon_offset")
+    estimated_income = (
+        sale * DEWU_NET_RATE
     )
 
 
-    # --------------------------------------------------------
-    # 任何费用缺失，都不能自己猜。
-    # --------------------------------------------------------
-
-    required_fees = [
-        technical,
-        operation,
-        shipping,
-        transfer,
-        after_sales,
-        coupon,
-    ]
-
-    if not all(
-        value is not None
-        for value in required_fees
-    ):
+    if estimated_income <= 0:
 
         return {
             "value": None,
             "confirmed": False,
-            "method": "得物费用数据不完整"
-        }
-
-
-    calculated = (
-        sale
-        - technical
-        - operation
-        - shipping
-        - transfer
-        - after_sales
-        + coupon
-    )
-
-
-    if calculated <= 0:
-
-        return {
-            "value": None,
-            "confirmed": False,
-            "method": "计算后的预计到账异常"
+            "method": "8%费用模型计算异常"
         }
 
 
     return {
-        "value": calculated,
+        "value": estimated_income,
         "confirmed": True,
-        "method": "按完整得物费用明细计算"
+        "method": "得物售价按8%费用估算到账"
     }
 
 
@@ -202,8 +170,8 @@ def get_buy_shipping_cost(item):
         }
 
 
-    # 没有明确买入运费时：
-    # 仍然采用保守成本，但标记为估算。
+    # 没有明确买入运费时，
+    # 仍然采用保守估算。
     return {
         "value": DEFAULT_BUY_SHIPPING_COST,
         "confirmed": False,
@@ -240,6 +208,8 @@ def empty_filtered_result(
         "income_method":
             "无法计算",
 
+        "dewu_fee_rate":
+            DEWU_FEE_RATE * 100,
 
         "technical_service_fee":
             item.get(
@@ -281,7 +251,6 @@ def empty_filtered_result(
                 "seller_coupon_offset"
             ),
 
-
         "buy_shipping_cost":
             None,
 
@@ -297,13 +266,11 @@ def empty_filtered_result(
         "profit_rate":
             None,
 
-
         "days":
             None,
 
         "days_display":
             "未确认",
-
 
         "liquidity":
             item.get(
@@ -311,13 +278,11 @@ def empty_filtered_result(
                 "未知"
             ),
 
-
         "downside_loss":
             None,
 
         "downside_display":
             "未确认",
-
 
         "authenticity_verified":
             False,
@@ -327,7 +292,6 @@ def empty_filtered_result(
 
         "dewu_check_compatible":
             False,
-
 
         "status":
             "过滤",
@@ -385,7 +349,7 @@ def evaluate(item):
         )
 
 
-    # 使用当前公开来源中的最低价格
+    # 使用公开来源中的最低买入价
     buy = min(valid_prices)
 
 
@@ -483,6 +447,12 @@ def evaluate(item):
 
     # ========================================================
     # 5. 得物预计实际到账
+    #
+    # 使用：
+    #
+    # 得物售价 × 92%
+    #
+    # 即约 8% 费用。
     # ========================================================
 
     income_result = (
@@ -530,13 +500,6 @@ def evaluate(item):
     )
 
 
-    # --------------------------------------------------------
-    # 买入运费如果只是默认估算：
-    #
-    # 可以用于风险计算，
-    # 但不能作为“实打实利益”的完全确认。
-    # --------------------------------------------------------
-
     if not buy_shipping_confirmed:
 
         reasons.append(
@@ -576,7 +539,7 @@ def evaluate(item):
 
         profit_rate = (
             profit
-            / buy
+            / total_buy_cost
             * 100
         )
 
@@ -596,7 +559,7 @@ def evaluate(item):
         if profit < MIN_PROFIT:
 
             reasons.append(
-                f"净利润 ¥{profit:.2f}，"
+                f"预计净利润 ¥{profit:.2f}，"
                 f"低于最低要求 ¥{MIN_PROFIT}"
             )
 
@@ -780,8 +743,6 @@ def evaluate(item):
 
     # ========================================================
     # 最终状态
-    #
-    # 必须所有条件同时成立。
     # ========================================================
 
     status = (
@@ -797,13 +758,11 @@ def evaluate(item):
             name
             or "未知商品",
 
-
         "buy_price":
             round(
                 buy,
                 2
             ),
-
 
         "dewu_price":
             (
@@ -815,7 +774,6 @@ def evaluate(item):
                 else None
             ),
 
-
         "expected_income":
             (
                 round(
@@ -826,10 +784,11 @@ def evaluate(item):
                 else None
             ),
 
-
         "income_method":
             income_result["method"],
 
+        "dewu_fee_rate":
+            DEWU_FEE_RATE * 100,
 
         "technical_service_fee":
             item.get(
@@ -871,24 +830,20 @@ def evaluate(item):
                 "seller_coupon_offset"
             ),
 
-
         "buy_shipping_cost":
             round(
                 buy_shipping,
                 2
             ),
 
-
         "buy_shipping_confirmed":
             buy_shipping_confirmed,
-
 
         "total_buy_cost":
             round(
                 total_buy_cost,
                 2
             ),
-
 
         "net_profit":
             (
@@ -900,7 +855,6 @@ def evaluate(item):
                 else None
             ),
 
-
         "profit_rate":
             (
                 round(
@@ -911,7 +865,6 @@ def evaluate(item):
                 else None
             ),
 
-
         "days":
             (
                 days
@@ -919,14 +872,11 @@ def evaluate(item):
                 else None
             ),
 
-
         "days_display":
             days_display,
 
-
         "liquidity":
             liquidity,
-
 
         "downside_loss":
             (
@@ -935,26 +885,20 @@ def evaluate(item):
                 else None
             ),
 
-
         "downside_display":
             downside_display,
-
 
         "authenticity_verified":
             authenticity_verified,
 
-
         "new_condition_verified":
             new_condition_verified,
-
 
         "dewu_check_compatible":
             dewu_check_compatible,
 
-
         "status":
             status,
-
 
         "reasons":
             reasons,
@@ -994,6 +938,12 @@ def write_monitor_results(
 
         "max_downside_loss":
             MAX_DOWNSIDE_LOSS,
+
+        "dewu_fee_rate":
+            DEWU_FEE_RATE * 100,
+
+        "dewu_fee_method":
+            "得物售价按8%费用估算到账",
 
         "monitored_count":
             len(results),
@@ -1238,6 +1188,10 @@ def main():
         f"最大允许下跌风险：¥{MAX_DOWNSIDE_LOSS}"
     )
 
+    print(
+        f"得物费用模型：{DEWU_FEE_RATE * 100:.0f}%"
+    )
+
 
     print(
         "-" * 70
@@ -1303,28 +1257,29 @@ def main():
         if item["expected_income"] is not None:
 
             print(
-                f'  实际预计到账：'
+                f'  预计到账：'
                 f'¥{item["expected_income"]:.2f}'
+                f'（按8%费用估算）'
             )
 
         else:
 
             print(
-                "  实际预计到账：未确认"
+                "  预计到账：未确认"
             )
 
 
         if item["net_profit"] is not None:
 
             print(
-                f'  真实净利润：'
+                f'  预计净利润：'
                 f'¥{item["net_profit"]:.2f}'
             )
 
         else:
 
             print(
-                "  真实净利润：未确认"
+                "  预计净利润：未确认"
             )
 
 
@@ -1419,7 +1374,7 @@ def main():
         )
 
         print(
-            "系统没有用展示价差冒充利润。"
+            "系统使用得物售价的8%费用模型计算预计到账。"
         )
 
         print(

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T04:22:41.550314+00:00",
+  "updated_at": "2026-09-23T04:34:52.579199+00:00",
   "capital": 330,
   "max_buy": 120,
   "max_days": 7,
@@ -12,7 +12,7 @@
   "results": [
     {
       "name": "Crying Center 拉链开合高级感 PU 斜挎包（泥棕色/豹纹款）",
-      "buy_price": 123,
+      "buy_price": 123.0,
       "dewu_price": 230.0,
       "expected_income": null,
       "income_method": "费用数据不完整",
@@ -25,7 +25,7 @@
       "after_sales_service_fee": null,
       "seller_coupon_offset": null,
       "buy_shipping_cost": 6,
-      "total_buy_cost": 129,
+      "total_buy_cost": 129.0,
       "net_profit": null,
       "profit_rate": null,
       "days": null,
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "【宋雨琦同款】 adidas Originals Superstar 板鞋 轻便贝壳头薄底舒适百搭耐磨复古【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 460.0,
       "dewu_price": 500.0,
       "expected_income": null,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 7500.0,
       "dewu_price": 8000.0,
       "expected_income": null,
@@ -130,9 +130,9 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "Nike Air Force 1 空军一号 板鞋 轻便舒适百搭耐磨防滑复古【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 500.0,
-      "dewu_price": 520.0,
+      "dewu_price": 530.0,
       "expected_income": null,
       "income_method": "费用数据不完整",
       "technical_service_fee": null,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "【徐璐同款】Adidas/阿迪达斯 Firebird系列快干耐磨防风透气三条纹梭织立领夹克 KB2466【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 500.0,
       "dewu_price": null,
       "expected_income": null,
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "name": "未知商品",
-      "buy_price": 1.08,
+      "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决【报价 价格 评测 参数 讨论 怎么样】-识货",
+      "buy_price": 10800.0,
       "dewu_price": 10693.76,
       "expected_income": null,
       "income_method": "费用数据不完整",
@@ -227,7 +227,7 @@
       "after_sales_service_fee": null,
       "seller_coupon_offset": null,
       "buy_shipping_cost": 6,
-      "total_buy_cost": 7.08,
+      "total_buy_cost": 10806.0,
       "net_profit": null,
       "profit_rate": null,
       "days": null,
@@ -240,6 +240,8 @@
       "dewu_check_compatible": false,
       "status": "过滤",
       "reasons": [
+        "买入价 ¥10800.00 超过单笔上限 ¥120",
+        "超过当前本金",
         "周转时间：未确认",
         "流动性不是高（当前：未知）",
         "得物预计收入/费用数据不完整",
@@ -252,7 +254,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 400.0,
       "dewu_price": 410.0,
       "expected_income": null,
@@ -293,9 +295,9 @@
       ]
     },
     {
-      "name": "未知商品",
-      "buy_price": 90.0,
-      "dewu_price": 70.0,
+      "name": "CeraVe/适乐肤 水杨酸温和嫩肤泡沫洁面啫喱 清洁控油祛痘去闭口去黑头去角质疏通毛孔【报价 价格 评测 参数 讨论 怎么样】-识货",
+      "buy_price": 90000.0,
+      "dewu_price": 90000.0,
       "expected_income": null,
       "income_method": "费用数据不完整",
       "technical_service_fee": null,
@@ -307,7 +309,7 @@
       "after_sales_service_fee": null,
       "seller_coupon_offset": null,
       "buy_shipping_cost": 6,
-      "total_buy_cost": 96.0,
+      "total_buy_cost": 90006.0,
       "net_profit": null,
       "profit_rate": null,
       "days": null,
@@ -320,6 +322,8 @@
       "dewu_check_compatible": false,
       "status": "过滤",
       "reasons": [
+        "买入价 ¥90000.00 超过单笔上限 ¥120",
+        "超过当前本金",
         "周转时间：未确认",
         "流动性不是高（当前：未知）",
         "得物预计收入/费用数据不完整",
@@ -332,7 +336,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "Coach city 33 磁扣拉链开合涂层PVC拼皮革购物袋单肩托特包手提包【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 1290.0,
       "dewu_price": 1360.0,
       "expected_income": null,
@@ -373,7 +377,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "Ecovacs/科沃斯 T90 PRO 扫地机器人 扫拖 烘干 大吸力 防缠绕 自清洁 自动集尘 回洗快充 超长续航【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 3210.0,
       "dewu_price": 2900.0,
       "expected_income": null,
@@ -414,7 +418,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "李宁 CBA联赛 耐磨防滑 比赛训练 室内外 手感之王 吸湿水泥地 标准 PU篮球 LBQK957【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 100.0,
       "dewu_price": null,
       "expected_income": null,
@@ -454,7 +458,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "ON/奥普帝蒙 进口版 乳清蛋白粉 罐装 健身增肌【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 750.0,
       "dewu_price": null,
       "expected_income": null,
@@ -496,7 +500,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "Xds/喜德盛 2026款 RC200 禧玛诺 多速别 铝合金 超轻 公路车【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 1190.0,
       "dewu_price": null,
       "expected_income": null,
@@ -538,7 +542,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "五粮液 第八代 普五 52度 500ml 白酒 盒装【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 4610.0,
       "dewu_price": 800.0,
       "expected_income": null,
@@ -579,7 +583,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "中国黄金 碎碎冰金素圈足金闭口戒指 ZJJZ300【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 1200.0,
       "dewu_price": 500.0,
       "expected_income": null,
@@ -620,8 +624,8 @@
       ]
     },
     {
-      "name": "未知商品",
-      "buy_price": 20.0,
+      "name": "【啫喱型】舒肤佳 净透沐浴露 果酸嫩肤清洁毛孔持久留香【报价 价格 评测 参数 讨论 怎么样】-识货",
+      "buy_price": 200000.0,
       "dewu_price": null,
       "expected_income": null,
       "income_method": "费用数据不完整",
@@ -634,7 +638,7 @@
       "after_sales_service_fee": null,
       "seller_coupon_offset": null,
       "buy_shipping_cost": 6,
-      "total_buy_cost": 26.0,
+      "total_buy_cost": 200006.0,
       "net_profit": null,
       "profit_rate": null,
       "days": null,
@@ -647,6 +651,8 @@
       "dewu_check_compatible": false,
       "status": "过滤",
       "reasons": [
+        "买入价 ¥200000.00 超过单笔上限 ¥120",
+        "超过当前本金",
         "周转时间：未确认",
         "流动性不是高（当前：未知）",
         "得物售价：未确认",
@@ -660,7 +666,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "【大迫杰同款】COROS/高驰 PACE 4 双频全星座运动音乐马拉松跑步爬楼越野超长续航智能男女同款手表【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 1500.0,
       "dewu_price": 1450.0,
       "expected_income": null,
@@ -701,7 +707,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 200.0,
       "dewu_price": 250.0,
       "expected_income": null,
@@ -741,7 +747,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "无畏契约VP 国服 瓦罗兰特 点券充值【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 1950.0,
       "dewu_price": null,
       "expected_income": null,
@@ -783,7 +789,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "鲜朗 无谷禽肉全价全期 烘焙猫粮 低敏肠胃呵护营养均衡【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 200.0,
       "dewu_price": null,
       "expected_income": null,
@@ -824,7 +830,7 @@
       ]
     },
     {
-      "name": "未知商品",
+      "name": "brook/布鲁克 V12民谣初学者吉他单板【报价 价格 评测 参数 讨论 怎么样】-识货",
       "buy_price": 600.0,
       "dewu_price": null,
       "expected_income": null,

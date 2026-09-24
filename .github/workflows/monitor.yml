@@ -1,0 +1,112 @@
+name: 快进快出监控
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dewu-flip-monitor
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装 Playwright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: 采集识货公开商品数据
+        run: |
+          python product_search_collector.py
+
+      - name: 验证采集结果
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("discovery_data.json")
+          if not path.exists():
+              raise SystemExit("discovery_data.json 未生成，停止本轮监控。")
+
+          data = json.loads(path.read_text(encoding="utf-8"))
+          products = data.get("products") or []
+
+          print(f"本轮采集商品数：{len(products)}")
+
+          if not products:
+              raise SystemExit("本轮没有采集到有效商品，为避免使用旧数据误报机会，停止本轮监控。")
+          PY
+
+      - name: 合并市场数据
+        run: |
+          python market_data_bridge.py
+
+      - name: 执行 A/B/C/D 风控
+        run: |
+          python monitor.py
+
+      - name: 输出本轮结果
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("monitor_results.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          candidates = data.get("candidates") or []
+          print(f"A/B 候选数量：{len(candidates)}")
+
+          for item in candidates[:10]:
+              print(
+                  f"{item.get('grade')} | "
+                  f"{item.get('name')} | "
+                  f"买入 {item.get('buy_price')} | "
+                  f"净利润 {item.get('profit')} | "
+                  f"利润率 {item.get('profit_rate')}%"
+              )
+          PY
+
+      - name: 微信通知新盈利机会
+        if: ${{ secrets.PUSHPLUS_TOKEN != '' }}
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+        run: |
+          python notifier.py
+
+      - name: 提交最新市场结果
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            discovery_data.json \
+            products.json \
+            monitor_results.json \
+            notification_state.json
+
+          if git diff --cached --quiet; then
+            echo "市场结果没有变化，不提交。"
+            exit 0
+          fi
+
+          git commit -m "更新市场数据、机会监控和通知状态"
+          git push

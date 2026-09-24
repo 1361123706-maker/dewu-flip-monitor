@@ -1641,25 +1641,39 @@ def build_product(item):
         buy_status,
     ) = get_buy_price_info(item)
 
-    if effective_buy_price is not None:
+    if best_effective_buy_price is not None:
 
-        final_buy_price = (
-            effective_buy_price
-        )
+    final_buy_price = (
+        best_effective_buy_price
+    )
 
-        final_buy_source = (
-            "活动后明确到手价"
-        )
+    final_buy_source = (
+        "活动优惠计算后的最低到手价"
+    )
 
-        final_buy_status = (
-            "estimated_after_discount"
-        )
+    final_buy_status = (
+        "calculated_promotion_price"
+    )
 
-    elif buy_price is not None:
+elif effective_buy_price is not None:
 
-        final_buy_price = buy_price
-        final_buy_source = buy_source
-        final_buy_status = buy_status
+    final_buy_price = (
+        effective_buy_price
+    )
+
+    final_buy_source = (
+        "活动后明确到手价"
+    )
+
+    final_buy_status = (
+        "estimated_after_discount"
+    )
+
+elif buy_price is not None:
+
+    final_buy_price = buy_price
+    final_buy_source = buy_source
+    final_buy_status = buy_status
 
     else:
 

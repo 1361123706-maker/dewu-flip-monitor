@@ -247,7 +247,7 @@ jobs:
           PY
 
       - name: 微信通知新盈利机会
-        if: ${{ secrets.PUSHPLUS_TOKEN != '' }}
+        
         env:
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
         run: |

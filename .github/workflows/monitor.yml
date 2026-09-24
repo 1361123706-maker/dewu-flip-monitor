@@ -2,8 +2,7 @@ name: 快进快出监控
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */2 * * *"
+
 
 permissions:
   contents: write

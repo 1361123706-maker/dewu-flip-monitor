@@ -1552,7 +1552,84 @@ def build_product(item):
     product["official_store_links"] = (
         get_official_store_links(item)
     )
+# --------------------------------------------------------
+# 活动优惠统一计算
+# --------------------------------------------------------
 
+promotion_offers = (
+    item.get(
+        "promotion_offers",
+        []
+    )
+)
+
+promotion_result = (
+    calculate_best_price(
+        base_price=(
+            item.get(
+                "buy_price_before_discount"
+            )
+            or item.get(
+                "buy_price"
+            )
+            or item.get(
+                "price"
+            )
+        ),
+
+        offers=promotion_offers,
+
+        explicit_effective_price=(
+            effective_buy_price
+        ),
+    )
+)
+
+product["promotion_calculation"] = (
+    promotion_result
+)
+
+product["promotion_offers"] = (
+    promotion_result.get(
+        "offers",
+        []
+    )
+)
+
+product["best_effective_buy_price"] = (
+    promotion_result.get(
+        "effective_price"
+    )
+)
+
+product["promotion_discount_total"] = (
+    promotion_result.get(
+        "discount_total"
+    )
+)
+
+product["promotion_verified"] = (
+    promotion_result.get(
+        "verified",
+        False
+    )
+)
+
+product["promotion_status"] = (
+    promotion_result.get(
+        "calculation_status"
+    )
+)
+
+# 计算器得到的优惠链接
+for url in promotion_result.get(
+    "coupon_urls",
+    []
+):
+    if url not in product["coupon_urls"]:
+        product["coupon_urls"].append(
+            url
+        )
     # --------------------------------------------------------
     # 最终买入价
     # --------------------------------------------------------

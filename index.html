@@ -31,7 +31,8 @@ main{max-width:900px;margin:auto;padding:14px 14px calc(34px + env(safe-area-ins
 <header class="top"><div class="top-inner"><div class="title-row"><div><h1>得物套利监控</h1><div class="subtitle">自动采集 · 活动优惠 · 到手价 · 利润 · 风控</div></div><button class="refresh" id="refreshBtn" onclick="loadData(true)">刷新</button></div></div></header>
 <main>
 <section class="card"><div class="status-row"><div><div class="status-dot"><span class="dot"></span><span id="systemStatus">正在读取</span></div><div class="updated" id="updated">等待后台数据……</div></div></div></section>
-<section class="card"><div class="section-title">本轮监控</div><div class="section-sub">只把真正满足核心利润与风险条件的商品送入推荐区。</div><div class="metrics">
+<section class="card"><div class="section-title">本金设置卡片<a class="action" href="https://github.com/1361123706-maker/dewu-flip-monitor/edit/main/config.json" target="_blank" rel="noopener">⚙️ 点击修改本金</a>
+本轮监控</div><div class="section-sub">只把真正满足核心利润与风险条件的商品送入推荐区。</div><div class="metrics">
 <div class="metric"><div class="metric-label">扫描商品</div><div class="metric-value" id="count">—</div></div>
 <div class="metric"><div class="metric-label">A/B候选</div><div class="metric-value green" id="candidateCount">—</div></div>
 <div class="metric"><div class="metric-label">A级</div><div class="metric-value green" id="aCount">—</div></div>

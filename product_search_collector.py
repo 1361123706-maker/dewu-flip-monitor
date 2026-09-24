@@ -4,6 +4,10 @@ import re
 from pathlib import Path
 from urllib.parse import quote, urljoin
 
+from promotion_engine import (
+    calculate_best_price,
+)
+
 from playwright.async_api import async_playwright
 
 

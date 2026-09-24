@@ -247,15 +247,38 @@ def get_lowest_size_price(
 def get_base_buy_price(item):
 
     candidates = [
-        item.get("effective_buy_price"),
-        item.get("final_buy_price"),
-        item.get("estimated_final_price"),
-        item.get("buy_price"),
-        item.get("sku_buy_price"),
-        item.get("market_low_price"),
-        item.get("price"),
-    ]
+        item.get(
+            "best_effective_buy_price"
+        ),
 
+        item.get(
+            "final_buy_price"
+        ),
+
+        item.get(
+            "effective_buy_price"
+        ),
+
+        item.get(
+            "estimated_final_price"
+        ),
+
+        item.get(
+            "buy_price"
+        ),
+
+        item.get(
+            "sku_buy_price"
+        ),
+
+        item.get(
+            "market_low_price"
+        ),
+
+        item.get(
+            "price"
+        ),
+    ]
     for value in candidates:
         number = to_float(value)
 

@@ -1306,10 +1306,25 @@ def main():
     # ========================================================
 
     candidates = [
-        item
-        for item in results
-        if item.get("grade") in {"A", "B"}
-    ]
+    item
+    for item in results
+    if (
+        item.get("grade")
+        in {"A", "B"}
+        and (
+            item.get(
+                "estimated_profit"
+            )
+            or 0
+        ) >= MIN_PROFIT
+        and (
+            item.get(
+                "profit_rate"
+            )
+            or 0
+        ) >= MIN_PROFIT_RATE
+    )
+]
 
     candidates.sort(
         key=lambda x: (

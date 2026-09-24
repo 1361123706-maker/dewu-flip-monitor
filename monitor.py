@@ -13,7 +13,7 @@ MAX_DOWNSIDE_LOSS = 25
 
 DEWU_NET_RATE = 0.92
 DEFAULT_BUY_SHIPPING = 6
-
+REQUIRE_PROMOTION_EVIDENCE = False
 
 def to_float(value):
     if value is None or isinstance(value, bool):

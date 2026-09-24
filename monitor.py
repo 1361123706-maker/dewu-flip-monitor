@@ -578,13 +578,39 @@ def check_hard_risks(
     sku_size,
 ):
     reasons = []
-promotion_status = item.get(
-    "promotion_status"
-)
 
-promotion_verified = item.get(
-    "promotion_verified"
-)
+    promotion_status = item.get(
+        "promotion_status"
+    )
+
+    promotion_verified = item.get(
+        "promotion_verified"
+    )
+
+    if (
+        promotion_status
+        == "missing_base_price"
+    ):
+        reasons.append(
+            "没有有效活动/买入价格"
+        )
+
+    if (
+        REQUIRE_PROMOTION_EVIDENCE
+        and not promotion_verified
+    ):
+        reasons.append(
+            "优惠价格缺少明确证据"
+        )
+
+    category = item.get(
+        "category"
+    )
+
+    if category == "excluded":
+        reasons.append(
+            "属于明确排除品类"
+        )
 
 if (
     promotion_status

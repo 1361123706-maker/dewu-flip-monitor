@@ -5,7 +5,21 @@ from datetime import datetime, timezone
 INPUT_FILE = "products.json"
 OUTPUT_FILE = "monitor_results.json"
 
-CAPITAL = 330
+CONFIG_FILE = "config.json"
+DEFAULT_CAPITAL = 330
+
+def load_capital():
+    path = Path(CONFIG_FILE)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        value = float(data.get("capital"))
+        if value > 0:
+            return value
+    except Exception as e:
+        print(f"读取 {CONFIG_FILE} 失败，使用默认本金 ¥{DEFAULT_CAPITAL:.2f}：{e}")
+    return float(DEFAULT_CAPITAL)
+
+CAPITAL = load_capital()
 MAX_DAYS = 7
 MIN_PROFIT = 15
 MIN_PROFIT_RATE = 12

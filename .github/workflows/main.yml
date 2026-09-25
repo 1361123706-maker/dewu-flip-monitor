@@ -48,7 +48,10 @@ jobs:
         run: |
           python product_search_collector.py
 
-      # 新增：修复配色/尺码/SKU身份，并生成精确购买链接。
+      - name: 整理购买入口与优惠链接
+        run: |
+          python link_promotion_collector.py
+
       - name: 修复 SKU 配色与购买链接
         run: |
           python sku_identity_repair.py
@@ -67,34 +70,27 @@ jobs:
           products = data.get("products", [])
 
           named = 0
-          priced = 0
           linked = 0
           sku_complete = 0
+          coupon_links = 0
 
           for item in products:
               if not isinstance(item, dict):
                   continue
-
               if item.get("name"):
                   named += 1
-
-              try:
-                  if float(item.get("buy_price") or 0) > 0:
-                      priced += 1
-              except Exception:
-                  pass
-
-              if item.get("shihuo_url") or item.get("shihuo_sku_url"):
+              if item.get("shihuo_url") or item.get("shihuo_sku_url") or item.get("buy_url"):
                   linked += 1
-
               if item.get("sku_identity_complete"):
                   sku_complete += 1
+              if item.get("coupon_urls") or item.get("promotion_links"):
+                  coupon_links += 1
 
           print("发现层商品数量：", len(products))
           print("有商品名称：", named)
-          print("有 SKU 买入价：", priced)
-          print("有识货链接：", linked)
+          print("有有效购买/识货链接：", linked)
           print("SKU身份完整：", sku_complete)
+          print("有优惠链接：", coupon_links)
 
           if not products:
               raise SystemExit("本次没有发现任何商品")
@@ -146,5 +142,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add discovery_data.json products.json monitor_results.json notification_state.json
-          git diff --cached --quiet || git commit -m "修复SKU身份、配色和监控数据"
+          git diff --cached --quiet || git commit -m "增强购买入口和优惠链接采集"
           git push

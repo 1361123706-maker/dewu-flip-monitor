@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26T10:04:10.937792+00:00",
+  "updated_at": "2026-09-26T12:04:22.906549+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -24,7 +24,7 @@
         "37⅓": 460.0,
         "38": 7.0,
         "38⅔": 440.0,
-        "39⅓": 440.0,
+        "39⅓": 460.0,
         "40": 410.0,
         "40⅔": 400.0,
         "41⅓": 410.0,
@@ -151,7 +151,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-09-26T10:04:10.936873+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906046+00:00"
     },
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
@@ -166,7 +166,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 83.25,
+      "buy_price": 69.1,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -205,9 +205,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 100.3,
-        "effective_price": 83.25,
-        "discount_total": 17.05,
+        "base_price": 83.25,
+        "effective_price": 69.1,
+        "discount_total": 14.15,
         "offers": [
           {
             "type": "折扣",
@@ -262,8 +262,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 83.25,
-      "effective_buy_price": 83.25,
+      "best_effective_buy_price": 69.1,
+      "effective_buy_price": 69.1,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "hard_exclude": false,
@@ -319,7 +319,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-09-26T10:04:10.936953+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906098+00:00"
     },
     {
       "name": "Nike Air Force 1 空军一号 板鞋 轻便舒适百搭耐磨防滑复古",
@@ -357,7 +357,7 @@
         "44.5": 500.0,
         "45": 500.0,
         "45.5": 640.0,
-        "46": 700.0,
+        "46": 550.0,
         "47": 700.0,
         "47.5": 620.0,
         "48": 900.0,
@@ -476,7 +476,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 7,
-      "bridge_updated_at": "2026-09-26T10:04:10.937125+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906189+00:00"
     },
     {
       "name": "【徐璐同款】Adidas/阿迪达斯 Firebird系列快干耐磨防风透气三条纹梭织立领夹克 KB2466",
@@ -494,7 +494,7 @@
       "buy_price": 420.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "XS": 500.0,
+        "XS": 520.0,
         "S": 400.0,
         "M": 430.0,
         "L": 410.0,
@@ -608,14 +608,14 @@
         "promotion_calculation": true
       },
       "evidence_count": 6,
-      "bridge_updated_at": "2026-09-26T10:04:10.937182+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906222+00:00"
     },
     {
       "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决",
       "product_code": "iPhone18",
-      "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
+      "color": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "size": null,
-      "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
+      "selected_variant": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "search_key": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=9719149&styleId=1153172787",
       "goods_id": "9719149",
@@ -623,7 +623,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 4995.88,
+      "buy_price": 4796.04,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -662,9 +662,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 5204.04,
-        "effective_price": 4995.88,
-        "discount_total": 208.16,
+        "base_price": 4995.88,
+        "effective_price": 4796.04,
+        "discount_total": 199.84,
         "offers": [
           {
             "type": "折扣",
@@ -674,7 +674,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 9家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 8家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
             "source": "shihuo_detail_text"
           }
         ],
@@ -687,7 +687,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 9家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 8家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
             "source": "shihuo_detail_text"
           }
         ],
@@ -709,7 +709,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 9家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 8家放心店铺最低价 总销900+ 月销900+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
           "source": "shihuo_detail_text"
         }
       ],
@@ -719,8 +719,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 4995.88,
-      "effective_buy_price": 4995.88,
+      "best_effective_buy_price": 4796.04,
+      "effective_buy_price": 4796.04,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "hard_exclude": false,
@@ -775,7 +775,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-09-26T10:04:10.937228+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906250+00:00"
     },
     {
       "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水",
@@ -801,7 +801,7 @@
         "40": 370.0,
         "41": 400.0,
         "41.5": 370.0,
-        "42": 370.0,
+        "42": 400.0,
         "43": 350.0,
         "43.5": 400.0,
         "44": 380.0,
@@ -915,7 +915,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-09-26T10:04:10.937319+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906303+00:00"
     },
     {
       "name": "Coach city 33 磁扣拉链开合涂层PVC拼皮革购物袋单肩托特包手提包",
@@ -984,7 +984,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 2 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -997,7 +997,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 2 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1019,7 +1019,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 2 / 12 全部 15 ¥ 1340 4.6折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1085,7 +1085,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 9,
-      "bridge_updated_at": "2026-09-26T10:04:10.937367+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906330+00:00"
     },
     {
       "name": "Ecovacs/科沃斯 T90 PRO 扫地机器人 扫拖 烘干 大吸力 防缠绕 自清洁 自动集尘 回洗快充 超长续航",
@@ -1252,7 +1252,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-09-26T10:04:10.937406+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906352+00:00"
     },
     {
       "name": "李宁 CBA联赛 耐磨防滑 比赛训练 室内外 手感之王 吸湿水泥地 标准 PU篮球 LBQK957",
@@ -1376,7 +1376,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 6,
-      "bridge_updated_at": "2026-09-26T10:04:10.937434+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906368+00:00"
     },
     {
       "name": "Xds/喜德盛 2026款 RC200 禧玛诺 多速别 铝合金 超轻 公路车",
@@ -1499,7 +1499,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 9,
-      "bridge_updated_at": "2026-09-26T10:04:10.937467+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906388+00:00"
     },
     {
       "name": "【大迫杰同款】COROS/高驰 PACE 4 双频全星座运动音乐马拉松跑步爬楼越野超长续航智能男女同款手表",
@@ -1514,7 +1514,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 85.2,
+      "buy_price": 72.42,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1530.0
@@ -1555,9 +1555,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 100.24,
-        "effective_price": 85.2,
-        "discount_total": 15.04,
+        "base_price": 85.2,
+        "effective_price": 72.42,
+        "discount_total": 12.78,
         "offers": [
           {
             "type": "折扣",
@@ -1612,8 +1612,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 85.2,
-      "effective_buy_price": 85.2,
+      "best_effective_buy_price": 72.42,
+      "effective_buy_price": 72.42,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "hard_exclude": false,
@@ -1668,7 +1668,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 9,
-      "bridge_updated_at": "2026-09-26T10:04:10.937509+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906412+00:00"
     },
     {
       "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具",
@@ -1793,7 +1793,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 4,
-      "bridge_updated_at": "2026-09-26T10:04:10.937562+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906432+00:00"
     },
     {
       "name": "brook/布鲁克 V12民谣初学者吉他单板",
@@ -1808,7 +1808,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 262.76,
+      "buy_price": 257.5,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1850,9 +1850,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 268.12,
-        "effective_price": 262.76,
-        "discount_total": 5.36,
+        "base_price": 262.76,
+        "effective_price": 257.5,
+        "discount_total": 5.26,
         "offers": [
           {
             "type": "折扣",
@@ -1907,8 +1907,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 262.76,
-      "effective_buy_price": 262.76,
+      "best_effective_buy_price": 257.5,
+      "effective_buy_price": 257.5,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "hard_exclude": false,
@@ -1963,7 +1963,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 10,
-      "bridge_updated_at": "2026-09-26T10:04:10.937630+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906459+00:00"
     },
     {
       "name": "全部 商品 优惠 晒物",
@@ -2076,7 +2076,7 @@
       "estimated_profit_confirmation": "买入价和得物售价均不足",
       "income_confirmed": false,
       "income_confirmation_reason": "买入价和得物售价均不足",
-      "bridge_updated_at": "2026-09-26T10:04:10.937659+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906474+00:00"
     },
     {
       "name": "商品",
@@ -2179,7 +2179,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937689+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906488+00:00"
     },
     {
       "name": "AJ11",
@@ -2282,7 +2282,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937707+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906499+00:00"
     },
     {
       "name": "欧文4",
@@ -2385,7 +2385,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937721+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906507+00:00"
     },
     {
       "name": "LBJ15",
@@ -2488,7 +2488,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937737+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906517+00:00"
     },
     {
       "name": "ultra boost",
@@ -2591,7 +2591,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937750+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906525+00:00"
     },
     {
       "name": "Jordan",
@@ -2694,7 +2694,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937763+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906533+00:00"
     },
     {
       "name": "Air force 1",
@@ -2797,7 +2797,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937776+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906541+00:00"
     },
     {
       "name": "球鞋90秒",
@@ -2900,7 +2900,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-09-26T10:04:10.937789+00:00"
+      "bridge_updated_at": "2026-09-26T12:04:22.906548+00:00"
     }
   ]
 }

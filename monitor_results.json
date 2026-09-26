@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26T12:04:22.947147+00:00",
+  "updated_at": "2026-09-26T14:04:40.564781+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -36,7 +36,7 @@
       "product_code": "iPhone17",
       "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
-      "sku_buy_price": 69.1,
+      "sku_buy_price": 57.35,
       "sku_identity_complete": true,
       "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
@@ -47,8 +47,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 69.1,
-      "best_effective_buy_price": 69.1,
+      "effective_buy_price": 57.35,
+      "best_effective_buy_price": 57.35,
       "coupon_urls": [
         "None"
       ],
@@ -70,9 +70,9 @@
         }
       ],
       "promotion_calculation": {
-        "base_price": 83.25,
-        "effective_price": 69.1,
-        "discount_total": 14.15,
+        "base_price": 69.1,
+        "effective_price": 57.35,
+        "discount_total": 11.75,
         "offers": [
           {
             "type": "折扣",
@@ -111,7 +111,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 69.1,
+      "buy_price": 57.35,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 8000.0,
@@ -121,18 +121,18 @@
       "trend_current_price": 7510.0,
       "estimated_income": 7360.0,
       "expected_income": 7360.0,
-      "total_cost": 75.1,
+      "total_cost": 63.35,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 7284.9,
-      "estimated_profit": 7284.9,
-      "profit_rate": 9700.27,
+      "profit": 7296.65,
+      "estimated_profit": 7296.65,
+      "profit_rate": 11518.0,
       "capital": 700.0,
-      "capital_ratio": 10.73,
+      "capital_ratio": 9.05,
       "sales_7d": null,
       "sales_30d": 1600.0,
       "sales_velocity_7d": 53.333333333333336,
@@ -152,7 +152,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥69.10；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7284.90；利润率 9700.27%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥57.35；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7296.65；利润率 11518.00%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -193,7 +193,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -210,7 +210,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -223,7 +223,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -294,7 +294,7 @@
       "product_code": "iPhone17",
       "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
-      "sku_buy_price": 69.1,
+      "sku_buy_price": 57.35,
       "sku_identity_complete": true,
       "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
@@ -305,8 +305,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 69.1,
-      "best_effective_buy_price": 69.1,
+      "effective_buy_price": 57.35,
+      "best_effective_buy_price": 57.35,
       "coupon_urls": [
         "None"
       ],
@@ -328,9 +328,9 @@
         }
       ],
       "promotion_calculation": {
-        "base_price": 83.25,
-        "effective_price": 69.1,
-        "discount_total": 14.15,
+        "base_price": 69.1,
+        "effective_price": 57.35,
+        "discount_total": 11.75,
         "offers": [
           {
             "type": "折扣",
@@ -369,7 +369,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 69.1,
+      "buy_price": 57.35,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 8000.0,
@@ -379,18 +379,18 @@
       "trend_current_price": 7510.0,
       "estimated_income": 7360.0,
       "expected_income": 7360.0,
-      "total_cost": 75.1,
+      "total_cost": 63.35,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 7284.9,
-      "estimated_profit": 7284.9,
-      "profit_rate": 9700.27,
+      "profit": 7296.65,
+      "estimated_profit": 7296.65,
+      "profit_rate": 11518.0,
       "capital": 700.0,
-      "capital_ratio": 10.73,
+      "capital_ratio": 9.05,
       "sales_7d": null,
       "sales_30d": 1600.0,
       "sales_velocity_7d": 53.333333333333336,
@@ -410,7 +410,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥69.10；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7284.90；利润率 9700.27%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥57.35；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7296.65；利润率 11518.00%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -422,7 +422,7 @@
       "product_code": "iPhone18",
       "color": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "sku_size": null,
-      "sku_buy_price": 4796.04,
+      "sku_buy_price": 4604.2,
       "sku_identity_complete": true,
       "selected_variant": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "grade": "D",
@@ -433,8 +433,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 4796.04,
-      "best_effective_buy_price": 4796.04,
+      "effective_buy_price": 4604.2,
+      "best_effective_buy_price": 4604.2,
       "coupon_urls": [
         "None"
       ],
@@ -456,9 +456,9 @@
         }
       ],
       "promotion_calculation": {
-        "base_price": 4995.88,
-        "effective_price": 4796.04,
-        "discount_total": 199.84,
+        "base_price": 4796.04,
+        "effective_price": 4604.2,
+        "discount_total": 191.84,
         "offers": [
           {
             "type": "折扣",
@@ -497,7 +497,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 4796.04,
+      "buy_price": 4604.2,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -507,18 +507,18 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 4802.04,
+      "total_cost": 4610.2,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 5028.32,
-      "estimated_profit": 5028.32,
-      "profit_rate": 104.71,
+      "profit": 5220.16,
+      "estimated_profit": 5220.16,
+      "profit_rate": 113.23,
       "capital": 700.0,
-      "capital_ratio": 686.01,
+      "capital_ratio": 658.6,
       "sales_7d": null,
       "sales_30d": 800.0,
       "sales_velocity_7d": 26.666666666666668,
@@ -538,9 +538,9 @@
       "safety_score": 9,
       "capital_score": 0,
       "hard_risks": [
-        "总资金占用 ¥4802.04 超过当前资金 ¥700.00"
+        "总资金占用 ¥4610.20 超过当前资金 ¥700.00"
       ],
-      "reason": "触发硬风险，直接过滤；买入 ¥4796.04；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥5028.32；利润率 104.71%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "触发硬风险，直接过滤；买入 ¥4604.20；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥5220.16；利润率 113.23%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -665,7 +665,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -682,7 +682,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -695,7 +695,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2800 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3240 自动上下水版 ¥2710 ¥ 3240 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],

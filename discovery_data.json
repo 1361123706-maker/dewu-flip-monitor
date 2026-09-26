@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26T06:03:33.044975+00:00",
+  "updated_at": "2026-09-26T08:03:21.900780+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -42,7 +42,7 @@
         "49⅓": 900.0,
         "51⅓": 1170.0,
         "52⅔": 1440.0,
-        "35": 620.0,
+        "35": 600.0,
         "35½": 450.0
       },
       "size_price_evidence": "36码 ¥460; 36⅔码 ¥430; 37⅓码 ¥460; 38码 ¥470; 38⅔码 ¥400; 39⅓码 ¥450; 40码 ¥420; 40⅔码 ¥400; 41⅓码 ¥400; 42码 ¥400; 42⅔码 ¥400; 43⅓码 ¥400; 44码 ¥350; 44⅔码 ¥400; 45⅓码 ¥440; 46码 ¥440; 46⅔码 ¥500; 47⅓码 ¥570; 48码 ¥610; 48⅔码 ¥600; 49⅓码 ¥900; 51⅓码 ¥1170; 52⅔码 ¥1420",
@@ -79,7 +79,7 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/358?goodsId=358&skuId=1204448750&styleId=409900525",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/1204448750?id=358&sku_id=1204448750",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 320.0,
         "effective_price": 320.0,
@@ -98,8 +98,8 @@
       "effective_buy_price": 320.0,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/1204448750?id=358&sku_id=1204448750",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 120.84,
+      "buy_price": 100.3,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -163,21 +163,21 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/7929848?goodsId=7929848&skuId=2672950573&styleId=754572635",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 165.53,
-        "effective_price": 120.84,
-        "discount_total": 44.69,
+        "base_price": 120.84,
+        "effective_price": 100.3,
+        "discount_total": 20.54,
         "offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.83,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.16万 ¥ 7420 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.16万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -186,11 +186,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.83,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.16万 ¥ 7420 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.16万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -208,22 +208,26 @@
           "type": "折扣",
           "platform": "",
           "amount": null,
-          "rate": 0.73,
+          "rate": 0.83,
           "threshold": null,
-          "url": null,
+          "url": "None",
           "stackable": false,
-          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.16万 ¥ 7420 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.16万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
           "source": "shihuo_detail_text"
         }
       ],
-      "coupon_urls": [],
-      "all_coupon_urls": [],
-      "best_effective_buy_price": 120.84,
-      "effective_buy_price": 120.84,
+      "coupon_urls": [
+        "None"
+      ],
+      "all_coupon_urls": [
+        "None"
+      ],
+      "best_effective_buy_price": 100.3,
+      "effective_buy_price": 100.3,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -261,19 +265,19 @@
         "36.5": 500.0,
         "37.5": 500.0,
         "38": 500.0,
-        "38.5": 500.0,
+        "38.5": 450.0,
         "39": 530.0,
         "40": 440.0,
         "40.5": 500.0,
         "41": 500.0,
-        "42": 440.0,
+        "42": 450.0,
         "42.5": 470.0,
-        "43": 500.0,
+        "43": 460.0,
         "44": 500.0,
         "44.5": 500.0,
         "45": 500.0,
-        "45.5": 640.0,
-        "46": 550.0,
+        "45.5": 700.0,
+        "46": 700.0,
         "47": 700.0,
         "47.5": 620.0,
         "48": 900.0,
@@ -283,7 +287,8 @@
         "50.5": 800.0,
         "51.5": 1140.0,
         "259": 6.0,
-        "7": 500.0
+        "7": 500.0,
+        "8": 500.0
       },
       "size_price_evidence": "32码 ¥500; 33.5码 ¥800; 35码 ¥910; 35.5码 ¥500; 36码 ¥500; 36.5码 ¥500; 37.5码 ¥500; 38码 ¥460; 38.5码 ¥440; 39码 ¥510; 40码 ¥500; 40.5码 ¥500; 41码 ¥500; 42码 ¥450; 42.5码 ¥430; 43码 ¥500; 44码 ¥500; 44.5码 ¥500; 45码 ¥520; 45.5码 ¥640; 46码 ¥530; 47码 ¥800; 47.5码 ¥620; 48码 ¥1310; 48.5码 ¥770; 49.5码 ¥760; 50码 ¥1350; 50.5码 ¥800; 51.5码 ¥1160",
       "size_price_status": "available",
@@ -319,7 +324,7 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/134?goodsId=134&skuId=1127638&styleId=169181",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/1127638?id=134&sku_id=1127638",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 430.0,
         "effective_price": 430.0,
@@ -338,8 +343,8 @@
       "effective_buy_price": 430.0,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/1127638?id=134&sku_id=1127638",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -411,7 +416,7 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/7157579?goodsId=7157579&skuId=1361607208&styleId=447694441",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/1361607208?id=7157579&sku_id=1361607208",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 420.0,
         "effective_price": 420.0,
@@ -430,8 +435,8 @@
       "effective_buy_price": 420.0,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/1361607208?id=7157579&sku_id=1361607208",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -448,9 +453,9 @@
     {
       "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决",
       "product_code": "iPhone18",
-      "color": "银色、黑色、勃艮第酒红色、冰川蓝色",
+      "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "size": null,
-      "selected_variant": "银色、黑色、勃艮第酒红色、冰川蓝色",
+      "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "search_key": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=9719149&styleId=1153172787",
       "goods_id": "9719149",
@@ -458,7 +463,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 5420.87,
+      "buy_price": 5204.04,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -497,9 +502,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 5646.74,
-        "effective_price": 5420.87,
-        "discount_total": 225.87,
+        "base_price": 5420.87,
+        "effective_price": 5204.04,
+        "discount_total": 216.83,
         "offers": [
           {
             "type": "折扣",
@@ -554,8 +559,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 5420.87,
-      "effective_buy_price": 5420.87,
+      "best_effective_buy_price": 5204.04,
+      "effective_buy_price": 5204.04,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -577,7 +582,7 @@
       "product_code": "ABAU037-8",
       "color": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、白珍珠、草莓熊、荧光明黄、荧光绿/海豚蓝、游云惊龙、内向艺术家、青莲、胭脂念、初荷、哥窑、零号合金、斑彩螺",
       "size": null,
-      "selected_variant": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、白珍珠、草莓熊、荧光明黄、荧光绿/海豚蓝、游云惊龙、内向艺术家、青莲、胭脂念、初荷、哥窑、零号合金、斑彩螺, 40",
+      "selected_variant": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、白珍珠、草莓熊、荧光明黄、荧光绿/海豚蓝、游云惊龙、内向艺术家、青莲、胭脂念、初荷、哥窑、零号合金、斑彩螺, 41",
       "search_key": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=4854227&styleId=147371995",
       "goods_id": "4854227",
@@ -593,8 +598,8 @@
         "38": 400.0,
         "39": 400.0,
         "39.5": 400.0,
-        "40": 400.0,
-        "41": 340.0,
+        "40": 370.0,
+        "41": 400.0,
         "41.5": 370.0,
         "42": 370.0,
         "43": 350.0,
@@ -636,7 +641,7 @@
       },
       "detail_text": "商品基础信息\n\n商品名称：李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水。品牌：Li Ning/李宁 / 利刃。所属分类：鞋类。\n\n规格信息\n\n可选配色：暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、草莓熊、白珍珠、荧光明黄、青莲、游云惊龙、胭脂念、哥窑、初荷、鹦鹉、荧光绿/海豚蓝、零号合金、内向艺术家、斑彩螺、独白、碎影。可选尺码：颜色、尺码。\n\n价格信息\n\n全网价格区间：380.00元 - 460.00元（各渠道价格：当前商品在淘宝渠道有最低价，售价为380.00元。其他渠道：得物渠道售价430.00元，京东渠道售价440.00元，天猫渠道售价460.00元）\n\n功能与使用特性\n\n在功能配置方面，货号为ABAU037-8、ABAU037-18，品牌为Li Ning/李宁，联名为艺术家、李宁，产品定位为适配速度型球员突破与急停跳投，中底系统为全掌李宁䨻科技。\n\n社区热门笔记\n\n3选1怎么选❓优点缺点是什么❓、广式球风、五彩斑斓的黑｜李宁利刃4v2！、🔥利刃6VS利刃4｜䨻vs超䨻！到底咋选呢？！、3开小体重外线好鞋！利刃4V2直观体验报告！\n\n精选问答\n\n问：随便问，买两双了，已穿烂了 答：hd2018 42.5码瘦脚，这个选多少码合适。 问：这鞋真不行，看那么多博主推，其实也就两三百的配置😎 答：楼主是在帮我们把价格打下来啊😭。 问：给大家发一个高低帮的对比，方便各种打法和各种脚型的人做参考。但这个只是根据我个人的实战体验来说的，如果你觉得不对，那就以你为准，你是正确的。先简单来说就是高低帮各有优势，这次的低帮并不完全比高帮强。 答：首先外底方面，抓地力两双鞋都很好，都属于完全没有问题的那种。但是相�...。 更多问答详情请查看完整列表。\n\n首页\n商家合作\n关于识货\n发布视频\nAI查价助手\n开放平台\n下载识货App\n立即打开\n2\n/\n6\n全部\n23\n35\n¥--\n35.5\n¥--\n36\n¥400\n37\n¥--\n37.5\n¥400\n38\n¥410\n39\n¥400\n39.5\n¥400\n40\n¥400\n41\n¥380\n41.5\n¥360\n42\n¥380\n43\n¥340\n43.5\n¥350\n44\n¥370\n45\n¥400\n45.5\n¥--\n46\n¥400\n47\n¥--\n47.5\n¥400\n48\n¥--\n49\n¥--\n49.5\n¥--\n50\n¥--\n51\n¥--\n51.5\n¥--\n53\n¥--\n¥\n400\n总销7万+ 月销5500+\n李\n宁\n利\n刃\n4\nV\n2\n篮\n球\n鞋\n䨻\n科\n技\n聚\n氨\n酯\n大\n底\n全\n掌\n稳\n定\n减\n震\n回\n弹\n轻\n便\n网\n面\n透\n气\n防\n滑\n耐\n磨\n支\n撑\n实\n战\n轻\n量\n止\n滑\n内\n向\n比\n赛\n抗\n扭\n春\n夏\n防\n泼\n水\n暗夜黑 , 40\n利刃\n开学季篮球鞋推荐榜 N0.1\nABAU037-8\n货号\nLi Ning/李宁\n品牌\n艺术家\n联名\n适配速度型球员突破与急停跳投\n产品定位\n全掌李宁䨻科技\n中底系统\n全掌铲形PEBAX抗扭片\n碳板技术\n纱罗弹丝鞋面\n鞋面科技\n全地形 CPU 抓地止滑橡胶大底\n大底技术\n识货AI 商品介绍：李宁利刃4 V2是专为实战设计的轻量篮球鞋，主打全掌䨻科技缓震回弹、铲形PEBAX抗扭片稳定支撑、纱罗弹丝鞋面透气贴合，适配速度型突破与急停...\n展开\n#篮球鞋\n#实战篮球鞋\n#轻量篮球鞋\n#李宁利刃4V2\n#䨻科技球鞋\n#防滑耐磨球鞋\n#透气网面球鞋\n#全掌缓震球鞋\n本商品支持正品查询，请放心购买\n7小时前\n迅捷体育\n鉴别为真\n8小时前\n星驰运动正品折扣店\n鉴别为真\n09-19\n鉴别为真\n09-18\n小粥运动专营店\n鉴别为真\n09-17\n迅捷体育\n鉴别为真\n09-16\n鉴别为真\n09-14\n迅捷体育\n鉴别为真\n09-13\n知燕体育 只卖正品\n鉴别为真\n09-13\n欣欣体育sneaker\n鉴别为真\n09-12\n欣鑫体育\n鉴别为真\n购买\n为您找到47家正品放心店铺\n识货AI价格总结：截至9月23日，识货为您实时监控全网47家正品放心店铺，包括淘宝、天猫、京东、拼多多、抖音、得物、唯品会等主流电商。当前同款同规格全网最低价为¥340，来自识货安心购店铺，安心购店铺为识货合作的正品保障店铺且淘宝、京东、拼多多等电商平台认证的三方店铺。官方店铺最低价为¥440。综合价格、正品保障、售后服务，当前更推荐识货安心购店铺，价格¥340。\n展开\n推荐\n低价优先\n速度优先\n官方店铺\n国家补贴\n优选店铺\n三分球体育\n预计48小时发货\n已售400+\n三分球体育\n预计48小时发货\n已售400+\n¥\n400\n购\n壹叁体育\n预计48小时发货\n已售4000+\n壹叁体育\n预计48小时发货\n已售4000+\n¥\n400\n购\nzq运动\n预计48小时发货\n已售200+\nzq运动\n预计48小时发货\n已售200+\n¥\n340\n购\n最低价\n品牌官方店\n预计48小时发货\n已售8万+\n品牌官方店\n预计48小时发货\n已售8万+\n¥\n450\n购\n官方店最低\n抖音\n预计7天内发货\n抖音\n预计7天内发货\n¥\n480\n购\n查看更多渠道(43)\n笔记精选\n全部\n劝你别买李宁利刃4V2，真怕你上瘾\n🔥利刃6VS利刃4｜䨻vs超䨻！到底咋选呢？！\n李宁篮球鞋\n3开小体重外线好鞋！利刃4V2直观体验报告！\n李宁利刃4v2实战测评\n五彩斑斓的黑｜李宁利刃4v2！\n打开App查看更多笔记精选\n识货讨论1946\n全部\n1946人正在参与讨论\n400人正在讨论价格 价格\n322人正在讨论用途 用途\n269人正在讨论尺码 尺码\n198人正在讨论颜色 颜色\n184人正在讨论重量 重量\n137人正在讨论配置 配置\n135人正在讨论材质 材质\n97人正在讨论脚感 脚感\n19人正在讨论颜值 颜值\n1946人正在参与讨论\n400人正在讨论价格 价格\n322人正在讨论用途 用途\n269人正在讨论尺码 尺码\n198人正在讨论颜色 颜色\n184人正在讨论重量 重量\n137人正在讨论配置 配置\n135人正在讨论材质 材质\n97人正在讨论脚感 脚感\n19人正在讨论颜值 颜值\n413\n随便问，买两双了，已穿烂了\n𝐙.𝐇.🐾\n买过\n84\nwxy66666回复：hd2018 42.5码瘦脚，这个选多少码合适2025-07-27\n91\n这鞋真不行，看那么多博主推，其实也就两三百的配置😎\n糟了糕\n1634\n下落不明//回复：楼主是在帮我们把价格打下来啊😭2024-01-24\n187\n给大家发一个高低帮的对比，方便各种打法和各种脚型的人做参考。但这个只是根据我个人的实战体验来说的，如果你觉得不对，那就以你为准，你是正确的。先简单来说就是高低帮各有优势，这次的低帮并不完全比高帮强。\n暮挽城\n174\n暮挽城回复：首先外底方面，抓地力两双鞋都很好，都属于完全没有问题的那种。但是相对来说低帮的抓地力更极致，它是直接钉死的那种。而高帮是稍微有一丝制动距离的缓冲，但是又绝对不是打滑。2024-01-23\n有疑虑别担心，来问问其他讨论区大神\n发讨论\n精选推荐\n李宁 利刃5 V2 篮球鞋 聚核芯科技稳定支撑减震回弹防滑耐磨网面透气抓地实战抗扭 波光\n¥\n330\n李宁 利刃6V2 篮球鞋 稳定支撑抗扭减震实战防滑比赛回弹轻质抓地包裹 黑色\n¥\n600\n李宁 利刃6 篮球鞋 全能实战全掌回弹轻质稳定支撑包裹抗扭防滑缓震比赛抓地 黑色/紫萤石\n¥\n400\n李宁 利刃5 V2 篮球鞋 聚核芯科技稳定支撑减震回弹防滑耐磨网面透气抓地实战抗扭 黑曜石\n¥\n360\n李宁 驭帅 ROOKIE 篮球鞋 䨻科技稳定支撑减震防滑抗扭抓地 黑色\n¥\n270\n李宁 音速14 篮球鞋 运动减震耐磨轻质回弹抓地稳定支撑包裹抗扭防滑 极光\n¥\n320\n安踏 凯里·欧文系列 KAI TEAM 2 篮球鞋 防滑耐磨透气舒弹科技实战 黑武士\n¥\n200\n安踏 KAI1 欧文一代 篮球鞋 氮科技球场防滑耐磨舒适减震碳板潮流抓地 紫色酋长\n¥\n240\n李宁 轻速4V2 篮球鞋 防滑舒适耐磨百搭 黑色\n¥\n240\n李宁 利刃5 篮球鞋 抗扭抓地缓震回弹防滑耐磨轻便团队实战网面一体织包裹性比赛稳定支撑分离式结构训练春夏 3D碎影\n¥\n350\n李宁 轻速4 篮球鞋 透气舒适轻便百搭支撑回弹抗扭稳定减震包裹实战防滑 黑色/荧光葡萄紫\n¥\n200\n李宁 利刃6 篮球鞋 全能实战全掌回弹轻质稳定支撑包裹抗扭防滑缓震比赛抓地 万花筒\n¥\n400\n匹克 态极无双EX 篮球鞋 实战低帮缓震灵活薄底鞋脚一体回弹支撑防滑包裹轻便后卫 全黑色\n¥\n350\n匹克 态极 轻灵3.0 篮球鞋 减震耐磨透气防滑薄底物理发泡轻便比赛训练包裹性随心跑轻快回弹灵后卫跑快灵春夏支撑 黑武士\n¥\n230\n李宁 闪击8 Premium 篮球鞋 䨻科技防滑耐磨支撑稳定高回弹透气缓震实战 白色/红色\n¥\n180\n李宁 利刃3 V2 篮球鞋 䨻科技缓震透气轻量高回弹防滑耐磨稳定支撑䨻丝实战 月神\n¥\n220\n安踏 瞬息3 篮球鞋 耐磨防滑氮科技实战碳板液态橡胶助推启动青蛇后卫支撑室内外缓震 暗夜骑士\n¥\n220\n李宁 闪击10 篮球鞋 稳定支撑缓震回弹防滑耐磨透气实战比赛䨻科技 白色/黑色\n¥\n200\n打开识货App 查看全网底价\n关于我们\n关于识货\n用户协议\n隐私政策\n侵权投诉指引\n内容发布规范\n关注我们\n微信公众号\n微信小程序\n抖音\n新浪微博\n哔哩哔哩\n下载识货App\n\n微信或相机扫码下载\n\nApp Store 内搜索“识货”下载\n安卓应用市场内搜索“识货”下载\n\n上海识致信息科技有限责任公司\n\n沪ICP备19023651号-15\n\n已通过ISO/IEC 27001:2022信息安全管理体系认证 已通过ISO/IEC 27701:2019隐私信息管理体系认证\n增值电信业务经营许可证：沪B2-20200099 互联网药品信息服务资格证书（沪）-经营性-2019-0065 营业执照 消费者服务热线：(021)61221299\n沪公网安备 31010902001018号 识货个性化推送类算法 网信算备310109056143502220019号\n\n下载识货App 领¥360红包\n\n微信或相机扫码下载",
       "observed_at": "2026-09-23T11:45:43.513477+00:00",
-      "current_size": "40",
+      "current_size": "41",
       "sku_buy_price": 400.0,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
@@ -728,8 +733,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/844894548?id=6343579&sku_id=844894548",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.02,
-        "effective_price": 0.01,
+        "base_price": 0.01,
+        "effective_price": null,
         "discount_total": 0.01,
         "offers": [
           {
@@ -1110,7 +1115,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 117.93,
+      "buy_price": 100.24,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1530.0
@@ -1151,9 +1156,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 138.74,
-        "effective_price": 117.93,
-        "discount_total": 20.81,
+        "base_price": 117.93,
+        "effective_price": 100.24,
+        "discount_total": 17.69,
         "offers": [
           {
             "type": "折扣",
@@ -1208,8 +1213,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 117.93,
-      "effective_buy_price": 117.93,
+      "best_effective_buy_price": 100.24,
+      "effective_buy_price": 100.24,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1325,7 +1330,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 273.59,
+      "buy_price": 268.12,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1367,9 +1372,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 279.17,
-        "effective_price": 273.59,
-        "discount_total": 5.58,
+        "base_price": 273.59,
+        "effective_price": 268.12,
+        "discount_total": 5.47,
         "offers": [
           {
             "type": "折扣",
@@ -1424,8 +1429,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 273.59,
-      "effective_buy_price": 273.59,
+      "best_effective_buy_price": 268.12,
+      "effective_buy_price": 268.12,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -2064,8 +2069,8 @@
   "sku_repair": {
     "enabled": true,
     "repaired": 22,
-    "sku_identity_complete": 8,
-    "hard_excluded": 14,
+    "sku_identity_complete": 12,
+    "hard_excluded": 10,
     "rule": "货号+配色+可定位SKU；禁止商品级最低价冒充SKU买入价"
   }
 }

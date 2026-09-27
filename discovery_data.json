@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-27T16:03:38.504527+00:00",
+  "updated_at": "2026-09-27T18:03:42.102443+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -35,7 +35,7 @@
         "44⅔": 400.0,
         "45⅓": 410.0,
         "46": 400.0,
-        "46⅔": 620.0,
+        "46⅔": 540.0,
         "47⅓": 550.0,
         "48": 610.0,
         "48⅔": 620.0,
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 5.09,
+      "buy_price": 4.22,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,9 +165,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 6.13,
-        "effective_price": 5.09,
-        "discount_total": 1.04,
+        "base_price": 5.09,
+        "effective_price": 4.22,
+        "discount_total": 0.87,
         "offers": [
           {
             "type": "折扣",
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 5.09,
-      "effective_buy_price": 5.09,
+      "best_effective_buy_price": 4.22,
+      "effective_buy_price": 4.22,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -466,7 +466,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 2708.2,
+      "buy_price": 2599.87,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -505,9 +505,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 2821.04,
-        "effective_price": 2708.2,
-        "discount_total": 112.84,
+        "base_price": 2708.2,
+        "effective_price": 2599.87,
+        "discount_total": 108.33,
         "offers": [
           {
             "type": "折扣",
@@ -562,8 +562,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 2708.2,
-      "effective_buy_price": 2708.2,
+      "best_effective_buy_price": 2599.87,
+      "effective_buy_price": 2599.87,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -875,7 +875,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3200 自动上下水版 ¥2740 ¥ 3200 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3190 自动上下水版 ¥2740 ¥ 3190 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -888,7 +888,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3200 自动上下水版 ¥2740 ¥ 3200 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3190 自动上下水版 ¥2740 ¥ 3190 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -910,7 +910,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3200 自动上下水版 ¥2740 ¥ 3200 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3190 自动上下水版 ¥2740 ¥ 3190 4.2折 国家补贴 总销250+ 月销60+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1118,7 +1118,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 7.45,
+      "buy_price": 6.33,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1520.0
@@ -1159,9 +1159,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 8.76,
-        "effective_price": 7.45,
-        "discount_total": 1.31,
+        "base_price": 7.45,
+        "effective_price": 6.33,
+        "discount_total": 1.12,
         "offers": [
           {
             "type": "折扣",
@@ -1216,8 +1216,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 7.45,
-      "effective_buy_price": 7.45,
+      "best_effective_buy_price": 6.33,
+      "effective_buy_price": 6.33,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1333,7 +1333,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 194.06,
+      "buy_price": 190.18,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1375,9 +1375,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 198.02,
-        "effective_price": 194.06,
-        "discount_total": 3.96,
+        "base_price": 194.06,
+        "effective_price": 190.18,
+        "discount_total": 3.88,
         "offers": [
           {
             "type": "折扣",
@@ -1432,8 +1432,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 194.06,
-      "effective_buy_price": 194.06,
+      "best_effective_buy_price": 190.18,
+      "effective_buy_price": 190.18,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

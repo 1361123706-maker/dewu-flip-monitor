@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-27T20:03:20.532458+00:00",
+  "updated_at": "2026-09-27T22:03:12.674677+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 3.5,
+      "buy_price": 2.9,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,9 +165,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 4.22,
-        "effective_price": 3.5,
-        "discount_total": 0.72,
+        "base_price": 3.5,
+        "effective_price": 2.9,
+        "discount_total": 0.6,
         "offers": [
           {
             "type": "折扣",
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 3.5,
-      "effective_buy_price": 3.5,
+      "best_effective_buy_price": 2.9,
+      "effective_buy_price": 2.9,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -466,7 +466,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 2495.88,
+      "buy_price": 2396.04,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -505,9 +505,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 2599.87,
-        "effective_price": 2495.88,
-        "discount_total": 103.99,
+        "base_price": 2495.88,
+        "effective_price": 2396.04,
+        "discount_total": 99.84,
         "offers": [
           {
             "type": "折扣",
@@ -517,7 +517,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 4家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 5家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
             "source": "shihuo_detail_text"
           }
         ],
@@ -530,7 +530,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 4家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 5家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
             "source": "shihuo_detail_text"
           }
         ],
@@ -552,7 +552,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 4家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
+          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.55万 2TB ¥2万 ¥ 1 .03 万 9.6折 5家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻",
           "source": "shihuo_detail_text"
         }
       ],
@@ -562,8 +562,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 2495.88,
-      "effective_buy_price": 2495.88,
+      "best_effective_buy_price": 2396.04,
+      "effective_buy_price": 2396.04,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -583,9 +583,9 @@
     {
       "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水",
       "product_code": "ABAU037-8",
-      "color": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、草莓熊、白珍珠、荧光明黄、胭脂念、荧光绿/海豚蓝、内向艺术家、青莲、游云惊龙、初荷、哥窑、零号合金、斑彩螺",
+      "color": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、白珍珠、草莓熊、胭脂念、荧光绿/海豚蓝、内向艺术家、荧光明黄、青莲、游云惊龙、初荷、哥窑、零号合金、斑彩螺",
       "size": null,
-      "selected_variant": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、草莓熊、白珍珠、荧光明黄、胭脂念、荧光绿/海豚蓝、内向艺术家、青莲、游云惊龙、初荷、哥窑、零号合金、斑彩螺, 41",
+      "selected_variant": "暗夜黑、粉黛、草长莺飞/罗兰、金盏、荧光耀粉/标准白、白珍珠、草莓熊、胭脂念、荧光绿/海豚蓝、内向艺术家、荧光明黄、青莲、游云惊龙、初荷、哥窑、零号合金、斑彩螺, 41",
       "search_key": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=4854227&styleId=147371995",
       "goods_id": "4854227",
@@ -748,7 +748,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5200+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -761,7 +761,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5200+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -783,7 +783,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5200+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1400 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1108,9 +1108,9 @@
     {
       "name": "【大迫杰同款】COROS/高驰 PACE 4 双频全星座运动音乐马拉松跑步爬楼越野超长续航智能男女同款手表",
       "product_code": "COROS/",
-      "color": "白色、黑胶黑壳、黄色、雅各布联名款（金属表盘 织物表带）、黑色、紫色、银黑",
+      "color": "白色、黑胶黑壳、雅各布联名款（金属表盘 织物表带）、黄色、黑色、紫色、银黑",
       "size": null,
-      "selected_variant": "白色、黑胶黑壳、黄色、雅各布联名款（金属表盘 织物表带）、黑色、紫色、银黑",
+      "selected_variant": "白色、黑胶黑壳、雅各布联名款（金属表盘 织物表带）、黄色、黑色、紫色、银黑",
       "search_key": "【大迫杰同款】COROS/高驰 PACE 4 双频全星座运动音乐马拉松跑步爬楼越野超长续航智能男女同款手表 | 货号 COROS/ | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=8390718&styleId=836064508",
       "goods_id": "8390718",
@@ -1118,7 +1118,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 5.38,
+      "buy_price": 4.57,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1520.0
@@ -1159,9 +1159,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 6.33,
-        "effective_price": 5.38,
-        "discount_total": 0.95,
+        "base_price": 5.38,
+        "effective_price": 4.57,
+        "discount_total": 0.81,
         "offers": [
           {
             "type": "折扣",
@@ -1171,7 +1171,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5000+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销250+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1184,7 +1184,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5000+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销250+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1206,7 +1206,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5000+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+          "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销250+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1216,8 +1216,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 5.38,
-      "effective_buy_price": 5.38,
+      "best_effective_buy_price": 4.57,
+      "effective_buy_price": 4.57,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1237,9 +1237,9 @@
     {
       "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具",
       "product_code": null,
-      "color": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、紫茉莉色、乳白色、黄色、米棕色、樱花白、银色、米黄色-欧因、粉色、米色花耳朵、桃粉色、樱",
+      "color": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、紫茉莉色、黄色、乳白色、米棕色、樱花白、银色、米黄色-欧因、粉色、米色花耳朵、桃粉色、樱",
       "size": null,
-      "selected_variant": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、紫茉莉色、乳白色、黄色、米棕色、樱花白、银色、米黄色-欧因、粉色、米色花耳朵、桃粉色、樱",
+      "selected_variant": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、紫茉莉色、黄色、乳白色、米棕色、樱花白、银色、米黄色-欧因、粉色、米色花耳朵、桃粉色、樱",
       "search_key": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=1218420&styleId=663405845",
       "goods_id": "1218420",
@@ -1333,7 +1333,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 186.38,
+      "buy_price": 182.65,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1375,9 +1375,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 190.18,
-        "effective_price": 186.38,
-        "discount_total": 3.8,
+        "base_price": 186.38,
+        "effective_price": 182.65,
+        "discount_total": 3.73,
         "offers": [
           {
             "type": "折扣",
@@ -1387,7 +1387,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销60+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
+            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销70+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1400,7 +1400,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销60+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
+            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销70+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1422,7 +1422,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销60+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
+          "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 800 9.8折 13家放心店铺最低价 总销5100+ 月销70+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到13家正品放心店铺 识货A",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1432,8 +1432,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 186.38,
-      "effective_buy_price": 186.38,
+      "best_effective_buy_price": 182.65,
+      "effective_buy_price": 182.65,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

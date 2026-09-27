@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-27T04:03:19.155154+00:00",
+  "updated_at": "2026-09-27T06:03:36.143718+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -33,7 +33,7 @@
         "43⅓": 400.0,
         "44": 400.0,
         "44⅔": 400.0,
-        "45⅓": 400.0,
+        "45⅓": 420.0,
         "46": 410.0,
         "46⅔": 630.0,
         "47⅓": 580.0,
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 15.56,
+      "buy_price": 12.91,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,9 +165,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 18.75,
-        "effective_price": 15.56,
-        "discount_total": 3.19,
+        "base_price": 15.56,
+        "effective_price": 12.91,
+        "discount_total": 2.65,
         "offers": [
           {
             "type": "折扣",
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 15.56,
-      "effective_buy_price": 15.56,
+      "best_effective_buy_price": 12.91,
+      "effective_buy_price": 12.91,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -267,11 +267,11 @@
         "38": 440.0,
         "38.5": 450.0,
         "39": 530.0,
-        "40": 500.0,
+        "40": 440.0,
         "40.5": 500.0,
         "41": 500.0,
-        "42": 450.0,
-        "42.5": 460.0,
+        "42": 500.0,
+        "42.5": 450.0,
         "43": 470.0,
         "44": 500.0,
         "44.5": 500.0,
@@ -454,9 +454,9 @@
     {
       "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决",
       "product_code": "iPhone18",
-      "color": "银色、黑色、勃艮第酒红色、冰川蓝色",
+      "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "size": null,
-      "selected_variant": "银色、黑色、勃艮第酒红色、冰川蓝色",
+      "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "search_key": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=9719149&styleId=1153172787",
       "goods_id": "9719149",
@@ -464,7 +464,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 3459.81,
+      "buy_price": 3321.42,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -503,9 +503,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 3603.97,
-        "effective_price": 3459.81,
-        "discount_total": 144.16,
+        "base_price": 3459.81,
+        "effective_price": 3321.42,
+        "discount_total": 138.39,
         "offers": [
           {
             "type": "折扣",
@@ -515,7 +515,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.54万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
             "source": "shihuo_detail_text"
           }
         ],
@@ -528,7 +528,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+            "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.54万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
             "source": "shihuo_detail_text"
           }
         ],
@@ -550,7 +550,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.59万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
+          "evidence": " 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.05万 512GB ¥1.23万 1TB ¥1.54万 2TB ¥2万 ¥ 1 .05 万 9.6折 4家放心店铺最低价 总销950+ 月销950+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松",
           "source": "shihuo_detail_text"
         }
       ],
@@ -560,8 +560,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 3459.81,
-      "effective_buy_price": 3459.81,
+      "best_effective_buy_price": 3321.42,
+      "effective_buy_price": 3321.42,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -695,7 +695,7 @@
       "buy_price": 0.01,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "15": 1350.0,
+        "15": 1430.0,
         "1": 1360.0
       },
       "size_price_evidence": null,
@@ -742,11 +742,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.46,
+            "rate": 0.47,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1350 4.6折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1430 4.7折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -755,11 +755,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.46,
+            "rate": 0.47,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1350 4.6折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1430 4.7折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -777,11 +777,11 @@
           "type": "折扣",
           "platform": "",
           "amount": null,
-          "rate": 0.46,
+          "rate": 0.47,
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1350 4.6折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1430 4.7折 国家补贴 总销5100+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1116,10 +1116,10 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 19.74,
+      "buy_price": 16.78,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "7": 1520.0
+        "7": 1500.0
       },
       "size_price_evidence": null,
       "size_price_status": "not_available",
@@ -1157,9 +1157,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 23.22,
-        "effective_price": 19.74,
-        "discount_total": 3.48,
+        "base_price": 19.74,
+        "effective_price": 16.78,
+        "discount_total": 2.96,
         "offers": [
           {
             "type": "折扣",
@@ -1169,7 +1169,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1500 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1182,7 +1182,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1500 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1204,7 +1204,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+          "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1500 8.5折 国家补贴 总销5100+ 月销350+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1214,8 +1214,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 19.74,
-      "effective_buy_price": 19.74,
+      "best_effective_buy_price": 16.78,
+      "effective_buy_price": 16.78,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1331,7 +1331,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 219.06,
+      "buy_price": 214.68,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1373,9 +1373,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 223.53,
-        "effective_price": 219.06,
-        "discount_total": 4.47,
+        "base_price": 219.06,
+        "effective_price": 214.68,
+        "discount_total": 4.38,
         "offers": [
           {
             "type": "折扣",
@@ -1430,8 +1430,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 219.06,
-      "effective_buy_price": 219.06,
+      "best_effective_buy_price": 214.68,
+      "effective_buy_price": 214.68,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

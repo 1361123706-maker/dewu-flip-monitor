@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T08:05:14.095028+00:00",
+  "updated_at": "2026-09-28T10:05:10.543914+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 1.15,
+      "buy_price": 0.95,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,9 +165,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 1.38,
-        "effective_price": 1.15,
-        "discount_total": 0.23,
+        "base_price": 1.15,
+        "effective_price": 0.95,
+        "discount_total": 0.2,
         "offers": [
           {
             "type": "折扣",
@@ -177,7 +177,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥1万 1TB ¥1.13万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥9700 1TB ¥1.14万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -190,7 +190,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥1万 1TB ¥1.13万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥9700 1TB ¥1.14万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -212,7 +212,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥1万 1TB ¥1.13万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+          "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥9700 1TB ¥1.14万 ¥ 7410 8.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 1.15,
-      "effective_buy_price": 1.15,
+      "best_effective_buy_price": 0.95,
+      "effective_buy_price": 0.95,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -264,7 +264,7 @@
         "36": 500.0,
         "36.5": 500.0,
         "37.5": 500.0,
-        "38": 460.0,
+        "38": 500.0,
         "38.5": 500.0,
         "39": 560.0,
         "40": 500.0,
@@ -377,9 +377,9 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "XS": 510.0,
-        "S": 400.0,
+        "S": 440.0,
         "M": 440.0,
-        "L": 410.0,
+        "L": 460.0,
         "XL": 430.0,
         "4": 4.0,
         "3": 520.0,
@@ -466,7 +466,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 1609.17,
+      "buy_price": 1496.53,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -505,19 +505,19 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 1808.06,
-        "effective_price": 1609.17,
-        "discount_total": 198.89,
+        "base_price": 1609.17,
+        "effective_price": 1496.53,
+        "discount_total": 112.64,
         "offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.89,
+            "rate": 0.93,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 9.3折 10家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -526,11 +526,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.89,
+            "rate": 0.93,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 9.3折 10家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -548,11 +548,11 @@
           "type": "折扣",
           "platform": "",
           "amount": null,
-          "rate": 0.89,
+          "rate": 0.93,
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥2万 ¥ 1 .03 万 9.3折 10家放心店铺最低价 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -562,8 +562,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 1609.17,
-      "effective_buy_price": 1609.17,
+      "best_effective_buy_price": 1496.53,
+      "effective_buy_price": 1496.53,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -599,7 +599,7 @@
         "36": 420.0,
         "37.5": 420.0,
         "38": 400.0,
-        "39": 400.0,
+        "39": 360.0,
         "39.5": 360.0,
         "40": 360.0,
         "41": 340.0,
@@ -1118,7 +1118,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 2.02,
+      "buy_price": 1.72,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1520.0
@@ -1159,9 +1159,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 2.38,
-        "effective_price": 2.02,
-        "discount_total": 0.36,
+        "base_price": 2.02,
+        "effective_price": 1.72,
+        "discount_total": 0.3,
         "offers": [
           {
             "type": "折扣",
@@ -1216,8 +1216,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 2.02,
-      "effective_buy_price": 2.02,
+      "best_effective_buy_price": 1.72,
+      "effective_buy_price": 1.72,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1333,7 +1333,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 165.1,
+      "buy_price": 161.8,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 800.0,
@@ -1375,9 +1375,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 168.47,
-        "effective_price": 165.1,
-        "discount_total": 3.37,
+        "base_price": 165.1,
+        "effective_price": 161.8,
+        "discount_total": 3.3,
         "offers": [
           {
             "type": "折扣",
@@ -1432,8 +1432,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 165.1,
-      "effective_buy_price": 165.1,
+      "best_effective_buy_price": 161.8,
+      "effective_buy_price": 161.8,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T04:03:47.374759+00:00",
+  "updated_at": "2026-09-29T06:04:28.163934+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -34,7 +34,7 @@
         "44": 400.0,
         "44⅔": 400.0,
         "45⅓": 430.0,
-        "46": 400.0,
+        "46": 430.0,
         "46⅔": 600.0,
         "47⅓": 550.0,
         "48": 610.0,
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.22,
+      "buy_price": 0.18,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,9 +165,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.27,
-        "effective_price": 0.22,
-        "discount_total": 0.05,
+        "base_price": 0.22,
+        "effective_price": 0.18,
+        "discount_total": 0.04,
         "offers": [
           {
             "type": "折扣",
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.22,
-      "effective_buy_price": 0.22,
+      "best_effective_buy_price": 0.18,
+      "effective_buy_price": 0.18,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -262,13 +262,13 @@
         "35": 900.0,
         "35.5": 600.0,
         "36": 500.0,
-        "36.5": 500.0,
+        "36.5": 510.0,
         "37.5": 500.0,
         "38": 500.0,
         "38.5": 500.0,
         "39": 550.0,
         "40": 500.0,
-        "40.5": 460.0,
+        "40.5": 500.0,
         "41": 510.0,
         "42": 500.0,
         "42.5": 460.0,
@@ -277,7 +277,7 @@
         "44.5": 520.0,
         "45": 510.0,
         "45.5": 620.0,
-        "46": 620.0,
+        "46": 700.0,
         "47": 670.0,
         "47.5": 610.0,
         "48": 900.0,
@@ -468,7 +468,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 745.32,
+      "buy_price": 663.33,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -507,9 +507,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 837.44,
-        "effective_price": 745.32,
-        "discount_total": 92.12,
+        "base_price": 745.32,
+        "effective_price": 663.33,
+        "discount_total": 81.99,
         "offers": [
           {
             "type": "折扣",
@@ -519,7 +519,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -532,7 +532,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -554,7 +554,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.21万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.25万 1TB ¥1.5万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -564,8 +564,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 745.32,
-      "effective_buy_price": 745.32,
+      "best_effective_buy_price": 663.33,
+      "effective_buy_price": 663.33,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -598,7 +598,7 @@
       "buy_price": 400.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "36": 420.0,
+        "36": 410.0,
         "37.5": 420.0,
         "38": 400.0,
         "39": 360.0,
@@ -1120,7 +1120,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 0.4,
+      "buy_price": 0.34,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1520.0
@@ -1161,9 +1161,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.47,
-        "effective_price": 0.4,
-        "discount_total": 0.07,
+        "base_price": 0.4,
+        "effective_price": 0.34,
+        "discount_total": 0.06,
         "offers": [
           {
             "type": "折扣",
@@ -1218,8 +1218,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.4,
-      "effective_buy_price": 0.4,
+      "best_effective_buy_price": 0.34,
+      "effective_buy_price": 0.34,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

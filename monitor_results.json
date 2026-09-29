@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T08:06:42.341502+00:00",
+  "updated_at": "2026-09-29T10:06:47.976927+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -36,7 +36,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 590.36,
+      "sku_buy_price": 525.42,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -47,8 +47,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 590.36,
-      "best_effective_buy_price": 590.36,
+      "effective_buy_price": 525.42,
+      "best_effective_buy_price": 525.42,
       "coupon_urls": [
         "None"
       ],
@@ -65,14 +65,14 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 663.33,
-        "effective_price": 590.36,
-        "discount_total": 72.97,
+        "base_price": 590.36,
+        "effective_price": 525.42,
+        "discount_total": 64.94,
         "offers": [
           {
             "type": "折扣",
@@ -82,7 +82,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -95,7 +95,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -111,7 +111,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 590.36,
+      "buy_price": 525.42,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -121,18 +121,18 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 596.36,
+      "total_cost": 531.42,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9234.0,
-      "estimated_profit": 9234.0,
-      "profit_rate": 1548.39,
+      "profit": 9298.94,
+      "estimated_profit": 9298.94,
+      "profit_rate": 1749.83,
       "capital": 700.0,
-      "capital_ratio": 85.19,
+      "capital_ratio": 75.92,
       "sales_7d": null,
       "sales_30d": 800.0,
       "sales_velocity_7d": 26.666666666666668,
@@ -152,7 +152,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥590.36；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9234.00；利润率 1548.39%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥525.42；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9298.94；利润率 1749.83%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -164,7 +164,7 @@
       "product_code": "iPhone17",
       "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
-      "sku_buy_price": 0.15,
+      "sku_buy_price": 0.12,
       "sku_identity_complete": true,
       "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
@@ -175,8 +175,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 0.15,
-      "best_effective_buy_price": 0.15,
+      "effective_buy_price": 0.12,
+      "best_effective_buy_price": 0.12,
       "coupon_urls": [
         "None"
       ],
@@ -193,13 +193,13 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+          "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 0.18,
-        "effective_price": 0.15,
+        "base_price": 0.15,
+        "effective_price": 0.12,
         "discount_total": 0.03,
         "offers": [
           {
@@ -210,7 +210,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -223,7 +223,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -239,7 +239,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 0.15,
+      "buy_price": 0.12,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 8000.0,
@@ -249,18 +249,18 @@
       "trend_current_price": 7510.0,
       "estimated_income": 7360.0,
       "expected_income": 7360.0,
-      "total_cost": 6.15,
+      "total_cost": 6.12,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 7353.85,
-      "estimated_profit": 7353.85,
-      "profit_rate": 119574.8,
+      "profit": 7353.88,
+      "estimated_profit": 7353.88,
+      "profit_rate": 120161.44,
       "capital": 700.0,
-      "capital_ratio": 0.88,
+      "capital_ratio": 0.87,
       "sales_7d": null,
       "sales_30d": 1600.0,
       "sales_velocity_7d": 53.333333333333336,
@@ -280,7 +280,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥0.15；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7353.85；利润率 119574.80%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥0.12；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7353.88；利润率 120161.44%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -422,7 +422,7 @@
       "product_code": "iPhone17",
       "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
-      "sku_buy_price": 0.15,
+      "sku_buy_price": 0.12,
       "sku_identity_complete": true,
       "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
@@ -433,8 +433,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 0.15,
-      "best_effective_buy_price": 0.15,
+      "effective_buy_price": 0.12,
+      "best_effective_buy_price": 0.12,
       "coupon_urls": [
         "None"
       ],
@@ -451,13 +451,13 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+          "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 0.18,
-        "effective_price": 0.15,
+        "base_price": 0.15,
+        "effective_price": 0.12,
         "discount_total": 0.03,
         "offers": [
           {
@@ -468,7 +468,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -481,7 +481,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7420 512GB ¥1万 1TB ¥1.14万 ¥ 7420 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9700 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -497,7 +497,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 0.15,
+      "buy_price": 0.12,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 8000.0,
@@ -507,18 +507,18 @@
       "trend_current_price": 7510.0,
       "estimated_income": 7360.0,
       "expected_income": 7360.0,
-      "total_cost": 6.15,
+      "total_cost": 6.12,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 7353.85,
-      "estimated_profit": 7353.85,
-      "profit_rate": 119574.8,
+      "profit": 7353.88,
+      "estimated_profit": 7353.88,
+      "profit_rate": 120161.44,
       "capital": 700.0,
-      "capital_ratio": 0.88,
+      "capital_ratio": 0.87,
       "sales_7d": null,
       "sales_30d": 1600.0,
       "sales_velocity_7d": 53.333333333333336,
@@ -538,7 +538,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥0.15；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7353.85；利润率 119574.80%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥0.12；得物售价 ¥8000.00 × 92% = ¥7360.00；估算利润 ¥7353.88；利润率 120161.44%；月销 1600，日均约 53.33；7日最低 ¥7510.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -550,7 +550,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 590.36,
+      "sku_buy_price": 525.42,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -561,8 +561,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 590.36,
-      "best_effective_buy_price": 590.36,
+      "effective_buy_price": 525.42,
+      "best_effective_buy_price": 525.42,
       "coupon_urls": [
         "None"
       ],
@@ -579,14 +579,14 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 663.33,
-        "effective_price": 590.36,
-        "discount_total": 72.97,
+        "base_price": 590.36,
+        "effective_price": 525.42,
+        "discount_total": 64.94,
         "offers": [
           {
             "type": "折扣",
@@ -596,7 +596,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -609,7 +609,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.22万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.23万 1TB ¥1.47万 2TB ¥1.85万 ¥ 1 .03 万 8.9折 国家补贴 总销1000+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -625,7 +625,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 590.36,
+      "buy_price": 525.42,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -635,18 +635,18 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 596.36,
+      "total_cost": 531.42,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9234.0,
-      "estimated_profit": 9234.0,
-      "profit_rate": 1548.39,
+      "profit": 9298.94,
+      "estimated_profit": 9298.94,
+      "profit_rate": 1749.83,
       "capital": 700.0,
-      "capital_ratio": 85.19,
+      "capital_ratio": 75.92,
       "sales_7d": null,
       "sales_30d": 800.0,
       "sales_velocity_7d": 26.666666666666668,
@@ -666,7 +666,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥590.36；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9234.00；利润率 1548.39%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥525.42；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9298.94；利润率 1749.83%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -910,7 +910,7 @@
       "product_code": "RC200",
       "color": "象牙白、黑武士",
       "sku_size": "14",
-      "sku_buy_price": 1220.0,
+      "sku_buy_price": 817.4,
       "sku_identity_complete": true,
       "selected_variant": "象牙白、黑武士, 14",
       "grade": "D",
@@ -921,27 +921,71 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/3829642523?id=9045524&sku_id=3829642523",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 1220.0,
-      "best_effective_buy_price": 1220.0,
-      "coupon_urls": [],
-      "all_coupon_urls": [],
+      "effective_buy_price": 817.4,
+      "best_effective_buy_price": 817.4,
+      "coupon_urls": [
+        "None"
+      ],
+      "all_coupon_urls": [
+        "None"
+      ],
       "coupon_evidence": [],
-      "promotion_offers": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.67,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "175-185厘米)*14速 ¥1310 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1430 ¥ 1320 6.7折 13家放心店铺最低价 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑",
+          "source": "shihuo_detail_text"
+        }
+      ],
       "promotion_calculation": {
         "base_price": 1220.0,
-        "effective_price": 1220.0,
-        "discount_total": null,
-        "offers": [],
-        "detected_offers": [],
-        "coupon_urls": [],
-        "all_coupon_urls": [],
+        "effective_price": 817.4,
+        "discount_total": 402.6,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.67,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "175-185厘米)*14速 ¥1310 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1430 ¥ 1320 6.7折 13家放心店铺最低价 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑",
+            "source": "shihuo_detail_text"
+          }
+        ],
+        "detected_offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.67,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "175-185厘米)*14速 ¥1310 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1430 ¥ 1320 6.7折 13家放心店铺最低价 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑",
+            "source": "shihuo_detail_text"
+          }
+        ],
+        "coupon_urls": [
+          "None"
+        ],
+        "all_coupon_urls": [
+          "None"
+        ],
         "verified": false,
-        "calculation_status": "no_verified_discount"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 1220.0,
+      "buy_price": 817.4,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 1230.0,
@@ -951,18 +995,18 @@
       "trend_current_price": 1230.0,
       "estimated_income": 1131.6,
       "expected_income": 1131.6,
-      "total_cost": 1226.0,
+      "total_cost": 823.4,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": -94.4,
-      "estimated_profit": -94.4,
-      "profit_rate": -7.7,
+      "profit": 308.2,
+      "estimated_profit": 308.2,
+      "profit_rate": 37.43,
       "capital": 700.0,
-      "capital_ratio": 175.14,
+      "capital_ratio": 117.63,
       "sales_7d": null,
       "sales_30d": 100.0,
       "sales_velocity_7d": 3.3333333333333335,
@@ -979,12 +1023,12 @@
       "sales_score": 1,
       "trend_score": 0,
       "evidence_score": 5,
-      "safety_score": -1,
+      "safety_score": 3,
       "capital_score": 0,
       "hard_risks": [
-        "总资金占用 ¥1226.00 超过当前资金 ¥700.00"
+        "总资金占用 ¥823.40 超过当前资金 ¥700.00"
       ],
-      "reason": "触发硬风险，直接过滤；尺码 14；买入 ¥1220.00；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥-94.40；利润率 -7.70%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "触发硬风险，直接过滤；尺码 14；买入 ¥817.40；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥308.20；利润率 37.43%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T12:04:56.946229+00:00",
+  "updated_at": "2026-09-29T14:06:16.773266+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -42,7 +42,7 @@
         "49⅓": 900.0,
         "51⅓": 1170.0,
         "52⅔": 1450.0,
-        "35": 540.0,
+        "35": 600.0,
         "35½": 510.0
       },
       "size_price_evidence": "36码 ¥460; 36⅔码 ¥430; 37⅓码 ¥460; 38码 ¥470; 38⅔码 ¥400; 39⅓码 ¥450; 40码 ¥420; 40⅔码 ¥400; 41⅓码 ¥400; 42码 ¥400; 42⅔码 ¥400; 43⅓码 ¥400; 44码 ¥350; 44⅔码 ¥400; 45⅓码 ¥440; 46码 ¥440; 46⅔码 ¥500; 47⅓码 ¥570; 48码 ¥610; 48⅔码 ¥600; 49⅓码 ¥900; 51⅓码 ¥1170; 52⅔码 ¥1420",
@@ -126,7 +126,7 @@
       "style_id": "754572635",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.1,
+      "buy_price": 0.08,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -165,8 +165,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2672950573?id=7929848&sku_id=2672950573",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.12,
-        "effective_price": 0.1,
+        "base_price": 0.1,
+        "effective_price": 0.08,
         "discount_total": 0.02,
         "offers": [
           {
@@ -177,7 +177,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.18万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -190,7 +190,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.18万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -212,7 +212,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+          "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.18万 ¥ 8900 8.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -222,8 +222,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.1,
-      "effective_buy_price": 0.1,
+      "best_effective_buy_price": 0.08,
+      "effective_buy_price": 0.08,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -261,9 +261,9 @@
         "33.5": 840.0,
         "35": 900.0,
         "35.5": 600.0,
-        "36": 500.0,
+        "36": 520.0,
         "36.5": 500.0,
-        "37.5": 510.0,
+        "37.5": 500.0,
         "38": 500.0,
         "38.5": 500.0,
         "39": 560.0,
@@ -278,7 +278,7 @@
         "45": 510.0,
         "45.5": 620.0,
         "46": 700.0,
-        "47": 660.0,
+        "47": 670.0,
         "47.5": 610.0,
         "48": 900.0,
         "48.5": 760.0,
@@ -384,7 +384,7 @@
         "XL": 440.0,
         "4": 4.0,
         "3": 520.0,
-        "9": 440.0,
+        "9": 450.0,
         "1": 540.0
       },
       "size_price_evidence": null,
@@ -468,7 +468,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 467.62,
+      "buy_price": 416.18,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -507,9 +507,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 525.42,
-        "effective_price": 467.62,
-        "discount_total": 57.8,
+        "base_price": 467.62,
+        "effective_price": 416.18,
+        "discount_total": 51.44,
         "offers": [
           {
             "type": "折扣",
@@ -564,8 +564,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 467.62,
-      "effective_buy_price": 467.62,
+      "best_effective_buy_price": 416.18,
+      "effective_buy_price": 416.18,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1037,7 +1037,7 @@
       "style_id": "1035707569",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 547.66,
+      "buy_price": 366.93,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -1076,9 +1076,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3829642523?id=9045524&sku_id=3829642523",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 817.4,
-        "effective_price": 547.66,
-        "discount_total": 269.74,
+        "base_price": 547.66,
+        "effective_price": 366.93,
+        "discount_total": 180.73,
         "offers": [
           {
             "type": "折扣",
@@ -1133,8 +1133,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 547.66,
-      "effective_buy_price": 547.66,
+      "best_effective_buy_price": 366.93,
+      "effective_buy_price": 366.93,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1164,7 +1164,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 0.21,
+      "buy_price": 0.18,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1520.0
@@ -1205,9 +1205,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.25,
-        "effective_price": 0.21,
-        "discount_total": 0.04,
+        "base_price": 0.21,
+        "effective_price": 0.18,
+        "discount_total": 0.03,
         "offers": [
           {
             "type": "折扣",
@@ -1262,8 +1262,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.21,
-      "effective_buy_price": 0.21,
+      "best_effective_buy_price": 0.18,
+      "effective_buy_price": 0.18,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1419,7 +1419,7 @@
       "current_size": "601",
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/3974355?goodsId=3974355&skuId=236270588&styleId=83911484",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
-      "sku_identity_complete": true,
+      "sku_identity_complete": false,
       "promotion_calculation": {
         "base_price": 140.45,
         "effective_price": 140.45,
@@ -1438,8 +1438,8 @@
       "effective_buy_price": 140.45,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": false,
-      "hard_exclude_reason": null,
+      "hard_exclude": true,
+      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
       "buy_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -2075,8 +2075,8 @@
   "sku_repair": {
     "enabled": true,
     "repaired": 22,
-    "sku_identity_complete": 12,
-    "hard_excluded": 10,
+    "sku_identity_complete": 11,
+    "hard_excluded": 11,
     "rule": "货号+配色+可定位SKU；禁止商品级最低价冒充SKU买入价"
   }
 }

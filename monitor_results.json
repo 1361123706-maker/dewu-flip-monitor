@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T02:06:14.812876+00:00",
+  "updated_at": "2026-09-30T04:05:36.144838+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -36,7 +36,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 302.44,
+      "sku_buy_price": 278.24,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -47,8 +47,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 302.44,
-      "best_effective_buy_price": 302.44,
+      "effective_buy_price": 278.24,
+      "best_effective_buy_price": 278.24,
       "coupon_urls": [
         "None"
       ],
@@ -70,9 +70,9 @@
         }
       ],
       "promotion_calculation": {
-        "base_price": 328.74,
-        "effective_price": 302.44,
-        "discount_total": 26.3,
+        "base_price": 302.44,
+        "effective_price": 278.24,
+        "discount_total": 24.2,
         "offers": [
           {
             "type": "折扣",
@@ -111,7 +111,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 302.44,
+      "buy_price": 278.24,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -121,18 +121,18 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 308.44,
+      "total_cost": 284.24,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9521.92,
-      "estimated_profit": 9521.92,
-      "profit_rate": 3087.12,
+      "profit": 9546.12,
+      "estimated_profit": 9546.12,
+      "profit_rate": 3358.47,
       "capital": 700.0,
-      "capital_ratio": 44.06,
+      "capital_ratio": 40.61,
       "sales_7d": null,
       "sales_30d": 800.0,
       "sales_velocity_7d": 26.666666666666668,
@@ -152,7 +152,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥302.44；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9521.92；利润率 3087.12%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥278.24；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9546.12；利润率 3358.47%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -197,7 +197,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥1万 1TB ¥1.19万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥1万 1TB ¥1.1万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -293,7 +293,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
           "source": "shihuo_detail_text"
         }
       ],
@@ -310,7 +310,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
@@ -323,7 +323,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
@@ -391,10 +391,10 @@
       "name": "Xds/喜德盛 2026款 RC200 禧玛诺 多速别 铝合金 超轻 公路车",
       "product_code": "RC200",
       "color": "象牙白、黑武士",
-      "sku_size": "14",
+      "sku_size": "7",
       "sku_buy_price": 48.24,
       "sku_identity_complete": true,
-      "selected_variant": "象牙白、黑武士, 14",
+      "selected_variant": "象牙白、黑武士, 7",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -405,64 +405,20 @@
       "discount_total": null,
       "effective_buy_price": 48.24,
       "best_effective_buy_price": 48.24,
-      "coupon_urls": [
-        "None"
-      ],
-      "all_coupon_urls": [
-        "None"
-      ],
+      "coupon_urls": [],
+      "all_coupon_urls": [],
       "coupon_evidence": [],
-      "promotion_offers": [
-        {
-          "type": "折扣",
-          "platform": "",
-          "amount": null,
-          "rate": 0.7,
-          "threshold": null,
-          "url": "None",
-          "stackable": false,
-          "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-          "source": "shihuo_detail_text"
-        }
-      ],
+      "promotion_offers": [],
       "promotion_calculation": {
-        "base_price": 68.91,
+        "base_price": 48.24,
         "effective_price": 48.24,
-        "discount_total": 20.67,
-        "offers": [
-          {
-            "type": "折扣",
-            "platform": "",
-            "amount": null,
-            "rate": 0.7,
-            "threshold": null,
-            "url": "None",
-            "stackable": false,
-            "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-            "source": "shihuo_detail_text"
-          }
-        ],
-        "detected_offers": [
-          {
-            "type": "折扣",
-            "platform": "",
-            "amount": null,
-            "rate": 0.7,
-            "threshold": null,
-            "url": "None",
-            "stackable": false,
-            "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-            "source": "shihuo_detail_text"
-          }
-        ],
-        "coupon_urls": [
-          "None"
-        ],
-        "all_coupon_urls": [
-          "None"
-        ],
+        "discount_total": null,
+        "offers": [],
+        "detected_offers": [],
+        "coupon_urls": [],
+        "all_coupon_urls": [],
         "verified": false,
-        "calculation_status": "calculated_from_evidenced_offers"
+        "calculation_status": "no_verified_discount"
       },
       "promotion_verified": false,
       "promotion_status": null,
@@ -508,7 +464,7 @@
       "safety_score": 3,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；尺码 14；买入 ¥48.24；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥1077.36；利润率 1986.28%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；尺码 7；买入 ¥48.24；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥1077.36；利润率 1986.28%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -555,7 +511,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥1万 1TB ¥1.19万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥1万 1TB ¥1.1万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -622,7 +578,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 302.44,
+      "sku_buy_price": 278.24,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -633,8 +589,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 302.44,
-      "best_effective_buy_price": 302.44,
+      "effective_buy_price": 278.24,
+      "best_effective_buy_price": 278.24,
       "coupon_urls": [
         "None"
       ],
@@ -656,9 +612,9 @@
         }
       ],
       "promotion_calculation": {
-        "base_price": 328.74,
-        "effective_price": 302.44,
-        "discount_total": 26.3,
+        "base_price": 302.44,
+        "effective_price": 278.24,
+        "discount_total": 24.2,
         "offers": [
           {
             "type": "折扣",
@@ -697,7 +653,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 302.44,
+      "buy_price": 278.24,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -707,18 +663,18 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 308.44,
+      "total_cost": 284.24,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9521.92,
-      "estimated_profit": 9521.92,
-      "profit_rate": 3087.12,
+      "profit": 9546.12,
+      "estimated_profit": 9546.12,
+      "profit_rate": 3358.47,
       "capital": 700.0,
-      "capital_ratio": 44.06,
+      "capital_ratio": 40.61,
       "sales_7d": null,
       "sales_30d": 800.0,
       "sales_velocity_7d": 26.666666666666668,
@@ -738,7 +694,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥302.44；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9521.92；利润率 3087.12%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥278.24；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9546.12；利润率 3358.47%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -863,7 +819,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
           "source": "shihuo_detail_text"
         }
       ],
@@ -880,7 +836,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
@@ -893,7 +849,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2740 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3420 水箱版 ¥2770 ¥ 3420 4.0折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
@@ -981,10 +937,10 @@
       "name": "Xds/喜德盛 2026款 RC200 禧玛诺 多速别 铝合金 超轻 公路车",
       "product_code": "RC200",
       "color": "象牙白、黑武士",
-      "sku_size": "14",
+      "sku_size": "7",
       "sku_buy_price": 48.24,
       "sku_identity_complete": true,
-      "selected_variant": "象牙白、黑武士, 14",
+      "selected_variant": "象牙白、黑武士, 7",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -995,64 +951,20 @@
       "discount_total": null,
       "effective_buy_price": 48.24,
       "best_effective_buy_price": 48.24,
-      "coupon_urls": [
-        "None"
-      ],
-      "all_coupon_urls": [
-        "None"
-      ],
+      "coupon_urls": [],
+      "all_coupon_urls": [],
       "coupon_evidence": [],
-      "promotion_offers": [
-        {
-          "type": "折扣",
-          "platform": "",
-          "amount": null,
-          "rate": 0.7,
-          "threshold": null,
-          "url": "None",
-          "stackable": false,
-          "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-          "source": "shihuo_detail_text"
-        }
-      ],
+      "promotion_offers": [],
       "promotion_calculation": {
-        "base_price": 68.91,
+        "base_price": 48.24,
         "effective_price": 48.24,
-        "discount_total": 20.67,
-        "offers": [
-          {
-            "type": "折扣",
-            "platform": "",
-            "amount": null,
-            "rate": 0.7,
-            "threshold": null,
-            "url": "None",
-            "stackable": false,
-            "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-            "source": "shihuo_detail_text"
-          }
-        ],
-        "detected_offers": [
-          {
-            "type": "折扣",
-            "platform": "",
-            "amount": null,
-            "rate": 0.7,
-            "threshold": null,
-            "url": "None",
-            "stackable": false,
-            "evidence": "175-185厘米)*14速 ¥1320 520mm (175-185厘米)*7速 ¥1400 480mm(65-175厘米)*7速 ¥1420 ¥ 1310 7.0折 百亿补贴 总销300+ 月销100+ X d s / 喜 德 盛 2 0 2 6 款 R C 2 0 0 禧 玛 诺 多 速 别 铝 合 金 超 轻 公 路 车 象牙白, 480mm(65-175厘米), 14速 RC 户外骑行热销榜 N",
-            "source": "shihuo_detail_text"
-          }
-        ],
-        "coupon_urls": [
-          "None"
-        ],
-        "all_coupon_urls": [
-          "None"
-        ],
+        "discount_total": null,
+        "offers": [],
+        "detected_offers": [],
+        "coupon_urls": [],
+        "all_coupon_urls": [],
         "verified": false,
-        "calculation_status": "calculated_from_evidenced_offers"
+        "calculation_status": "no_verified_discount"
       },
       "promotion_verified": false,
       "promotion_status": null,
@@ -1098,7 +1010,7 @@
       "safety_score": 3,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；尺码 14；买入 ¥48.24；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥1077.36；利润率 1986.28%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；尺码 7；买入 ¥48.24；得物售价 ¥1230.00 × 92% = ¥1131.60；估算利润 ¥1077.36；利润率 1986.28%；月销 100，日均约 3.33；7日最低 ¥1510.00；7日最高 ¥1230.00；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,

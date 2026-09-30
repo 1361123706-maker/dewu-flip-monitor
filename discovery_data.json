@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T08:06:01.054815+00:00",
+  "updated_at": "2026-09-30T10:05:53.093643+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -19,10 +19,10 @@
       "buy_price": 320.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "36": 460.0,
+        "36": 470.0,
         "36⅔": 450.0,
         "37⅓": 450.0,
-        "38": 430.0,
+        "38": 440.0,
         "38⅔": 400.0,
         "39⅓": 440.0,
         "40": 420.0,
@@ -33,8 +33,8 @@
         "43⅓": 400.0,
         "44": 400.0,
         "44⅔": 400.0,
-        "45⅓": 410.0,
-        "46": 430.0,
+        "45⅓": 420.0,
+        "46": 440.0,
         "46⅔": 600.0,
         "47⅓": 550.0,
         "48": 600.0,
@@ -180,7 +180,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥1万 1TB ¥1.16万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8890 512GB ¥9700 1TB ¥1.1万 ¥ 8890 7.3折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -237,8 +237,8 @@
         "35.5": 600.0,
         "36": 530.0,
         "36.5": 500.0,
-        "37.5": 510.0,
-        "38": 500.0,
+        "37.5": 500.0,
+        "38": 480.0,
         "38.5": 500.0,
         "39": 550.0,
         "40": 500.0,
@@ -252,7 +252,7 @@
         "45": 510.0,
         "45.5": 620.0,
         "46": 600.0,
-        "47": 700.0,
+        "47": 660.0,
         "47.5": 610.0,
         "48": 900.0,
         "48.5": 760.0,
@@ -443,7 +443,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 235.5,
+      "buy_price": 216.66,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -482,9 +482,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 255.98,
-        "effective_price": 235.5,
-        "discount_total": 20.48,
+        "base_price": 235.5,
+        "effective_price": 216.66,
+        "discount_total": 18.84,
         "offers": [
           {
             "type": "折扣",
@@ -539,8 +539,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 235.5,
-      "effective_buy_price": 235.5,
+      "best_effective_buy_price": 216.66,
+      "effective_buy_price": 216.66,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -578,7 +578,7 @@
         "38": 400.0,
         "39": 360.0,
         "39.5": 360.0,
-        "40": 380.0,
+        "40": 370.0,
         "41": 400.0,
         "41.5": 340.0,
         "42": 360.0,
@@ -628,7 +628,7 @@
       "buy_price_status": "calculated_promotion_price",
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/4854227?goodsId=4854227&skuId=353083761&styleId=147371995",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/353083761?id=4854227&sku_id=353083761",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 400.0,
         "effective_price": 400.0,
@@ -645,8 +645,8 @@
       "all_coupon_urls": [],
       "best_effective_buy_price": 400.0,
       "effective_buy_price": 400.0,
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/353083761?id=4854227&sku_id=353083761",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -676,7 +676,7 @@
       "buy_price": 0.01,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "15": 1470.0,
+        "15": 1260.0,
         "1": 1360.0
       },
       "size_price_evidence": null,
@@ -713,7 +713,7 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/6343579?goodsId=6343579&skuId=844894548&styleId=304230132",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/844894548?id=6343579&sku_id=844894548",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 0.01,
         "effective_price": null,
@@ -727,7 +727,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1470 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1260 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -740,7 +740,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1470 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1260 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -760,20 +760,24 @@
           "amount": null,
           "rate": 0.47,
           "threshold": null,
-          "url": null,
+          "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1470 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1260 4.7折 国家补贴 总销5300+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
           "source": "shihuo_detail_text"
         }
       ],
-      "coupon_urls": [],
-      "all_coupon_urls": [],
+      "coupon_urls": [
+        "None"
+      ],
+      "all_coupon_urls": [
+        "None"
+      ],
       "best_effective_buy_price": 0.01,
       "effective_buy_price": 0.01,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/844894548?id=6343579&sku_id=844894548",
       "sku_repair_status": "repaired",
       "buy_urls": [
@@ -847,11 +851,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.45,
+            "rate": 0.44,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.5折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.4折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -860,11 +864,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.45,
+            "rate": 0.44,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.5折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.4折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -882,11 +886,11 @@
           "type": "折扣",
           "platform": "",
           "amount": null,
-          "rate": 0.45,
+          "rate": 0.44,
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.5折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3250 自动上下水版 ¥2940 ¥ 3250 4.4折 国家补贴 总销250+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1094,7 +1098,7 @@
       "style_id": "836064508",
       "category": "target",
       "category_reason": "命中目标关键词：手表",
-      "buy_price": 0.04,
+      "buy_price": 0.03,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "7": 1540.0
@@ -1135,8 +1139,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/3026318972?id=8390718&sku_id=3026318972",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.05,
-        "effective_price": 0.04,
+        "base_price": 0.04,
+        "effective_price": 0.03,
         "discount_total": 0.01,
         "offers": [
           {
@@ -1192,8 +1196,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.04,
-      "effective_buy_price": 0.04,
+      "best_effective_buy_price": 0.03,
+      "effective_buy_price": 0.03,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1309,7 +1313,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 13.37,
+      "buy_price": 10.29,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 630.0,
@@ -1354,9 +1358,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 17.36,
-        "effective_price": 13.37,
-        "discount_total": 3.99,
+        "base_price": 13.37,
+        "effective_price": 10.29,
+        "discount_total": 3.08,
         "offers": [
           {
             "type": "折扣",
@@ -1411,8 +1415,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 13.37,
-      "effective_buy_price": 13.37,
+      "best_effective_buy_price": 10.29,
+      "effective_buy_price": 10.29,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -2053,8 +2057,8 @@
   "sku_repair": {
     "enabled": true,
     "repaired": 22,
-    "sku_identity_complete": 10,
-    "hard_excluded": 12,
+    "sku_identity_complete": 12,
+    "hard_excluded": 10,
     "rule": "货号+配色+可定位SKU；禁止商品级最低价冒充SKU买入价"
   }
 }

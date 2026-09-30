@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T12:04:58.669244+00:00",
+  "updated_at": "2026-09-30T14:08:01.946875+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -19,10 +19,10 @@
       "buy_price": 320.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "36": 470.0,
+        "36": 460.0,
         "36⅔": 450.0,
         "37⅓": 450.0,
-        "38": 440.0,
+        "38": 430.0,
         "38⅔": 400.0,
         "39⅓": 440.0,
         "40": 420.0,
@@ -240,16 +240,16 @@
         "37.5": 500.0,
         "38": 480.0,
         "38.5": 500.0,
-        "39": 550.0,
+        "39": 560.0,
         "40": 500.0,
-        "40.5": 470.0,
+        "40.5": 500.0,
         "41": 500.0,
-        "42": 500.0,
+        "42": 460.0,
         "42.5": 440.0,
         "43": 440.0,
         "44": 500.0,
         "44.5": 500.0,
-        "45": 510.0,
+        "45": 500.0,
         "45.5": 620.0,
         "46": 600.0,
         "47": 650.0,
@@ -351,11 +351,11 @@
       "buy_price": 420.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "XS": 510.0,
+        "XS": 500.0,
         "S": 410.0,
         "M": 430.0,
         "L": 420.0,
-        "XL": 430.0,
+        "XL": 440.0,
         "4": 4.0,
         "3": 520.0,
         "9": 450.0,
@@ -443,7 +443,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 199.33,
+      "buy_price": 183.38,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -482,9 +482,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 216.66,
-        "effective_price": 199.33,
-        "discount_total": 17.33,
+        "base_price": 199.33,
+        "effective_price": 183.38,
+        "discount_total": 15.95,
         "offers": [
           {
             "type": "折扣",
@@ -539,8 +539,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 199.33,
-      "effective_buy_price": 199.33,
+      "best_effective_buy_price": 183.38,
+      "effective_buy_price": 183.38,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1285,7 +1285,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 7.92,
+      "buy_price": 6.1,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 630.0,
@@ -1330,9 +1330,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 10.29,
-        "effective_price": 7.92,
-        "discount_total": 2.37,
+        "base_price": 7.92,
+        "effective_price": 6.1,
+        "discount_total": 1.82,
         "offers": [
           {
             "type": "折扣",
@@ -1387,8 +1387,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 7.92,
-      "effective_buy_price": 7.92,
+      "best_effective_buy_price": 6.1,
+      "effective_buy_price": 6.1,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

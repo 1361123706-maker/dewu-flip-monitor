@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T08:05:49.246078+00:00",
+  "updated_at": "2026-10-01T10:06:19.779040+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -34,7 +34,7 @@
         "44": 400.0,
         "44⅔": 400.0,
         "45⅓": 430.0,
-        "46": 440.0,
+        "46": 430.0,
         "46⅔": 600.0,
         "47⅓": 540.0,
         "48": 620.0,
@@ -176,11 +176,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.75,
+            "rate": 0.76,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9690 1TB ¥1.24万 ¥ 8900 7.5折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9690 1TB ¥1.24万 ¥ 8900 7.6折 国家补贴 总销2万+ 月销1700+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -245,12 +245,12 @@
         "40.5": 500.0,
         "41": 500.0,
         "42": 440.0,
-        "42.5": 450.0,
+        "42.5": 460.0,
         "43": 470.0,
         "44": 500.0,
         "44.5": 500.0,
         "45": 510.0,
-        "45.5": 620.0,
+        "45.5": 700.0,
         "46": 630.0,
         "47": 650.0,
         "47.5": 620.0,
@@ -352,7 +352,7 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "XS": 420.0,
-        "S": 400.0,
+        "S": 410.0,
         "M": 400.0,
         "L": 420.0,
         "XL": 410.0,
@@ -443,7 +443,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 71.5,
+      "buy_price": 62.2,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -482,9 +482,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 82.18,
-        "effective_price": 71.5,
-        "discount_total": 10.68,
+        "base_price": 71.5,
+        "effective_price": 62.2,
+        "discount_total": 9.3,
         "offers": [
           {
             "type": "折扣",
@@ -539,8 +539,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 71.5,
-      "effective_buy_price": 71.5,
+      "best_effective_buy_price": 62.2,
+      "effective_buy_price": 62.2,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -579,7 +579,7 @@
         "39": 340.0,
         "39.5": 350.0,
         "40": 380.0,
-        "41": 370.0,
+        "41": 380.0,
         "41.5": 350.0,
         "42": 400.0,
         "43": 350.0,
@@ -676,7 +676,7 @@
       "buy_price": 0.01,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "15": 1300.0,
+        "15": 1440.0,
         "1": 1390.0
       },
       "size_price_evidence": null,
@@ -727,7 +727,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1300 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1440 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -740,7 +740,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1300 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1440 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
             "source": "shihuo_detail_text"
           }
         ],
@@ -762,7 +762,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1300 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1440 4.7折 国家补贴 总销5500+ 月销250+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 双旦礼遇女2 N0.1 CV976-I",
           "source": "shihuo_detail_text"
         }
       ],
@@ -1285,7 +1285,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.59,
+      "buy_price": 0.45,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 630.0,
@@ -1333,9 +1333,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.76,
-        "effective_price": 0.59,
-        "discount_total": 0.17,
+        "base_price": 0.59,
+        "effective_price": 0.45,
+        "discount_total": 0.14,
         "offers": [
           {
             "type": "折扣",
@@ -1390,8 +1390,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.59,
-      "effective_buy_price": 0.59,
+      "best_effective_buy_price": 0.45,
+      "effective_buy_price": 0.45,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

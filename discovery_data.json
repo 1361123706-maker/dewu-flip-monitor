@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T06:04:34.856993+00:00",
+  "updated_at": "2026-10-02T08:05:29.500024+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -181,7 +181,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥9540 1TB ¥1.22万 ¥ 8900 7.4折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 2 / 8 全部 3 256GB ¥8900 512GB ¥9540 1TB ¥1.22万 ¥ 8900 7.4折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -240,9 +240,9 @@
         "36.5": 500.0,
         "37.5": 500.0,
         "38": 440.0,
-        "38.5": 440.0,
+        "38.5": 450.0,
         "39": 540.0,
-        "40": 460.0,
+        "40": 500.0,
         "40.5": 500.0,
         "41": 500.0,
         "42": 440.0,
@@ -251,7 +251,7 @@
         "44": 500.0,
         "44.5": 500.0,
         "45": 500.0,
-        "45.5": 700.0,
+        "45.5": 610.0,
         "46": 700.0,
         "47": 630.0,
         "47.5": 600.0,
@@ -355,7 +355,7 @@
         "XS": 500.0,
         "S": 420.0,
         "M": 410.0,
-        "L": 430.0,
+        "L": 440.0,
         "XL": 410.0,
         "4": 4.0,
         "3": 520.0,
@@ -434,9 +434,9 @@
     {
       "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决",
       "product_code": "iPhone18",
-      "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
+      "color": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "size": null,
-      "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
+      "selected_variant": "银色、黑色、勃艮第酒红色、冰川蓝色",
       "search_key": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=9719149&styleId=1153172787",
       "goods_id": "9719149",
@@ -444,7 +444,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 17.77,
+      "buy_price": 15.46,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -483,9 +483,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 20.42,
-        "effective_price": 17.77,
-        "discount_total": 2.65,
+        "base_price": 17.77,
+        "effective_price": 15.46,
+        "discount_total": 2.31,
         "offers": [
           {
             "type": "折扣",
@@ -540,8 +540,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 17.77,
-      "effective_buy_price": 17.77,
+      "best_effective_buy_price": 15.46,
+      "effective_buy_price": 15.46,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -575,7 +575,7 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "36": 420.0,
-        "37.5": 400.0,
+        "37.5": 420.0,
         "38": 400.0,
         "39": 380.0,
         "39.5": 350.0,
@@ -857,7 +857,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3100 自动上下水版 ¥2870 ¥ 3100 5.1折 国家补贴 总销200+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3100 自动上下水版 ¥2720 ¥ 3100 5.1折 国家补贴 总销200+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1258,7 +1258,7 @@
       "style_id": "83911484",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.04,
+      "buy_price": 0.03,
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "32": 600.0,
@@ -1306,8 +1306,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/236270588?id=3974355&sku_id=236270588",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.05,
-        "effective_price": 0.04,
+        "base_price": 0.04,
+        "effective_price": 0.03,
         "discount_total": 0.01,
         "offers": [
           {
@@ -1363,8 +1363,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.04,
-      "effective_buy_price": 0.04,
+      "best_effective_buy_price": 0.03,
+      "effective_buy_price": 0.03,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T10:03:03.309799+00:00",
+  "updated_at": "2026-10-03T14:52:25.360303+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -236,7 +236,7 @@
         "32": 300.0,
         "33.5": 830.0,
         "35": 900.0,
-        "35.5": 600.0,
+        "35.5": 560.0,
         "36": 500.0,
         "36.5": 500.0,
         "37.5": 500.0,
@@ -247,12 +247,12 @@
         "40.5": 500.0,
         "41": 500.0,
         "42": 440.0,
-        "42.5": 420.0,
+        "42.5": 410.0,
         "43": 470.0,
         "44": 500.0,
         "44.5": 500.0,
         "45": 510.0,
-        "45.5": 700.0,
+        "45.5": 620.0,
         "46": 600.0,
         "47": 630.0,
         "47.5": 630.0,
@@ -445,7 +445,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 2.53,
+      "buy_price": 2.2,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -484,9 +484,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 2.91,
-        "effective_price": 2.53,
-        "discount_total": 0.38,
+        "base_price": 2.53,
+        "effective_price": 2.2,
+        "discount_total": 0.33,
         "offers": [
           {
             "type": "折扣",
@@ -496,7 +496,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.15万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.2万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -509,7 +509,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.15万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.2万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -531,7 +531,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.15万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "载识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.2万 1TB ¥1.44万 2TB ¥1.86万 ¥ 1 .03 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -541,8 +541,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 2.53,
-      "effective_buy_price": 2.53,
+      "best_effective_buy_price": 2.2,
+      "effective_buy_price": 2.2,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1126,7 +1126,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1530 8.5折 国家补贴 总销5200+ 月销300+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 2 / 4 全部 7 ¥ 1530 8.5折 国家补贴 总销5200+ 月销300+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],

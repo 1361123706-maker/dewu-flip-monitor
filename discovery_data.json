@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T21:29:08.097078+00:00",
+  "updated_at": "2026-10-04T22:04:45.678345+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -37,7 +37,7 @@
         "46": 420.0,
         "46⅔": 560.0,
         "47⅓": 550.0,
-        "48": 610.0,
+        "48": 620.0,
         "48⅔": 610.0,
         "49⅓": 900.0,
         "51⅓": 1070.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 1.13,
+      "buy_price": 0.98,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,9 +485,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 1.3,
-        "effective_price": 1.13,
-        "discount_total": 0.17,
+        "base_price": 1.13,
+        "effective_price": 0.98,
+        "discount_total": 0.15,
         "offers": [
           {
             "type": "折扣",
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 1.13,
-      "effective_buy_price": 1.13,
+      "best_effective_buy_price": 0.98,
+      "effective_buy_price": 0.98,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -1164,9 +1164,9 @@
     {
       "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具",
       "product_code": null,
-      "color": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、樱花白、紫茉莉色、黄色、米色花耳朵、米棕色、粉色、银色、桃粉色、米黄色-欧因、米",
+      "color": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、樱花白、黄色、紫茉莉色、米色花耳朵、米棕色、粉色、银色、桃粉色、米黄色-欧因、米",
       "size": null,
-      "selected_variant": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、樱花白、紫茉莉色、黄色、米色花耳朵、米棕色、粉色、银色、桃粉色、米黄色-欧因、米",
+      "selected_variant": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、樱花白、黄色、紫茉莉色、米色花耳朵、米棕色、粉色、银色、桃粉色、米黄色-欧因、米",
       "search_key": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具 | 货号 未明确 | 配色 未明确 | 尺码 未明确",
       "shihuo_url": "https://www.shihuo.cn/page/pcGoodsDetail?goodsId=1218420&styleId=663405845",
       "goods_id": "1218420",

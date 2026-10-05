@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T10:07:45.248844+00:00",
+  "updated_at": "2026-10-05T12:05:40.141521+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -242,7 +242,7 @@
         "37.5": 500.0,
         "38": 470.0,
         "38.5": 460.0,
-        "39": 500.0,
+        "39": 520.0,
         "40": 500.0,
         "40.5": 500.0,
         "41": 460.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.43,
+      "buy_price": 0.37,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,8 +485,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.49,
-        "effective_price": 0.43,
+        "base_price": 0.43,
+        "effective_price": 0.37,
         "discount_total": 0.06,
         "offers": [
           {
@@ -497,7 +497,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.27万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.22万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -510,7 +510,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.27万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.22万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -532,7 +532,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.27万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.22万 1TB ¥1.44万 2TB ¥1.84万 ¥ 1 .01 万 8.7折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.43,
-      "effective_buy_price": 0.43,
+      "best_effective_buy_price": 0.37,
+      "effective_buy_price": 0.37,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -576,7 +576,7 @@
       "buy_price": 400.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "36": 410.0,
+        "36": 430.0,
         "37.5": 410.0,
         "38": 400.0,
         "39": 380.0,
@@ -586,8 +586,8 @@
         "41.5": 370.0,
         "42": 400.0,
         "43": 360.0,
-        "43.5": 350.0,
-        "44": 370.0,
+        "43.5": 400.0,
+        "44": 400.0,
         "45": 400.0,
         "46": 400.0,
         "47.5": 400.0,
@@ -1321,7 +1321,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 620 7.7折 识货专享价 总销5300+ 月销70+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到14家正品放心店铺 识货AI价格总结",
+            "evidence": "不同。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 6 全部 32 ¥ 620 7.7折 14家放心店铺最低价 总销5300+ 月销70+ b r o o k / 布 鲁 克 V 1 2 民 谣 初 学 者 吉 他 单 板 V12NDCM原木色哑光缺角民谣41寸 吉他新手入门 N0.1 购买 为您找到14家正品放心店铺 识货A",
             "source": "shihuo_detail_text"
           }
         ],

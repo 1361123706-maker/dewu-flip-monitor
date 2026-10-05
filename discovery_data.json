@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T06:06:48.045238+00:00",
+  "updated_at": "2026-10-05T08:06:12.239357+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -235,7 +235,7 @@
       "size_price_map": {
         "32": 300.0,
         "33.5": 830.0,
-        "35": 910.0,
+        "35": 1080.0,
         "35.5": 570.0,
         "36": 530.0,
         "36.5": 500.0,
@@ -353,8 +353,8 @@
       "buy_price": 420.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "XS": 520.0,
-        "S": 420.0,
+        "XS": 430.0,
+        "S": 400.0,
         "M": 410.0,
         "L": 410.0,
         "XL": 410.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.56,
+      "buy_price": 0.49,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,9 +485,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.64,
-        "effective_price": 0.56,
-        "discount_total": 0.08,
+        "base_price": 0.56,
+        "effective_price": 0.49,
+        "discount_total": 0.07,
         "offers": [
           {
             "type": "折扣",
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.56,
-      "effective_buy_price": 0.56,
+      "best_effective_buy_price": 0.49,
+      "effective_buy_price": 0.49,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -579,7 +579,7 @@
         "36": 410.0,
         "37.5": 410.0,
         "38": 400.0,
-        "39": 400.0,
+        "39": 380.0,
         "39.5": 370.0,
         "40": 380.0,
         "41": 370.0,
@@ -587,7 +587,7 @@
         "42": 400.0,
         "43": 360.0,
         "43.5": 350.0,
-        "44": 370.0,
+        "44": 400.0,
         "45": 400.0,
         "46": 400.0,
         "47.5": 400.0,
@@ -859,7 +859,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3090 自动上下水版 ¥2830 ¥ 3090 5.1折 国家补贴 总销200+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3070 自动上下水版 ¥2830 ¥ 3070 5.1折 国家补贴 总销200+ 月销50+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1076,7 +1076,7 @@
       "buy_price": 0.03,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "7": 1530.0
+        "7": 1520.0
       },
       "size_price_evidence": null,
       "size_price_status": "not_available",
@@ -1127,7 +1127,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1530 8.5折 国家补贴 总销5000+ 月销300+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
+            "evidence": "..。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 4 全部 7 ¥ 1520 8.5折 国家补贴 总销5000+ 月销300+ 【 大 迫 杰 同 款 】 C O R O S / 高 驰 P A C E 4 双 频 全 星 座 运 动 音 乐 马 拉 松 跑 步 爬 楼 越 野 超 长 续 航 智 能 男 女 同 款 手 表",
             "source": "shihuo_detail_text"
           }
         ],

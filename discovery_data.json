@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T10:05:28.233366+00:00",
+  "updated_at": "2026-10-06T12:05:04.419411+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -42,7 +42,7 @@
         "49⅓": 860.0,
         "51⅓": 1070.0,
         "52⅔": 1000.0,
-        "35": 1100.0,
+        "35": 1000.0,
         "35½": 500.0,
         "2": 400.0,
         "39": 1.0,
@@ -246,14 +246,14 @@
         "40": 500.0,
         "40.5": 500.0,
         "41": 460.0,
-        "42": 450.0,
+        "42": 460.0,
         "42.5": 450.0,
         "43": 470.0,
         "44": 500.0,
         "44.5": 450.0,
         "45": 500.0,
         "45.5": 700.0,
-        "46": 700.0,
+        "46": 600.0,
         "47": 640.0,
         "47.5": 600.0,
         "48": 900.0,
@@ -356,7 +356,7 @@
         "XS": 420.0,
         "S": 430.0,
         "M": 430.0,
-        "L": 430.0,
+        "L": 410.0,
         "XL": 440.0,
         "4": 4.0,
         "3": 520.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.15,
+      "buy_price": 0.14,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,9 +485,9 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.17,
-        "effective_price": 0.15,
-        "discount_total": 0.02,
+        "base_price": 0.15,
+        "effective_price": 0.14,
+        "discount_total": 0.01,
         "offers": [
           {
             "type": "折扣",
@@ -497,7 +497,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.23万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -510,7 +510,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.23万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -532,7 +532,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.23万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.15,
-      "effective_buy_price": 0.15,
+      "best_effective_buy_price": 0.14,
+      "effective_buy_price": 0.14,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -582,7 +582,7 @@
         "39": 380.0,
         "39.5": 360.0,
         "40": 360.0,
-        "41": 370.0,
+        "41": 360.0,
         "41.5": 400.0,
         "42": 400.0,
         "43": 360.0,
@@ -860,7 +860,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3100 自动上下水版 ¥2890 ¥ 3100 5.1折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3000 自动上下水版 ¥2890 ¥ 3000 5.1折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],

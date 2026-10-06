@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T18:04:41.604528+00:00",
+  "updated_at": "2026-10-06T20:03:35.919871+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -242,11 +242,11 @@
         "37.5": 500.0,
         "38": 470.0,
         "38.5": 460.0,
-        "39": 520.0,
+        "39": 530.0,
         "40": 500.0,
         "40.5": 500.0,
         "41": 460.0,
-        "42": 450.0,
+        "42": 460.0,
         "42.5": 450.0,
         "43": 430.0,
         "44": 500.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.11,
+      "buy_price": 0.1,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,8 +485,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.12,
-        "effective_price": 0.11,
+        "base_price": 0.11,
+        "effective_price": 0.1,
         "discount_total": 0.01,
         "offers": [
           {
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.11,
-      "effective_buy_price": 0.11,
+      "best_effective_buy_price": 0.1,
+      "effective_buy_price": 0.1,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,
@@ -576,8 +576,8 @@
       "buy_price": 400.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "36": 430.0,
-        "37.5": 450.0,
+        "36": 400.0,
+        "37.5": 440.0,
         "38": 400.0,
         "39": 370.0,
         "39.5": 360.0,

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T12:05:04.419411+00:00",
+  "updated_at": "2026-10-06T14:07:48.633635+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -24,7 +24,7 @@
         "37⅓": 450.0,
         "38": 450.0,
         "38⅔": 420.0,
-        "39⅓": 420.0,
+        "39⅓": 430.0,
         "40": 400.0,
         "40⅔": 400.0,
         "41⅓": 400.0,
@@ -353,10 +353,10 @@
       "buy_price": 420.0,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "XS": 420.0,
-        "S": 430.0,
+        "XS": 500.0,
+        "S": 440.0,
         "M": 430.0,
-        "L": 410.0,
+        "L": 430.0,
         "XL": 440.0,
         "4": 4.0,
         "3": 520.0,
@@ -446,7 +446,7 @@
       "style_id": "1153172787",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
-      "buy_price": 0.14,
+      "buy_price": 0.13,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
       "size_price_evidence": null,
@@ -485,8 +485,8 @@
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "sku_identity_complete": true,
       "promotion_calculation": {
-        "base_price": 0.15,
-        "effective_price": 0.14,
+        "base_price": 0.14,
+        "effective_price": 0.13,
         "discount_total": 0.01,
         "offers": [
           {
@@ -497,7 +497,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -510,7 +510,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -532,7 +532,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.43万 2TB ¥1.78万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -542,8 +542,8 @@
       "all_coupon_urls": [
         "None"
       ],
-      "best_effective_buy_price": 0.14,
-      "effective_buy_price": 0.14,
+      "best_effective_buy_price": 0.13,
+      "effective_buy_price": 0.13,
       "buy_price_source": "SKU价格 + 页面明确活动优惠",
       "buy_price_status": "calculated_promotion_price",
       "hard_exclude": false,

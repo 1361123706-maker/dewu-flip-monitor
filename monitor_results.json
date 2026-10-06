@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T22:06:10.334143+00:00",
+  "updated_at": "2026-10-06T00:04:37.568464+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -36,7 +36,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 0.24,
+      "sku_buy_price": 0.22,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -47,8 +47,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 0.24,
-      "best_effective_buy_price": 0.24,
+      "effective_buy_price": 0.22,
+      "best_effective_buy_price": 0.22,
       "coupon_urls": [
         "None"
       ],
@@ -65,13 +65,13 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 0.26,
-        "effective_price": 0.24,
+        "base_price": 0.24,
+        "effective_price": 0.22,
         "discount_total": 0.02,
         "offers": [
           {
@@ -82,7 +82,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -95,7 +95,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -111,7 +111,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 0.24,
+      "buy_price": 0.22,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -121,16 +121,16 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 6.24,
+      "total_cost": 6.22,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9824.12,
-      "estimated_profit": 9824.12,
-      "profit_rate": 157437.76,
+      "profit": 9824.14,
+      "estimated_profit": 9824.14,
+      "profit_rate": 157944.32,
       "capital": 700.0,
       "capital_ratio": 0.89,
       "sales_7d": null,
@@ -152,7 +152,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥0.24；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9824.12；利润率 157437.76%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥0.22；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9824.14；利润率 157944.32%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,
@@ -550,7 +550,7 @@
       "product_code": "iPhone18",
       "color": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "sku_size": null,
-      "sku_buy_price": 0.24,
+      "sku_buy_price": 0.22,
       "sku_identity_complete": true,
       "selected_variant": "银色、勃艮第酒红色、冰川蓝色、黑色",
       "grade": "B",
@@ -561,8 +561,8 @@
       "buy_url": "https://m.shihuo.cn/page/supplierList/4253487312?id=9719149&sku_id=4253487312",
       "buy_price_before_discount": null,
       "discount_total": null,
-      "effective_buy_price": 0.24,
-      "best_effective_buy_price": 0.24,
+      "effective_buy_price": 0.22,
+      "best_effective_buy_price": 0.22,
       "coupon_urls": [
         "None"
       ],
@@ -579,13 +579,13 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+          "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
           "source": "shihuo_detail_text"
         }
       ],
       "promotion_calculation": {
-        "base_price": 0.26,
-        "effective_price": 0.24,
+        "base_price": 0.24,
+        "effective_price": 0.22,
         "discount_total": 0.02,
         "offers": [
           {
@@ -596,7 +596,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -609,7 +609,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.13万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .13 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.01万 512GB ¥1.28万 1TB ¥1.48万 2TB ¥1.81万 ¥ 1 .01 万 9.1折 国家补贴 总销1200+ 月销1200+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -625,7 +625,7 @@
       "promotion_verified": false,
       "promotion_status": null,
       "promotion_discount_total": null,
-      "buy_price": 0.24,
+      "buy_price": 0.22,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
       "dewu_price": 10685.17,
@@ -635,16 +635,16 @@
       "trend_current_price": 1.0,
       "estimated_income": 9830.36,
       "expected_income": 9830.36,
-      "total_cost": 6.24,
+      "total_cost": 6.22,
       "buy_shipping_cost": 6,
       "buy_shipping_confirmed": false,
       "profit_type": "estimated",
       "profit_status": "estimated_ready",
       "profit_estimate_ready": true,
       "profit_confirmation": "已按统一估算公式计算；最终平台结算费用以实际下单为准",
-      "profit": 9824.12,
-      "estimated_profit": 9824.12,
-      "profit_rate": 157437.76,
+      "profit": 9824.14,
+      "estimated_profit": 9824.14,
+      "profit_rate": 157944.32,
       "capital": 700.0,
       "capital_ratio": 0.89,
       "sales_7d": null,
@@ -666,7 +666,7 @@
       "safety_score": 9,
       "capital_score": 2,
       "hard_risks": [],
-      "reason": "达到候选最低利润与风险门槛；买入 ¥0.24；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9824.12；利润率 157437.76%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
+      "reason": "达到候选最低利润与风险门槛；买入 ¥0.22；得物售价 ¥10685.17 × 92% = ¥9830.36；估算利润 ¥9824.14；利润率 157944.32%；月销 800，日均约 26.67；7日最低 ¥1.00；距离7日低点 0.00%；估算公式：得物售价×92%-买入价-6元运费",
       "shihuo_source": true,
       "authenticity_evidence": null,
       "new_condition_verified": null,

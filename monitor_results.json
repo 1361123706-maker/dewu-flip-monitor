@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T00:04:49.565081+00:00",
+  "updated_at": "2026-10-08T02:06:37.525126+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -134,11 +134,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、星宇橙色、深蓝色",
+      "color": "银色、深蓝色、星宇橙色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、星宇橙色、深蓝色",
+      "selected_variant": "银色、深蓝色、星宇橙色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -165,11 +165,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.74,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.4折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -336,11 +336,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、星宇橙色、深蓝色",
+      "color": "银色、深蓝色、星宇橙色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、星宇橙色、深蓝色",
+      "selected_variant": "银色、深蓝色、星宇橙色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -367,11 +367,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.74,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.4折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],

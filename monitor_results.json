@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T14:08:31.737530+00:00",
+  "updated_at": "2026-10-08T16:08:52.049889+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -65,11 +65,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.91,
+            "rate": 0.96,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "开放平台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1万 512GB ¥1.19万 1TB ¥1.51万 2TB ¥2.06万 ¥ 1 万 9.1折 国家补贴 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 16家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -134,11 +134,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、星宇橙色、深蓝色",
+      "color": "银色、深蓝色、星宇橙色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、星宇橙色、深蓝色",
+      "selected_variant": "银色、深蓝色、星宇橙色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -165,11 +165,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.77,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.16万 ¥ 8900 7.7折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -265,7 +265,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -282,7 +282,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -295,7 +295,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -364,11 +364,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、星宇橙色、深蓝色",
+      "color": "银色、深蓝色、星宇橙色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、星宇橙色、深蓝色",
+      "selected_variant": "银色、深蓝色、星宇橙色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -395,11 +395,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.77,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.14万 ¥ 8900 7.3折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥8900 512GB ¥1万 1TB ¥1.16万 ¥ 8900 7.7折 国家补贴 总销2万+ 月销1600+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -495,11 +495,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.91,
+            "rate": 0.96,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "开放平台 下载识货App 立即打开 1 / 2 全部 4 256GB ¥1万 512GB ¥1.19万 1TB ¥1.51万 2TB ¥2.06万 ¥ 1 万 9.1折 国家补贴 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 16家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -679,7 +679,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
           "source": "shihuo_detail_text"
         }
       ],
@@ -696,7 +696,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -709,7 +709,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2810 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3930 自动上下水版 ¥2820 ¥ 3930 4.8折 国家补贴 总销200+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T00:06:21.974001+00:00",
+  "updated_at": "2026-10-09T02:07:12.322996+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -69,7 +69,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 16家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 17家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -134,11 +134,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、深蓝色、星宇橙色",
+      "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、深蓝色、星宇橙色",
+      "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -364,11 +364,11 @@
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
       "product_code": "iPhone17",
-      "color": "银色、深蓝色、星宇橙色",
+      "color": "银色、星宇橙色、深蓝色",
       "sku_size": null,
       "sku_buy_price": 0.01,
       "sku_identity_complete": true,
-      "selected_variant": "银色、深蓝色、星宇橙色",
+      "selected_variant": "银色、星宇橙色、深蓝色",
       "grade": "B",
       "category": "unknown",
       "category_reason": "未命中明确目标品类",
@@ -499,7 +499,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 16家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.04万 512GB ¥1.25万 1TB ¥1.52万 2TB ¥2.11万 ¥ 1 .04 万 9.6折 17家放心店铺最低价 总销1300+ 月销1300+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 ",
             "source": "shihuo_detail_text"
           }
         ],

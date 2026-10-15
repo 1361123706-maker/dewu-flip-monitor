@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T12:19:39.478997+00:00",
+  "updated_at": "2026-10-15T14:24:56.347694+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -23,17 +23,17 @@
         "36⅔": 450.0,
         "37⅓": 500.0,
         "38": 420.0,
-        "38⅔": 420.0,
+        "38⅔": 410.0,
         "39⅓": 420.0,
         "40": 400.0,
         "40⅔": 400.0,
-        "41⅓": 400.0,
+        "41⅓": 370.0,
         "42": 360.0,
-        "42⅔": 380.0,
-        "43⅓": 350.0,
-        "44": 340.0,
+        "42⅔": 400.0,
+        "43⅓": 340.0,
+        "44": 330.0,
         "44⅔": 350.0,
-        "45⅓": 410.0,
+        "45⅓": 400.0,
         "46": 400.0,
         "46⅔": 540.0,
         "47⅓": 700.0,
@@ -158,7 +158,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-10-15T12:19:39.478021+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.346932+00:00"
     },
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
@@ -298,7 +298,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 7,
-      "bridge_updated_at": "2026-10-15T12:19:39.478096+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347002+00:00"
     },
     {
       "name": "Nike Air Force 1 空军一号 板鞋 轻便舒适百搭耐磨防滑复古",
@@ -321,13 +321,13 @@
         "35": 1030.0,
         "35.5": 520.0,
         "36": 500.0,
-        "36.5": 500.0,
-        "37.5": 500.0,
+        "36.5": 430.0,
+        "37.5": 440.0,
         "38": 420.0,
         "38.5": 420.0,
-        "39": 520.0,
+        "39": 500.0,
         "40": 500.0,
-        "40.5": 500.0,
+        "40.5": 450.0,
         "41": 450.0,
         "42": 460.0,
         "42.5": 430.0,
@@ -458,7 +458,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 7,
-      "bridge_updated_at": "2026-10-15T12:19:39.478252+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347135+00:00"
     },
     {
       "name": "【徐璐同款】Adidas/阿迪达斯 Firebird系列快干耐磨防风透气三条纹梭织立领夹克 KB2466",
@@ -595,7 +595,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 6,
-      "bridge_updated_at": "2026-10-15T12:19:39.478325+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347195+00:00"
     },
     {
       "name": "Apple/苹果 iPhone18 Pro Max 手机 新一代C2信号解调器 双16核神经网络 AI任务轻松搞定 超大VC均热板 电竞散热一键解决",
@@ -664,11 +664,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.91,
+            "rate": 0.92,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.02万 512GB ¥1.16万 1TB ¥1.47万 2TB ¥2.04万 ¥ 1 .02 万 9.1折 国家补贴 总销1400+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
+            "evidence": "识货App 立即打开 1 / 2 全部 4 256GB ¥1.03万 512GB ¥1.16万 1TB ¥1.47万 2TB ¥2.04万 ¥ 1 .03 万 9.2折 国家补贴 总销1400+ 月销1000+ A p p l e / 苹 果 i P h o n e 1 8 P r o M a x 手 机 新 一 代 C 2 信 号 解 调 器 双 1 6 核 神 经 网 络 A I 任 务 轻 松 搞 ",
             "source": "shihuo_detail_text"
           },
           {
@@ -679,7 +679,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "大师色彩屏 磨砂玻璃背板 ¥ 6330 Hi nova 优畅享 20 5G 手机 大电池 高清大屏 ¥ 840 Samsung/三星 Galaxy Z Fold8 折叠屏手机 201g超轻薄 旗舰性能 4:3宽幅内屏阔折叠 ¥ 1.01万 【AI防走失】小辣椒 Z5 4G 手机 绿色纯净系统 AI定位 ¥ 95 OnePlus/一加 Ace6 至尊版 5G手机 165Hz超高刷东方屏 AI大模型 轻薄 ",
+            "evidence": "大师色彩屏 磨砂玻璃背板 ¥ 6330 Hi nova 优畅享 20 5G 手机 大电池 高清大屏 ¥ 840 Samsung/三星 Galaxy Z Fold8 折叠屏手机 201g超轻薄 旗舰性能 4:3宽幅内屏阔折叠 ¥ 1万 【AI防走失】小辣椒 Z5 4G 手机 绿色纯净系统 AI定位 ¥ 95 OnePlus/一加 Ace6 至尊版 5G手机 165Hz超高刷东方屏 AI大模型 轻薄 高频P",
             "source": "shihuo_detail_text"
           }
         ],
@@ -751,7 +751,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-10-15T12:19:39.478395+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347250+00:00"
     },
     {
       "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水",
@@ -772,7 +772,7 @@
         "36": 400.0,
         "37.5": 400.0,
         "38": 400.0,
-        "39": 350.0,
+        "39": 360.0,
         "39.5": 360.0,
         "40": 330.0,
         "41": 320.0,
@@ -894,7 +894,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-10-15T12:19:39.478493+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347330+00:00"
     },
     {
       "name": "Coach city 33 磁扣拉链开合涂层PVC拼皮革购物袋单肩托特包手提包",
@@ -1065,7 +1065,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 9,
-      "bridge_updated_at": "2026-10-15T12:19:39.478544+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347370+00:00"
     },
     {
       "name": "Ecovacs/科沃斯 T90 PRO 扫地机器人 扫拖 烘干 大吸力 防缠绕 自清洁 自动集尘 回洗快充 超长续航",
@@ -1132,7 +1132,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3030 自动上下水版 ¥2770 ¥ 3030 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3050 自动上下水版 ¥2770 ¥ 3050 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -1204,7 +1204,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 7,
-      "bridge_updated_at": "2026-10-15T12:19:39.478585+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347401+00:00"
     },
     {
       "name": "李宁 CBA联赛 耐磨防滑 比赛训练 室内外 手感之王 吸湿水泥地 标准 PU篮球 LBQK957",
@@ -1256,7 +1256,7 @@
       "current_size": "7",
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/1006435?goodsId=1006435&skuId=107936542&styleId=31120482",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/107936542?id=1006435&sku_id=107936542",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 100.0,
         "effective_price": 100.0,
@@ -1275,8 +1275,8 @@
       "effective_buy_price": 100.0,
       "buy_price_source": "活动优惠计算后的最低可信到手价",
       "buy_price_status": "promotion_best_effective_buy_price",
-      "hard_exclude": true,
-      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "buy_url": "https://m.shihuo.cn/page/supplierList/107936542?id=1006435&sku_id=107936542",
       "sku_repair_status": "repaired",
       "sku_repair_error": "Page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://www.shihuo.cn/page/pcGoodsDetail?goodsId=1006435&styleId=31120482\", waiting until \"domcontentloaded\"\n",
@@ -1328,7 +1328,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 6,
-      "bridge_updated_at": "2026-10-15T12:19:39.478614+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347423+00:00"
     },
     {
       "name": "Xds/喜德盛 2026款 RC200 禧玛诺 多速别 铝合金 超轻 公路车",
@@ -1453,7 +1453,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 10,
-      "bridge_updated_at": "2026-10-15T12:19:39.478684+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347460+00:00"
     },
     {
       "name": "【大迫杰同款】COROS/高驰 PACE 4 双频全星座运动音乐马拉松跑步爬楼越野超长续航智能男女同款手表",
@@ -1594,7 +1594,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 8,
-      "bridge_updated_at": "2026-10-15T12:19:39.478732+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347494+00:00"
     },
     {
       "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具",
@@ -1719,7 +1719,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 4,
-      "bridge_updated_at": "2026-10-15T12:19:39.478766+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347520+00:00"
     },
     {
       "name": "brook/布鲁克 V12民谣初学者吉他单板",
@@ -1868,7 +1868,7 @@
         "promotion_calculation": true
       },
       "evidence_count": 9,
-      "bridge_updated_at": "2026-10-15T12:19:39.478829+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347570+00:00"
     },
     {
       "name": "全部 商品 优惠 晒物",
@@ -1981,7 +1981,7 @@
       "estimated_profit_confirmation": "买入价和得物售价均不足",
       "income_confirmed": false,
       "income_confirmation_reason": "买入价和得物售价均不足",
-      "bridge_updated_at": "2026-10-15T12:19:39.478856+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347593+00:00"
     },
     {
       "name": "商品",
@@ -2084,7 +2084,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478878+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347611+00:00"
     },
     {
       "name": "AJ11",
@@ -2187,7 +2187,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478895+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347624+00:00"
     },
     {
       "name": "欧文4",
@@ -2290,7 +2290,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478911+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347636+00:00"
     },
     {
       "name": "LBJ15",
@@ -2393,7 +2393,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478930+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347648+00:00"
     },
     {
       "name": "ultra boost",
@@ -2496,7 +2496,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478947+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347660+00:00"
     },
     {
       "name": "Jordan",
@@ -2599,7 +2599,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478963+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347671+00:00"
     },
     {
       "name": "Air force 1",
@@ -2702,7 +2702,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478979+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347681+00:00"
     },
     {
       "name": "球鞋90秒",
@@ -2806,7 +2806,7 @@
         "coupon": false,
         "promotion_calculation": true
       },
-      "bridge_updated_at": "2026-10-15T12:19:39.478994+00:00"
+      "bridge_updated_at": "2026-10-15T14:24:56.347692+00:00"
     }
   ]
 }

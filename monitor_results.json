@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T12:19:39.535599+00:00",
+  "updated_at": "2026-10-15T14:24:56.400182+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -17,19 +17,19 @@
     "multi_platform_buy_sources": true
   },
   "summary": {
-    "total": 3,
+    "total": 4,
     "A": 0,
     "B": 2,
     "C": 1,
-    "D": 0,
+    "D": 1,
     "estimated_profit_count": 3
   },
-  "monitored_count": 3,
+  "monitored_count": 4,
   "candidate_count": 2,
   "grade_a_count": 0,
   "grade_b_count": 2,
   "grade_c_count": 1,
-  "grade_d_count": 0,
+  "grade_d_count": 1,
   "candidates": [
     {
       "name": "Apple/苹果 iPhone17 Pro 5G 手机 航空级铝合金材质 全新散热系统 7层抗反射涂层 4800万像素后摄全覆盖 全网通 双卡双待 视网膜屏",
@@ -169,7 +169,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3030 自动上下水版 ¥2770 ¥ 3030 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3050 自动上下水版 ¥2770 ¥ 3050 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -455,7 +455,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3030 自动上下水版 ¥2770 ¥ 3030 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥3050 自动上下水版 ¥2770 ¥ 3050 5.1折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
@@ -516,6 +516,26 @@
       "new_condition_verified": null,
       "dewu_check_compatible": null,
       "source_note": null
+    },
+    {
+      "name": "李宁 CBA联赛 耐磨防滑 比赛训练 室内外 手感之王 吸湿水泥地 标准 PU篮球 LBQK957",
+      "product_code": "LBQK957",
+      "color": "LBQK957-1、LBQK957-3、LBQK957-1升级款、LBQK957-2、LBQK957-G1、LBQK957-2升级版",
+      "sku_size": "7",
+      "sku_buy_price": 100.0,
+      "grade": "D",
+      "category": "target",
+      "buy_price": 100.0,
+      "dewu_price": null,
+      "hard_risks": [
+        "没有有效得物价格"
+      ],
+      "reason": "没有有效得物价格",
+      "capital": 700.0,
+      "profit_type": "estimated",
+      "profit_status": "estimated_not_ready",
+      "profit_estimate_ready": false,
+      "sku_identity_complete": true
     }
   ]
 }

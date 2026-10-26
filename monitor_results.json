@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T01:57:22.409393+00:00",
+  "updated_at": "2026-10-26T07:12:47.962821+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -69,7 +69,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥1万 1TB ¥1.25万 ¥ 7410 7.3折 国家补贴 总销2万+ 月销2400+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥9890 1TB ¥1.25万 ¥ 7410 7.3折 国家补贴 总销2万+ 月销2400+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -149,36 +149,64 @@
       "discount_total": null,
       "effective_buy_price": 0.01,
       "best_effective_buy_price": 0.01,
-      "coupon_urls": [],
+      "coupon_urls": [
+        "None"
+      ],
       "all_coupon_urls": [
         "None"
       ],
       "coupon_evidence": [],
-      "promotion_offers": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.45,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "source": "shihuo_detail_text"
+        }
+      ],
       "promotion_calculation": {
         "base_price": 0.01,
-        "effective_price": 0.01,
-        "discount_total": null,
-        "offers": [],
+        "effective_price": null,
+        "discount_total": 0.01,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.45,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "source": "shihuo_detail_text"
+          }
+        ],
         "detected_offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.56,
+            "rate": 0.45,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 5.6折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
-        "coupon_urls": [],
+        "coupon_urls": [
+          "None"
+        ],
         "all_coupon_urls": [
           "None"
         ],
         "verified": false,
-        "calculation_status": "offers_detected_but_not_verified"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
       "promotion_verified": false,
       "promotion_status": null,
@@ -271,7 +299,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥1万 1TB ¥1.25万 ¥ 7410 7.3折 国家补贴 总销2万+ 月销2400+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": "频 AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7410 512GB ¥9890 1TB ¥1.25万 ¥ 7410 7.3折 国家补贴 总销2万+ 月销2400+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -435,36 +463,64 @@
       "discount_total": null,
       "effective_buy_price": 0.01,
       "best_effective_buy_price": 0.01,
-      "coupon_urls": [],
+      "coupon_urls": [
+        "None"
+      ],
       "all_coupon_urls": [
         "None"
       ],
       "coupon_evidence": [],
-      "promotion_offers": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.45,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "source": "shihuo_detail_text"
+        }
+      ],
       "promotion_calculation": {
         "base_price": 0.01,
-        "effective_price": 0.01,
-        "discount_total": null,
-        "offers": [],
+        "effective_price": null,
+        "discount_total": 0.01,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.45,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "source": "shihuo_detail_text"
+          }
+        ],
         "detected_offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.56,
+            "rate": 0.45,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 5.6折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2960 自动上下水版 ¥2620 ¥ 2960 4.5折 国家补贴 总销250+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
-        "coupon_urls": [],
+        "coupon_urls": [
+          "None"
+        ],
         "all_coupon_urls": [
           "None"
         ],
         "verified": false,
-        "calculation_status": "offers_detected_but_not_verified"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
       "promotion_verified": false,
       "promotion_status": null,

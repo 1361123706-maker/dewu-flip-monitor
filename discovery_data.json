@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-07T17:04:33.200327+00:00",
+  "updated_at": "2026-11-07T21:10:22.858103+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -243,8 +243,8 @@
         "32": 420.0,
         "33.5": 800.0,
         "35": 680.0,
-        "35.5": 540.0,
-        "36": 510.0,
+        "35.5": 550.0,
+        "36": 500.0,
         "36.5": 480.0,
         "37.5": 470.0,
         "38": 470.0,
@@ -1970,7 +1970,7 @@
         "calculation_status": "missing_base_price"
       },
       "hard_exclude": true,
-      "hard_exclude_reason": "缺少货号/配色/可定位SKU，禁止使用商品级最低价计算利润",
+      "hard_exclude_reason": "SKU页面重新验证失败，禁止使用旧商品级价格",
       "category": "excluded",
       "category_reason": "缺少货号/配色/可定位SKU，禁止使用商品级最低价计算利润",
       "sku_buy_price": null,

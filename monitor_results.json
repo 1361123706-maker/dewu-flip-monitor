@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T20:16:58.923588+00:00",
+  "updated_at": "2026-11-10T03:55:12.059020+00:00",
   "capital": 700.0,
   "rules": {
     "max_days": 7,
@@ -49,36 +49,64 @@
       "discount_total": null,
       "effective_buy_price": 0.01,
       "best_effective_buy_price": 0.01,
-      "coupon_urls": [],
+      "coupon_urls": [
+        "None"
+      ],
       "all_coupon_urls": [
         "None"
       ],
       "coupon_evidence": [],
-      "promotion_offers": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.44,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+          "source": "shihuo_detail_text"
+        }
+      ],
       "promotion_calculation": {
         "base_price": 0.01,
-        "effective_price": 0.01,
-        "discount_total": null,
-        "offers": [],
+        "effective_price": null,
+        "discount_total": 0.01,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.44,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "source": "shihuo_detail_text"
+          }
+        ],
         "detected_offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.5,
+            "rate": 0.44,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2573 ¥ 2800 5.0折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
-        "coupon_urls": [],
+        "coupon_urls": [
+          "None"
+        ],
         "all_coupon_urls": [
           "None"
         ],
         "verified": false,
-        "calculation_status": "offers_detected_but_not_verified"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
       "promotion_verified": false,
       "promotion_status": null,
@@ -136,11 +164,11 @@
     {
       "name": "李宁 利刃4 V2 篮球鞋 䨻科技聚氨酯大底全掌稳定减震回弹轻便网面透气防滑耐磨支撑实战轻量止滑内向比赛抗扭春夏防泼水",
       "product_code": "ABAU037-8",
-      "color": "暗夜黑、荧光耀粉/标准白、粉黛、金盏、荧光明黄、草长莺飞/罗兰、青莲、游云惊龙、荧光绿/海豚蓝、白珍珠、胭脂念、初荷、碎影、草莓熊、斑彩螺、鹦鹉、哥窑、内向艺术",
+      "color": "暗夜黑、荧光耀粉/标准白、粉黛、金盏、草长莺飞/罗兰、荧光明黄、青莲、游云惊龙、荧光绿/海豚蓝、白珍珠、胭脂念、初荷、碎影、草莓熊、斑彩螺、鹦鹉、哥窑、内向艺术",
       "sku_size": "43",
       "sku_buy_price": 390.0,
       "sku_identity_complete": true,
-      "selected_variant": "暗夜黑、荧光耀粉/标准白、粉黛、金盏、荧光明黄、草长莺飞/罗兰、青莲、游云惊龙、荧光绿/海豚蓝、白珍珠、胭脂念、初荷、碎影、草莓熊、斑彩螺、鹦鹉、哥窑、内向艺术, 43",
+      "selected_variant": "暗夜黑、荧光耀粉/标准白、粉黛、金盏、草长莺飞/罗兰、荧光明黄、青莲、游云惊龙、荧光绿/海豚蓝、白珍珠、胭脂念、初荷、碎影、草莓熊、斑彩螺、鹦鹉、哥窑、内向艺术, 43",
       "grade": "C",
       "category": "target",
       "category_reason": "命中目标关键词：鞋",
@@ -235,36 +263,64 @@
       "discount_total": null,
       "effective_buy_price": 0.01,
       "best_effective_buy_price": 0.01,
-      "coupon_urls": [],
+      "coupon_urls": [
+        "None"
+      ],
       "all_coupon_urls": [
         "None"
       ],
       "coupon_evidence": [],
-      "promotion_offers": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.44,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+          "source": "shihuo_detail_text"
+        }
+      ],
       "promotion_calculation": {
         "base_price": 0.01,
-        "effective_price": 0.01,
-        "discount_total": null,
-        "offers": [],
+        "effective_price": null,
+        "discount_total": 0.01,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.44,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
+            "source": "shihuo_detail_text"
+          }
+        ],
         "detected_offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.5,
+            "rate": 0.44,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2573 ¥ 2800 5.0折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 自动上下水版 ¥3060 水箱版 ¥2450 ¥ 3060 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 自动上",
             "source": "shihuo_detail_text"
           }
         ],
-        "coupon_urls": [],
+        "coupon_urls": [
+          "None"
+        ],
         "all_coupon_urls": [
           "None"
         ],
         "verified": false,
-        "calculation_status": "offers_detected_but_not_verified"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
       "promotion_verified": false,
       "promotion_status": null,

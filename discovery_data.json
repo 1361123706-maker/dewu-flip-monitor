@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T00:19:09.791422+00:00",
+  "updated_at": "2026-11-11T08:32:32.965913+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -20,22 +20,22 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "36": 440.0,
-        "36⅔": 430.0,
+        "36⅔": 420.0,
         "37⅓": 420.0,
         "38": 440.0,
         "38⅔": 405.0,
-        "39⅓": 420.0,
+        "39⅓": 430.0,
         "40": 410.0,
         "40⅔": 390.0,
         "41⅓": 410.0,
         "42": 410.0,
-        "42⅔": 420.0,
+        "42⅔": 410.0,
         "43⅓": 400.0,
         "44": 390.0,
         "44⅔": 400.0,
         "45⅓": 430.0,
         "46": 450.0,
-        "46⅔": 550.0,
+        "46⅔": 540.0,
         "47⅓": 580.0,
         "48": 690.0,
         "48⅔": 560.0,
@@ -43,7 +43,7 @@
         "51⅓": 1070.0,
         "52⅔": 1504.0,
         "35": 550.0,
-        "35½": 450.0,
+        "35½": 440.0,
         "2": 368.0,
         "39": 2.0,
         "6": 400.0,
@@ -185,11 +185,11 @@
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.73,
+            "rate": 0.72,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": " AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7990 512GB ¥10570 1TB ¥13260 ¥ 7990 7.3折 国家补贴 总销2万+ 月销2300+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
+            "evidence": " AI查价助手 开放平台 下载识货App 立即打开 1 / 8 全部 3 256GB ¥7990 512GB ¥10570 1TB ¥13260 ¥ 7990 7.2折 国家补贴 总销2万+ 月销2300+ A p p l e / 苹 果 i P h o n e 1 7 P r o 5 G 手 机 航 空 级 铝 合 金 材 质 全 新 散 热 系 统 7 层 抗 反 射 涂 层 4 8 0 0 万 像 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -245,20 +245,20 @@
         "35": 680.0,
         "35.5": 510.0,
         "36": 496.0,
-        "36.5": 480.0,
-        "37.5": 440.0,
-        "38": 490.0,
+        "36.5": 488.0,
+        "37.5": 430.0,
+        "38": 480.0,
         "38.5": 470.0,
-        "39": 530.0,
+        "39": 513.0,
         "40": 550.0,
         "40.5": 520.0,
         "41": 490.0,
-        "42": 520.0,
-        "42.5": 465.0,
-        "43": 520.0,
+        "42": 490.0,
+        "42.5": 510.0,
+        "43": 480.0,
         "44": 480.0,
         "44.5": 470.0,
-        "45": 560.0,
+        "45": 530.0,
         "45.5": 620.0,
         "46": 620.0,
         "47": 710.0,
@@ -364,7 +364,7 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "XS": 490.0,
-        "S": 440.0,
+        "S": 460.0,
         "M": 460.0,
         "L": 490.0,
         "XL": 450.0,
@@ -679,7 +679,7 @@
       "buy_price": 0.01,
       "buy_price_type": "product_level_price",
       "size_price_map": {
-        "15": 1248.0,
+        "15": 1250.0,
         "1": 1420.0
       },
       "size_price_evidence": null,
@@ -730,7 +730,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1248 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1250 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -743,7 +743,7 @@
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1248 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
+            "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1250 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
             "source": "shihuo_detail_text"
           }
         ],
@@ -765,7 +765,7 @@
           "threshold": null,
           "url": "None",
           "stackable": false,
-          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1248 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
+          "evidence": "。 更多问答详情请查看完整列表。 首页 商家合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 15 ¥ 1250 4.2折 33家放心店铺最低价 总销5600+ 月销350+ C o a c h c i t y 3 3 磁 扣 拉 链 开 合 涂 层 P V C 拼 皮 革 购 物 袋 单 肩 托 特 包 手 提 包 沙色 City 通勤女包人气榜 N0.1 ",
           "source": "shihuo_detail_text"
         }
       ],
@@ -847,31 +847,59 @@
       "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": 0.01,
-        "effective_price": 0.01,
-        "discount_total": null,
-        "offers": [],
+        "effective_price": null,
+        "discount_total": 0.01,
+        "offers": [
+          {
+            "type": "折扣",
+            "platform": "",
+            "amount": null,
+            "rate": 0.44,
+            "threshold": null,
+            "url": "None",
+            "stackable": false,
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2571 ¥ 2800 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "source": "shihuo_detail_text"
+          }
+        ],
         "detected_offers": [
           {
             "type": "折扣",
             "platform": "",
             "amount": null,
-            "rate": 0.5,
+            "rate": 0.44,
             "threshold": null,
             "url": "None",
             "stackable": false,
-            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2500 ¥ 2800 5.0折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+            "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2571 ¥ 2800 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
             "source": "shihuo_detail_text"
           }
         ],
-        "coupon_urls": [],
+        "coupon_urls": [
+          "None"
+        ],
         "all_coupon_urls": [
           "None"
         ],
         "verified": false,
-        "calculation_status": "offers_detected_but_not_verified"
+        "calculation_status": "calculated_from_evidenced_offers"
       },
-      "promotion_offers": [],
-      "coupon_urls": [],
+      "promotion_offers": [
+        {
+          "type": "折扣",
+          "platform": "",
+          "amount": null,
+          "rate": 0.44,
+          "threshold": null,
+          "url": "None",
+          "stackable": false,
+          "evidence": "合作 关于识货 发布视频 AI查价助手 开放平台 下载识货App 立即打开 1 / 12 全部 2 水箱版 ¥2800 自动上下水版 ¥2571 ¥ 2800 4.4折 国家补贴 总销300+ 月销40+ E c o v a c s / 科 沃 斯 T 9 0 P R O 扫 地 机 器 人 扫 拖 烘 干 大 吸 力 防 缠 绕 自 清 洁 自 动 集 尘 回 洗 快 充 超 长 续 航 白色, 水箱版",
+          "source": "shihuo_detail_text"
+        }
+      ],
+      "coupon_urls": [
+        "None"
+      ],
       "all_coupon_urls": [
         "None"
       ],
@@ -910,7 +938,7 @@
       "buy_price_type": "product_level_price",
       "size_price_map": {
         "013": 25.0,
-        "9": 90.0,
+        "9": 100.0,
         "2": 100.0,
         "3": 100.0
       },

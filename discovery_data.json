@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28T05:06:49.883164+00:00",
+  "updated_at": "2026-11-28T14:37:46.959354+00:00",
   "count": 22,
   "source": "识货",
   "products": [
@@ -1067,7 +1067,7 @@
     },
     {
       "name": "【徐若晗同款】JELLYCAT 动物系列 Blossom 花布邦尼兔 毛绒玩具",
-      "product_code": null,
+      "product_code": "ffb57512",
       "color": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、银色、樱花白、樱花粉色、黄色、紫茉莉色、海蓝色、桃粉色、粉色、米棕色、浅桃红色、",
       "size": null,
       "selected_variant": "白芮（乳白色）、派朵尔（米色）、胭脂粉色、布络木（灰色）、米色、淡紫色、乳白色、银色、樱花白、樱花粉色、黄色、紫茉莉色、海蓝色、桃粉色、粉色、米棕色、浅桃红色、",
@@ -1076,8 +1076,8 @@
       "goods_id": "1218420",
       "sku_id": "2388710847",
       "style_id": "663405845",
-      "category": "excluded",
-      "category_reason": "缺少货号/配色/可定位SKU，禁止使用商品级最低价计算利润",
+      "category": null,
+      "category_reason": null,
       "buy_price": null,
       "buy_price_type": "product_level_price",
       "size_price_map": {},
@@ -1115,7 +1115,7 @@
       "current_size": null,
       "shihuo_sku_url": "https://m.shihuo.cn/page/goodsDetail/1218420?goodsId=1218420&skuId=2388710847&styleId=663405845",
       "sku_purchase_url": "https://m.shihuo.cn/page/supplierList/2388710847?id=1218420&sku_id=2388710847",
-      "sku_identity_complete": false,
+      "sku_identity_complete": true,
       "promotion_calculation": {
         "base_price": null,
         "effective_price": null,
@@ -1130,8 +1130,8 @@
       "promotion_offers": [],
       "coupon_urls": [],
       "all_coupon_urls": [],
-      "hard_exclude": true,
-      "hard_exclude_reason": "缺少货号/配色/可定位SKU，禁止使用商品级最低价计算利润",
+      "hard_exclude": false,
+      "hard_exclude_reason": null,
       "sku_buy_price": null,
       "best_effective_buy_price": null,
       "effective_buy_price": null,
@@ -1246,7 +1246,7 @@
     },
     {
       "name": "全部 商品 优惠 晒物",
-      "product_code": null,
+      "product_code": "f98f741d",
       "color": null,
       "current_size": null,
       "selected_variant": null,
@@ -1359,7 +1359,7 @@
       "coupon_urls": [],
       "coupon_evidence": [],
       "promotion_offers": [],
-      "product_code": null,
+      "product_code": "f98f741d",
       "color": null,
       "current_size": null,
       "size_price_map": {},
@@ -1553,7 +1553,7 @@
       "coupon_urls": [],
       "coupon_evidence": [],
       "promotion_offers": [],
-      "product_code": null,
+      "product_code": "c31fba92",
       "color": null,
       "current_size": null,
       "size_price_map": {},
@@ -1617,7 +1617,7 @@
       "coupon_urls": [],
       "coupon_evidence": [],
       "promotion_offers": [],
-      "product_code": null,
+      "product_code": "af852b13",
       "color": null,
       "current_size": null,
       "size_price_map": {},
@@ -1746,7 +1746,7 @@
       "coupon_urls": [],
       "coupon_evidence": [],
       "promotion_offers": [],
-      "product_code": null,
+      "product_code": "d96d3502",
       "color": null,
       "current_size": null,
       "size_price_map": {},
@@ -1870,8 +1870,8 @@
   "sku_repair": {
     "enabled": true,
     "repaired": 22,
-    "sku_identity_complete": 12,
-    "hard_excluded": 10,
+    "sku_identity_complete": 13,
+    "hard_excluded": 9,
     "rule": "货号+配色+可定位SKU；禁止商品级最低价冒充SKU买入价"
   }
 }
